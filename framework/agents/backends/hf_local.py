@@ -1,0 +1,131 @@
+"""
+Run a model locally through HuggingFace transformers
+"""
+
+import asyncio
+import threading
+import time
+
+import torch
+import transformers
+from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
+
+from framework.agents.backends.base import Completion, Sampling, split_reasoning, to_chat_messages
+from framework.agents.prompt import Prompt
+
+
+def pick_dtype(device: str) -> torch.dtype:
+    """Pick bfloat16 on GPUs that support it, float16 otherwise"""
+    if device == "cpu":
+        return torch.float32
+    return torch.bfloat16 if torch.cuda.is_bf16_supported(including_emulation=False) else torch.float16
+
+
+def keep_token_ids(shipped: GenerationConfig) -> GenerationConfig:
+    """Copy only the special-token ids from the model's shipped config, leaving all other settings empty/filled by our default values.
+    Note: This makes all models sample the same way"""
+    return GenerationConfig(
+        bos_token_id=shipped.bos_token_id,
+        eos_token_id=shipped.eos_token_id,
+        pad_token_id=shipped.pad_token_id,
+    )
+
+
+def base_generation_config(shipped: GenerationConfig, use_model_sampling: bool) -> GenerationConfig:
+    """Choose the config the model stores:
+    - use_model_sampling=False: "Sampling" values are used.
+    - use_model_sampling=True: use the model's author full config.
+    """
+    return shipped if use_model_sampling else keep_token_ids(shipped)
+
+
+def generation_config(sampling: Sampling, use_model_sampling: bool = False) -> GenerationConfig:
+    """Build the config
+    - use_model_sampling=False: every `Sampling` value (temperature, top_p, top_k, max_tokens)
+    - use_model_sampling=True: only max_tokens, the other sampling settings come from the stored config
+    """
+    if use_model_sampling:
+        return GenerationConfig(max_new_tokens=sampling.max_tokens)
+    return GenerationConfig(
+        do_sample=True,
+        temperature=sampling.temperature,
+        top_p=sampling.top_p,
+        top_k=sampling.top_k,
+        max_new_tokens=sampling.max_tokens,
+    )
+
+
+class HFLocalBackend:
+    def __init__(
+        self,
+        model_id: str,
+        revision: str | None = None,
+        use_model_sampling: bool = False,
+    ) -> None:
+        self.model_id = model_id
+        self.revision = revision
+        self.use_model_sampling = use_model_sampling
+        self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
+        self.dtype = pick_dtype(self.device)
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision)
+        self.model = AutoModelForCausalLM.from_pretrained(
+            model_id, revision=revision, dtype=self.dtype, device_map=self.device
+        )
+        self.model_sampling_settings = self.model.generation_config.to_diff_dict()
+        self.model.generation_config = base_generation_config(self.model.generation_config, use_model_sampling)
+        eos = self.model.generation_config.eos_token_id
+        self.eos_ids = eos if isinstance(eos, list) else [eos]
+        # We use a lock for reproducibility, to avoid mixing seeeds across concurrent calls
+        # Note: Agents batching might be needed (several prompts in one generate() call)
+        self.lock = threading.Lock()
+
+    def engine_info(self) -> dict:
+        return {
+            "backend": "hf_local",
+            "engine": "transformers",
+            "engine_version": transformers.__version__,
+            "model_id": self.model_id,
+            "revision": self.revision,
+            "dtype": str(self.dtype),
+            "quantization": "none",
+            "context_window": self.model.config.max_position_embeddings,
+            "device": self.device,
+            "prefix_caching": False,
+            "sampling_settings": self.model_sampling_settings if self.use_model_sampling else "from Sampling",
+        }
+
+    async def generate(self, prompt: Prompt, sampling: Sampling) -> Completion:
+        return await asyncio.to_thread(self._generate, prompt, sampling)
+
+    def _generate(self, prompt: Prompt, sampling: Sampling) -> Completion:
+        text = self.tokenizer.apply_chat_template(
+            to_chat_messages(prompt),
+            tokenize=False,
+            add_generation_prompt=True,
+            enable_thinking=sampling.reasoning,
+        )
+        inputs = self.tokenizer(text, add_special_tokens=False, return_tensors="pt").to(self.device)
+        prompt_tokens = inputs["input_ids"].shape[1]
+
+        with self.lock:
+            started = time.perf_counter()
+            if sampling.seed is not None:
+                torch.manual_seed(sampling.seed)
+            with torch.inference_mode():
+                output = self.model.generate(
+                    **inputs, generation_config=generation_config(sampling, self.use_model_sampling)
+                )
+            elapsed = time.perf_counter() - started
+
+        generated = output[0, prompt_tokens:].tolist()
+        raw = self.tokenizer.decode(generated, skip_special_tokens=True)
+        reasoning, answer = split_reasoning(raw)
+        return Completion(
+            text=answer,
+            reasoning=reasoning,
+            prompt_tokens=prompt_tokens,
+            generated_tokens=len(generated),
+            elapsed_s=elapsed,
+            finish_reason="stop" if generated and generated[-1] in self.eos_ids else "length",
+            full_raw_answer=raw,
+        )
