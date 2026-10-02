@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "multi-agent-framework"
+requires-python = "==3.11.*"
+dependencies = [
+    "torch>=2.6",
+    "transformers>=4.56",
+    "huggingface_hub>=0.30",
+    "accelerate>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["framework*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "gpu: loads a local model",
+    "network: calls HuggingFace Inference Providers (needs HF_TOKEN and costs credits)",
+]
+addopts = "-m 'not gpu and not network'"
