@@ -1,21 +1,25 @@
 """
-Append JSONL event log, one line per event
+Append-only JSONL event log:
+{run_id, seq, t, tick, component, kind, data}
 """
 
 import json
 from pathlib import Path
 
 class EventLog:
-    def __init__(self, path: Path) -> None:
+    def __init__(self, path: Path, run_id: str) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         self.file = open(path, "w", encoding="utf-8")
-        self.id = 0
+        self.run_id = run_id
+        self.seq = 0
 
-    def write(self, event_type: str, env_step: int | None = None, **data) -> None:
-        event = {"id": self.id, "env_step": env_step, "event_type": event_type, "data": data}
+    def write(self, component: str, kind: str, *, t: int | None = None, tick: int | None = None, **data) -> None:
+        """t is the step and tick the phase clock"""
+        event = {"run_id": self.run_id, "seq": self.seq, "t": t, "tick": tick,
+                 "component": component, "kind": kind, "data": data}
         self.file.write(json.dumps(event, ensure_ascii=False) + "\n")
         self.file.flush()
-        self.id += 1
+        self.seq += 1
 
     def close(self) -> None:
         self.file.close()
