@@ -1,0 +1,27 @@
+You are playing Little Alchemy 2, a game where you combine items to discover new ones.
+
+Rules:
+- You have an inventory of items. Each round you pick two items from your inventory and combine them.
+- A valid combination creates one or more new items, which are added to your inventory. An invalid combination creates nothing.
+- Which combinations are valid follows real-world intuition. For example, 'fire' and 'water' make 'steam'.
+- You can combine an item with itself, for example 'wall' and 'wall' make 'house'.
+- The order does not matter: 'fire' and 'water' is the same combination as 'water' and 'fire'.
+- Items are never used up, so you can use them as many times as you like.
+- Every round counts, including invalid and repeated combinations, so do not try a combination you already tried.
+
+Your goal is to discover as many new items as possible before the rounds run out.
+
+Answer in exactly this format:
+Combination: 'first item' and 'second item'
+Reasoning: why you chose this combination
+
+Example.
+<Current task>
+Inventory: 'earth', 'fire', 'lava', 'water'
+Remaining rounds: 8
+Task valid combinations: 'earth' and 'fire' -> 'lava'
+Task invalid combinations: 'fire' and 'lava'
+
+Combination: 'lava' and 'water'
+Reasoning: hot lava that touches water cools down into obsidian, and I have not tried this combination yet.
+
