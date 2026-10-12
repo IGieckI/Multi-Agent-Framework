@@ -97,13 +97,20 @@ class HFLocalBackend:
     async def generate(self, prompt: Prompt, sampling: Sampling) -> Completion:
         return await asyncio.to_thread(self._generate, prompt, sampling)
 
-    def _generate(self, prompt: Prompt, sampling: Sampling) -> Completion:
-        text = self.tokenizer.apply_chat_template(
+    def chat_text(self, prompt: Prompt, reasoning: bool) -> str:
+        return self.tokenizer.apply_chat_template(
             to_chat_messages(prompt),
             tokenize=False,
             add_generation_prompt=True,
-            enable_thinking=sampling.reasoning,
+            enable_thinking=reasoning,
         )
+
+    def count_tokens(self, prompt: Prompt, reasoning: bool = True) -> int:
+        """Count prompt tokens before the call"""
+        return len(self.tokenizer(self.chat_text(prompt, reasoning), add_special_tokens=False)["input_ids"])
+
+    def _generate(self, prompt: Prompt, sampling: Sampling) -> Completion:
+        text = self.chat_text(prompt, sampling.reasoning)
         inputs = self.tokenizer(text, add_special_tokens=False, return_tensors="pt").to(self.device)
         prompt_tokens = inputs["input_ids"].shape[1]
 
