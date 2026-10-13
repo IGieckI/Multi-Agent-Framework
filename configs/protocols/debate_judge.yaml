@@ -1,0 +1,9 @@
+roles:
+  debater: {count: 4}
+  judge: {count: 1}
+rules:
+  - {from: debater, to: debater, share: [message]}
+  - {from: debater, to: judge, share: [message]}
+  - {from: judge, to: debater, share: [verdict]}
+schedule: [debater, judge]
+

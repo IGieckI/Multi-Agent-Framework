@@ -1,0 +1,8 @@
+roles:
+  explorer: {count: 6}
+structure: {generator: path, directed: true}
+rules:
+  - {along: next, share: [message]}
+schedule: {by: position}
+
+
