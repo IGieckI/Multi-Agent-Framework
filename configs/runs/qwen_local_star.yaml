@@ -1,0 +1,13 @@
+# Qwen3-0.6B on the local GPU
+run: {name: qwen_local_star, seed: 0, replicate: 0}
+task: {name: wordcraft, type: targeted, depth: 1, distractors: 3, max_steps: 3, repeat_consumes_step: true}
+engine: {backend: hf_local, model: Qwen/Qwen3-0.6B, max_concurrency: 1}
+sampling: {temperature: 1.0, top_p: 1.0, top_k: 0, max_tokens: 1024, reasoning: true}
+protocol: configs/protocols/star2.yaml
+context: {max_prompt_tokens: 6000, truncation: oldest_first}
+retries: {max_parse_attempts: 3, max_attempts: 3}
+personas: {hub: prompts/v1/personas/hub.txt, spoke: prompts/v1/personas/spoke.txt}
+
+
+
+

@@ -1,0 +1,7 @@
+# A zero-cost demo: 6 random (mock) agents on a targeted task, sharing results and messages with everyone
+run: {name: demo_mock, seed: 0, replicate: 0}
+task: {type: targeted, depth: 1, distractors: 3, max_steps: 6, repeat_consumes_step: true}
+engine: {backend: mock}
+sampling: {temperature: 1.0, top_p: 1.0, top_k: 0, max_tokens: 256, reasoning: true}
+protocol: configs/protocols/fully_connected.yaml
+context: {max_prompt_tokens: 6000, truncation: oldest_first}

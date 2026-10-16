@@ -1,0 +1,8 @@
+roles:
+  explorer: {count: 6}
+structure: {generator: complete}
+rules:
+  - {from: explorer, to: explorer, share: [result]}
+channels:
+  result.success: {visible_to: neighbors, delay: 20, form: full}
+  result.failure: {visible_to: all, delay: 0, form: full}

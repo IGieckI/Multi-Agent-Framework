@@ -1,0 +1,9 @@
+structure: {generator: tree, branching: 3, depth: 2}
+roles:
+  manager: {where: {depth: {lt: 2}}}
+  executor: {where: leaf}
+rules:
+  - {along: down, share: [task]}
+  - {along: up, share: [result]}
+schedule: {by: depth, order: top_down}
+constraints: [acyclic, {each: executor, has_exactly: 1, of: manager}]

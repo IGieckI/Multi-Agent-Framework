@@ -1,0 +1,8 @@
+roles:
+  explorer: {count: 7}
+structure: {generator: tree, branching: 2, depth: 2}
+rules:
+  - {along: up, share: [result]}
+  - {along: down, share: [message]}
+schedule: {by: depth, order: bottom_up}
+constraints: [acyclic, connected]

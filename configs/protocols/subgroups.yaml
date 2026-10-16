@@ -1,0 +1,5 @@
+roles:
+  explorer: {count: 6}
+structure: {generator: subgroups, sizes: [2, 2, 2]}
+rules:
+  - {from: explorer, to: explorer, share: [result]}

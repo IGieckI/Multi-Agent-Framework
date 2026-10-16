@@ -1,0 +1,9 @@
+run: {name: inline_protocol, seed: 1}
+task: {type: open_ended, max_steps: 10}
+engine: {backend: mock}
+protocol:
+  roles:
+    explorer: {count: 3, visible_fields: [inventory, steps_left, own_valid, own_invalid]}
+  structure: {generator: path, directed: false}
+  rules:
+    - {share: [result, message]}
