@@ -1,14 +1,33 @@
 """
-WordCraft prompts: versioned rules first, then the current state block
+WordCraft prompts: versioned rules first, then the current state block (SPEC §5.2)
 """
 
 import hashlib
 from pathlib import Path
 
-from framework.agents.prompt import Prompt, Segment
+from framework.agents.prompt import Prompt, Segment, View
+from framework.comm.message import Message
 from framework.tasks.wordcraft.env import WordCraftEnv
 
 TEMPLATES = Path(__file__).resolve().parents[3] / "prompts" / "v1" / "wordcraft"
+MESSAGE_SLOT = TEMPLATES / "message_slot.txt"
+
+# Observation fields a role can see (`visible_fields`)
+FIELDS = ("inventory", "target", "steps_left", "own_valid", "own_invalid")
+
+# State-block lines fed by the bus: (block, label, message types). A line is rendered only for an agent that can
+# receive one of its types in the compiled structure, so it stays the same for the whole run
+SOCIAL_BLOCKS = (
+    ("others_valid", "Other players' valid combinations", ("result.success",)),
+    ("others_invalid", "Other players' invalid combinations", ("result.failure",)),
+    ("messages", "Messages from other players", ("message", "task", "verdict")),
+    ("reasoning", "Other players' reasoning", ("reasoning",)),
+)
+
+
+def full_view(env: WordCraftEnv) -> View:
+    """Every observation field and the whole own history, no social blocks (a single agent)"""
+    return View(env.observation())
 
 
 def rules_file(targeted: bool) -> Path:
@@ -27,21 +46,55 @@ def quote(items) -> str:
     return ", ".join(f"'{item}'" for item in items)
 
 
-def build_prompt(env: WordCraftEnv, error: str | None = None) -> Prompt:
-    """The rules, the state block and, on a retry, the error found in the previous answer"""
-    rules = rules_file(env.task.target is not None)
-    segments = [
-        Segment(rules.read_text(encoding="utf-8"), "template", rules.name),
-        Segment("<Current task>\n", "template"),
-        Segment(f"Inventory: {quote(env.inventory)}\n", "observation", "inventory"),
-    ]
-    if env.task.target is not None:
-        segments.append(Segment(f"Target: '{env.task.target}'\n", "observation", "target"))
-    segments.append(Segment(f"Remaining rounds: {env.steps_left}\n", "observation", "steps_left"))
-    valid = ", ".join(f"'{a}' and '{b}' -> {quote(results)}" for (a, b), results in env.valid.items())
-    invalid = ", ".join(f"'{a}' and '{b}'" for a, b in env.invalid)
-    segments.append(Segment(f"Task valid combinations: {valid}\n", "observation", "own_valid"))
-    segments.append(Segment(f"Task invalid combinations: {invalid}\n", "observation", "own_invalid"))
+def social_entry(message: Message) -> str:
+    """How a delivered message reads in the state block"""
+    if message.type == "result.success":
+        a, b = message.payload["combo"]
+        return f"'{a}' and '{b}' -> {quote(message.payload['result'])}"
+    if message.type == "result.failure":
+        a, b = message.payload["combo"]
+        return f"'{a}' and '{b}'"
+    sender = message.sender if message.type in ("message", "reasoning") else f"{message.sender} ({message.type})"
+    return f"{sender}: {message.payload['text']}"
+
+
+def social_segments(label: str, messages: list[Message], as_list: bool) -> list[Segment]:
+    """One segment per message, so that each one keeps its message id"""
+    segments = [Segment(f"{label}:", "template")]
+    for i, m in enumerate(messages):
+        separator = "\n- " if as_list else (" " if i == 0 else ", ")
+        segments.append(Segment(separator + social_entry(m), "message", m.id))
+    segments.append(Segment("\n", "template"))
+    return segments
+
+
+def build_prompt(view: View, targeted: bool, error: str | None = None) -> Prompt:
+    """The rules, the role's persona if any, the message slot if any, the state block and, on a retry, the error found
+    in the previous answer. The state block shows only the observation fields in the view"""
+    observation = view.observation
+    rules = rules_file(targeted)
+    segments = [Segment(rules.read_text(encoding="utf-8"), "template", rules.name)]
+    if view.persona is not None:
+        file, text = view.persona
+        segments.append(Segment(text.rstrip("\n") + "\n\n", "role", file))
+    if view.message_slot:
+        segments.append(Segment(MESSAGE_SLOT.read_text(encoding="utf-8"), "template", MESSAGE_SLOT.name))
+    segments.append(Segment("<Current task>\n", "template"))
+    if "inventory" in observation:
+        segments.append(Segment(f"Inventory: {quote(observation['inventory'])}\n", "observation", "inventory"))
+    if observation.get("target") is not None:
+        segments.append(Segment(f"Target: '{observation['target']}'\n", "observation", "target"))
+    if "steps_left" in observation:
+        segments.append(Segment(f"Remaining rounds: {observation['steps_left']}\n", "observation", "steps_left"))
+    if "own_valid" in observation:
+        valid = ", ".join(f"'{a}' and '{b}' -> {quote(results)}" for (a, b), results in observation["own_valid"])
+        segments.append(Segment(f"Task valid combinations: {valid}\n", "observation", "own_valid"))
+    if "own_invalid" in observation:
+        invalid = ", ".join(f"'{a}' and '{b}'" for a, b in observation["own_invalid"])
+        segments.append(Segment(f"Task invalid combinations: {invalid}\n", "observation", "own_invalid"))
+    for block, label, _ in SOCIAL_BLOCKS:
+        if block in view.social:
+            segments += social_segments(label, view.social[block], as_list=block in ("messages", "reasoning"))
     if error:
         segments.append(Segment(f"\n{error}\n", "own_output", "retry_error"))
     return tuple(segments)

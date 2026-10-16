@@ -1,34 +1,32 @@
 """
-A minimal engine for multi-agent WordCraft play
+The engine: runs the agents of a compiled protocol on a task, step by step (SPEC §4.2).
+
+It reaches the task only through the Task interface (framework/tasks/base.py), so nothing here depends on a
+particular game or environment.
 """
 
 import asyncio
 import hashlib
 import json
-import random
 import time
 from dataclasses import asdict, dataclass, field, replace
 from pathlib import Path
-from typing import Callable
+from typing import Any, Callable
 
 import numpy as np
 
 from framework.agents.backends.base import Sampling
-from framework.agents.prompt import Prompt, render
+from framework.agents.parse import ParseError, output_parts
+from framework.agents.prompt import Prompt, View, render
 from framework.comm.bus import MessageBus
 from framework.comm.compiler import ProtocolConfig, compile_protocol
 from framework.comm.message import AgentId, Message, MessageDraft, covers
 from framework.engine.config import ROOT, EngineConfig, RunConfig
 from framework.engine.usage import Usage
 from framework.log import EventLog
-from framework.tasks.wordcraft.env import StepResult, WordCraftEnv
-from framework.tasks.wordcraft.parse import ParseError, output_parts, parse_combination
-from framework.tasks.wordcraft.prompt import FIELDS, SOCIAL_BLOCKS, View, build_prompt, templates_hash
-from framework.tasks.wordcraft.recipes import Combo, RecipeBook
-from framework.tasks.wordcraft.tasks import TaskSpec, open_ended, sample_targeted
+from framework.tasks.base import Task
+from framework.tasks.registry import build_task
 
-MAX_PARSE_ATTEMPTS = 5
-MAX_ATTEMPTS = 6
 AUTHORED = ("message", "task", "verdict")
 
 
@@ -42,7 +40,8 @@ class Attempt:
     truncated: list[str]
     answer: str
     reasoning: str | None
-    combination: tuple[str, str] | None
+    # the action the task read from the answer, None if there is none
+    action: Any
     message: str | None
     error: str | None
     completion_tokens: int
@@ -61,15 +60,15 @@ class Turn:
     # List of the attempts
     attempts: list[Attempt] = field(default_factory=list)
     # Status can be:
-    # "acted": produced a valid combination
+    # "acted": produced a valid action
     # "no_valid_answer": all attempts used up without a valid answer
     # "failed": the backend raised an exception
     status: str = "no_valid_answer"
-    action: Combo | None = None
+    action: Any = None
     message: str | None = None
     reasoning: str | None = None
-    # This is the final result from the env
-    result: StepResult | None = None
+    # This is the final result from the task's step
+    result: Any = None
     # ids of the published messages
     published: list[str] = field(default_factory=list)
 
@@ -80,47 +79,50 @@ def call_seed(seed: int, replicate: int, agent: AgentId, step: int, attempt: int
     return int.from_bytes(hashlib.sha256(key).digest()[:4], "big") >> 1
 
 
-def make_task(cfg: RunConfig, book: RecipeBook) -> TaskSpec:
-    # If the task is open_ended it finishes with max_steps, otherwise through a random receipe reached
-    if cfg.task.type == "open_ended":
-        return open_ended(cfg.max_steps())
-    stream = int(np.random.SeedSequence([cfg.run.seed, cfg.run.replicate]).generate_state(1)[0])
-    return sample_targeted(book, random.Random(stream), cfg.task.depth, cfg.task.distractors, cfg.max_steps())
+def task_seed(cfg: RunConfig) -> int:
+    """The task's own random stream for this seed and replicate"""
+    return int(np.random.SeedSequence([cfg.run.seed, cfg.run.replicate]).generate_state(1)[0])
 
 
-def make_backend(cfg: EngineConfig):
-    # loads the model
+def make_backend(cfg: EngineConfig, task: Task):
+    # loads the model; the mock answers at random in the task's format
     if cfg.backend == "mock":
         from framework.agents.backends.mock import MockBackend
-        return MockBackend()
+        return MockBackend(task.mock_answer)
     if not cfg.model:
         raise ValueError(f"engine.backend {cfg.backend!r} needs engine.model")
     from framework.agents.backends.hf_local import HFLocalBackend
-    return HFLocalBackend(cfg.model, cfg.revision)
+    return HFLocalBackend(cfg.model)
 
 
 class Engine:
-    def __init__(self, cfg: RunConfig, backend, book: RecipeBook, out_dir: Path,
-                 listener: Callable[[Turn], None] | None = None, data_sha256: str | None = None) -> None:
+    def __init__(self, cfg: RunConfig, task: Task, backend, out_dir: Path,
+                 listener: Callable[[Turn], None] | None = None,
+                 stream: Callable[[AgentId, int, int, str | None], None] | None = None) -> None:
         self.cfg = cfg
+        self.task = task
         self.backend = backend
-        self.book = book
         self.listener = listener
+        # Display only (never logged, never read back by the run): stream(agent, step, attempt, text) with the raw
+        # text generated so far, "" when a call starts and None when it ends
+        self.stream = stream
         protocol = cfg.resolved_protocol()
         # the communication graph
         self.structure, self.phases = compile_protocol(protocol)
         self.agents = sorted(self.structure.agents)
         # for each agent, which observation fields its role can see
         self.fields = {a: self.visible_fields(protocol, a) for a in self.agents}
-        self.task = make_task(cfg, book)
-        self.envs = {a: WordCraftEnv(book, self.task) for a in self.agents}
+        # one environment instance per agent, inside the task
+        self.task.reset(task_seed(cfg), self.agents)
         # cumulative social memory
         self.memory: dict[AgentId, list[Message]] = {a: [] for a in self.agents}
         # which social prompt sections the agent gets (fixed for the whole run from the compiled structure)
-        self.blocks = {a: {block for block, _, types in SOCIAL_BLOCKS if any(self.can_receive(a, t) for t in types)}
+        self.blocks = {a: {block for block, _, types in task.social_blocks if any(self.can_receive(a, t) for t in types)}
                        for a in self.agents}
         # whether the agent's prompt asks it to write a message: only if something it writes would reach a receiver
         self.slot = {a: any(self.structure.receivers(MessageDraft(a, t, {})) for t in AUTHORED) for a in self.agents}
+        # role -> (file, text) of its persona, rendered after the rules for every agent of the role
+        self.personas = self.load_personas(cfg)
         self.sampling = Sampling(**cfg.sampling.model_dump())
         self.usage = Usage()
         self.t = 0
@@ -139,12 +141,12 @@ class Engine:
             "visible_fields": {a: sorted(f) for a, f in self.fields.items()},
             "social_blocks": {a: sorted(b) for a, b in self.blocks.items()},
             "message_slot": self.slot,
-            "task": asdict(self.task),
+            "personas": {role: {"file": file, "sha256": hashlib.sha256(text.encode("utf-8")).hexdigest()}
+                         for role, (file, text) in sorted(self.personas.items())},
+            **task.metadata(),
             "sampling": asdict(self.sampling),
             "engine": backend.engine_info(),
             "prompt_token_count": "backend" if hasattr(backend, "count_tokens") else "approx_chars_div_4",
-            "prompts_hash": templates_hash(),
-            "data_sha256": data_sha256,
             "started_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         }
         
@@ -159,9 +161,9 @@ class Engine:
         # reads the role's visible_fields from the protocol
         fields = protocol.roles[self.structure.agents[agent]].visible_fields
         if fields is None:
-            return frozenset(FIELDS)
-        if unknown := set(fields) - set(FIELDS):
-            raise ValueError(f"unknown visible_fields {sorted(unknown)}; WordCraft has {list(FIELDS)}")
+            return frozenset(self.task.fields)
+        if unknown := set(fields) - set(self.task.fields):
+            raise ValueError(f"unknown visible_fields {sorted(unknown)}; the task has {list(self.task.fields)}")
         return frozenset(fields)
 
     def can_receive(self, agent: AgentId, msg_type: str) -> bool:
@@ -174,11 +176,19 @@ class Engine:
         return any(covers(t, msg_type) for t in self.structure.shares.get(self.structure.agents[agent], ()))
 
     def view(self, agent: AgentId) -> View:
-        # builds the View object that the prompt builder consumes
-        env = self.envs[agent]
+        # builds the View object that the prompt builder consumes: the observation filtered by the agent's role
+        observation = {name: value for name, value in self.task.observe(agent).items() if name in self.fields[agent]}
         social = {block: [m for m in self.memory[agent] if m.type in types]
-                  for block, _, types in SOCIAL_BLOCKS if block in self.blocks[agent]}
-        return View(self.fields[agent], list(env.valid.items()), list(env.invalid), social, self.slot[agent])
+                  for block, _, types in self.task.social_blocks if block in self.blocks[agent]}
+        return View(observation, social, self.slot[agent], self.personas.get(self.structure.agents[agent]))
+
+    def load_personas(self, cfg: RunConfig) -> dict[str, tuple[str, str]]:
+        """Reads the persona file of each role named in the run config"""
+        roles = set(self.structure.agents.values())
+        if unknown := set(cfg.personas) - roles:
+            raise ValueError(f"personas name roles the protocol does not have: {sorted(unknown)}; "
+                             f"its roles are {sorted(roles)}")
+        return {role: (file, (ROOT / file).read_text(encoding="utf-8")) for role, file in cfg.personas.items()}
 
     def count_tokens(self, prompt: Prompt) -> int:
         # uses the backend's tokenizer if it has one
@@ -192,11 +202,11 @@ class Engine:
         removed: list[str] = []
         limit = self.cfg.context.max_prompt_tokens
         while True:
-            prompt = build_prompt(self.envs[agent], error, view)
+            prompt = self.task.build_prompt(view, error)
             tokens = self.count_tokens(prompt)
             if tokens <= limit:
                 break
-            ref = drop_oldest(view)
+            ref = drop_oldest(view, self.task)
             if ref is None:
                 self.log.write("agent", "prompt_over_limit", t=t, tick=tick, agent=agent, tokens=tokens, limit=limit)
                 break
@@ -206,8 +216,7 @@ class Engine:
         return prompt, tokens, removed
 
     async def run_agent(self, agent: AgentId, t: int, tick: int, slots: asyncio.Semaphore) -> Turn:
-        env = self.envs[agent]
-        turn = Turn(t, tick, agent, self.structure.agents[agent])
+        turn =Turn(t, tick, agent, self.structure.agents[agent])
         
         # append every pending/valid message to agents
         turn.inbox = self.bus.deliver(agent, tick)
@@ -215,7 +224,7 @@ class Engine:
 
         error = None
         parse_failures = 0
-        for attempt in range(MAX_ATTEMPTS):
+        for attempt in range(self.cfg.retries.max_attempts):
             # Build the guarded prompt
             prompt, tokens, removed = self.guarded_prompt(agent, error, t, tick)
 
@@ -223,22 +232,29 @@ class Engine:
             sampling = replace(self.sampling, seed=call_seed(self.cfg.run.seed, self.cfg.run.replicate, agent, t, attempt))
             try:
                 async with slots:
-                    completion = await self.backend.generate(prompt, sampling)
+                    if self.stream:
+                        self.stream(agent, t, attempt, "")
+                        completion = await self.backend.generate(
+                            prompt, sampling, on_text=lambda text: self.stream(agent, t, attempt, text))
+                    else:
+                        completion = await self.backend.generate(prompt, sampling)
             except Exception as e:
                 turn.status = "failed"
                 self.log.write("agent", "llm_failed", t=t, tick=tick, agent=agent, attempt=attempt, error=repr(e))
                 break
+            finally:
+                if self.stream:
+                    self.stream(agent, t, attempt, None)
             self.usage.charge(completion.prompt_tokens, completion.generated_tokens)
 
             # Split the output in different parts
-            parts = output_parts(completion.text)
+            parts = output_parts(completion.text, self.task.answer_labels)
             reasoning = completion.reasoning or parts.get("reasoning") or None
             message = (parts.get("message") or None) if self.slot[agent] else None
-            pair, error = None, None
+            action, error = None, None
             try:
-                pair = parse_combination(completion.text, env.inventory)
-                if not self.cfg.task.repeat_consumes_step and env.tried(*pair):
-                    error = f"You already tried '{pair[0]}' and '{pair[1]}'. Choose a combination you have not tried."
+                action = self.task.parse(agent, completion.text)
+                error = self.task.check(agent, action)
             except ParseError as e:
                 error = str(e)
                 parse_failures += 1
@@ -246,7 +262,7 @@ class Engine:
                     error += " Your answer was cut off: keep it shorter."
 
             turn.attempts.append(Attempt(attempt, render(prompt), tokens, removed, completion.text, reasoning,
-                                         pair, message, error, completion.generated_tokens, completion.elapsed_s))
+                                         action, message, error, completion.generated_tokens, completion.elapsed_s))
             self.log.write(
                 "agent", "llm_call", t=t, tick=tick, agent=agent, attempt=attempt,
                 prompt=render(prompt),
@@ -254,36 +270,35 @@ class Engine:
                 counted_prompt_tokens=tokens, truncated=removed,
                 inbox=[m.id for m in turn.inbox] if attempt == 0 else [],
                 sampling=asdict(sampling), completion=asdict(completion),
-                parts=parts, combination=pair, error=error,
+                parts=parts, action=action, error=error,
                 usage=self.usage.report(),
             )
             if error is None:
-                turn.status, turn.action, turn.message, turn.reasoning = "acted", pair, message, reasoning
+                turn.status, turn.action, turn.message, turn.reasoning = "acted", action, message, reasoning
                 break
-            if parse_failures >= MAX_PARSE_ATTEMPTS:
+            if parse_failures >= self.cfg.retries.max_parse_attempts:
                 break
         return turn
 
     def apply(self, turn: Turn) -> None:
         """Steps the agent's environment and publishes its outcome and shared parts"""
-        agent, env = turn.agent, self.envs[turn.agent]
-        
+        agent = turn.agent
+
         # if the backend failed just exit
         if turn.status == "failed":
             return
         if turn.action is None:
-            env.no_op()
+            self.task.no_op(agent)
             self.log.write("task", "no_op", t=turn.t, tick=turn.tick, agent=agent)
             return
-        
-        # step on the env + logs
-        result = env.step(*turn.action)
+
+        # step the agent's environment + logs
+        result = self.task.step(agent, turn.action)
         turn.result = result
-        self.log.write("task", "env_step", t=turn.t, tick=turn.tick, agent=agent, **asdict(result),
-                       inventory_size=len(env.inventory))
-        combo = list(result.combo)
-        drafts = [MessageDraft(agent, "result.success", {"combo": combo, "result": list(result.results)}, meta={"auto": True})
-                  if result.results else MessageDraft(agent, "result.failure", {"combo": combo}, meta={"auto": True})]
+        self.log.write("task", "env_step", t=turn.t, tick=turn.tick, agent=agent,
+                       **self.task.step_record(agent, result))
+        outcome = self.task.outcome_message(agent, turn.action, result)
+        drafts = [outcome] if outcome is not None else []
         if turn.message:
             drafts += [MessageDraft(agent, t, {"text": turn.message}) for t in AUTHORED if self.shares(agent, t)]
         if turn.reasoning and self.shares(agent, "reasoning"):
@@ -304,7 +319,7 @@ class Engine:
         try:
             for phase in self.phases:
                 tick = self.tick
-                active = [a for a in phase if not self.envs[a].done]
+                active = [a for a in phase if not self.task.agent_done(a)]
                 outputs = await asyncio.gather(*(self.run_agent(a, t, tick, slots) for a in active))
                 for turn in sorted(outputs, key=lambda turn: turn.agent):
                     self.apply(turn)
@@ -322,8 +337,8 @@ class Engine:
         statuses = {turn.status for turn in turns}
         if "failed" in statuses:
             self.end("backend_error")
-        elif all(env.done for env in self.envs.values()):
-            self.end("all_solved" if all(env.solved for env in self.envs.values()) else "max_steps")
+        elif (reason := self.task.end_reason()) is not None:
+            self.end(reason)
         return turns
 
     async def run(self) -> dict:
@@ -342,33 +357,16 @@ class Engine:
         self.log.close()
 
     def summary(self) -> dict:
-        """Final answers: each agent's result and the team's"""
-        initial = set(self.task.initial)
-        reachable = self.book.reachable(initial) - initial
-        agents, union = {}, set()
-        for a, env in self.envs.items():
-            found = set(env.inventory) - initial
-            union |= found
-            agents[a] = {
-                "role": self.structure.agents[a],
-                "solved": env.solved if self.task.target else None,
-                "steps": env.steps,
-                "new_items": sorted(found),
-                "coverage": round(len(found) / len(reachable), 4) if reachable else None,
-                "invalid": len(env.invalid),
-                "no_valid_answers": sum(turn.agent == a and turn.status == "no_valid_answer" for turn in self.turns),
-            }
-        solved = [env.solved for env in self.envs.values()]
+        """Final answers: the task's results for each agent and the team, with the engine's own counts"""
+        results = self.task.summary()
+        agents = {a: {"role": self.structure.agents[a], **results["agents"][a],
+                      "no_valid_answers": sum(turn.agent == a and turn.status == "no_valid_answer"
+                                              for turn in self.turns)}
+                  for a in self.agents}
         return {
             "ended_by": self.ended_by,
             "steps": self.t,
-            "task": asdict(self.task),
-            "team": {
-                "any_solved": any(solved) if self.task.target else None,
-                "all_solved": all(solved) if self.task.target else None,
-                "union_new_items": len(union),
-                "union_coverage": round(len(union) / len(reachable), 4) if reachable else None,
-            },
+            **results,
             "agents": agents,
             "usage": self.usage.report(),
         }
@@ -377,26 +375,18 @@ class Engine:
         """A plain copy of the current state, safe to hand to another thread"""
         return {
             "t": self.t, "tick": self.tick, "ended_by": self.ended_by, "usage": self.usage.report(),
-            "agents": {a: {"role": self.structure.agents[a], "inventory": list(env.inventory),
-                           "solved": env.solved, "steps_left": env.steps_left, "done": env.done}
-                       for a, env in self.envs.items()},
+            "agents": {a: {"role": self.structure.agents[a], **self.task.state(a)} for a in self.agents},
         }
 
 
-def drop_oldest(view: View) -> str | None:
-    """Removes the oldest history entry removable"""
+def drop_oldest(view: View, task: Task) -> str | None:
+    """Removes the oldest removable history entry: delivered messages first, then the task's own history"""
     social = [(int(m.id[1:]), block, m) for block, messages in view.social.items() for m in messages]
     if social:
         _, block, message = min(social, key=lambda entry: entry[0])
         view.social[block].remove(message)
         return message.id
-    if view.own_invalid:
-        a, b = view.own_invalid.pop(0)
-        return f"own_invalid:{a}+{b}"
-    if view.own_valid:
-        (a, b), _ = view.own_valid.pop(0)
-        return f"own_valid:{a}+{b}"
-    return None
+    return task.truncate(view.observation)
 
 
 def default_out_dir(cfg: RunConfig) -> Path:
@@ -404,12 +394,8 @@ def default_out_dir(cfg: RunConfig) -> Path:
 
 
 def create_engine(cfg: RunConfig, out_dir: Path | None = None, listener: Callable[[Turn], None] | None = None,
-                  backend=None) -> Engine:
-    """Loads the recipe data and the backend named in the config, and builds the engine"""
-    data = ROOT / cfg.task.data
-    if not data.exists():
-        raise FileNotFoundError(f"{data} is missing: run `python scripts/fetch_data.py` first")
-    book = RecipeBook.load(data)
-    backend = backend or make_backend(cfg.engine)
-    return Engine(cfg, backend, book, out_dir or default_out_dir(cfg), listener,
-                  hashlib.sha256(data.read_bytes()).hexdigest())
+                  backend=None, stream: Callable[[AgentId, int, int, str | None], None] | None = None) -> Engine:
+    """Builds the task and the backend named in the config, and the engine"""
+    task = build_task(cfg.task)
+    backend = backend or make_backend(cfg.engine, task)
+    return Engine(cfg, task, backend, out_dir or default_out_dir(cfg), listener, stream)

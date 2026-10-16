@@ -3,8 +3,10 @@ Read the chosen combination from an answer
 """
 import re
 
-class ParseError(ValueError):
-    """The answer has no usable combination"""
+from framework.agents.parse import ParseError
+
+# the labelled parts of an answer
+ANSWER_LABELS = ("combination", "reasoning", "message")
 
 
 def clean(item: str) -> str:
@@ -26,3 +28,4 @@ def parse_combination(text: str, inventory: list[str]) -> tuple[str, str]:
     missing = sorted({item for item in splits[0] if item not in inventory})
     names = ", ".join(f"'{item}'" for item in missing)
     raise ParseError(f"{names} {'is' if len(missing) == 1 else 'are'} not in your inventory. Use only inventory items.")
+

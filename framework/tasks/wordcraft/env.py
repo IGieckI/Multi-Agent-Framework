@@ -47,6 +47,11 @@ class WordCraftEnv:
     def done(self) -> bool:
         return self.solved or self.steps_left <= 0
 
+    def observation(self) -> dict:
+        """Every observation field (prompt.FIELDS), in fresh containers"""
+        return {"inventory": list(self.inventory), "target": self.task.target, "steps_left": self.steps_left,
+                "own_valid": list(self.valid.items()), "own_invalid": list(self.invalid)}
+
     def tried(self, a: str, b: str) -> bool:
         c = combo(a, b)
         return c in self.valid or c in self.invalid
