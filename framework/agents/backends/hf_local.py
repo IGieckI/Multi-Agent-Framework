@@ -9,8 +9,9 @@ import time
 import torch
 import transformers
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
+from transformers.generation.streamers import BaseStreamer
 
-from framework.agents.backends.base import Completion, Sampling, split_reasoning, to_chat_messages
+from framework.agents.backends.base import Completion, Sampling, TextListener, split_reasoning, to_chat_messages
 from framework.agents.prompt import Prompt
 
 
@@ -55,21 +56,39 @@ def generation_config(sampling: Sampling, use_model_sampling: bool = False) -> G
     )
 
 
+class LiveText(BaseStreamer):
+    """Hands the text generated so far to a listener after every new token (batch size 1)"""
+
+    def __init__(self, tokenizer, on_text: TextListener) -> None:
+        self.tokenizer = tokenizer
+        self.on_text = on_text
+        self.ids: list[int] = []
+        self.prompt_seen = False
+
+    def put(self, value) -> None:
+        if not self.prompt_seen:  # generate() first pushes the prompt itself
+            self.prompt_seen = True
+            return
+        self.ids += value.reshape(-1).tolist()
+        self.on_text(self.tokenizer.decode(self.ids, skip_special_tokens=True))
+
+    def end(self) -> None:
+        pass
+
+
 class HFLocalBackend:
     def __init__(
         self,
         model_id: str,
-        revision: str | None = None,
         use_model_sampling: bool = False,
     ) -> None:
         self.model_id = model_id
-        self.revision = revision
         self.use_model_sampling = use_model_sampling
         self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
         self.dtype = pick_dtype(self.device)
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision)
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
         self.model = AutoModelForCausalLM.from_pretrained(
-            model_id, revision=revision, dtype=self.dtype, device_map=self.device
+            model_id, dtype=self.dtype, device_map=self.device
         )
         self.model_sampling_settings = self.model.generation_config.to_diff_dict()
         self.model.generation_config = base_generation_config(self.model.generation_config, use_model_sampling)
@@ -85,7 +104,6 @@ class HFLocalBackend:
             "engine": "transformers",
             "engine_version": transformers.__version__,
             "model_id": self.model_id,
-            "revision": self.revision,
             "dtype": str(self.dtype),
             "quantization": "none",
             "context_window": self.model.config.max_position_embeddings,
@@ -94,8 +112,8 @@ class HFLocalBackend:
             "sampling_settings": self.model_sampling_settings if self.use_model_sampling else "from Sampling",
         }
 
-    async def generate(self, prompt: Prompt, sampling: Sampling) -> Completion:
-        return await asyncio.to_thread(self._generate, prompt, sampling)
+    async def generate(self, prompt: Prompt, sampling: Sampling, on_text: TextListener | None = None) -> Completion:
+        return await asyncio.to_thread(self._generate, prompt, sampling, on_text)
 
     def chat_text(self, prompt: Prompt, reasoning: bool) -> str:
         return self.tokenizer.apply_chat_template(
@@ -109,7 +127,7 @@ class HFLocalBackend:
         """Count prompt tokens before the call"""
         return len(self.tokenizer(self.chat_text(prompt, reasoning), add_special_tokens=False)["input_ids"])
 
-    def _generate(self, prompt: Prompt, sampling: Sampling) -> Completion:
+    def _generate(self, prompt: Prompt, sampling: Sampling, on_text: TextListener | None) -> Completion:
         text = self.chat_text(prompt, sampling.reasoning)
         inputs = self.tokenizer(text, add_special_tokens=False, return_tensors="pt").to(self.device)
         prompt_tokens = inputs["input_ids"].shape[1]
@@ -120,7 +138,8 @@ class HFLocalBackend:
                 torch.manual_seed(sampling.seed)
             with torch.inference_mode():
                 output = self.model.generate(
-                    **inputs, generation_config=generation_config(sampling, self.use_model_sampling)
+                    **inputs, generation_config=generation_config(sampling, self.use_model_sampling),
+                    streamer=LiveText(self.tokenizer, on_text) if on_text else None,
                 )
             elapsed = time.perf_counter() - started
 

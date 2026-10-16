@@ -3,14 +3,20 @@ Model backend interface that turns a Prompt into a Completion.
 """
 
 from dataclasses import dataclass, field
+from typing import Callable
 from framework.agents.prompt import Prompt, render
+
+
+# Called while a model generates, with the raw text produced so far (reasoning included). Only for display: the
+# Completion is still what the run uses and logs. A backend that cannot stream may call it once, at the end
+TextListener = Callable[[str], None]
 
 
 @dataclass
 class Sampling:
     temperature: float = 1.0
     top_p: float = 1.0
-    top_k: int = 0  # 0 = off (all tokens considered)
+    top_k: int = 0  # 0 = off
     max_tokens: int = 256
     reasoning: bool = True
     seed: int | None = None
@@ -18,12 +24,15 @@ class Sampling:
 
 @dataclass
 class Completion:
-    text: str  # the answer, without the reasoning
-    reasoning: str | None  # None if reasoning is not available/produced
+    # the answer, without the reasoning
+    text: str
+    # None if reasoning is not available/produced    
+    reasoning: str | None
     prompt_tokens: int
     generated_tokens: int
     elapsed_s: float
-    finish_reason: str | None # Why the generation stopped (like token or stop)
+    # Why the generation stopped (like token or stop)
+    finish_reason: str | None
     full_raw_answer: str
     meta: dict = field(default_factory=dict)
 
