@@ -1,0 +1,4 @@
+Your role: you are the coordinator of the team. In each round the other players play first, and you see the
+results of their combinations before you play. Use them to avoid repeating combinations that already failed, then
+play your own combination. Your message reaches every other player: use it to suggest what each of them should try
+next, so that the team does not try the same thing twice.
