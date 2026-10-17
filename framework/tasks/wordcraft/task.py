@@ -11,6 +11,7 @@ from framework.agents.backends.base import Sampling
 from framework.agents.prompt import Prompt, View
 from framework.comm.message import AgentId, MessageDraft
 from framework.tasks.base import Observation
+from framework.tasks.wordcraft import metrics
 from framework.tasks.wordcraft.config import ROOT, WordCraftConfig
 from framework.tasks.wordcraft.env import StepResult, WordCraftEnv
 from framework.tasks.wordcraft.parse import ANSWER_LABELS, parse_combination
@@ -126,6 +127,9 @@ class WordCraftTask:
             },
             "agents": agents,
         }
+
+    def evaluate(self, meta: dict, events: list[dict]) -> dict[str, float | None]:
+        return metrics.evaluate(self.book, meta, events)
 
     def state(self, agent: AgentId) -> dict:
         env = self.envs[agent]

@@ -25,3 +25,6 @@ class WordCraftConfig(TaskConfig):
     def step_limit(self) -> int:
         """Crafting steps per agent: `max_steps`, or SPEC §3.2's 6 (targeted) and 200 (open-ended)"""
         return self.max_steps or (6 if self.type == "targeted" else 200)
+
+    def scale_horizon(self, factor: int) -> "WordCraftConfig":
+        return self.model_copy(update={"max_steps": self.step_limit() * factor})

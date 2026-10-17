@@ -29,6 +29,12 @@ class TaskConfig(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
     name: str
 
+    def scale_horizon(self, factor: int) -> "TaskConfig":
+        """A copy whose episode lasts `factor` times longer. The single-agent budget baselines use it so that the budget,
+        not the task's own limit, ends the run. Every task with a step limit must override it"""
+        raise NotImplementedError(f"task {self.name!r} does not say how to scale its horizon: "
+                                  "override TaskConfig.scale_horizon in its config class")
+
 
 class Task(Protocol):
     # the observation fields a role may list in `visible_fields`
@@ -44,7 +50,8 @@ class Task(Protocol):
         """Every observation field of the agent, before the role filter, in fresh containers"""
 
     def build_prompt(self, view: View, error: str | None) -> Prompt:
-        """The agent's prompt; `error` is the problem found in its previous answer, on a retry"""
+        """The agent's prompt; `error` is the problem found in its previous answer, on a retry. The first segment is
+        the task's rules, the same for every agent of a run (PersonaHost states them once for all agents)"""
 
     def truncate(self, observation: Observation) -> str | None:
         """Removes the oldest removable history entry from a filtered observation and returns its reference;
@@ -76,6 +83,10 @@ class Task(Protocol):
 
     def summary(self) -> dict[str, Any]:
         """Final results from the oracle: {"task": ..., "team": ..., "agents": {agent: {...}}}"""
+
+    def evaluate(self, meta: dict[str, Any], events: list[dict]) -> dict[str, float | None]:
+        """The task's metrics of a finished run, computed from its metadata and event log only (SPEC §8.2). Must agree
+        with `summary()` for the same run"""
 
     def state(self, agent: AgentId) -> dict[str, Any]:
         """The agent's current state, for display only"""
