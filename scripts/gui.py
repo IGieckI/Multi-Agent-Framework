@@ -5,7 +5,6 @@ A small desktop GUI
 import asyncio
 import copy
 import json
-import os
 import queue
 import threading
 import time
@@ -20,7 +19,8 @@ import yaml
 
 from framework.comm.compiler import ProtocolConfig, compile_protocol
 from framework.comm.message import Message, MessageDraft, covers
-from framework.engine.config import ROOT, RunConfig, parse_run_config
+from framework.baselines import version_runs
+from framework.engine.config import ROOT, VERSIONS, RunConfig, parse_run_config
 from framework.engine.engine import AUTHORED, Attempt, Engine, Turn, create_engine
 from framework.tasks.wordcraft.env import StepResult
 from framework.tasks.wordcraft.prompt import SOCIAL_BLOCKS
@@ -36,6 +36,7 @@ LIVE_COLOR = "#6a1b9a"
 IDLE_EDGE = "#d4d4d4"
 EDITOR = "(Config tab editor)"
 INLINE = "(inline in the run config)"
+ALL_VERSIONS = "all versions"
 BLOCK_LABELS = {block: label for block, label, _ in SOCIAL_BLOCKS}
 MESSAGE_FIELDS = [f.name for f in fields(Message)]
 NO_USAGE = {"calls": 0, "total_tokens": 0, "completion_tokens": 0, "wall_clock_s": 0.0}
@@ -159,6 +160,21 @@ def run_header(meta: dict, folder: Path) -> str:
     where = folder.relative_to(ROOT) if folder.is_relative_to(ROOT) else folder
     return (f"{protocol}  |  {engine['backend']}{model}  |  task: {target}; start: {', '.join(task['initial'])}; "
             f"{task['max_steps']} steps  |  log: {where}")
+
+
+def runs_in(folder: Path) -> list[Path]:
+    """The run folders (each with an events.jsonl) in `folder`: the folder itself, its versions' replicates
+    (<folder>/<version>/seed<s>_rep<r>) or its replicates (<folder>/seed<s>_rep<r>); versions in the order of VERSIONS"""
+    if (folder / "events.jsonl").exists():
+        return [folder]
+    found = [p.parent for p in folder.glob("*/*/events.jsonl")] or [p.parent for p in folder.glob("*/events.jsonl")]
+    order = {v: i for i, v in enumerate(VERSIONS)}
+    return sorted(found, key=lambda p: (order.get(p.relative_to(folder).parts[0], len(order)), p))
+
+
+def version_label(run_dir: Path, run_folder: Path) -> str:
+    """How a run is named in the version lists: its path inside the run folder, e.g. base/seed0_rep0"""
+    return run_dir.relative_to(run_folder).as_posix() if run_dir != run_folder else run_dir.name
 
 
 def links_of(snapshot: dict) -> dict[tuple[str, str], set[str]]:
@@ -482,7 +498,14 @@ class App:
         self.path: Path | None = None
         self.latest = -1  # last finished step
         self.live: dict[str, tuple[int, int, str]] = {}  # agent -> (step, attempt, text so far), while it generates
-        self.run_dir: Path | None = None  # folder of the last started run, even if its engine failed to build
+        self.run_dir: Path | None = None  # folder of the run on display in the Run tab
+        self.run_folder: Path | None = None  # folder of all versions of the started or loaded run
+        self.version_dirs: dict[str, Path] = {}  # label -> run folder of each version (and replicate)
+        self.summaries: dict[str, dict] = {}  # label -> summary of each finished version
+        self.pending: list[tuple[str, RunConfig, Path]] = []  # versions still to run, in order
+        self.shown: str | None = None  # label of the version on display in the Run tab
+        self.live_label: str | None = None  # label of the version self.engine runs
+        self.keep_running = False  # Run was pressed: go on to the next version when one ends
         self.live_history: dict[str, list[tuple[int, int, str]]] = {}  # agent -> its finished generations
 
         notebook = ttk.Notebook(root)
@@ -689,9 +712,14 @@ class App:
         left = ttk.Frame(panes)
         stepper = ttk.Frame(left)
         stepper.pack(fill="x", pady=(0, 4))
-        ttk.Label(stepper, text="Showing step").pack(side="left")
+        ttk.Label(stepper, text="Showing version").pack(side="left")
+        self.version_var = tk.StringVar()
+        self.version_box = ttk.Combobox(stepper, textvariable=self.version_var, state="readonly", width=34)
+        self.version_box.bind("<<ComboboxSelected>>", self.on_version_selected)
+        self.version_box.pack(side="left", padx=(4, 12))
+        ttk.Label(stepper, text="step").pack(side="left")
         ttk.Button(stepper, text="◀", width=3, command=lambda: self.move_step(-1)).pack(side="left", padx=(6, 0))
-        self.step_scale = tk.Scale(stepper, from_=0, to=0, orient="horizontal", showvalue=True, length=380,
+        self.step_scale = tk.Scale(stepper, from_=0, to=0, orient="horizontal", showvalue=True, length=300,
                                    command=lambda _: self.show_step(), state="disabled")
         self.step_scale.pack(side="left", padx=2)
         ttk.Button(stepper, text="▶", width=3, command=lambda: self.move_step(1)).pack(side="left")
@@ -719,7 +747,7 @@ class App:
     def build_setup(self, tab) -> None:
         box = ttk.LabelFrame(tab, text="Run setup: a run config, with these settings overridden")
         box.pack(fill="x", padx=6, pady=(6, 0))
-        names = ("base", "protocol", "backend", "model")
+        names = ("base", "protocol", "backend", "model", "versions")
         self.setup = {name: tk.StringVar() for name in names}
 
         def label(row, text):
@@ -743,6 +771,12 @@ class App:
         self.model_box = ttk.Combobox(row, textvariable=self.setup["model"], values=downloaded_models(), width=34)
         self.model_box.pack(side="left")
         ttk.Button(row, text="↻", width=3, command=self.refresh_models).pack(side="left", padx=2)
+        row = ttk.Frame(box)
+        row.pack(fill="x", padx=4, pady=(0, 3))
+        label(row, "Versions")
+        self.versions_box = ttk.Combobox(row, textvariable=self.setup["versions"], state="readonly", width=60)
+        self.versions_box.pack(side="left")
+        self.version_choices: dict[str, tuple[str, ...]] = {}
         self.refresh_setup_lists()
 
     def refresh_models(self) -> None:
@@ -778,7 +812,11 @@ class App:
             chosen = INLINE
             protocols.insert(0, INLINE)
         self.protocol_box.configure(values=protocols)
-        values = {"protocol": chosen, "backend": cfg.engine.backend, "model": cfg.engine.model or ""}
+        # the config's own choice first, then each version alone, then all of them
+        own = " + ".join(cfg.run.versions)
+        self.version_choices = {own: cfg.run.versions, **{v: (v,) for v in VERSIONS}, ALL_VERSIONS: VERSIONS}
+        self.versions_box.configure(values=list(self.version_choices))
+        values = {"protocol": chosen, "backend": cfg.engine.backend, "model": cfg.engine.model or "", "versions": own}
         for name, value in values.items():
             self.setup[name].set(str(value))
 
@@ -788,6 +826,9 @@ class App:
         protocol = self.setup["protocol"].get()
         if protocol != INLINE:
             data["protocol"] = f"configs/protocols/{protocol}" if protocol in self.protocol_files else protocol
+        versions = self.version_choices.get(self.setup["versions"].get())
+        if versions is not None:
+            data.setdefault("run", {})["versions"] = list(versions)
         engine = data.setdefault("engine", {})
         engine["backend"] = self.setup["backend"].get()
         if self.setup["model"].get().strip():
@@ -814,11 +855,13 @@ class App:
 
     def update_buttons(self) -> None:
         live = self.engine is not None and not self.engine.done
-        states = {"Start": not self.busy, "Step": live and not self.busy, "Run": live and not self.busy,
+        on_display = live and self.shown == self.live_label  # Step and Run act on the version on display
+        states = {"Start": not self.busy, "Step": on_display and not self.busy, "Run": on_display and not self.busy,
                   "Pause": self.busy, "Stop": live,
                   "Load run…": not self.busy}
         for label, enabled in states.items():
             self.run_buttons[label].configure(state="normal" if enabled else "disabled")
+        self.version_box.configure(state="disabled" if self.busy else "readonly")
         if self.busy:
             self.progress.configure(mode="indeterminate")
             self.progress.start(12)
@@ -832,19 +875,59 @@ class App:
         except Exception as e:
             messagebox.showerror("Invalid setup", str(e))
             return
-        if self.engine is not None and not self.engine.done:
-            if not messagebox.askyesno("Run in progress", "Stop the current run and start a new one?"):
-                return
-            self.worker.submit(self.end_quietly(self.engine, "stopped_by_user")).result()
-        out = ROOT / "runs" / "gui" / f"{cfg.run.name}_{time.strftime('%Y%m%d-%H%M%S')}"
+        stamp = f"{cfg.run.name}_{time.strftime('%Y%m%d-%H%M%S')}"
+        folder = ROOT / "runs" / "gui" / stamp
+        n = 1
+        while folder.exists():  # two starts in the same second: never write into another run's folder
+            n += 1
+            folder = ROOT / "runs" / "gui" / f"{stamp}_{n}"
+        try:
+            plan = version_runs(cfg, folder)
+        except ValueError as e:
+            messagebox.showerror("Invalid setup", str(e))
+            return
+        if not self.replace_live_run("Stop the current run and start a new one?"):
+            return
+        self.reset_run(folder, {version_label(out, folder): out for _, _, out in plan})
+        self.pending = plan
+        self.start_next(None)
+
+    def start_next(self, backend) -> None:
+        """Builds the engine of the next version (reusing the backend of the last one) and shows it"""
+        version, cfg, out = self.pending.pop(0)
+        label = version_label(out, self.run_folder)
         self.clear_run_view()
-        self.run_dir = out
-        self.status.configure(text=f"Loading the {cfg.engine.backend} backend…")
-        self.launch(self.build_engine(cfg, out))
+        self.run_dir, self.shown, self.live_label = out, label, label
+        self.version_var.set(label)
+        self.select_result(label)
+        done = len(self.version_dirs) - len(self.pending)
+        self.status.configure(text=f"Version {done} of {len(self.version_dirs)}: {version}. "
+                                   f"Loading the {cfg.engine.backend} backend…")
+        self.launch(self.build_engine(cfg, out, backend, self.keep_running))
+
+    def replace_live_run(self, question: str) -> bool:
+        """Ends the run in progress, if the user agrees; False if they do not"""
+        if self.engine is None or self.engine.done:
+            return True
+        if not messagebox.askyesno("Run in progress", question):
+            return False
+        self.worker.submit(self.end_quietly(self.engine, "stopped_by_user")).result()
+        return True
+
+    def reset_run(self, folder: Path, version_dirs: dict[str, Path]) -> None:
+        """Forgets the last run: a new one is started or loaded"""
+        self.engine, self.live_label, self.pending, self.keep_running = None, None, [], False
+        self.run_folder, self.version_dirs = folder, version_dirs
+        self.summaries = {}
+        for label, run_dir in version_dirs.items():
+            if (run_dir / "summary.json").exists():
+                self.summaries[label] = json.loads((run_dir / "summary.json").read_text(encoding="utf-8"))
+        self.version_box.configure(values=list(version_dirs))
+        self.refresh_versions()
 
     def clear_run_view(self) -> None:
-        """Empties the Run and Results tabs before a new or a loaded run"""
-        self.engine, self.history, self.turns, self.state, self.latest = None, None, [], {}, -1
+        """Empties the Run tab before showing a version"""
+        self.history, self.turns, self.state, self.latest = None, [], {}, -1
         self.run_graph.selected = None
         self.run_graph.generating = set()
         self.live.clear()
@@ -854,53 +937,63 @@ class App:
         for text in [self.info, self.live_text, *self.detail.values()]:
             set_text(text, "")
         self.step_scale.configure(from_=0, to=0, state="disabled")
-        self.results_table.delete(*self.results_table.get_children())
-        set_text(self.results_text, "")
-        self.results_label.configure(text="No finished run yet.")
+        self.task_label.configure(text="")
 
     def load_run(self) -> None:
-        """Shows a finished (or interrupted) run from its folder, rebuilt from its events.jsonl"""
+        """Shows a finished (or interrupted) run from its folder, with all its versions, rebuilt from the logs"""
         runs = ROOT / "runs"
         name = filedialog.askdirectory(initialdir=runs / "gui" if (runs / "gui").exists() else runs,
-                                       title="Choose the folder of one run (it holds events.jsonl)")
-        if name:
-            self.show_run(Path(name))
+                                       title="Choose the folder of a run (all its versions are loaded)")
+        if not name:
+            return
+        folder = Path(name)
+        found = runs_in(folder)
+        if not found:
+            messagebox.showerror("Load run", f"{folder} holds no run: choose a folder with events.jsonl files in it "
+                                             "or in its version subfolders.")
+            return
+        if not self.replace_live_run("End the current run and show the chosen one instead?"):
+            return
+        self.reset_run(folder, {version_label(run_dir, folder): run_dir for run_dir in found})
+        self.show_version(next(iter(self.version_dirs)))
 
-    def show_run(self, folder: Path) -> None:
+    def on_version_selected(self, _event) -> None:
+        if self.version_var.get() in self.version_dirs:
+            self.show_version(self.version_var.get())
+
+    def show_version(self, label: str) -> None:
+        """Shows one version of the run in the Run tab, rebuilt from its log (the live one goes on from there)"""
+        folder = self.version_dirs[label]
+        self.version_var.set(label)
+        self.clear_run_view()
+        self.run_dir, self.shown = folder, label
+        self.select_result(label)
+        self.update_buttons()
         if not (folder / "events.jsonl").exists():
-            messagebox.showerror("Load run", f"{folder} has no events.jsonl: choose the folder of a single run.")
+            self.status.configure(text=f"{label} has not started yet.")
             return
         with open(folder / "events.jsonl", encoding="utf-8") as file:
             first = json.loads(file.readline() or "{}")
         if first.get("kind") != "run_started" or "phases" not in first.get("data", {}):
-            messagebox.showerror("Load run", "This log was not written by the multi-agent engine "
+            messagebox.showerror("Load run", f"The log of {label} was not written by the multi-agent engine "
                                              "(old single-agent runs from play_wordcraft.py cannot be shown here).")
             return
         history = RunHistory(folder / "events.jsonl")
         try:
             history.read()
         except (KeyError, TypeError) as e:
-            messagebox.showerror("Load run", f"This log was written by an older version of the engine and cannot be "
-                                             f"shown (an event has no {e} field).")
+            messagebox.showerror("Load run", f"The log of {label} was written by an older version of the engine and "
+                                             f"cannot be shown (an event has no {e} field).")
             return
-        if self.engine is not None and not self.engine.done:
-            if not messagebox.askyesno("Run in progress", "End the current run and show the chosen one instead?"):
-                return
-            self.worker.submit(self.end_quietly(self.engine, "stopped_by_user")).result()
-        self.clear_run_view()
-        self.run_dir, self.history = folder, history
+        self.history = history
         self.live_history = {agent: list(calls) for agent, calls in history.generations.items()}
-        self.task_label.configure(text=run_header(history.meta, folder))
+        self.task_label.configure(text=f"version {label}  |  " + run_header(history.meta, folder))
         self.follow.set(True)
         self.show_state(history.state())
-        if history.summary is not None:
-            self.show_results(history.summary)
-        else:
-            self.results_label.configure(text="This run did not finish (no run_ended event): "
-                                              "the Run tab shows it up to its last logged step.")
-        self.status.configure(text=f"Loaded {folder.name}   " + self.status.cget("text"))
+        if history.summary is None and label != self.live_label:
+            self.status.configure(text=f"{label} did not finish (no run_ended event): the Run tab shows it up to "
+                                       "its last logged step.   " + self.status.cget("text"))
         self.refresh_live(False, jump=True)
-        self.update_buttons()
 
     def launch(self, coroutine) -> None:
         self.busy = True
@@ -909,21 +1002,27 @@ class App:
 
     def step(self) -> None:
         self.pause.clear()
+        self.keep_running = False
         self.right_tabs.select(self.live_frame)
-        self.launch(self.run_steps(1))
+        self.launch(self.run_steps(self.engine, 1))
 
     def run(self) -> None:
         self.pause.clear()
+        self.keep_running = True
         self.right_tabs.select(self.live_frame)
-        self.launch(self.run_steps(None))
+        self.launch(self.run_steps(self.engine, None))
 
     def do_pause(self) -> None:
         self.pause.set()
+        self.keep_running = False
         self.status.configure(text="Pausing after this step…")
 
     def stop(self) -> None:
+        """Ends the version in progress; the versions after it are not run"""
         if self.engine is None:
             return
+        self.keep_running = False
+        self.pending = []
         if self.busy:
             self.pause.set()
             self.stop_requested.set()
@@ -933,32 +1032,36 @@ class App:
 
     # coroutines on the worker thread: they talk to the window only through self.events
 
-    async def build_engine(self, cfg: RunConfig, out: Path) -> None:
+    async def build_engine(self, cfg: RunConfig, out: Path, backend, then_run: bool) -> None:
         try:
             engine = await asyncio.to_thread(
-                create_engine, cfg, out, lambda turn: self.events.put(("turn", turn)),
+                create_engine, cfg, out, lambda turn: self.events.put(("turn", turn)), backend,
                 stream=lambda agent, t, attempt, text: self.events.put(("stream", agent, t, attempt, text)))
             self.events.put(("built", engine, engine.state()))
+            if then_run:
+                await self.steps(engine, None)
         except Exception:
             self.events.put(("error", traceback.format_exc()))
         self.events.put(("idle",))
 
-    async def run_steps(self, count: int | None) -> None:
-        engine = self.engine
+    async def run_steps(self, engine: Engine, count: int | None) -> None:
         try:
-            done = 0
-            while not engine.done and not self.pause.is_set() and (count is None or done < count):
-                await engine.step()
-                done += 1
-                self.events.put(("state", engine.state()))
-            if self.stop_requested.is_set():
-                self.stop_requested.clear()
-                engine.end("stopped_by_user")
-            if engine.done:
-                self.events.put(("ended", engine.summary(), engine.state()))
+            await self.steps(engine, count)
         except Exception:
             self.events.put(("error", traceback.format_exc()))
         self.events.put(("idle",))
+
+    async def steps(self, engine: Engine, count: int | None) -> None:
+        done = 0
+        while not engine.done and not self.pause.is_set() and (count is None or done < count):
+            await engine.step()
+            done += 1
+            self.events.put(("state", engine.state()))
+        if self.stop_requested.is_set():
+            self.stop_requested.clear()
+            engine.end("stopped_by_user")
+        if engine.done:
+            self.events.put(("ended", engine.summary(), engine.state()))
 
     async def end_quietly(self, engine: Engine, reason: str) -> None:
         """Ends a run that is being replaced, without posting its results to the window"""
@@ -994,8 +1097,11 @@ class App:
                     self.show_state(event[1])
                 elif kind == "ended":
                     self.show_state(event[2])
-                    self.show_results(event[1])
+                    self.summaries[self.live_label] = event[1]
+                    self.refresh_versions()
+                    self.select_result(self.live_label)
                 elif kind == "error":
+                    self.pending = []
                     messagebox.showerror("Error", event[1][-3000:])
                 elif kind == "idle":
                     self.busy = False
@@ -1003,6 +1109,9 @@ class App:
                     changed = True
                     self.pause.clear()
                     self.update_buttons()
+                    self.refresh_versions()
+                    if self.pending and self.engine is not None and self.engine.done:
+                        self.start_next(self.engine.backend)
         except queue.Empty:
             pass
         if changed:
@@ -1012,7 +1121,8 @@ class App:
     def on_built(self, engine: Engine, state: dict) -> None:
         self.engine = engine
         self.history = RunHistory(engine.out_dir / "events.jsonl")
-        self.task_label.configure(text=run_header(engine.meta, engine.out_dir))
+        self.task_label.configure(text=f"version {self.live_label}  |  " + run_header(engine.meta, engine.out_dir))
+        self.refresh_versions()
         self.show_state(state)
 
     def show_state(self, state: dict) -> None:
@@ -1321,9 +1431,21 @@ class App:
         notebook.add(tab, text="Results")
         bar = ttk.Frame(tab)
         bar.pack(fill="x", padx=6, pady=6)
-        ttk.Button(bar, text="Open run folder", command=self.open_run_folder).pack(side="left")
-        self.results_label = ttk.Label(bar, text="No finished run yet.")
-        self.results_label.pack(side="left", padx=10)
+        self.results_label = ttk.Label(bar, text="No run yet. Every version of the run gets a row here; click one "
+                                                 "for its agents.")
+        self.results_label.pack(side="left")
+        columns = ("ended_by", "steps", "new", "coverage", "calls", "total_tokens", "completion_tokens")
+        frame, self.versions_table = scrolled(tab, ttk.Treeview, columns=columns, height=6, selectmode="browse")
+        self.versions_table.heading("#0", text="version")
+        self.versions_table.column("#0", width=280)
+        for column, width in [("ended_by", 170), ("steps", 60), ("new", 60), ("coverage", 80), ("calls", 70),
+                              ("total_tokens", 110), ("completion_tokens", 130)]:
+            self.versions_table.heading(column, text=column.replace("_", " "))
+            self.versions_table.column(column, width=width, anchor="w")
+        self.versions_table.bind("<<TreeviewSelect>>", self.on_result_selected)
+        frame.pack(fill="x", padx=6, pady=(0, 6))
+        self.agents_label = ttk.Label(tab, text="")
+        self.agents_label.pack(anchor="w", padx=8)
         columns = ("role", "solved", "steps", "new", "coverage", "invalid", "no_valid_answers", "items", "last_message")
         frame, self.results_table = scrolled(tab, ttk.Treeview, columns=columns, height=10)
         self.results_table.heading("#0", text="agent")
@@ -1333,20 +1455,67 @@ class App:
             self.results_table.heading(column, text=column.replace("_", " "))
             self.results_table.column(column, width=width, anchor="w")
         frame.pack(fill="both", expand=True, padx=6, pady=6)
-        frame, self.results_text = scrolled(tab, tk.Text, wrap="word", font=MONO, state="disabled", height=12)
+        frame, self.results_text = scrolled(tab, tk.Text, wrap="word", font=MONO, state="disabled", height=10)
         frame.pack(fill="both", expand=False, padx=6, pady=6)
 
-    def show_results(self, summary: dict) -> None:
+    def version_status(self, label: str) -> str:
+        if label in self.summaries:
+            return self.summaries[label]["ended_by"]
+        if label == self.live_label and self.engine is not None and not self.engine.done:
+            return "running"
+        if any(version_label(out, self.run_folder) == label for _, _, out in self.pending):
+            return "waiting"
+        return "not ended" if (self.version_dirs[label] / "events.jsonl").exists() else "not run"
+
+    def refresh_versions(self) -> None:
+        """One row per version of the run, with its team results once it has ended"""
+        table = self.versions_table
+        selected = table.selection()
+        table.delete(*table.get_children())
+        for label in self.version_dirs:
+            summary = self.summaries.get(label)
+            values = [self.version_status(label)] + [""] * 6
+            if summary is not None:
+                team, usage = summary["team"], summary["usage"]
+                coverage = "" if team["union_coverage"] is None else f"{team['union_coverage']:.1%}"
+                values = [summary["ended_by"], summary["steps"], team["union_new_items"], coverage, usage["calls"],
+                          f"{usage['total_tokens']:,}", f"{usage['completion_tokens']:,}"]
+            table.insert("", "end", iid=label, text=label, values=values)
+        if selected and table.exists(selected[0]):
+            table.selection_set(selected[0])
+        where = self.run_folder.relative_to(ROOT) if self.run_folder and self.run_folder.is_relative_to(ROOT) \
+            else self.run_folder
+        self.results_label.configure(text=f"Run folder: {where}" if where else "No run yet.")
+
+    def select_result(self, label: str) -> None:
+        if self.versions_table.exists(label):
+            self.versions_table.selection_set(label)
+        self.show_results(label)
+
+    def on_result_selected(self, _event) -> None:
+        selected = self.versions_table.selection()
+        if selected:
+            self.show_results(selected[0])
+
+    def show_results(self, label: str) -> None:
+        """The agents of one version: their results, and how the version ended"""
         self.results_table.delete(*self.results_table.get_children())
+        summary = self.summaries.get(label)
+        self.agents_label.configure(text=f"Agents of {label}")
+        if summary is None:
+            set_text(self.results_text, f"{label}: {self.version_status(label)}, no results yet.")
+            return
         for agent, info in summary["agents"].items():
-            last = next((t.message for t in reversed(self.turns) if t.agent == agent and t.message), "")
+            # the last message is read from the turns on display in the Run tab
+            last = next((t.message for t in reversed(self.turns) if t.agent == agent and t.message), "") \
+                if label == self.shown else ""
             solved = "" if info["solved"] is None else ("yes" if info["solved"] else "no")
             coverage = "" if info["coverage"] is None else f"{info['coverage']:.1%}"
             self.results_table.insert("", "end", text=agent, values=(
                 info["role"], solved, info["steps"], len(info["new_items"]), coverage, info["invalid"],
                 info["no_valid_answers"], ", ".join(info["new_items"]), last))
         team, task = summary["team"], summary["task"]
-        lines = [f"Ended by: {summary['ended_by']} after {summary['steps']} steps",
+        lines = [f"{label} ended by: {summary['ended_by']} after {summary['steps']} steps",
                  f"Task: {'target ' + repr(task['target']) if task['target'] else 'open-ended'}, "
                  f"start {', '.join(task['initial'])}"]
         if task["target"]:
@@ -1356,24 +1525,8 @@ class App:
         usage = summary["usage"]
         lines.append(f"Usage: {usage['calls']} calls, {usage['total_tokens']:,} tokens "
                      f"({usage['completion_tokens']:,} completion), {usage['wall_clock_s']:.1f}s")
-        if self.run_dir is not None:
-            lines.append(f"Log: {self.run_dir}")
+        lines.append(f"Log: {self.version_dirs[label]}")
         set_text(self.results_text, "\n".join(lines))
-        self.results_label.configure(text=f"Run ended: {summary['ended_by']}")
-
-    def open_run_folder(self) -> None:
-        folder = self.run_dir if self.run_dir is not None else (self.engine.out_dir if self.engine else None)
-        if folder is None:
-            messagebox.showinfo("Open run folder", "There is no run yet: press Start first.")
-        elif not folder.exists():
-            messagebox.showinfo("Open run folder", f"{folder} does not exist (the run was not created).")
-        elif not hasattr(os, "startfile"):
-            messagebox.showinfo("Open run folder", f"This system cannot open folders from here. The run is in:\n{folder}")
-        else:
-            try:
-                os.startfile(folder)
-            except OSError as e:
-                messagebox.showerror("Open run folder", f"Could not open {folder}:\n{e}")
 
     # Closing
 
