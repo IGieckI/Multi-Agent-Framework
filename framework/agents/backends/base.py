@@ -4,7 +4,7 @@ Model backend interface that turns a Prompt into a Completion.
 
 from dataclasses import dataclass, field
 from typing import Callable
-from framework.agents.prompt import Prompt, render
+from framework.agents.prompt import Prompt
 
 
 # Called while a model generates, with the raw text produced so far (reasoning included). Only for display: the
@@ -42,8 +42,15 @@ class BackendError(RuntimeError):
 
 
 def to_chat_messages(prompt: Prompt) -> list[dict]:
-    """Build the prompt as a list of chat messages, for the HF API"""
-    return [{"role": "user", "content": render(prompt)}]
+    """Build the prompt as a list of chat messages: consecutive segments with the same chat role form one message, so
+    an ordinary prompt is a single user message"""
+    messages: list[dict] = []
+    for segment in prompt:
+        if messages and messages[-1]["role"] == segment.chat_role:
+            messages[-1]["content"] += segment.text
+        else:
+            messages.append({"role": segment.chat_role, "content": segment.text})
+    return messages
 
 
 def split_reasoning(raw: str) -> tuple[str | None, str]:

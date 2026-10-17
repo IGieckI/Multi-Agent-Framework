@@ -18,6 +18,9 @@ class Segment:
     # id of the observation/message/memory item
     ref: str | None = None
 
+    # the chat message the text belongs to: "user", or "assistant" for past answers in a shared conversation (B5)
+    chat_role: str = "user"
+
 
 Prompt = tuple[Segment, ...]
 
