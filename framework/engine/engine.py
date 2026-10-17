@@ -15,13 +15,16 @@ from typing import Any, Callable
 
 import numpy as np
 
+from framework.agents import persona_host
 from framework.agents.backends.base import Sampling
 from framework.agents.parse import ParseError, output_parts
+from framework.agents.persona_host import PersonaHost
 from framework.agents.prompt import Prompt, View, render
 from framework.comm.bus import MessageBus
 from framework.comm.compiler import ProtocolConfig, compile_protocol
 from framework.comm.message import AgentId, Message, MessageDraft, covers
 from framework.engine.config import ROOT, EngineConfig, RunConfig
+from framework.engine.budget import BudgetEnforcer, reference_usage
 from framework.engine.usage import Usage
 from framework.log import EventLog
 from framework.tasks.base import Task
@@ -63,6 +66,7 @@ class Turn:
     # "acted": produced a valid action
     # "no_valid_answer": all attempts used up without a valid answer
     # "failed": the backend raised an exception
+    # "budget": a call was refused because it could exceed a budget cap; the run ends after this step
     status: str = "no_valid_answer"
     action: Any = None
     message: str | None = None
@@ -125,6 +129,12 @@ class Engine:
         self.personas = self.load_personas(cfg)
         self.sampling = Sampling(**cfg.sampling.model_dump())
         self.usage = Usage()
+        caps, budget_info = resolve_budget(cfg)
+        self.budget = BudgetEnforcer(caps, self.usage, cfg.budget.step_reserve)
+        # the cap that refused a call during the current step
+        self.budget_stop: str | None = None
+        # baseline B5: every agent's turns accumulate in one shared conversation
+        self.host = PersonaHost(self.host_limit(backend)) if cfg.engine.persona_host else None
         self.t = 0
         self.tick = 0
         self.ended_by: str | None = None
@@ -147,6 +157,11 @@ class Engine:
             "sampling": asdict(self.sampling),
             "engine": backend.engine_info(),
             "prompt_token_count": "backend" if hasattr(backend, "count_tokens") else "approx_chars_div_4",
+            "budget": budget_info,
+            # B5 is the only run whose agents share a context (CLAUDE.md rule 1)
+            "shared_context": self.host is not None,
+            "persona_host": None if self.host is None else {"context_limit": self.host.limit,
+                                                            "templates_sha256": persona_host.templates_hash()},
             "started_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         }
         
@@ -191,10 +206,27 @@ class Engine:
         return {role: (file, (ROOT / file).read_text(encoding="utf-8")) for role, file in cfg.personas.items()}
 
     def count_tokens(self, prompt: Prompt) -> int:
-        # uses the backend's tokenizer if it has one
+        # uses the backend's tokenizer if it has one, with the chat template the call will use
         if hasattr(self.backend, "count_tokens"):
-            return self.backend.count_tokens(prompt)
+            return self.backend.count_tokens(prompt, self.sampling.reasoning)
         return len(render(prompt)) // 4 + 1
+
+    def host_limit(self, backend) -> int:
+        """The shared conversation may hold as much as all agents' prompts together, within the model's window"""
+        limit = len(self.agents) * self.cfg.context.max_prompt_tokens
+        window = backend.engine_info().get("context_window")
+        return min(limit, window - self.cfg.sampling.max_tokens) if window else limit
+
+    def hosted_prompt(self, agent: AgentId, prompt: Prompt, t: int, tick: int) -> tuple[Prompt, int, list[str]]:
+        """The agent's prompt inside the shared conversation (B5), the oldest turns dropped to fit the host's limit"""
+        prompt, tokens, removed = self.host.compose(agent, prompt, self.count_tokens)
+        if removed:
+            self.log.write("agent", "truncation_event", t=t, tick=tick, agent=agent, removed=removed, tokens=tokens,
+                           shared_context=True)
+        if tokens > self.host.limit:
+            self.log.write("agent", "prompt_over_limit", t=t, tick=tick, agent=agent, tokens=tokens,
+                           limit=self.host.limit, shared_context=True)
+        return prompt, tokens, removed
 
     def guarded_prompt(self, agent: AgentId, error: str | None, t: int, tick: int) -> tuple[Prompt, int, list[str]]:
         """Build the prompt, count the tokens, and if it's over max_prompt_tokens, call drop_oldest(view) and rebuild"""
@@ -227,9 +259,19 @@ class Engine:
         for attempt in range(self.cfg.retries.max_attempts):
             # Build the guarded prompt
             prompt, tokens, removed = self.guarded_prompt(agent, error, t, tick)
+            if self.host is not None:
+                prompt, tokens, dropped = self.hosted_prompt(agent, prompt, t, tick)
+                removed = removed + dropped
 
             # set the new seed and generate
             sampling = replace(self.sampling, seed=call_seed(self.cfg.run.seed, self.cfg.run.replicate, agent, t, attempt))
+            if (cap := self.budget.reserve(tokens, sampling.max_tokens)) is not None:
+                turn.status = "budget"
+                self.budget_stop = cap
+                self.log.write("engine", "call_refused", t=t, tick=tick, agent=agent, attempt=attempt, cap=cap,
+                               counted_prompt_tokens=tokens, max_tokens=sampling.max_tokens,
+                               usage=self.usage.report())
+                break
             try:
                 async with slots:
                     if self.stream:
@@ -239,13 +281,16 @@ class Engine:
                     else:
                         completion = await self.backend.generate(prompt, sampling)
             except Exception as e:
+                self.budget.release(tokens, sampling.max_tokens)
                 turn.status = "failed"
                 self.log.write("agent", "llm_failed", t=t, tick=tick, agent=agent, attempt=attempt, error=repr(e))
                 break
             finally:
                 if self.stream:
                     self.stream(agent, t, attempt, None)
-            self.usage.charge(completion.prompt_tokens, completion.generated_tokens)
+            self.budget.settle(tokens, sampling.max_tokens, completion.prompt_tokens, completion.generated_tokens)
+            if self.host is not None:
+                self.host.record(completion.text)
 
             # Split the output in different parts
             parts = output_parts(completion.text, self.task.answer_labels)
@@ -266,7 +311,8 @@ class Engine:
             self.log.write(
                 "agent", "llm_call", t=t, tick=tick, agent=agent, attempt=attempt,
                 prompt=render(prompt),
-                segments=[{"source": s.source, "ref": s.ref, "chars": len(s.text)} for s in prompt],
+                segments=[{"source": s.source, "ref": s.ref, "chars": len(s.text), "chat_role": s.chat_role}
+                          for s in prompt],
                 counted_prompt_tokens=tokens, truncated=removed,
                 inbox=[m.id for m in turn.inbox] if attempt == 0 else [],
                 sampling=asdict(sampling), completion=asdict(completion),
@@ -284,8 +330,8 @@ class Engine:
         """Steps the agent's environment and publishes its outcome and shared parts"""
         agent = turn.agent
 
-        # if the backend failed just exit
-        if turn.status == "failed":
+        # the backend failed or the budget refused the call: nothing happened in the environment
+        if turn.status in ("failed", "budget"):
             return
         if turn.action is None:
             self.task.no_op(agent)
@@ -314,13 +360,20 @@ class Engine:
     async def step(self) -> list[Turn]:
         if self.done:
             return []
+        if (cap := self.budget.before_step(self.t)) is not None:
+            self.end(f"budget:{cap}")
+            return []
         t, turns = self.t, []
         slots = asyncio.Semaphore(self.cfg.engine.max_concurrency)
         try:
             for phase in self.phases:
                 tick = self.tick
                 active = [a for a in phase if not self.task.agent_done(a)]
-                outputs = await asyncio.gather(*(self.run_agent(a, t, tick, slots) for a in active))
+                if self.host is None:
+                    outputs = await asyncio.gather(*(self.run_agent(a, t, tick, slots) for a in active))
+                else:
+                    # one shared conversation: the agents of a phase take their turns one after another
+                    outputs = [await self.run_agent(a, t, tick, slots) for a in active]
                 for turn in sorted(outputs, key=lambda turn: turn.agent):
                     self.apply(turn)
                     self.turns.append(turn)
@@ -328,8 +381,11 @@ class Engine:
                     if self.listener:
                         self.listener(turn)
                 self.tick += 1
+                if self.budget_stop is not None:
+                    break
             self.log.write("structure", "snapshot", t=t, tick=self.tick - 1, **self.structure.snapshot())
             self.t += 1
+            self.budget.end_step()
         except Exception as e:
             self.log.write("engine", "run_failed", t=t, tick=self.tick, error=repr(e))
             self.end("error")
@@ -337,6 +393,8 @@ class Engine:
         statuses = {turn.status for turn in turns}
         if "failed" in statuses:
             self.end("backend_error")
+        elif self.budget_stop is not None:
+            self.end(f"budget:{self.budget_stop}")
         elif (reason := self.task.end_reason()) is not None:
             self.end(reason)
         return turns
@@ -389,8 +447,23 @@ def drop_oldest(view: View, task: Task) -> str | None:
     return task.truncate(view.observation)
 
 
+def resolve_budget(cfg: RunConfig) -> tuple[dict, dict]:
+    """The run's caps, and their record for the run metadata. A matched cap is read from the reference run with the
+    same seed and replicate (baseline B2)"""
+    budget = cfg.budget
+    caps = {name: getattr(budget, name)
+            for name in ("total_tokens", "completion_tokens", "calls", "steps", "wall_clock_s")}
+    info = {"caps": caps, "step_reserve": dict(budget.step_reserve), "match": None}
+    if budget.match is not None:
+        run_dir = ROOT / budget.match.reference / f"seed{cfg.run.seed}_rep{cfg.run.replicate}"
+        caps[budget.match.unit] = reference_usage(run_dir, budget.match.unit)
+        info["match"] = {"run_dir": str(run_dir), "unit": budget.match.unit, "reference_usage": caps[budget.match.unit]}
+    return caps, info
+
+
 def default_out_dir(cfg: RunConfig) -> Path:
-    return ROOT / "runs" / cfg.run.name / f"seed{cfg.run.seed}_rep{cfg.run.replicate}"
+    """runs/<name>/<version>/seed<seed>_rep<replicate>: every version of a run in one folder"""
+    return ROOT / "runs" / cfg.run.name / (cfg.run.baseline or "base") / f"seed{cfg.run.seed}_rep{cfg.run.replicate}"
 
 
 def create_engine(cfg: RunConfig, out_dir: Path | None = None, listener: Callable[[Turn], None] | None = None,
