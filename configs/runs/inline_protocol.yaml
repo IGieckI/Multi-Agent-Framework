@@ -1,5 +1,5 @@
-run: {name: inline_protocol, seed: 1}
-task: {type: open_ended, max_steps: 10}
+run: {name: inline_protocol, seed: 1, versions: [base]}
+task: {name: wordcraft, type: open_ended, max_steps: 10}
 engine: {backend: mock}
 protocol:
   roles:

@@ -1,0 +1,7 @@
+# A group condition to compare the baselines against: 6 agents, open-ended, every result and message shared.
+run: {name: group_fully_connected, seed: 0, versions: [base]}
+task: {name: wordcraft, type: open_ended, max_steps: 200, repeat_consumes_step: true}
+engine: {backend: mock}
+sampling: {temperature: 1.0, top_p: 1.0, top_k: 0, max_tokens: 256, reasoning: true}
+protocol: configs/protocols/fully_connected.yaml
+context: {max_prompt_tokens: 6000, truncation: oldest_first}
