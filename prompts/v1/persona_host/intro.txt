@@ -1,0 +1,2 @@
+You will act as several players, one at a time. Each turn starts by naming the player whose turn it is and then shows that player's current situation. Answer for that player only, following the instructions below.
+
