@@ -6,9 +6,12 @@ build-backend = "setuptools.build_meta"
 name = "multi-agent-framework"
 requires-python = "==3.11.*"
 dependencies = [
+    "pydantic>=2.7",
+    "pyyaml>=6.0",
+    "numpy>=2.0",
+    "networkx>=3.3",
     "torch>=2.6",
     "transformers>=4.56",
-    "huggingface_hub>=0.30",
     "accelerate>=1.0",
 ]
 
@@ -22,6 +25,5 @@ include = ["framework*"]
 testpaths = ["tests"]
 markers = [
     "gpu: loads a local model",
-    "network: calls HuggingFace Inference Providers (needs HF_TOKEN and costs credits)",
 ]
-addopts = "-m 'not gpu and not network'"
+addopts = "-m 'not gpu'"
