@@ -7,9 +7,9 @@ import json
 from pathlib import Path
 
 class EventLog:
-    def __init__(self, path: Path, run_id: str) -> None:
+    def __init__(self, path: Path, run_id: str, append: bool = False) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
-        self.file = open(path, "w", encoding="utf-8")
+        self.file = open(path, "a" if append else "w", encoding="utf-8")
         self.run_id = run_id
         self.seq = 0
 
