@@ -81,14 +81,16 @@ class HFLocalBackend:
         self,
         model_id: str,
         use_model_sampling: bool = False,
+        revision: str | None = None,
     ) -> None:
         self.model_id = model_id
+        self.requested_revision = revision
         self.use_model_sampling = use_model_sampling
         self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
         self.dtype = pick_dtype(self.device)
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision)
         self.model = AutoModelForCausalLM.from_pretrained(
-            model_id, dtype=self.dtype, device_map=self.device
+            model_id, dtype=self.dtype, device_map=self.device, revision=revision
         )
         self.model_sampling_settings = self.model.generation_config.to_diff_dict()
         self.model.generation_config = base_generation_config(self.model.generation_config, use_model_sampling)
@@ -104,6 +106,11 @@ class HFLocalBackend:
             "engine": "transformers",
             "engine_version": transformers.__version__,
             "model_id": self.model_id,
+            # the exact commit of the weights that were loaded, and their size
+            "revision": getattr(self.model.config, "_commit_hash", None),
+            "requested_revision": self.requested_revision,
+            "parameters": self.model.num_parameters(),
+            "torch_version": torch.__version__,
             "dtype": str(self.dtype),
             "quantization": "none",
             "context_window": self.model.config.max_position_embeddings,
