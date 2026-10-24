@@ -6,7 +6,7 @@ share, and the channel rule of each message type)
 from dataclasses import asdict, dataclass
 from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
-from framework.comm.message import AgentId, MessageDraft, covers, is_known
+from framework.comm.message import AgentId, MessageDraft, MessageTypes, covers, is_known, text_only
 from framework.log import EventLog
 
 
@@ -26,7 +26,8 @@ class ChannelRule(BaseModel):
 
     # What the receiver learns of the message:
     # - full: the whole message
-    form: Literal["full"] = "full"
+    # - summary: a summary written by the run's summarizer model (text types only), in place of the message
+    form: Literal["full", "summary"] = "full"
 
 @dataclass
 class AddEdge:
@@ -77,6 +78,8 @@ class Structure:
     links: dict[tuple[AgentId, AgentId], frozenset[str]]  # (src, dst) -> types the link carries
     shares: dict[str, frozenset[str]]  # role -> types its agents may publish
     channels: dict[str, ChannelRule]
+    # the run's message types (core + task), fixed for the run: not part of the snapshot
+    types: MessageTypes
 
     def channel(self, msg_type: str) -> ChannelRule:
         """The most specific rule for the type"""
@@ -117,7 +120,7 @@ class Structure:
     def apply_one(self, edit: Edit) -> str | None:
         """Applies one edit, or returns why it is invalid"""
         if isinstance(edit, SetPolicy):
-            if not is_known(edit.type):
+            if not is_known(edit.type, self.types):
                 return f"unknown message type {edit.type!r}"
             try:
                 rule = ChannelRule.model_validate({**self.channel(edit.type).model_dump(), **edit.changes})
@@ -125,11 +128,13 @@ class Structure:
                 return f"invalid channel settings: {e.errors()[0]['msg']}"
             if isinstance(rule.visible_to, tuple) and not set(rule.visible_to) <= set(self.agents):
                 return "visible_to names unknown agents"
+            if rule.form == "summary" and not text_only(edit.type, self.types):
+                return f"form summary needs text payloads, and {edit.type!r} covers other types"
             self.channels[edit.type] = rule
             return None
 
         types = frozenset(edit.types or ())
-        if not all(is_known(t) for t in types):
+        if not all(is_known(t, self.types) for t in types):
             return f"unknown message types in {sorted(types)}"
         if isinstance(edit, Regroup):
             if sorted(a for group in edit.partition for a in group) != sorted(self.agents):
@@ -166,10 +171,11 @@ class Structure:
         }
 
     @classmethod
-    def from_snapshot(cls, snap: dict) -> "Structure":
+    def from_snapshot(cls, snap: dict, message_types: MessageTypes) -> "Structure":
         return cls(
             dict(snap["agents"]),
             {(src, dst): frozenset(types) for src, dst, types in snap["links"]},
             {role: frozenset(types) for role, types in snap["shares"].items()},
             {name: ChannelRule.model_validate(rule) for name, rule in snap["channels"].items()},
+            message_types,
         )

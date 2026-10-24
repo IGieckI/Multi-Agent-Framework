@@ -22,6 +22,7 @@ from framework.comm.message import Message, MessageDraft, covers
 from framework.baselines import version_runs
 from framework.engine.config import ROOT, VERSIONS, RunConfig, parse_run_config
 from framework.engine.engine import AUTHORED, Attempt, Engine, Turn, create_engine
+from framework.tasks.registry import TASKS, message_types
 from framework.tasks.wordcraft.env import StepResult
 from framework.tasks.wordcraft.prompt import SOCIAL_BLOCKS
 
@@ -239,6 +240,14 @@ class RunHistory:
             self.calls.setdefault((t, data["agent"]), []).append(data)
             self.generations.setdefault(data["agent"], []).append(
                 (t, data["attempt"], data["completion"]["full_raw_answer"]))
+            self.usage = data["usage"]
+        elif kind == "msg_summarized":
+            m = data["message"]
+            self.messages[data["of"]]["receivers"] = []  # its summary travels in its place
+            self.messages[m["id"]] = {**m, "receivers": data["receivers"], "due": data["due"], "delivered": {}}
+        elif kind == "msg_dropped":
+            self.messages[data["id"]]["receivers"] = []
+        elif kind == "channel_call":
             self.usage = data["usage"]
         elif kind == "llm_failed":
             self.end_turn(event, "failed")
@@ -646,7 +655,12 @@ class App:
         try:
             cfg = self.editor_config()
             protocol = cfg.resolved_protocol() if isinstance(cfg, RunConfig) else cfg
-            structure, phases = compile_protocol(protocol)
+            if isinstance(cfg, RunConfig):
+                types = message_types(cfg.task.name)
+            else:
+                # a protocol alone names no task: accept the types of any registered task
+                types = {name: fields for task in TASKS for name, fields in message_types(task).items()}
+            structure, phases = compile_protocol(protocol, types)
         except Exception as e:
             set_text(self.preview, f"INVALID\n\n{e}")
             self.config_graph.clear()
@@ -890,10 +904,10 @@ class App:
             return
         self.reset_run(folder, {version_label(out, folder): out for _, _, out in plan})
         self.pending = plan
-        self.start_next(None)
+        self.start_next(None, None)
 
-    def start_next(self, backend) -> None:
-        """Builds the engine of the next version (reusing the backend of the last one) and shows it"""
+    def start_next(self, backend, summarizer) -> None:
+        """Builds the engine of the next version (reusing the backends of the last one) and shows it"""
         version, cfg, out = self.pending.pop(0)
         label = version_label(out, self.run_folder)
         self.clear_run_view()
@@ -903,7 +917,7 @@ class App:
         done = len(self.version_dirs) - len(self.pending)
         self.status.configure(text=f"Version {done} of {len(self.version_dirs)}: {version}. "
                                    f"Loading the {cfg.engine.backend} backend…")
-        self.launch(self.build_engine(cfg, out, backend, self.keep_running))
+        self.launch(self.build_engine(cfg, out, backend, summarizer, self.keep_running))
 
     def replace_live_run(self, question: str) -> bool:
         """Ends the run in progress, if the user agrees; False if they do not"""
@@ -1032,11 +1046,12 @@ class App:
 
     # coroutines on the worker thread: they talk to the window only through self.events
 
-    async def build_engine(self, cfg: RunConfig, out: Path, backend, then_run: bool) -> None:
+    async def build_engine(self, cfg: RunConfig, out: Path, backend, summarizer, then_run: bool) -> None:
         try:
             engine = await asyncio.to_thread(
                 create_engine, cfg, out, lambda turn: self.events.put(("turn", turn)), backend,
-                stream=lambda agent, t, attempt, text: self.events.put(("stream", agent, t, attempt, text)))
+                stream=lambda agent, t, attempt, text: self.events.put(("stream", agent, t, attempt, text)),
+                summarizer=summarizer)
             self.events.put(("built", engine, engine.state()))
             if then_run:
                 await self.steps(engine, None)
@@ -1111,7 +1126,7 @@ class App:
                     self.update_buttons()
                     self.refresh_versions()
                     if self.pending and self.engine is not None and self.engine.done:
-                        self.start_next(self.engine.backend)
+                        self.start_next(self.engine.backend, self.engine.summarizer)
         except queue.Empty:
             pass
         if changed:

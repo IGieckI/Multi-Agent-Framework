@@ -11,7 +11,7 @@ import networkx as nx
 import yaml
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from framework.comm.generators import GENERATORS
-from framework.comm.message import MESSAGE_TYPES, AgentId, covers, is_known
+from framework.comm.message import AgentId, MessageTypes, covers, is_known, text_only
 from framework.comm.structure import ChannelRule, Structure
 
 
@@ -20,8 +20,10 @@ class CompileError(ValueError):
 
 
 class Strict(BaseModel):
-    """Base class, !!!"""
-    model_config = ConfigDict(extra="forbid", frozen=True)
+    """Base class for every config model"""
+    
+    # extra="forbid" raises a ValidationError when unknown key
+    model_config = ConfigDict(extra="forbid")
 
 
 class Role(Strict):
@@ -130,7 +132,7 @@ def selects(attrs: dict[str, Any], where: str | dict[str, Any]) -> bool:
 
 
 def assign_roles(g: nx.DiGraph, roles: dict[str, Role]) -> dict[int, str]:
-    """Roles with `where` take the nodes they select; roles with `count` then take the remaining nodes in order"""
+    """Roles with "where" take the nodes they select, roles with "count" then take the remaining nodes in order"""
     assigned: dict[int, str] = {}
     for name, role in roles.items():
         if role.where is None:
@@ -162,13 +164,13 @@ def assign_roles(g: nx.DiGraph, roles: dict[str, Role]) -> dict[int, str]:
 # Rules
 
 
-def check_rule(rule: Rule, role_names: set[str], relations: set[str]) -> None:
+def check_rule(rule: Rule, role_names: set[str], relations: set[str], types: MessageTypes) -> None:
     """Raise CompileError if the rule names an unknown role, relation or message type"""
     if {rule.from_, rule.to} - {None} - role_names:
         raise CompileError(f"rule {rule} names an unknown role")
     if rule.along is not None and rule.along not in relations:
         raise CompileError(f"rule {rule}: the structure has no relation {rule.along!r} (it has {sorted(relations)})")
-    if unknown := [t for t in rule.share if not is_known(t)]:
+    if unknown := [t for t in rule.share if not is_known(t, types)]:
         raise CompileError(f"rule {rule} shares unknown message types {unknown}")
 
 
@@ -180,14 +182,14 @@ def edge_matches(rule: Rule, src_role: str, dst_role: str, relation: str | None)
 
 
 def compile_rules(
-    cfg: ProtocolConfig, g: nx.DiGraph, roles: dict[int, str], ids: list[AgentId]
+    cfg: ProtocolConfig, g: nx.DiGraph, roles: dict[int, str], ids: list[AgentId], types: MessageTypes
 ) -> tuple[dict[tuple[AgentId, AgentId], frozenset[str]], dict[str, frozenset[str]]]:
     """The links (src, dst) -> types they carry, and the types each role may publish"""
     relations = {relation for _, _, relation in g.edges(data="relation")}
     links: dict[tuple[AgentId, AgentId], frozenset[str]] = defaultdict(frozenset)
     shares: dict[str, frozenset[str]] = defaultdict(frozenset)
     for rule in cfg.rules:
-        check_rule(rule, set(cfg.roles), relations)
+        check_rule(rule, set(cfg.roles), relations, types)
         share = frozenset(rule.share)
         kept = [(u, v) for u, v, relation in g.edges(data="relation")
                 if edge_matches(rule, roles[u], roles[v], relation)]
@@ -200,13 +202,15 @@ def compile_rules(
     return dict(links), dict(shares)
 
 
-def check_channels(cfg: ProtocolConfig, ids: list[AgentId]) -> None:
+def check_channels(cfg: ProtocolConfig, ids: list[AgentId], types: MessageTypes) -> None:
     """Raise CompileError if a channel rule names an unknown message type or agent"""
     for name, channel in cfg.channels.items():
-        if not is_known(name):
+        if not is_known(name, types):
             raise CompileError(f"channel rule for unknown message type {name!r}")
         if isinstance(channel.visible_to, tuple) and not set(channel.visible_to) <= set(ids):
             raise CompileError(f"channel {name!r} is visible to unknown agents")
+        if channel.form == "summary" and not text_only(name, types):
+            raise CompileError(f"channel {name!r}: form summary needs text payloads, and it covers other types")
 
 
 # Schedule
@@ -240,17 +244,21 @@ def link_graph(s: Structure, msg_type: str | None = None) -> nx.DiGraph:
 
 
 def check_acyclic(s: Structure) -> None:
-    for msg_type in MESSAGE_TYPES:
+    """Raise CompileError if the links carrying any one message type form a cycle"""
+    for msg_type in s.types:
         if not nx.is_directed_acyclic_graph(link_graph(s, msg_type)):
             raise CompileError(f"constraint acyclic: the {msg_type!r} links have a cycle")
 
 
 def check_connected(s: Structure) -> None:
+    """Raise CompileError if the links, ignoring direction, leave some agent cut off from the others"""
     if not nx.is_weakly_connected(link_graph(s)):
         raise CompileError("constraint connected: the links do not connect every agent")
 
 
 def check_each_has(c: EachHas, s: Structure, role_names: set[str]) -> None:
+    """Raise CompileError unless every agent of role "each" is linked (either direction) to exactly "has_exactly"
+    agents of role "of" """
     if {c.each, c.of} - role_names:
         raise CompileError(f"constraint {c.model_dump()} names an unknown role")
     g = link_graph(s)
@@ -272,13 +280,14 @@ def check_constraints(cfg: ProtocolConfig, s: Structure) -> None:
         else:
             check_each_has(c, s, set(cfg.roles))
 
-def compile_protocol(cfg: ProtocolConfig) -> tuple[Structure, list[list[AgentId]]]:
-    """Start compiling"""
+def compile_protocol(cfg: ProtocolConfig, types: MessageTypes) -> tuple[Structure, list[list[AgentId]]]:
+    """Start compiling, "types" are the run's message types (framework.tasks.registry.message_types)"""
     g = build_graph(cfg)
     roles = assign_roles(g, cfg.roles)
     ids = agent_ids(len(g))
-    links, shares = compile_rules(cfg, g, roles, ids)
-    check_channels(cfg, ids)
-    structure = Structure({ids[node]: role for node, role in roles.items()}, links, shares, dict(cfg.channels))
+    links, shares = compile_rules(cfg, g, roles, ids, types)
+    check_channels(cfg, ids, types)
+    structure = Structure({ids[node]: role for node, role in roles.items()}, links, shares, dict(cfg.channels),
+                          dict(types))
     check_constraints(cfg, structure)
     return structure, build_phases(cfg.schedule, g, roles, ids)

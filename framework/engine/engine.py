@@ -15,11 +15,13 @@ from typing import Any, Callable
 
 import numpy as np
 
+from framework import provenance
 from framework.agents import persona_host
 from framework.agents.backends.base import Sampling
 from framework.agents.parse import ParseError, output_parts
 from framework.agents.persona_host import PersonaHost
 from framework.agents.prompt import Prompt, View, render
+from framework.comm import summary
 from framework.comm.bus import MessageBus
 from framework.comm.compiler import ProtocolConfig, compile_protocol
 from framework.comm.message import AgentId, Message, MessageDraft, covers
@@ -28,7 +30,7 @@ from framework.engine.budget import BudgetEnforcer, reference_usage
 from framework.engine.usage import Usage
 from framework.log import EventLog
 from framework.tasks.base import Task
-from framework.tasks.registry import build_task
+from framework.tasks.registry import build_task, message_types
 
 AUTHORED = ("message", "task", "verdict")
 
@@ -96,13 +98,38 @@ def make_backend(cfg: EngineConfig, task: Task):
     if not cfg.model:
         raise ValueError(f"engine.backend {cfg.backend!r} needs engine.model")
     from framework.agents.backends.hf_local import HFLocalBackend
-    return HFLocalBackend(cfg.model)
+    return HFLocalBackend(cfg.model, revision=cfg.revision)
+
+
+def make_summarizer(cfg: RunConfig, agents_backend):
+    """The backend of the summarizer named in the config (None without one), it shares the agents' backend when it
+    names the same backend and model"""
+    s = cfg.summarizer
+    if s is None:
+        return None
+    if s.backend == "mock":
+        from framework.agents.backends.mock import MockBackend
+        return MockBackend(summary.mock_summary)
+    if not s.model:
+        raise ValueError(f"summarizer.backend {s.backend!r} needs summarizer.model")
+    if (s.backend, s.model, s.revision) == (cfg.engine.backend, cfg.engine.model, cfg.engine.revision):
+        return agents_backend
+    from framework.agents.backends.hf_local import HFLocalBackend
+    return HFLocalBackend(s.model, revision=s.revision)
+
+
+def prompt_tokens(backend, prompt: Prompt, reasoning: bool) -> int:
+    """The prompt's tokens, with the backend's tokenizer and the chat template the call will use if it has them"""
+    if hasattr(backend, "count_tokens"):
+        return backend.count_tokens(prompt, reasoning)
+    return len(render(prompt)) // 4 + 1
 
 
 class Engine:
     def __init__(self, cfg: RunConfig, task: Task, backend, out_dir: Path,
                  listener: Callable[[Turn], None] | None = None,
-                 stream: Callable[[AgentId, int, int, str | None], None] | None = None) -> None:
+                 stream: Callable[[AgentId, int, int, str | None], None] | None = None,
+                 summarizer=None) -> None:
         self.cfg = cfg
         self.task = task
         self.backend = backend
@@ -112,7 +139,17 @@ class Engine:
         self.stream = stream
         protocol = cfg.resolved_protocol()
         # the communication graph
-        self.structure, self.phases = compile_protocol(protocol)
+        self.structure, self.phases = compile_protocol(protocol, message_types(cfg.task.name))
+        # form summary: the model that writes the summaries, and its versioned prompt
+        summarized = sorted(name for name, rule in self.structure.channels.items() if rule.form == "summary")
+        if summarized and cfg.summarizer is None:
+            raise ValueError(f"channels {summarized} have form summary: the run config needs a summarizer section")
+        if (cfg.summarizer is None) != (summarizer is None):
+            raise ValueError("the summarizer backend must be given exactly when the run config has a summarizer")
+        self.summarizer = summarizer
+        self.summary_template = summary.SummaryTemplate() if summarizer is not None else None
+        # a summary call raised: the run ends after this step, as for an agent's call
+        self.channel_failed = False
         self.agents = sorted(self.structure.agents)
         # for each agent, which observation fields its role can see
         self.fields = {a: self.visible_fields(protocol, a) for a in self.agents}
@@ -127,7 +164,11 @@ class Engine:
         self.slot = {a: any(self.structure.receivers(MessageDraft(a, t, {})) for t in AUTHORED) for a in self.agents}
         # role -> (file, text) of its persona, rendered after the rules for every agent of the role
         self.personas = self.load_personas(cfg)
-        self.sampling = Sampling(**cfg.sampling.model_dump())
+        self.sampling = Sampling(**cfg.sampling.model_dump(exclude={"agent_temperatures"}))
+        # each agent samples at its own temperature (logged in the metadata and in every call)
+        temperatures = cfg.sampling.agent_temperatures
+        self.temperatures = {} if temperatures is None else {a: temperatures[i % len(temperatures)]
+                                                              for i, a in enumerate(self.agents)}
         self.usage = Usage()
         caps, budget_info = resolve_budget(cfg)
         self.budget = BudgetEnforcer(caps, self.usage, cfg.budget.step_reserve)
@@ -147,6 +188,7 @@ class Engine:
             "config": cfg.model_dump(mode="json"),
             "protocol": protocol.model_dump(mode="json", by_alias=True),
             "agents": dict(self.structure.agents),
+            "message_types": {name: sorted(fields) for name, fields in sorted(self.structure.types.items())},
             "phases": self.phases,
             "visible_fields": {a: sorted(f) for a, f in self.fields.items()},
             "social_blocks": {a: sorted(b) for a, b in self.blocks.items()},
@@ -155,14 +197,17 @@ class Engine:
                          for role, (file, text) in sorted(self.personas.items())},
             **task.metadata(),
             "sampling": asdict(self.sampling),
+            "agent_temperatures": self.temperatures,
             "engine": backend.engine_info(),
+            "summarizer": self.summarizer_info(),
             "prompt_token_count": "backend" if hasattr(backend, "count_tokens") else "approx_chars_div_4",
             "budget": budget_info,
-            # B5 is the only run whose agents share a context (CLAUDE.md rule 1)
             "shared_context": self.host is not None,
             "persona_host": None if self.host is None else {"context_limit": self.host.limit,
                                                             "templates_sha256": persona_host.templates_hash()},
             "started_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
+            # code, libraries and hardware the run happened on
+            "environment": provenance.environment(),
         }
         
         # Start logging
@@ -205,11 +250,20 @@ class Engine:
                              f"its roles are {sorted(roles)}")
         return {role: (file, (ROOT / file).read_text(encoding="utf-8")) for role, file in cfg.personas.items()}
 
+    def summarizer_info(self) -> dict | None:
+        """The summarizer's model, sampling and template, for the run metadata"""
+        if self.summarizer is None:
+            return None
+        return {
+            "engine": self.summarizer.engine_info(),
+            "shares_agents_backend": self.summarizer is self.backend,
+            "sampling": asdict(summary.sampling(self.cfg.summarizer.max_tokens)),
+            "template": {"file": self.summary_template.path.relative_to(ROOT).as_posix(),
+                         "sha256": self.summary_template.sha256},
+        }
+
     def count_tokens(self, prompt: Prompt) -> int:
-        # uses the backend's tokenizer if it has one, with the chat template the call will use
-        if hasattr(self.backend, "count_tokens"):
-            return self.backend.count_tokens(prompt, self.sampling.reasoning)
-        return len(render(prompt)) // 4 + 1
+        return prompt_tokens(self.backend, prompt, self.sampling.reasoning)
 
     def host_limit(self, backend) -> int:
         """The shared conversation may hold as much as all agents' prompts together, within the model's window"""
@@ -264,7 +318,8 @@ class Engine:
                 removed = removed + dropped
 
             # set the new seed and generate
-            sampling = replace(self.sampling, seed=call_seed(self.cfg.run.seed, self.cfg.run.replicate, agent, t, attempt))
+            sampling = replace(self.sampling, seed=call_seed(self.cfg.run.seed, self.cfg.run.replicate, agent, t, attempt),
+                               temperature=self.temperatures.get(agent, self.sampling.temperature))
             if (cap := self.budget.reserve(tokens, sampling.max_tokens)) is not None:
                 turn.status = "budget"
                 self.budget_stop = cap
@@ -353,6 +408,70 @@ class Engine:
             if (message := self.bus.publish(draft, turn.tick)) is not None:
                 turn.published.append(message.id)
 
+    async def summarize_pending(self, t: int, tick: int, slots: asyncio.Semaphore) -> None:
+        """Writes the summary of every message the bus holds for form summary (one call per message, concurrently),
+        then hands them to the bus in publication order"""
+        pending = [message for message, _, _ in self.bus.pending.values()]
+        if not pending:
+            return
+        texts = await asyncio.gather(*(self.summarize(message, t, tick, slots) for message in pending))
+        for message, text in zip(pending, texts):
+            self.bus.summarized(message.id, text, tick)
+
+    def summary_prompt(self, message: Message, t: int, tick: int) -> tuple[Prompt, int, int]:
+        """The summarizer's prompt for one message, its count, and how many characters were cut from the end of the
+        message's text to fit max_prompt_tokens (logged)"""
+        limit = self.cfg.context.max_prompt_tokens
+        text = message.payload["text"]
+        while True:
+            prompt = self.summary_template.prompt(message, text)
+            tokens = prompt_tokens(self.summarizer, prompt, summary.REASONING)
+            if tokens <= limit or not text:
+                break
+            text = summary.shortened(text, tokens, limit)
+        cut = len(message.payload["text"]) - len(text)
+        if cut:
+            self.log.write("channels", "truncation_event", t=t, tick=tick, message=message.id, removed_chars=cut,
+                           tokens=tokens)
+        if tokens > limit:
+            self.log.write("channels", "prompt_over_limit", t=t, tick=tick, message=message.id, tokens=tokens,
+                           limit=limit)
+        return prompt, tokens, cut
+
+    async def summarize(self, message: Message, t: int, tick: int, slots: asyncio.Semaphore) -> str | None:
+        """The summary of one message, charged to the channels budget line; None (logged) if the call was refused or
+        failed, and the bus then drops the message rather than deliver it whole"""
+        if self.summarizer is None:
+            self.log.write("channels", "no_summarizer", t=t, tick=tick, message=message.id)
+            return None
+        prompt, tokens, cut = self.summary_prompt(message, t, tick)
+        max_tokens = self.cfg.summarizer.max_tokens
+        sampling = summary.sampling(max_tokens, call_seed(self.cfg.run.seed, self.cfg.run.replicate,
+                                                          f"summary:{message.id}", t, 0))
+        if (cap := self.budget.reserve(tokens, max_tokens)) is not None:
+            self.budget_stop = cap
+            self.log.write("engine", "call_refused", t=t, tick=tick, line="channels", message=message.id, cap=cap,
+                           counted_prompt_tokens=tokens, max_tokens=max_tokens, usage=self.usage.report())
+            return None
+        try:
+            async with slots:
+                completion = await self.summarizer.generate(prompt, sampling)
+        except Exception as e:
+            self.budget.release(tokens, max_tokens)
+            self.channel_failed = True
+            self.log.write("channels", "channel_call_failed", t=t, tick=tick, message=message.id, error=repr(e))
+            return None
+        self.budget.settle(tokens, max_tokens, completion.prompt_tokens, completion.generated_tokens, "channels")
+        self.log.write(
+            "channels", "channel_call", t=t, tick=tick, form="summary", message=message.id, sender=message.sender,
+            prompt=render(prompt),
+            segments=[{"source": s.source, "ref": s.ref, "chars": len(s.text), "chat_role": s.chat_role}
+                      for s in prompt],
+            counted_prompt_tokens=tokens, truncated_chars=cut,
+            sampling=asdict(sampling), completion=asdict(completion), usage=self.usage.report(),
+        )
+        return completion.text
+
     @property
     def done(self) -> bool:
         return self.ended_by is not None
@@ -380,6 +499,7 @@ class Engine:
                     turns.append(turn)
                     if self.listener:
                         self.listener(turn)
+                await self.summarize_pending(t, tick, slots)
                 self.tick += 1
                 if self.budget_stop is not None:
                     break
@@ -391,7 +511,7 @@ class Engine:
             self.end("error")
             raise
         statuses = {turn.status for turn in turns}
-        if "failed" in statuses:
+        if "failed" in statuses or self.channel_failed:
             self.end("backend_error")
         elif self.budget_stop is not None:
             self.end(f"budget:{self.budget_stop}")
@@ -467,8 +587,14 @@ def default_out_dir(cfg: RunConfig) -> Path:
 
 
 def create_engine(cfg: RunConfig, out_dir: Path | None = None, listener: Callable[[Turn], None] | None = None,
-                  backend=None, stream: Callable[[AgentId, int, int, str | None], None] | None = None) -> Engine:
-    """Builds the task and the backend named in the config, and the engine"""
+                  backend=None, stream: Callable[[AgentId, int, int, str | None], None] | None = None,
+                  summarizer=None) -> Engine:
+    """Builds the task, the backends named in the config (unless given, e.g. reused from the previous run) and the
+    engine"""
     task = build_task(cfg.task)
     backend = backend or make_backend(cfg.engine, task)
-    return Engine(cfg, task, backend, out_dir or default_out_dir(cfg), listener, stream)
+    if cfg.summarizer is None:
+        summarizer = None
+    elif summarizer is None:
+        summarizer = make_summarizer(cfg, backend)
+    return Engine(cfg, task, backend, out_dir or default_out_dir(cfg), listener, stream, summarizer)

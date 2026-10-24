@@ -1,0 +1,4 @@
+Summarize the text below in at most three sentences. Keep its main points and leave out everything else. Reply with the summary only.
+
+Text:
+{text}

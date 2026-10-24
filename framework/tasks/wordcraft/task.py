@@ -24,6 +24,11 @@ class WordCraftTask:
     fields = FIELDS
     social_blocks = SOCIAL_BLOCKS
     answer_labels = ANSWER_LABELS
+    # the outcome messages of a step (see outcome_message)
+    message_types = {
+        "result.success": frozenset({"combo", "result"}),
+        "result.failure": frozenset({"combo"}),
+    }
 
     def __init__(self, cfg: WordCraftConfig, book: RecipeBook, data_sha256: str | None = None) -> None:
         self.cfg = cfg

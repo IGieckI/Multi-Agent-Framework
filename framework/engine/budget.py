@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Literal
 
-from framework.engine.usage import Usage
+from framework.engine.usage import Usage, logged_completions
 from framework.log import read_events
 
 # endings that interrupt a run instead of finishing it (only a run that ended nicelycounts as a
@@ -74,10 +74,11 @@ class BudgetEnforcer:
         for counter, amount in self.worst_case(prompt_tokens, max_tokens).items():
             self.in_flight[counter] -= amount
 
-    def settle(self, prompt_tokens: int, max_tokens: int, used_prompt: int, used_completion: int) -> None:
-        """Replaces a reservation with the usage the engine reported"""
+    def settle(self, prompt_tokens: int, max_tokens: int, used_prompt: int, used_completion: int,
+               line: str = "agents") -> None:
+        """Replaces a reservation with the usage the engine reported, charged to the call's budget line"""
         self.release(prompt_tokens, max_tokens)
-        self.usage.charge(used_prompt, used_completion)
+        self.usage.charge(used_prompt, used_completion, line)
 
 
 def finished(run_dir: Path) -> bool:
@@ -87,7 +88,7 @@ def finished(run_dir: Path) -> bool:
 
 
 def reference_usage(run_dir: Path, unit: Unit) -> int:
-    """The tokens a finished run used, in `unit`, summed from its logged LLM calls"""
+    """The tokens a finished run used, in "unit", summed from its logged LLM calls (every budget line)"""
     path = run_dir / "events.jsonl"
     if not path.exists():
         raise FileNotFoundError(f"budget.match: no reference run at {run_dir}")
@@ -98,7 +99,7 @@ def reference_usage(run_dir: Path, unit: Unit) -> int:
     if ended in INTERRUPTED:
         raise ValueError(f"budget.match: the reference run {run_dir} was interrupted ({ended}); only a run that "
                          "ended on its own can set a budget")
-    completions = [e["data"]["completion"] for e in events if e["kind"] == "llm_call"]
+    completions = logged_completions(events)
     if unit == "completion_tokens":
         return sum(c["generated_tokens"] for c in completions)
     return sum(c["prompt_tokens"] + c["generated_tokens"] for c in completions)
