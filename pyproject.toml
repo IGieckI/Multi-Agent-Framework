@@ -17,6 +17,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+text = ["sentence-transformers>=3"]
 
 [tool.setuptools.packages.find]
 include = ["framework*"]
