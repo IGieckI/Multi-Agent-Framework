@@ -14,6 +14,8 @@ class TaskSpec:
     max_steps: int
     target: str | None = None
     intermediate: tuple[str, ...] = ()
+    # starting items that are not ingredients of the target's recipe (logged, for the distractor metrics)
+    distractors: tuple[str, ...] = ()
 
 
 def open_ended(max_steps: int = 200) -> TaskSpec:
@@ -58,4 +60,5 @@ def sample_targeted(
         max_steps=max_steps,
         target=target,
         intermediate=tuple(intermediate),
+        distractors=tuple(sorted(chosen)),
     )

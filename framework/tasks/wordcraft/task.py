@@ -136,6 +136,9 @@ class WordCraftTask:
     def evaluate(self, meta: dict, events: list[dict]) -> dict[str, float | None]:
         return metrics.evaluate(self.book, meta, events)
 
+    def series(self, meta: dict, events: list[dict]) -> list[dict]:
+        return metrics.series(meta, events)
+
     def state(self, agent: AgentId) -> dict:
         env = self.envs[agent]
         return {"inventory": list(env.inventory), "solved": env.solved, "steps_left": env.steps_left,
