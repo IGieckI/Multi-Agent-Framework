@@ -1,0 +1,49 @@
+# Models of the experiments: open weights, pinned to the exact commit that was checked
+# One entry per model (HF API):
+#   family, model, revision   what is loaded: the Hugging Face id and the commit of the weights
+#   link                      its model card, to read the licence, the chat template and the recommended settings
+#   parameters, gated         size; `gated` ones need an accepted licence and HF_TOKEN (scripts/download_models.py)
+#   native_reasoning          the chat template can switch a separate thinking phase on (otherwise reasoning is inline)
+#   sampling                  the model's own policy, which replaces `sampling` of the experiment grid for this model.
+#                             Allowed keys: max_tokens, reasoning, top_p, top_k. Never temperature: it is 1.0 for every
+#                             model and condition, except baseline B4
+# 'defaults' is the policy of every model that does not say otherwise (a model's 'sampling' is merged key by key).
+#
+# Reasoning policy: 'reasoning: false' for every model. The task asks every agent for a 'Reasoning:' line in
+# its answer, and that line is what is logged and shared as reasoning. With 'reasoning: true' a model with
+# native_reasoning would also think for hundreds of tokens before it answers (Qwen3-0.6B used up 1024 tokens that way
+# in 70% of its calls), and its reasoning would no longer be comparable with that of the other families.
+defaults:
+  sampling: {max_tokens: 256, reasoning: false, top_p: 1.0, top_k: 0}
+
+models:
+  qwen3-0.6b: {family: qwen3, model: Qwen/Qwen3-0.6B, revision: c1899de289a04d12100db370d81485cdf75e47ca, parameters: 751632384,
+    link: https://huggingface.co/Qwen/Qwen3-0.6B, gated: false, native_reasoning: true,
+    sampling: {}}
+  qwen3-1.7b: {family: qwen3, model: Qwen/Qwen3-1.7B, revision: 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e, parameters: 2031739904,
+    link: https://huggingface.co/Qwen/Qwen3-1.7B, gated: false, native_reasoning: true,
+    sampling: {}}
+  qwen3-4b: {family: qwen3, model: Qwen/Qwen3-4B, revision: 1cfa9a7208912126459214e8b04321603b3df60c, parameters: 4022468096,
+    link: https://huggingface.co/Qwen/Qwen3-4B, gated: false, native_reasoning: true,
+    sampling: {}}
+  qwen3-8b: {family: qwen3, model: Qwen/Qwen3-8B, revision: b968826d9c46dd6066d109eabc6255188de91218, parameters: 8190735360,
+    link: https://huggingface.co/Qwen/Qwen3-8B, gated: false, native_reasoning: true,
+    sampling: {}}
+  llama3.2-1b: {family: llama3.2, model: meta-llama/Llama-3.2-1B-Instruct, revision: 9213176726f574b556790deb65791e0c5aa438b6, parameters: 1235814400,
+    link: https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct, gated: true, native_reasoning: false,
+    sampling: {}}
+  llama3.2-3b: {family: llama3.2, model: meta-llama/Llama-3.2-3B-Instruct, revision: 0cb88a4f764b7a12671c53f0838cd831a0843b95, parameters: 3212749824,
+    link: https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct, gated: true, native_reasoning: false,
+    sampling: {}}
+  gemma3-1b: {family: gemma3, model: google/gemma-3-1b-it, revision: dcc83ea841ab6100d6b47a070329e1ba4cf78752, parameters: 999885952,
+    link: https://huggingface.co/google/gemma-3-1b-it, gated: true, native_reasoning: false,
+    sampling: {}}
+  gemma3-4b: {family: gemma3, model: google/gemma-3-4b-it, revision: 093f9f388b31de276ce2de164bdc2081324b9767, parameters: 4300079472,
+    link: https://huggingface.co/google/gemma-3-4b-it, gated: true, native_reasoning: false,
+    sampling: {}}
+  smollm2-360m: {family: smollm2, model: HuggingFaceTB/SmolLM2-360M-Instruct, revision: a10cc1512eabd3dde888204e902eca88bddb4951, parameters: 361821120,
+    link: https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct, gated: false, native_reasoning: false,
+    sampling: {}}
+  smollm2-1.7b: {family: smollm2, model: HuggingFaceTB/SmolLM2-1.7B-Instruct, revision: 31b70e2e869a7173562077fd711b654946d38674, parameters: 1711376384,
+    link: https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct, gated: false, native_reasoning: false,
+    sampling: {}}
