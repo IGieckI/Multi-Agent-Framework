@@ -1,0 +1,22 @@
+# First real-model check: one small model, one protocol, two versions, one replicate, 2 steps (2 runs).
+# Use it on a new machine or cluster before the pilot (it also works on a small local GPU):
+#   python scripts/sweep.py plan     configs/experiments/smoke_hf.yaml
+#   python scripts/sweep.py run      configs/experiments/smoke_hf.yaml
+#   python scripts/sweep.py evaluate configs/experiments/smoke_hf.yaml
+# To check another model, change `models` (any name of configs/models/models.yaml).
+name: smoke_hf
+replicates: 1
+seed: 0
+versions: [base, one_agent]
+models: [qwen3-0.6b]
+protocols:
+  - {name: isolated, file: configs/protocols/isolated.yaml}
+task:
+  distractors: [0]
+base:
+  task: {name: wordcraft, type: targeted, depth: 1, max_steps: 2, repeat_consumes_step: true}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 1800}

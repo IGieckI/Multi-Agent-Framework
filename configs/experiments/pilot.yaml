@@ -1,0 +1,32 @@
+# Model-selection pilot: many small tasks instead of a few long ones, and only the versions that tell the models apart.
+#   python scripts/sweep.py plan configs/experiments/pilot.yaml      (counts the runs and writes the manifest)
+#   sbatch --array=0-9 scripts/slurm/sweep.sbatch configs/experiments/pilot.yaml
+# Task instances: replicate r of a task setting draws its own target from (seed, r), the same target for every model
+# and protocol (a paired comparison). So 6 replicates x 4 settings = 24 different targets per model and protocol.
+# The baselines left out here (all_independent_temp_sweep, one_for_all, one_agent_scaled_steps, one_vs_multi_token,
+# one_vs_multi_completion_token) belong to the main experiment, on the models this pilot selects.
+name: pilot
+replicates: 6
+seed: 0
+versions: [base, all_independent, one_agent]
+models: [qwen3-0.6b, qwen3-1.7b, qwen3-4b, qwen3-8b, llama3.2-1b, llama3.2-3b, gemma3-1b, gemma3-4b,
+         smollm2-360m, smollm2-1.7b]
+# the protocols differ in their number of agents (6, 6, 3): compare a protocol with its own baselines
+protocols:
+  - {name: isolated, file: configs/protocols/isolated.yaml}
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+  - {name: star, file: configs/protocols/star2.yaml,
+     personas: {hub: prompts/v1/personas/hub.txt, spoke: prompts/v1/personas/spoke.txt}}
+# the task settings that are crossed with the rest: one or two crafting steps to the target, with and without
+# distractor items in the starting inventory
+task:
+  depth: [1, 2]
+  distractors: [0, 3]
+# what every cell shares; the protocol, personas and the model are filled in per cell
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}
