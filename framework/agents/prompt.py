@@ -10,6 +10,7 @@ from framework.comm.message import Message
 
 @dataclass
 class Segment:
+    """Piece of prompt with metadata"""
     text: str
 
     # template/role/observation/message/memory/own_output
@@ -18,7 +19,7 @@ class Segment:
     # id of the observation/message/memory item
     ref: str | None = None
 
-    # the chat message the text belongs to: "user", or "assistant" for past answers in a shared conversation (B5)
+    # the chat message the text belongs to (user/assistant/...)
     chat_role: str = "user"
 
 
@@ -31,8 +32,7 @@ def render(prompt: Prompt) -> str:
 
 @dataclass
 class View:
-    """What one agent may see on its turn: the only input of a task's prompt builder, besides static templates.
-    The lists are oldest first; the context guard may shorten them"""
+    """What one agent may see on its turn (only prompt input besides static templates)"""
     # the task's observation fields that the agent's role may see
     observation: dict[str, Any]
     # prompt block -> the delivered messages it shows
