@@ -113,7 +113,7 @@ class HFLocalBackend:
             "torch_version": torch.__version__,
             "dtype": str(self.dtype),
             "quantization": "none",
-            "context_window": self.model.config.max_position_embeddings,
+            "context_window": self.model.config.get_text_config().max_position_embeddings,
             "device": self.device,
             "prefix_caching": False,
             "sampling_settings": self.model_sampling_settings if self.use_model_sampling else "from Sampling",
