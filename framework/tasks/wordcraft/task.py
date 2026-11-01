@@ -1,5 +1,5 @@
 """
-WordCraft behind the Task interface (SPEC §3, §4.3): every agent plays its own environment instance of one task
+WordCraft behind the Task interface
 """
 
 import hashlib
@@ -60,7 +60,7 @@ class WordCraftTask:
 
     def build_prompt(self, view: View, error: str | None) -> Prompt:
         # the rules template depends on the task type, which is static for the run
-        return build_prompt(view, self.spec.target is not None, error)
+        return build_prompt(view, self.spec.target is not None, error, self.cfg.prompts)
 
     def truncate(self, observation: Observation) -> str | None:
         """Invalid combinations go first, then valid ones, oldest first"""
@@ -145,7 +145,8 @@ class WordCraftTask:
                 "done": env.done}
 
     def metadata(self) -> dict:
-        return {"task": asdict(self.spec), "prompts_hash": templates_hash(), "data_sha256": self.data_sha256}
+        return {"task": asdict(self.spec), "prompts": self.cfg.prompts, "prompts_hash": templates_hash(self.cfg.prompts),
+                "data_sha256": self.data_sha256}
 
     def mock_answer(self, prompt: Prompt, sampling: Sampling) -> str:
         return random_answer(prompt, sampling)

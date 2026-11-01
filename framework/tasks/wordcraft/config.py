@@ -1,5 +1,5 @@
 """
-The `task` section of a WordCraft run config
+The task section of a WordCraft run config
 """
 
 from pathlib import Path
@@ -21,6 +21,8 @@ class WordCraftConfig(TaskConfig):
     repeat_consumes_step: bool = True
     # recipe file, path from the repo root
     data: str = "data/alchemy2.json"
+    # prompt version: the templates in prompts/<version>/wordcraft
+    prompts: Literal["v1", "v2"] = "v1"
 
     def step_limit(self) -> int:
         """Crafting steps per agent: `max_steps`, or SPEC §3.2's 6 (targeted) and 200 (open-ended)"""

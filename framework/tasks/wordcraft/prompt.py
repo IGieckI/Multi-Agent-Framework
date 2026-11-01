@@ -1,5 +1,5 @@
 """
-WordCraft prompts: versioned rules first, then the current state block (SPEC §5.2)
+WordCraft prompts
 """
 
 import hashlib
@@ -9,8 +9,7 @@ from framework.agents.prompt import Prompt, Segment, View
 from framework.comm.message import Message
 from framework.tasks.wordcraft.env import WordCraftEnv
 
-TEMPLATES = Path(__file__).resolve().parents[3] / "prompts" / "v1" / "wordcraft"
-MESSAGE_SLOT = TEMPLATES / "message_slot.txt"
+PROMPTS = Path(__file__).resolve().parents[3] / "prompts"
 
 # Observation fields a role can see (`visible_fields`)
 FIELDS = ("inventory", "target", "steps_left", "own_valid", "own_invalid")
@@ -30,14 +29,19 @@ def full_view(env: WordCraftEnv) -> View:
     return View(env.observation())
 
 
-def rules_file(targeted: bool) -> Path:
-    return TEMPLATES / ("rules_targeted.txt" if targeted else "rules_open_ended.txt")
+def templates(version: str) -> Path:
+    """The folder of the WordCraft templates of a prompt version"""
+    return PROMPTS / version / "wordcraft"
 
 
-def templates_hash() -> str:
-    """One hash over every template file, stored in the run metadata"""
+def rules_file(targeted: bool, version: str = "v1") -> Path:
+    return templates(version) / ("rules_targeted.txt" if targeted else "rules_open_ended.txt")
+
+
+def templates_hash(version: str = "v1") -> str:
+    """One hash over every template file of the version, stored in the run metadata"""
     digest = hashlib.sha256()
-    for path in sorted(TEMPLATES.glob("*.txt")):
+    for path in sorted(templates(version).glob("*.txt")):
         digest.update(path.name.encode() + path.read_bytes())
     return digest.hexdigest()
 
@@ -68,17 +72,18 @@ def social_segments(label: str, messages: list[Message], as_list: bool) -> list[
     return segments
 
 
-def build_prompt(view: View, targeted: bool, error: str | None = None) -> Prompt:
+def build_prompt(view: View, targeted: bool, error: str | None = None, version: str = "v1") -> Prompt:
     """The rules, the role's persona if any, the message slot if any, the state block and, on a retry, the error found
     in the previous answer. The state block shows only the observation fields in the view"""
     observation = view.observation
-    rules = rules_file(targeted)
+    rules = rules_file(targeted, version)
+    message_slot = templates(version) / "message_slot.txt"
     segments = [Segment(rules.read_text(encoding="utf-8"), "template", rules.name)]
     if view.persona is not None:
         file, text = view.persona
         segments.append(Segment(text.rstrip("\n") + "\n\n", "role", file))
     if view.message_slot:
-        segments.append(Segment(MESSAGE_SLOT.read_text(encoding="utf-8"), "template", MESSAGE_SLOT.name))
+        segments.append(Segment(message_slot.read_text(encoding="utf-8"), "template", message_slot.name))
     segments.append(Segment("<Current task>\n", "template"))
     if "inventory" in observation:
         segments.append(Segment(f"Inventory: {quote(observation['inventory'])}\n", "observation", "inventory"))

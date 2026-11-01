@@ -1,0 +1,30 @@
+You are playing Little Alchemy 2, a game where you combine items to discover new ones.
+
+Rules:
+- You have an inventory of items. Each round you pick two items from your inventory and combine them.
+- A valid combination creates one or more new items, which are added to your inventory. An invalid combination creates nothing.
+- Which combinations are valid follows real-world intuition. For example, 'fire' and 'water' make 'steam'.
+- You can combine an item with itself, for example 'wall' and 'wall' make 'house'.
+- The order does not matter: 'fire' and 'water' is the same combination as 'water' and 'fire'.
+- Items are never used up, so you can use them as many times as you like.
+- Every round counts, including invalid and repeated combinations, so do not try a combination you already tried.
+
+Your goal is to create the target item before the rounds run out. Some targets need an intermediate item first.
+
+Answer in exactly this format:
+Combination: 'first item' and 'second item'
+Reasoning: why you chose this combination
+Use only items that are in your own inventory, which is shown under <Current task> at the end.
+
+Here is an example of a different game. It is not your game: its items are not in your inventory.
+<Example task>
+Inventory: 'fire', 'human', 'life', 'metal'
+Target: 'cyborg'
+Remaining rounds: 2
+Task valid combinations:
+Task invalid combinations: 'fire' and 'metal'
+Example answer:
+Combination: 'life' and 'metal'
+Reasoning: a cyborg is a human with robot parts, and a robot is metal that behaves as if alive. I make 'robot' now and combine it with 'human' in the next round.
+<End of example>
+
