@@ -1,13 +1,9 @@
-"""Plan, run (in shards, e.g. as a Slurm job array) and evaluate an experiment grid (framework/experiment.py).
+"""Plan, run and evaluate an experiment grid (framework/experiment.py)
 
     python scripts/sweep.py plan     configs/experiments/pilot.yaml             # validate, count, write the manifest
     python scripts/sweep.py run      configs/experiments/pilot.yaml --shard 0/10 # run one block of the grid
     python scripts/sweep.py evaluate configs/experiments/pilot.yaml              # metrics, runs.csv, results.csv
 
-Everything goes to runs/<experiment>/: manifest.json (the plan: grid, models and revisions, every run's config hash,
-code and hardware), sweep/shard<i>of<n>.jsonl (one event per run started, skipped, finished or failed; appended to on
-a resume), <cell>/<version>/seed<s>_rep<r>/ (each run's own log), and the tables of `evaluate`. A run that already
-ended on its own is skipped, so re-submitting a failed job resumes it. `run` exits with 1 if any run failed.
 """
 
 import argparse
@@ -43,8 +39,10 @@ if args.command == "plan":
     plan = experiment.manifest(grid, grid_text, units, models)
     (folder / "manifest.json").write_text(json.dumps(plan, indent=2), encoding="utf-8")
     cells = len({u.cell for u in units})
+    shared = sum(len(u.same_as) for u in units)
     print(f"{grid.name}: {cells} cells x {grid.replicates} replicates = {len(units)} units, "
-          f"{len(units) * versions} runs ({versions} versions each)")
+          f"{len(units) * versions} runs ({versions} versions each), {len(units) * versions - shared} distinct "
+          f"({shared} are the same run as another unit's and run once)")
     print(f"models: {', '.join(grid.models)}; wrote {folder / 'manifest.json'}")
 
 elif args.command == "run":

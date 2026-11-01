@@ -19,7 +19,7 @@ import json
 import sys
 import time
 import traceback
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -126,6 +126,8 @@ class Unit:
     cfg: RunConfig
     # runs/<experiment>/<cell>: holds <version>/seed<s>_rep<r>
     folder: Path
+    # version -> output folder of the same run in an earlier unit, which is run once and shared (run_key)
+    same_as: dict[str, Path] = field(default_factory=dict)
 
     @property
     def id(self) -> str:
@@ -151,13 +153,24 @@ def cell_name(model: str, protocol: str, task: dict[str, Any]) -> str:
     return "__".join([model, protocol, *(f"{k}{v}" for k, v in task.items())])
 
 
+def run_key(cfg: RunConfig) -> str:
+    """Two runs with the same key are the same run, down to every sampled token: their configs differ at most in the
+    name of their cell, which only places the output (the seeds come from the seed, the replicate and the agent ids).
+    E.g. one_agent drops the protocol, so it is the same run in every protocol of a model and task setting"""
+    data = cfg.model_dump(mode="json")
+    del data["run"]["name"]
+    return hashlib.sha256(json.dumps(data, sort_keys=True).encode("utf-8")).hexdigest()
+
+
 def expand(grid: Grid, models: dict[str, ModelEntry], runs_root: Path = ROOT / "runs") -> list[Unit]:
     """Every unit of the grid, in the order models, protocols, task settings, replicates. Each config is validated
-    here, so a wrong grid fails before anything runs"""
+    here, so a wrong grid fails before anything runs. A run that an earlier unit already has (run_key) is marked in
+    `same_as`: it is run once"""
     if unknown := [m for m in grid.models if m != MOCK and m not in models]:
         raise ValueError(f"models not in the registry: {unknown}; known: {sorted(models)}")
     axes = list(grid.task)
     units = []
+    first: dict[str, Path] = {}
     for model, protocol, values in itertools.product(grid.models, grid.protocols, itertools.product(*grid.task.values())):
         task = dict(zip(axes, values))
         cell = cell_name(model, protocol.name, task)
@@ -178,7 +191,9 @@ def expand(grid: Grid, models: dict[str, ModelEntry], runs_root: Path = ROOT / "
             unit = Unit(cell, replicate, attrs, RunConfig.model_validate(data), runs_root / grid.name / cell)
             if unknown := set(protocol.personas) - set(unit.cfg.resolved_protocol().roles):
                 raise ValueError(f"protocol {protocol.name!r} has personas for roles it does not have: {sorted(unknown)}")
-            unit.runs()  # refuses a version that cannot be derived from this cell
+            for version, cfg, out in unit.runs():  # refuses a version that cannot be derived from this cell
+                if (same := first.setdefault(run_key(cfg), out)) != out:
+                    unit.same_as[version] = same
             units.append(unit)
     return units
 
@@ -202,7 +217,8 @@ def manifest(grid: Grid, grid_text: str, units: list[Unit], models: dict[str, Mo
                    "folder": u.folder.relative_to(ROOT).as_posix() if u.folder.is_relative_to(ROOT) else str(u.folder),
                    "runs": [{"version": v, "dir": out.name,
                              "config_sha256": hashlib.sha256(json.dumps(c.model_dump(mode="json"), sort_keys=True)
-                                                             .encode("utf-8")).hexdigest()}
+                                                             .encode("utf-8")).hexdigest(),
+                             "same_as": str(u.same_as[v]) if v in u.same_as else None}
                             for v, c, out in u.runs()]}
                   for u in units],
         "created_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
@@ -227,14 +243,18 @@ def engine_key(cfg: RunConfig) -> tuple:
 def run_units(units: list[Unit], log: EventLog) -> int:
     """Runs the units in order, reusing the loaded model while it stays the same, and returns how many runs failed.
     Every skip and failure is an event of 'log' (the runs have their own logs); a failure never stops the sweep. A
-    run that already ended on its own is skipped, so a sweep can be resumed. A model that fails to load is not
-    tried again for the units that follow"""
+    run that already ended on its own is skipped, so a sweep can be resumed, and so is a run another unit has
+    (`same_as`). A model that fails to load is not tried again for the units that follow"""
     backend = summarizer = key = None
     broken: dict[tuple, str] = {}
     failures = 0
     for unit in units:
         log.write("sweep", "unit_started", unit=unit.id, at=time.strftime("%Y-%m-%dT%H:%M:%S"))
         for version, cfg, out in unit.runs():
+            if version in unit.same_as:
+                log.write("sweep", "run_skipped", unit=unit.id, version=version, out=str(out), reason="same_as",
+                          same_as=str(unit.same_as[version]))
+                continue
             if finished(out):
                 log.write("sweep", "run_skipped", unit=unit.id, version=version, out=str(out), reason="finished")
                 continue
@@ -286,16 +306,21 @@ def write_csv(path: Path, rows: list[dict]) -> None:
 def evaluate_units(experiment: str, units: list[Unit], evaluator: Evaluator, out_dir: Path, seed: int = 0) -> dict:
     """Scores every run that ended on its own (metrics.json and series.csv in its folder) and writes, to 'out_dir',
     runs.csv (one row per run), results.csv (per cell and version: n, mean and 95% bootstrap interval of every metric)
-    and unfinished.json (the runs that are missing, interrupted or failed). Returns the counts"""
+    and unfinished.json (the runs that are missing, interrupted or failed). A run shared by several units (`same_as`)
+    is a row of each of them, with its folder in the `run_dir` column: count it once when pooling over cells.
+    Returns the counts"""
     run_rows, unfinished = [], []
+    scored: dict[Path, dict | None] = {}
     for unit in units:
         for version, _, out in unit.runs():
-            metrics = evaluator.save(out) if (out / "events.jsonl").exists() else None
-            if metrics is None:
+            out = unit.same_as.get(version, out)
+            if out not in scored:
+                scored[out] = evaluator.save(out) if (out / "events.jsonl").exists() else None
+            if scored[out] is None:
                 unfinished.append({"unit": unit.id, "version": version, "dir": str(out)})
             else:
                 run_rows.append({"experiment": experiment, "cell": unit.cell, "replicate": unit.replicate,
-                                 "version": version, **unit.attrs, **metrics})
+                                 "version": version, **unit.attrs, "run_dir": str(out), **scored[out]})
     groups: dict[tuple, list[dict]] = {}
     for row in run_rows:
         groups.setdefault((row["cell"], row["version"]), []).append(row)
@@ -303,7 +328,7 @@ def evaluate_units(experiment: str, units: list[Unit], evaluator: Evaluator, out
     result_rows = []
     for (cell, version), rows in groups.items():
         attrs = cell_attrs[cell]
-        identifiers = {"experiment", "cell", "replicate", "version", "run", "ended_by", *attrs}
+        identifiers = {"experiment", "cell", "replicate", "version", "run", "run_dir", "ended_by", *attrs}
         metric_names = [m for m in rows[0] if m not in identifiers and len(numeric(rows, m))]
         for metric in metric_names:
             mean, low, high = bootstrap_ci(numeric(rows, metric), seed)
