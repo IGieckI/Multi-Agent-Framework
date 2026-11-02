@@ -81,13 +81,17 @@ class SamplingConfig(Strict):
     # baseline B4 only: the temperature of each agent (sorted agent ids, cycling through the list), replacing
     # "temperature". None = every agent samples at `temperature`
     agent_temperatures: tuple[float, ...] | None = None
+    # the temperatures baseline B4 (all_independent_temp_sweep) gives its agents when agent_temperatures is not set.
+    # None = TEMP_SWEEP of framework/baselines.py. Every other version samples at `temperature`
+    sweep_temperatures: tuple[float, ...] | None = None
 
-    @field_validator("agent_temperatures")
+    @field_validator("agent_temperatures", "sweep_temperatures")
     @classmethod
-    def temperatures_are_not_negative(cls, temperatures: tuple[float, ...] | None) -> tuple[float, ...] | None:
+    def temperatures_are_not_negative(cls, temperatures: tuple[float, ...] | None, info) -> tuple[float, ...] | None:
         """Reject an empty list and a negative temperature"""
         if temperatures is not None and (not temperatures or min(temperatures) < 0):
-            raise ValueError(f"sampling.agent_temperatures needs at least one temperature, none negative: {temperatures}")
+            raise ValueError(f"sampling.{info.field_name} needs at least one temperature, none negative: "
+                             f"{temperatures}")
         return temperatures
 
 
@@ -130,6 +134,9 @@ class BudgetConfig(Strict):
     step_reserve: dict[Literal["total_tokens", "completion_tokens", "calls"], int] = {}
     # take the cap of one unit from a reference run instead of setting it above
     match: BudgetMatch | None = None
+    # with `match`: show the agent what is left of the matched cap instead of its remaining rounds, which for the
+    # one_vs_multi baselines are only a safety cap (framework/baselines.py). No effect without `match`
+    show_matched_budget: bool = False
 
     @model_validator(mode="after")
     def match_sets_its_own_cap(self) -> "BudgetConfig":

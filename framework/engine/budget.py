@@ -52,6 +52,10 @@ class BudgetEnforcer:
             cost = self.usage.used[counter] - self.at_step_start[counter]
             self.largest_step[counter] = max(self.largest_step[counter], cost)
 
+    def remaining(self, counter: str) -> int:
+        """What is left of the cap of `counter`"""
+        return max(0, int(self.caps[counter] - self.usage.used[counter]))
+
     @staticmethod
     def worst_case(prompt_tokens: int, max_tokens: int) -> dict[str, int]:
         return {"total_tokens": prompt_tokens + max_tokens, "completion_tokens": max_tokens, "calls": 1}

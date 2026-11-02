@@ -164,7 +164,7 @@ class Engine:
         self.slot = {a: any(self.structure.receivers(MessageDraft(a, t, {})) for t in AUTHORED) for a in self.agents}
         # role -> (file, text) of its persona, rendered after the rules for every agent of the role
         self.personas = self.load_personas(cfg)
-        self.sampling = Sampling(**cfg.sampling.model_dump(exclude={"agent_temperatures"}))
+        self.sampling = Sampling(**cfg.sampling.model_dump(exclude={"agent_temperatures", "sweep_temperatures"}))
         # each agent samples at its own temperature (logged in the metadata and in every call)
         temperatures = cfg.sampling.agent_temperatures
         self.temperatures = {} if temperatures is None else {a: temperatures[i % len(temperatures)]
@@ -172,6 +172,8 @@ class Engine:
         self.usage = Usage()
         caps, budget_info = resolve_budget(cfg)
         self.budget = BudgetEnforcer(caps, self.usage, cfg.budget.step_reserve)
+        # the counter of the matched cap that the agents see instead of their remaining rounds, if any
+        self.shown_budget = cfg.budget.match.unit if cfg.budget.match and cfg.budget.show_matched_budget else None
         # the cap that refused a call during the current step
         self.budget_stop: str | None = None
         # baseline B5: every agent's turns accumulate in one shared conversation
@@ -238,6 +240,10 @@ class Engine:
     def view(self, agent: AgentId) -> View:
         # builds the View object that the prompt builder consumes: the observation filtered by the agent's role
         observation = {name: value for name, value in self.task.observe(agent).items() if name in self.fields[agent]}
+        if self.shown_budget is not None:
+            # the step limit is only a safety cap here: show what really bounds the agent
+            observation.pop("steps_left", None)
+            observation["budget_left"] = (self.budget.remaining(self.shown_budget), self.shown_budget)
         social = {block: [m for m in self.memory[agent] if m.type in types]
                   for block, _, types in self.task.social_blocks if block in self.blocks[agent]}
         return View(observation, social, self.slot[agent], self.personas.get(self.structure.agents[agent]))

@@ -91,6 +91,11 @@ def build_prompt(view: View, targeted: bool, error: str | None = None, version: 
         segments.append(Segment(f"Target: '{observation['target']}'\n", "observation", "target"))
     if "steps_left" in observation:
         segments.append(Segment(f"Remaining rounds: {observation['steps_left']}\n", "observation", "steps_left"))
+    if "budget_left" in observation:
+        left, unit = observation["budget_left"]
+        label = {"total_tokens": "tokens", "completion_tokens": "answer tokens"}.get(unit, unit)
+        segments.append(Segment(f"Remaining budget: {left} {label} (the game ends when it runs out)\n", "observation",
+                                "budget_left"))
     if "own_valid" in observation:
         valid = ", ".join(f"'{a}' and '{b}' -> {quote(results)}" for (a, b), results in observation["own_valid"])
         segments.append(Segment(f"Task valid combinations: {valid}\n", "observation", "own_valid"))

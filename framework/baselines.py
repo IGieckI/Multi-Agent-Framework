@@ -21,7 +21,9 @@ from framework.tasks.registry import message_types
 BASELINES = VERSIONS[1:]
 BUDGET_UNITS = {"one_vs_multi_token": "total_tokens", "one_vs_multi_completion_token": "completion_tokens"}
 
-# the temperatures the agents cycle through, unless the condition's config sets sampling.agent_temperatures.
+# the temperatures the agents cycle through, unless the condition's config sets sampling.agent_temperatures or
+# sampling.sweep_temperatures. Their mean is 0.85, below the base 1.0: a grid that tests variety sets its own
+# (FINDINGS.md, F21)
 TEMP_SWEEP = (0.4, 0.7, 1.0, 1.3)
 
 # one_vs_multi: the task's horizon becomes this many times (number of agents x the condition's horizon). It is only a
@@ -47,7 +49,9 @@ def derive(cfg: RunConfig, baseline: str, reference: str | None = None) -> RunCo
         independent = protocol.model_copy(update={"rules": (), "channels": {}, "constraints": ()})
         data["protocol"] = independent.model_dump(mode="json", by_alias=True)
         if baseline == "all_independent_temp_sweep":
-            data["sampling"]["agent_temperatures"] = list(cfg.sampling.agent_temperatures or TEMP_SWEEP)
+            sampling = cfg.sampling
+            data["sampling"]["agent_temperatures"] = list(sampling.agent_temperatures or sampling.sweep_temperatures
+                                                          or TEMP_SWEEP)
     elif baseline == "one_for_all":
         data["engine"]["persona_host"] = True
     elif baseline in ("one_agent", "one_agent_scaled_steps"):
@@ -65,7 +69,8 @@ def derive(cfg: RunConfig, baseline: str, reference: str | None = None) -> RunCo
         data["personas"] = {}
         data["task"] = cfg.task.scale_horizon(SAFETY_FACTOR * agents).model_dump(mode="json")
         # only the matched budget (and the wall clock, a safety cap) bounds the single agent
-        data["budget"] = BudgetConfig(match=match, wall_clock_s=cfg.budget.wall_clock_s).model_dump(mode="json")
+        data["budget"] = BudgetConfig(match=match, wall_clock_s=cfg.budget.wall_clock_s,
+                                      show_matched_budget=cfg.budget.show_matched_budget).model_dump(mode="json")
     return RunConfig.model_validate(data)
 
 
