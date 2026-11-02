@@ -7,3 +7,11 @@ __pycache__/
 .hypothesis/
 /runs
 /docs
+
+# local copies of cluster results, and the cluster's Slurm outputs (untracked files make a run's code "dirty")
+/run_*/
+/shard*.jsonl
+/slurm-*.out
+/slurm-*.err
+# the cluster's documentation and a colleague's guide: not ours to publish
+/docsHPC
