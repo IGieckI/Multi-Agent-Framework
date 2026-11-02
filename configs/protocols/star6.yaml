@@ -1,0 +1,8 @@
+structure: {generator: star, n: 6}
+roles:
+  hub: {where: hub}
+  spoke: {where: {hub: false}}
+rules:
+  - {along: to_hub, share: [result]}
+  - {along: from_hub, share: [message]}
+schedule: [spoke, hub]

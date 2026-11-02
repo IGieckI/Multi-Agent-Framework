@@ -1,0 +1,5 @@
+roles:
+  explorer: {count: 3}
+structure: {generator: complete}
+rules:
+  - {from: explorer, to: explorer, share: [result, message]}
