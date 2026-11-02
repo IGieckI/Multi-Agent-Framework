@@ -52,7 +52,7 @@ Sources: `run_56/shard0of2.jsonl`, `run_56/shard1of2.jsonl` (sweep logs), `run_5
 - Messages never help and sometimes hurt (not significant pooled). Clearest per model: gemma3-4b fully_connected 11/24
   with messages vs 17/24 without, star 15 vs 17; smollm2-360m fully_connected 7 vs 11.
 - Same direction for `team_coverage` (FC 0.269 vs 0.289) and `steps_to_target`.
-- **Open**: the main question of the study; to be tested with more replicates and in the settings of F10.
+- **Acted on**: tested in the main experiment, see F16 (fully_connected messages hurt) and F18 (star: neutral).
 
 ### F6. The gain from a team follows how different its agents are
 - Qwen3 agents behave almost like copies: `redundancy` 0.76–0.95 and final `pairwise_divergence` 0.00–0.03 in base,
@@ -62,7 +62,8 @@ Sources: `run_56/shard0of2.jsonl`, `run_56/shard1of2.jsonl` (sweep logs), `run_5
 - Not a seeding bug: every call gets its own seed from (seed, replicate, agent, step, attempt) (`call_seed`,
   `framework/engine/engine.py:82`), checked in `seed0_rep3` (15 calls, 15 different seeds).
 - Part of the Llama/SmolLM2 variety is noise from failed answers (F8).
-- Consequence: temperature-driven variety (`all_independent_temp_sweep`) is the baseline to beat.
+- Consequence: temperature-driven variety (`all_independent_temp_sweep`) is the baseline to beat; but the sweep as
+  built lowers the variety instead (F21).
 
 ### F7. Model ranking (single agent, one_agent, 24 distinct runs each, `solved_any`)
 - gemma3-4b 62%, qwen3-8b 54%, qwen3-4b 50%, qwen3-1.7b 42%, gemma3-1b 38%, qwen3-0.6b 33%, smollm2-360m 33%,
@@ -178,3 +179,83 @@ Sources: `run_62/prompt_v2_check/` (runs, `runs.csv`), `run_62/runs.csv` (the pi
   family again, with the most varied agents (F6). SmolLM2 stays unreliable (F7). **Open**: whether a v3 (inventory in
   the retry message, placeholders that cannot be copied, inline examples without 'fire'/'water') is worth another
   check; only the weak models would gain.
+
+---
+
+## Main experiment: `runs/main` (started 2026-11-01)
+
+Grid `configs/experiments/main.yaml`: qwen3-4b, qwen3-8b, gemma3-4b, llama3.2-3b × fully_connected and star × (depth 1,
+3 distractors) and (depth 2, 0 distractors) × 20 replicates × base, all_independent, all_independent_temp_sweep,
+one_agent, one_vs_multi_token; prompts v2. 1,600 runs, 1,440 distinct. Gated by its first unit (`shard0of320.jsonl`).
+
+### F15. The token-matched single agent is told the safety cap as its remaining rounds, not its real budget
+- In the first unit (qwen3-4b, fully_connected, depth 1, rep 0) `one_vs_multi_token` and `one_agent` gave the same
+  answer (57 completion tokens, solved in 1 step) but the first prompt of `one_vs_multi_token` was 2 tokens longer
+  (493 vs 491): its "Remaining rounds:" line shows the horizon cap of `framework/baselines.py` (SAFETY_FACTOR 10 ×
+  6 agents × 4 steps = 240), while the team's agents see 4. Its real limit is the team's token budget, which it does not
+  see.
+- So when it does not solve at once, it plays as if it had 240 rounds; the comparison "same tokens, one agent" holds,
+  but the agent's urgency differs from the team's. All 5 versions of the unit ran without errors.
+- Confirmed relevant by the full run (F19): 21 of its 95 fully_connected solves came after step 4.
+- **Acted on**: `budget.show_matched_budget` (off by default) replaces the agent's "Remaining rounds" with
+  "Remaining budget: N tokens"; on in `configs/experiments/followup.yaml`. Read the main grid's `one_vs_multi_token`
+  with this in mind.
+
+Full run (jobs 74066/74067, 2026-11-01 14:05 → 20:38; shard 0 6.5 h, shard 1 4.6 h): all 1,440 distinct runs ended on
+their own, 0 failed. Every version of a replicate has the same target (task seed from seed and replicate), so all
+comparisons below are paired: 160 pairs per protocol (4 models × 2 settings × 20 replicates), 40 per model and
+protocol. Intervals are 95% paired bootstraps. Success is `solved_any`. Source: `run_main/main/runs.csv`.
+
+### F16. In fully_connected, letting the agents talk makes the team worse
+- Same 6 agents with and without messages: base − all_independent = −9.4 points [−14.4, −5.0] (53% vs 62%).
+- Negative for every model (qwen3-4b −12 [−23, −3], qwen3-8b −7 [−17, 0], gemma3-4b −12 [−25, 0], llama3.2-3b −5
+  [−12, 0]) and in both settings (depth 1 −8.7 [−15.0, −3.7], depth 2 −10.0 [−17.5, −2.5]).
+- Team coverage falls too for qwen3-4b (−0.050 [−0.086, −0.019]) and qwen3-8b (−0.034 [−0.057, −0.014]).
+- This is the clearest result of the study so far, and it confirms the pilot's direction (F5) with 4× the data.
+
+### F17. Why: fully connected agents herd onto the same combinations
+- base vs all_independent in fully_connected (means over runs): messages written 16.2 per run; agents adopt what
+  they receive 87% of the time, 26% of the time with no reason of their own (blind adoption); 1.8 copy events per run.
+- The team explores less: distinct paths 0.544 vs 0.644, final pairwise divergence 0.040 vs 0.060, repeat rate 0.360
+  vs 0.316, new items found by the team 1.42 vs 1.61. Qwen3 agents were already near-copies (F6) and become more so
+  (redundancy 0.97 vs 0.89 for qwen3-4b).
+- So messages do not pool different knowledge; they pull six agents onto one plan.
+
+### F18. In star, messages neither help nor hurt
+- base − all_independent = −1.3 points [−6.9, +4.4]; depth 1 −1.3 [−8.7, +6.2], depth 2 +3.7 [−5.0, +12.5].
+- The hub writes few messages (2.5 per run) and they are followed less, and rarely blindly (adoption 0.60, blind 0.06).
+- Only cell with a clear gain: qwen3-4b +10 [+3, +20] (coverage +0.043 [+0.021, +0.068]). One positive cell in eight
+  tests is what chance can give: not a finding on its own.
+- Caveat: star has 3 agents and fully_connected 6 (F22), so F16 vs F18 compares two structures *and* two team sizes.
+
+### F19. A single agent with the team's token budget matches the teams without messages and beats fully_connected
+- Paired, vs the team with messages (base): one agent with the same number of steps (one_agent) −5.0 [−11.9, +1.9]
+  vs fully_connected, −15.6 [−22.5, −8.7] vs star. One agent with the team's token budget (one_vs_multi_token):
+  +6.9 [+0.6, +13.1] vs fully_connected, −9.4 [−16.3, −2.5] vs star.
+- vs the team without messages: token-matched − all_independent = −2.5 [−6.9, +1.9] (fully_connected), −8.1
+  [−13.8, −2.5] (star).
+- So at equal tokens one agent is as good as six independent agents and better than six talking ones; three
+  independent or star agents still beat one agent at equal tokens.
+- It wins partly by playing longer: 17.3 steps per run on fully_connected's budget (up to 49), and 21 of its 95 solves
+  came after step 4, the team's horizon. It is also told 240 remaining rounds (F15).
+
+### F20. Messages in fully_connected cost 54% more tokens for less success
+- Mean tokens per run / success / tokens per solved run: fully_connected with messages 14,461 / 53% / 27,545; without
+  9,399 / 62% / 15,191 (1.8× cheaper per solve); star with 6,006 / 63% / 9,514; without 5,468 / 62% / 8,837; one
+  agent 1,608 / 47% / 3,385.
+- The difference, 5,062 tokens per run over about 20 agent turns (6 agents × 3.3 steps), is about 250 extra tokens
+  per agent turn in fully_connected, where everyone reads everyone's messages.
+
+### F21. The temperature sweep lowers variety instead of raising it
+- `TEMP_SWEEP = (0.4, 0.7, 1.0, 1.3)` in `framework/baselines.py` averages 0.85, while every other version samples at
+  1.0. Against all_independent (all at 1.0): distinct paths 0.606 vs 0.644, final divergence 0.049 vs 0.060, team new
+  items 1.48 vs 1.61 (fully_connected); success −3.7 points [−7.5, −0.6] (fully_connected), −1.9 [−5.0, +1.3] (star).
+- So it does not test "more variety helps"; it tests "some colder agents". **Acted on**: `sampling.sweep_temperatures`
+  sets the sweep per grid without touching the other versions; the follow-up uses (0.7, 1.0, 1.3), mean 1.0.
+
+### F22. Protocol and team size are confounded in this grid
+- fully_connected has 6 agents and star 3, so "star is better than fully_connected" (63% vs 53% with messages) may be
+  structure or size: the no-message teams are equal (62% vs 62%) although one has twice the agents, and the herding of
+  F17 grows with the number of senders each agent reads.
+- **Acted on**: the follow-up adds `fully_connected3` and `star6` (a hub and 5 spokes), and fully_connected sharing
+  only results or only messages, to test where the herding of F17 comes from.
