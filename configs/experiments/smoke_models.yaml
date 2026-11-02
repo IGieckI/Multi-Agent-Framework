@@ -1,0 +1,23 @@
+# Every model of the pilot once, before a long sweep: loads it and runs one short episode of a protocol with
+# messages and personas, in two versions (20 runs, about 10 minutes on an L40). Catches a missing download, a model
+# that does not load, or a chat template that breaks, before they cost a 3-day job.
+#   python scripts/sweep.py plan configs/experiments/smoke_models.yaml
+#   sbatch --time=00:45:00 scripts/slurm/sweep.sbatch configs/experiments/smoke_models.yaml
+name: smoke_models
+replicates: 1
+seed: 0
+versions: [base, one_agent]
+models: [qwen3-0.6b, qwen3-1.7b, qwen3-4b, qwen3-8b, llama3.2-1b, llama3.2-3b, gemma3-1b, gemma3-4b,
+         smollm2-360m, smollm2-1.7b]
+protocols:
+  - {name: star, file: configs/protocols/star2.yaml,
+     personas: {hub: prompts/v1/personas/hub.txt, spoke: prompts/v1/personas/spoke.txt}}
+task:
+  distractors: [3]
+base:
+  task: {name: wordcraft, type: targeted, depth: 1, max_steps: 2, repeat_consumes_step: true}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 600}

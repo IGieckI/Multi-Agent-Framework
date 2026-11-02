@@ -1,0 +1,26 @@
+# Does prompt v2 fix the parse failures of the pilot? v2 only frames the rules' example as an
+# example of another game; v1 laid it out like the real task, and Llama and SmolLM2 answered with its items.
+# Same seed and replicates as the pilot, so every run has the target of its pilot twin: compare parse_failure_rate,
+# invalid_combo_rate and solved_any cell by cell with runs/pilot. qwen3-4b is the control: v2 must not hurt a model
+# that had no parse failures. 192 runs, 144 distinct (one_agent is shared by the protocols), about 1.5 h on an L40.
+#   python scripts/sweep.py plan configs/experiments/prompt_v2_check.yaml
+#   sbatch --time=06:00:00 scripts/slurm/sweep.sbatch configs/experiments/prompt_v2_check.yaml
+name: prompt_v2_check
+replicates: 4
+seed: 0
+versions: [base, one_agent]
+models: [llama3.2-1b, llama3.2-3b, smollm2-360m, smollm2-1.7b, gemma3-1b, qwen3-4b]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+  - {name: star, file: configs/protocols/star2.yaml,
+     personas: {hub: prompts/v1/personas/hub.txt, spoke: prompts/v1/personas/spoke.txt}}
+task:
+  depth: [1, 2]
+  distractors: [3]
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}
