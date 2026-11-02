@@ -36,8 +36,9 @@ from framework.evaluate import Evaluator, bootstrap_ci, numeric
 from framework.log import EventLog
 
 MODELS_FILE = ROOT / "configs" / "models" / "models.yaml"
-# a name the grid may use for the mock backend (no weights, no GPU): for tests of the pipeline itself
-MOCK = "mock"
+# names the grid may use for the mock backend (no weights, no GPU): random agents, for tests of the pipeline and as a
+# baseline (mock picks with replacement, mock_norepeat never repeats a tried pair)
+MOCKS = ("mock", "mock_norepeat")
 # the sampling parameters a model may set; temperature is the same for every model
 MODEL_SAMPLING_KEYS = {"max_tokens", "reasoning", "top_p", "top_k"}
 
@@ -178,7 +179,7 @@ def expand(grid: Grid, models: dict[str, ModelEntry], runs_root: Path = ROOT / "
     """Every unit of the grid, in the order models, protocols, task settings, replicates. Each config is validated
     here, so a wrong grid fails before anything runs. A run that an earlier unit already has (run_key) is marked in
     `same_as`: it is run once"""
-    if unknown := [m for m in grid.models if m != MOCK and m not in models]:
+    if unknown := [m for m in grid.models if m not in MOCKS and m not in models]:
         raise ValueError(f"models not in the registry: {unknown}; known: {sorted(models)}")
     units = []
     first: dict[str, Path] = {}
@@ -192,11 +193,11 @@ def expand(grid: Grid, models: dict[str, ModelEntry], runs_root: Path = ROOT / "
             data["task"] = {**data["task"], **task}
             if entry is not None:
                 data["sampling"] = {**data.get("sampling", {}), **entry.sampling}
-            data["engine"] = ({**data.get("engine", {}), "backend": "mock"} if entry is None else
+            data["engine"] = ({**data.get("engine", {}), "backend": "mock", "model": model} if entry is None else
                               {**data.get("engine", {}), "backend": "hf_local", "model": entry.model,
                                "revision": entry.revision})
             data["protocol"], data["personas"] = protocol.file, protocol.personas
-            attrs = {"model": model, "family": entry.family if entry else MOCK,
+            attrs = {"model": model, "family": entry.family if entry else "mock",
                      "parameters": entry.parameters if entry else 0, "protocol": protocol.name, **task}
             unit = Unit(cell, replicate, attrs, RunConfig.model_validate(data), runs_root / grid.name / cell)
             if unknown := set(protocol.personas) - set(unit.cfg.resolved_protocol().roles):

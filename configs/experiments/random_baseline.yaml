@@ -1,0 +1,24 @@
+# Random agents on the main and follow-up grids' targets (FINDINGS.md F30), no GPU:
+#   python scripts/sweep.py run configs/experiments/random_baseline.yaml
+# Replicates 0-19 have the main grid's targets; the rest estimate the random rate on more targets.
+# In fully_connected_results a mock_norepeat agent also skips the pairs others found invalid: the head-room of sharing
+name: random_baseline
+replicates: 200
+seed: 0
+versions: [base, all_independent, one_agent, one_agent_scaled_steps]
+models: [mock, mock_norepeat]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+  - {name: star, file: configs/protocols/star2.yaml}
+  - {name: fully_connected3, file: configs/protocols/fully_connected3.yaml}
+  - {name: star6, file: configs/protocols/star6.yaml}
+  - {name: fully_connected_results, file: configs/protocols/fully_connected_results.yaml}
+task:
+  - {depth: 1, distractors: 3}
+  - {depth: 2, distractors: 0}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}

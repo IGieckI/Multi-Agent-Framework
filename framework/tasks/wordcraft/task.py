@@ -17,7 +17,7 @@ from framework.tasks.wordcraft.env import StepResult, WordCraftEnv
 from framework.tasks.wordcraft.parse import ANSWER_LABELS, parse_combination
 from framework.tasks.wordcraft.prompt import FIELDS, SOCIAL_BLOCKS, build_prompt, templates_hash
 from framework.tasks.wordcraft.recipes import Combo, RecipeBook
-from framework.tasks.wordcraft.tasks import TaskSpec, open_ended, sample_targeted
+from framework.tasks.wordcraft.tasks import TaskSpec, deal_notes, open_ended, sample_targeted
 
 
 class WordCraftTask:
@@ -48,12 +48,14 @@ class WordCraftTask:
 
     def reset(self, seed: int, agents: Sequence[AgentId]) -> None:
         # the open-ended task is the same for every seed, a targeted one is sampled
+        rng = random.Random(seed)
         if self.cfg.type == "open_ended":
             self.spec = open_ended(self.cfg.step_limit())
         else:
-            self.spec = sample_targeted(self.book, random.Random(seed), self.cfg.depth, self.cfg.distractors,
-                                        self.cfg.step_limit())
-        self.envs = {a: WordCraftEnv(self.book, self.spec) for a in agents}
+            self.spec = sample_targeted(self.book, rng, self.cfg.depth, self.cfg.distractors, self.cfg.step_limit())
+        # dealt after the task is drawn, so a task does not depend on its hints
+        notes = deal_notes(self.book, self.spec, len(agents), self.cfg.hints, self.cfg.notes, rng)
+        self.envs = {a: WordCraftEnv(self.book, self.spec, notes=tuple(own)) for a, own in zip(agents, notes)}
 
     def observe(self, agent: AgentId) -> Observation:
         return self.envs[agent].observation()
@@ -145,11 +147,12 @@ class WordCraftTask:
                 "done": env.done}
 
     def metadata(self) -> dict:
-        return {"task": asdict(self.spec), "prompts": self.cfg.prompts, "prompts_hash": templates_hash(self.cfg.prompts),
+        return {"task": asdict(self.spec), "notes": {a: env.notes for a, env in self.envs.items()},
+                "prompts": self.cfg.prompts, "prompts_hash": templates_hash(self.cfg.prompts),
                 "data_sha256": self.data_sha256}
 
-    def mock_answer(self, prompt: Prompt, sampling: Sampling) -> str:
-        return random_answer(prompt, sampling)
+    def mock_answer(self, prompt: Prompt, sampling: Sampling, repeats: bool = True) -> str:
+        return random_answer(prompt, sampling, repeats)
 
 
 def inventory_in(prompt: Prompt) -> list[str]:
@@ -161,12 +164,31 @@ def inventory_in(prompt: Prompt) -> list[str]:
     return []
 
 
-def random_answer(prompt: Prompt, sampling: Sampling) -> str:
+def tried_in(prompt: Prompt) -> str:
+    """The text of the prompt's own valid and invalid combinations, and of other players' invalid ones"""
+    others_invalid = next(label for block, label, _ in SOCIAL_BLOCKS if block == "others_invalid") + ":"
+    texts, block = [], None
+    for segment in prompt:
+        if segment.source == "template":
+            block = segment.text
+        elif segment.ref in ("own_valid", "own_invalid") or (segment.source == "message" and block == others_invalid):
+            texts.append(segment.text)
+    return "".join(texts)
+
+
+def random_answer(prompt: Prompt, sampling: Sampling, repeats: bool = True) -> str:
     """Plays like a random agent: two items of the prompt's inventory, picked with the call's seed, and a message
-    when the prompt has a message slot"""
+    when the prompt has a message slot. Without repeats it picks uniformly among the pairs the prompt does not list as
+    tried by itself or as failed by others (any pair once all are listed)"""
     rng = random.Random(sampling.seed)
     inventory = inventory_in(prompt) or ["nothing"]
-    a, b = rng.choice(inventory), rng.choice(inventory)
+    if repeats:
+        a, b = rng.choice(inventory), rng.choice(inventory)
+    else:
+        tried = tried_in(prompt)
+        pairs = [(a, b) for i, a in enumerate(inventory) for b in inventory[i:]]
+        fresh = [(a, b) for a, b in pairs if f"'{a}' and '{b}'" not in tried and f"'{b}' and '{a}'" not in tried]
+        a, b = rng.choice(fresh or pairs)
     answer = f"Combination: '{a}' and '{b}'\nReasoning: a random pick."
     if any(segment.ref == "message_slot.txt" for segment in prompt):
         answer += f"\nMessage: I am trying '{a}' and '{b}'."

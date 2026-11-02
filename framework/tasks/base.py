@@ -89,5 +89,6 @@ class Task(Protocol):
     def metadata(self) -> dict[str, Any]:
         """Return metadata: the task instance, and hashes of the data and the prompt templates"""
 
-    def mock_answer(self, prompt: Prompt, sampling: Sampling) -> str:
-        """MockBackend's default answer: a random answer in the task's format, from the prompt and seed only"""
+    def mock_answer(self, prompt: Prompt, sampling: Sampling, repeats: bool = True) -> str:
+        """MockBackend's default answer: a random answer in the task's format, from the prompt and seed only; without
+        repeats it avoids the actions the prompt shows as already tried"""

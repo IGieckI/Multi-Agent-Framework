@@ -29,7 +29,7 @@ if not args.all and args.grid is None:
     parser.error("give an experiment grid or --all")
 
 models = experiment.load_models()
-names = list(models) if args.all else [m for m in experiment.load_grid(args.grid).models if m != experiment.MOCK]
+names = list(models) if args.all else [m for m in experiment.load_grid(args.grid).models if m not in experiment.MOCKS]
 failed = []
 for name in names:
     entry = models[name]

@@ -46,7 +46,7 @@ class EngineConfig(Strict):
     """The LLM backend that serves the agents"""
     # "mock" is the test backend, "hf_local" runs a HuggingFace model on this machine
     backend: Literal["mock", "hf_local"] = "mock"
-    # model id, recorded in the run metadata; None for the mock backend
+    # model id, recorded in the run metadata; for the mock backend its policy: mock (default) or mock_norepeat
     model: str | None = None
     # commit of the model's weights (configs/models/models.yaml pins one per model); None = the hub's latest
     revision: str | None = None

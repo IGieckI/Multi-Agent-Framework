@@ -91,10 +91,11 @@ def task_seed(cfg: RunConfig) -> int:
 
 
 def make_backend(cfg: EngineConfig, task: Task):
-    # loads the model; the mock answers at random in the task's format
+    # loads the model; the mock answers at random in the task's format, "mock_norepeat" without repeating a tried action
     if cfg.backend == "mock":
         from framework.agents.backends.mock import MockBackend
-        return MockBackend(task.mock_answer)
+        repeats = cfg.model != "mock_norepeat"
+        return MockBackend(lambda prompt, sampling: task.mock_answer(prompt, sampling, repeats), cfg.model or "mock")
     if not cfg.model:
         raise ValueError(f"engine.backend {cfg.backend!r} needs engine.model")
     from framework.agents.backends.hf_local import HFLocalBackend
