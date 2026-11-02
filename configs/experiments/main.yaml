@@ -1,0 +1,20 @@
+# Main experiment: does communication help, against teams without it and a single agent with the same budget?
+name: main
+replicates: 20
+seed: 0
+versions: [base, all_independent, all_independent_temp_sweep, one_agent, one_vs_multi_token]
+models: [qwen3-4b, qwen3-8b, gemma3-4b, llama3.2-3b]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+  - {name: star, file: configs/protocols/star2.yaml,
+     personas: {hub: prompts/v1/personas/hub.txt, spoke: prompts/v1/personas/spoke.txt}}
+task:
+  - {depth: 1, distractors: 3}
+  - {depth: 2, distractors: 0}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}

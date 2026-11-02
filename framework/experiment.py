@@ -86,8 +86,9 @@ class Grid(Strict):
     base: dict[str, Any]
     models: tuple[str, ...]
     protocols: tuple[ProtocolEntry, ...]
-    # task setting -> the values to cross (e.g. distractors: [0, 3]); it overrides the base task
-    task: dict[str, tuple[Any, ...]] = {}
+    # task setting -> the values to cross (e.g. distractors: [0, 3]), or a list of settings to run as they are
+    # (e.g. [{depth: 1, distractors: 3}, {depth: 2, distractors: 0}]); it overrides the base task
+    task: dict[str, tuple[Any, ...]] | tuple[dict[str, Any], ...] = {}
     versions: tuple[str, ...] = ("base",)
     replicates: int = Field(default=3, ge=1)
     seed: int = 0
@@ -110,7 +111,11 @@ class Grid(Strict):
 
     @field_validator("task")
     @classmethod
-    def axes_have_values(cls, task: dict[str, tuple[Any, ...]]) -> dict[str, tuple[Any, ...]]:
+    def axes_have_values(cls, task: dict[str, tuple[Any, ...]] | tuple[dict[str, Any], ...]):
+        if isinstance(task, tuple):
+            if not task:
+                raise ValueError("an empty list of task settings")
+            return task
         if empty := [k for k, values in task.items() if not values]:
             raise ValueError(f"task settings with no values: {empty}")
         return task
@@ -162,17 +167,22 @@ def run_key(cfg: RunConfig) -> str:
     return hashlib.sha256(json.dumps(data, sort_keys=True).encode("utf-8")).hexdigest()
 
 
+def task_settings(grid: Grid) -> list[dict[str, Any]]:
+    """The task settings of the grid's cells: the listed ones, or every combination of the axes' values"""
+    if isinstance(grid.task, tuple):
+        return [dict(setting) for setting in grid.task]
+    return [dict(zip(grid.task, values)) for values in itertools.product(*grid.task.values())]
+
+
 def expand(grid: Grid, models: dict[str, ModelEntry], runs_root: Path = ROOT / "runs") -> list[Unit]:
     """Every unit of the grid, in the order models, protocols, task settings, replicates. Each config is validated
     here, so a wrong grid fails before anything runs. A run that an earlier unit already has (run_key) is marked in
     `same_as`: it is run once"""
     if unknown := [m for m in grid.models if m != MOCK and m not in models]:
         raise ValueError(f"models not in the registry: {unknown}; known: {sorted(models)}")
-    axes = list(grid.task)
     units = []
     first: dict[str, Path] = {}
-    for model, protocol, values in itertools.product(grid.models, grid.protocols, itertools.product(*grid.task.values())):
-        task = dict(zip(axes, values))
+    for model, protocol, task in itertools.product(grid.models, grid.protocols, task_settings(grid)):
         cell = cell_name(model, protocol.name, task)
         entry = models.get(model)
         for replicate in range(grid.replicates):
