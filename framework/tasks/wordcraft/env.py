@@ -31,6 +31,8 @@ class WordCraftEnv:
     valid: dict[Combo, tuple[str, ...]] = field(default_factory=dict)
     invalid: list[Combo] = field(default_factory=list)
     steps: int = 0
+    # the agent's private notes: (first item, second item, result)
+    notes: tuple[tuple[str, str, str], ...] = ()
 
     def __post_init__(self) -> None:
         self.inventory = list(self.task.initial)
@@ -49,8 +51,11 @@ class WordCraftEnv:
 
     def observation(self) -> dict:
         """Every observation field (prompt.FIELDS), in fresh containers"""
-        return {"inventory": list(self.inventory), "target": self.task.target, "steps_left": self.steps_left,
-                "own_valid": list(self.valid.items()), "own_invalid": list(self.invalid)}
+        observation = {"inventory": list(self.inventory), "target": self.task.target, "steps_left": self.steps_left,
+                       "own_valid": list(self.valid.items()), "own_invalid": list(self.invalid)}
+        if self.notes:  # only with hints, so prompts without them stay as they were
+            observation["notes"] = list(self.notes)
+        return observation
 
     def tried(self, a: str, b: str) -> bool:
         c = combo(a, b)

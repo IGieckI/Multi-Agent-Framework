@@ -12,7 +12,7 @@ from framework.tasks.wordcraft.env import WordCraftEnv
 PROMPTS = Path(__file__).resolve().parents[3] / "prompts"
 
 # Observation fields a role can see (`visible_fields`)
-FIELDS = ("inventory", "target", "steps_left", "own_valid", "own_invalid")
+FIELDS = ("inventory", "target", "notes", "steps_left", "own_valid", "own_invalid")
 
 # State-block lines fed by the bus: (block, label, message types). A line is rendered only for an agent that can
 # receive one of its types in the compiled structure, so it stays the same for the whole run
@@ -89,6 +89,9 @@ def build_prompt(view: View, targeted: bool, error: str | None = None, version: 
         segments.append(Segment(f"Inventory: {quote(observation['inventory'])}\n", "observation", "inventory"))
     if observation.get("target") is not None:
         segments.append(Segment(f"Target: '{observation['target']}'\n", "observation", "target"))
+    if "notes" in observation:
+        notes = "; ".join(f"'{a}' and '{b}' make '{result}'" for a, b, result in observation["notes"])
+        segments.append(Segment(f"Your notes (true, and only you were told them): {notes}\n", "observation", "notes"))
     if "steps_left" in observation:
         segments.append(Segment(f"Remaining rounds: {observation['steps_left']}\n", "observation", "steps_left"))
     if "budget_left" in observation:

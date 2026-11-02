@@ -94,6 +94,24 @@ def adoption_metrics(view: RunView) -> dict[str, float | None]:
             "adoption_rate_message": from_text / heard, "blind_adoption_rate": blind / heard}
 
 
+def notes_metrics(meta: dict, steps: list[dict]) -> dict[str, float | None]:
+    """With hints: how often an agent tries a recipe of the path that is in its own notes, and one that is only in
+    another agent's notes (it can only know it from the others, or guess it)"""
+    notes = meta.get("notes") or {}
+    path = [frozenset((a, b)) for a, b, _ in meta["task"].get("path", ())]
+    if not any(notes.values()) or not path:
+        return {"own_note_use": None, "others_note_use": None}
+    tried = {agent: set() for agent in notes}
+    for step in steps:
+        tried[step["agent"]].add(frozenset(step["combo"]))
+    own, others = [], []
+    for agent, held in notes.items():
+        held = {frozenset((a, b)) for a, b, _ in held}
+        for recipe in path:
+            (own if recipe in held else others).append(float(recipe in tried[agent]))
+    return {"own_note_use": mean_or_none(own), "others_note_use": mean_or_none(others)}
+
+
 def evaluate(book: RecipeBook, meta: dict, events: list[dict]) -> dict[str, float | None]:
     """Coverage of the team (the union of the agents' new items) and per agent, normalised by everything reachable
     from the initial set; for targeted tasks, whether any or every agent crafted the target and how; how the agents'
@@ -137,6 +155,7 @@ def evaluate(book: RecipeBook, meta: dict, events: list[dict]) -> dict[str, floa
         "copy_time": mean_or_none(delays),
         "copy_events": float(len(delays)),
         **adoption_metrics(view),
+        **notes_metrics(meta, steps),
     }
 
 

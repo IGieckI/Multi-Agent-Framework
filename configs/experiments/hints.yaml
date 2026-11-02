@@ -1,0 +1,31 @@
+# Can talk pool what only some agents know? (FINDINGS.md F30: on the earlier tasks every agent knew the same)
+# Depth 2 with 6 distractors (9 items, 45 pairs: random teams of 6 solve ~12%). Each agent has 2 private notes, true
+# recipes; with hints: split the 2 recipes of the target's path are held by 2 different agents and every other note
+# is a recipe off the path, with hints: all every agent holds the path, with none nobody does.
+# - base vs all_independent with split: does talk carry the notes? all_independent with all: what perfect pooling gives
+# - one_agent with split holds both path recipes (a single agent gets all of them)
+# - fully_connected_failures: only failures are shared, so agents avoid repeats without copying successes (F26)
+# - mock_norepeat: random agents (CPU only), the floor
+name: hints
+replicates: 20
+seed: 0
+versions: [base, all_independent, one_agent]
+models: [qwen3-4b, gemma3-4b, llama3.2-3b, mock_norepeat]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+  - {name: star, file: configs/protocols/star2.yaml,
+     personas: {hub: prompts/v1/personas/hub.txt, spoke: prompts/v1/personas/spoke.txt}}
+  - {name: fully_connected_results, file: configs/protocols/fully_connected_results.yaml}
+  - {name: fully_connected_messages, file: configs/protocols/fully_connected_messages.yaml}
+  - {name: fully_connected_failures, file: configs/protocols/fully_connected_failures.yaml}
+task:
+  - {depth: 2, distractors: 6, hints: split}
+  - {depth: 2, distractors: 6, hints: all}
+  - {depth: 2, distractors: 6, hints: none}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2, notes: 2}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}

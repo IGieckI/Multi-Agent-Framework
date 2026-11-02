@@ -21,6 +21,11 @@ class WordCraftConfig(TaskConfig):
     repeat_consumes_step: bool = True
     # recipe file, path from the repo root
     data: str = "data/alchemy2.json"
+    # private notes, true recipes shown to one agent only (FINDINGS.md F30): none; split = the target's recipes dealt to
+    # different agents; all = every agent knows them. Each agent's other notes are recipes off the path
+    hints: Literal["none", "split", "all"] = "none"
+    # notes per agent, when there are hints
+    notes: int = Field(default=2, ge=1)
     # prompt version: the templates in prompts/<version>/wordcraft
     prompts: Literal["v1", "v2"] = "v1"
 
