@@ -10,6 +10,7 @@ mkdir -p "${MAS_SCRATCH}" "${HF_HOME}" "${XDG_CACHE_HOME}"
 if [ ! -x "${MAS_VENV}/bin/python" ]; then
   if command -v python3.11 >/dev/null; then
     python3.11 -m venv "${MAS_VENV}"
+  else
     python3 -m venv "${MAS_SCRATCH}/venvs/uv"
     "${MAS_SCRATCH}/venvs/uv/bin/pip" install uv
     "${MAS_SCRATCH}/venvs/uv/bin/uv" venv --seed --python 3.11 "${MAS_VENV}"

@@ -5,9 +5,11 @@ Run a model locally through HuggingFace transformers
 import asyncio
 import threading
 import time
+from pathlib import Path
 
 import torch
 import transformers
+from huggingface_hub import try_to_load_from_cache
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 from transformers.generation.streamers import BaseStreamer
 
@@ -56,6 +58,15 @@ def generation_config(sampling: Sampling, use_model_sampling: bool = False) -> G
     )
 
 
+def loaded_commit(model, model_id: str, revision: str | None) -> str | None:
+    """The commit of the loaded weights: transformers' record of it, or, offline (where it records none), the name of
+    the cache snapshot folder they were read from (FINDINGS.md F2)"""
+    if commit := getattr(model.config, "_commit_hash", None):
+        return commit
+    path = try_to_load_from_cache(model_id, "config.json", revision=revision)
+    return Path(path).parent.name if isinstance(path, str) else None
+
+
 class LiveText(BaseStreamer):
     """Hands the text generated so far to a listener after every new token (batch size 1)"""
 
@@ -92,6 +103,7 @@ class HFLocalBackend:
         self.model = AutoModelForCausalLM.from_pretrained(
             model_id, dtype=self.dtype, device_map=self.device, revision=revision
         )
+        self.revision = loaded_commit(self.model, model_id, revision)
         self.model_sampling_settings = self.model.generation_config.to_diff_dict()
         self.model.generation_config = base_generation_config(self.model.generation_config, use_model_sampling)
         eos = self.model.generation_config.eos_token_id
@@ -107,7 +119,7 @@ class HFLocalBackend:
             "engine_version": transformers.__version__,
             "model_id": self.model_id,
             # the exact commit of the weights that were loaded, and their size
-            "revision": getattr(self.model.config, "_commit_hash", None),
+            "revision": self.revision,
             "requested_revision": self.requested_revision,
             "parameters": self.model.num_parameters(),
             "torch_version": torch.__version__,
