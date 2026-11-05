@@ -26,6 +26,8 @@ SOCIAL_BLOCKS = (
 
 # with task.share_notes, under the notes of an agent that can write messages
 SHARE_NOTES = "The other players do not know your notes: use your message to tell them what your notes say.\n"
+# with task.use_notes, under the messages of an agent that can receive them
+USE_NOTES = "Recipes the other players tell you from their notes are true: when one helps make the target, use it.\n"
 
 
 def full_view(env: WordCraftEnv) -> View:
@@ -77,7 +79,7 @@ def social_segments(label: str, messages: list[Message], as_list: bool) -> list[
 
 
 def build_prompt(view: View, targeted: bool, error: str | None = None, version: str = "v1",
-                 share_notes: bool = False) -> Prompt:
+                 share_notes: bool = False, use_notes: bool = False) -> Prompt:
     """The rules, the role's persona if any, the message slot if any, the state block and, on a retry, the error found
     in the previous answer. The state block shows only the observation fields in the view"""
     observation = view.observation
@@ -115,6 +117,8 @@ def build_prompt(view: View, targeted: bool, error: str | None = None, version: 
     for block, label, _ in SOCIAL_BLOCKS:
         if block in view.social:
             segments += social_segments(label, view.social[block], as_list=block in ("messages", "reasoning"))
+            if use_notes and block == "messages":
+                segments.append(Segment(USE_NOTES, "template"))
     if error:
         segments.append(Segment(f"\n{error}\n", "own_output", "retry_error"))
     return tuple(segments)

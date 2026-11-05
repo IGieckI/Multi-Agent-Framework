@@ -63,7 +63,8 @@ class WordCraftTask:
 
     def build_prompt(self, view: View, error: str | None) -> Prompt:
         # the rules template depends on the task type, which is static for the run
-        return build_prompt(view, self.spec.target is not None, error, self.cfg.prompts, self.cfg.share_notes)
+        return build_prompt(view, self.spec.target is not None, error, self.cfg.prompts, self.cfg.share_notes,
+                            self.cfg.use_notes)
 
     def truncate(self, observation: Observation) -> str | None:
         """Invalid combinations go first, then valid ones, oldest first"""

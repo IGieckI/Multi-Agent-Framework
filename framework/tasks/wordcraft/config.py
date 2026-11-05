@@ -30,6 +30,8 @@ class WordCraftConfig(TaskConfig):
     decoys: bool = True
     # with a message slot, ask the agent to tell the others what its notes say
     share_notes: bool = False
+    # with messages from others, tell the agent that the notes they pass on are true and to use them
+    use_notes: bool = False
     # targets whose path items can also be made another way from the starting items (e.g. a depth-2 target in one
     # step, F32). The grids up to `hints` ran with them; new grids set false
     allow_shortcuts: bool = True

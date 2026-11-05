@@ -2,8 +2,9 @@
 
 For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (41 numbered findings with their
 evidence and status). Everything below is as of commit `07adf9f` plus an uncommitted update of `FINDINGS.md` (F10
-status, F37–F41), `.gitignore` and this file. The results page (`docs/results.html`, git-ignored) is published as a
-private artifact: https://claude.ai/artifact/B6kwbxwkjkJ4tk4WDUwQ2Q
+status, F37–F41), `.gitignore` and this file (the user was given the commit lines). Every experiment so far has
+finished and been analysed; nothing is running. Plan item 1 (the receiving side) is prepared, not yet submitted
+(section 7).
 
 ## 1. The project
 
@@ -28,9 +29,11 @@ team's token budget). The research question: does communication between agents h
 | `scripts/slurm/` | `env.sh` (scratch paths), `setup_giano.sh` (one-time setup), `sweep.sbatch` (job array) |
 | `configs/models/models.yaml` | model registry: HF id, pinned revision, sampling policy |
 | `configs/protocols/*.yaml` | protocols; used so far: isolated, fully_connected, fully_connected3, fully_connected_results, fully_connected_messages, fully_connected_failures, star2 (= "star", 3 agents), star6 |
-| `configs/experiments/*.yaml` | grids: pilot, prompt_v2_check, main, followup, random_baseline, hints, smoke_mock, smoke_hf, smoke_models |
+| `configs/experiments/*.yaml` | grids: pilot, prompt_v2_check, main, followup, random_baseline, hints, hints2, hints2_share, hints2_use, hints2_8b, hints2_8b_share (prepared), smoke_mock, smoke_hf, smoke_models |
 | `prompts/v1`, `prompts/v2` | templates; v2 differs only in the WordCraft rules (the example framed as another game); select with `task.prompts` |
-| `FINDINGS.md` | every finding from results, F1–F36 |
+| `FINDINGS.md` | every finding from results, F1–F41 |
+| `docs/results.html` | the results web page (git-ignored, see section 6) |
+| `docs/analysis/` | the analysis scripts behind F30–F40 and the page (git-ignored; `README.md` lists them) |
 
 Grid features worth knowing: `task` is either axes to cross (`depth: [1, 2]`) or a list of settings
 (`- {depth: 1, distractors: 3}`); `sampling.sweep_temperatures` sets the temperature sweep of one grid only;
@@ -38,7 +41,8 @@ Grid features worth knowing: `task` is either axes to cross (`depth: [1, 2]`) or
 `task.hints` (none / split / all) and `task.notes` give agents private notes (true recipes; split deals the target's
 two recipes to two different agents, the other notes are recipes off the path; a single agent gets both);
 `task.decoys: false` drops the off-path notes; `task.share_notes` tells agents that can write messages to tell the
-others their notes; `task.allow_shortcuts: false` rejects targets with a shortcut (F32).
+others their notes; `task.use_notes` tells agents that receive messages that the recipes others pass on from their
+notes are true and to use them; `task.allow_shortcuts: false` rejects targets with a shortcut (F32).
 Every version, protocol and model of a replicate gets the same target (task seed from seed and replicate), so all
 comparisons are paired.
 
@@ -67,8 +71,23 @@ The user runs every command on the cluster and pastes the output or a screenshot
   ```
   (units are ordered model → protocol → task setting → replicate; `SWEEP_SHARDS=n` with `--array=i` runs block i of n;
   a re-submission skips runs that already ended; `--partition=rtx2080` overrides the script's `l40`.)
-- After a job: on giano `python scripts/sweep.py evaluate <grid>`; then the user copies `runs/<name>/` and the
-  `slurm-sweep-*` files into `run_<name>/` in the local repo (git-ignored) with rsync, and points Claude to it.
+- After a job, on giano: `squeue -u $USER` (empty), `python scripts/sweep.py evaluate <grid>` (must say `0 unfinished`),
+  then list the grid's Slurm logs:
+  ```bash
+  for f in $(grep -l "runs/<grid>/" slurm-sweep-*.out); do echo "$f"; echo "${f%.out}.err"; done > slurm_<grid>.txt
+  ```
+  Then on the local machine, from the repo root (one password for all copies; re-running an rsync resumes it):
+  ```bash
+  H=giacomo.antonelli4@studio.unibo.it@giano.cs.unibo.it; R=/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework
+  S=~/.ssh/giano.sock; ssh -fNM -S $S $H; mkdir -p run_<grid>
+  rsync -av -e "ssh -S $S" $H:$R/runs/<grid>/ run_<grid>/<grid>/
+  rsync -av -e "ssh -S $S" --files-from=:$R/slurm_<grid>.txt $H:$R/ run_<grid>/
+  ssh -S $S -O exit $H
+  ```
+  Check the download before analysing: number of `events.jsonl` = distinct `run_dir` in `runs.csv`, `unfinished.json`
+  is `[]`, every `.out` ends with `0 failed runs`, and `meta.json`'s `environment.git` (commit, dirty).
+- Job IDs so far: main 74066/74067; followup 74110, 74114, 74115; random_baseline 74155; hints 74158, 74161–74163;
+  hints2 74189, 74192–74194; hints2_share 74195, 74196.
 
 ## 4. Experiments so far
 
@@ -78,7 +97,7 @@ The user runs every command on the cluster and pastes the output or a screenshot
 | prompt_v2_check | 11-01 | 6 models, v2 vs the pilot's v1 on the same targets | `run_62/prompt_v2_check/` |
 | main | 11-01 | qwen3-4b, qwen3-8b, gemma3-4b, llama3.2-3b × fully_connected / star × (depth 1, 3 distractors), (depth 2, 0) × 20 reps × 5 versions, prompts v2; 1,440 runs | `run_main/main/` |
 | followup | 11-02 → 11-03 | qwen3-4b, gemma3-4b, llama3.2-3b × 6 protocols (sizes 3 and 6; results-only, messages-only) × same settings × 20 reps; fixed baselines; 2,520 runs | `run_followup/followup/` |
-| random_baseline | 11-04 | random agents (`mock`, `mock_norepeat`) × 5 protocols × the main settings × 200 reps; 9,600 runs, rtx2080 | `run_random_baseline/random_baseline/` (runs.csv complete, only 1,092 run folders copied) |
+| random_baseline | 11-04 | random agents (`mock`, `mock_norepeat`) × 5 protocols × the main settings × 200 reps; 9,600 runs, rtx2080 | `run_random_baseline/random_baseline/` |
 | hints | 11-04 → 11-05 | qwen3-4b, gemma3-4b, llama3.2-3b, mock_norepeat × 5 protocols (+ failures only) × depth 2, 6 distractors, notes split / all / none × 20 reps × base, all_independent, one_agent; 1,920 runs | `run_hints/hints/` |
 | hints2 | 11-05 | the same 4 models × fully_connected, star × notes split with / without decoys, all × 40 targets without shortcuts × base, all_independent, one_agent; 2,400 runs | `run_hints2/hints2/` |
 | hints2_share | 11-05 | hints2's split fully connected teams with the instruction to tell their notes (`share_notes`), base only; 240 runs, same tasks and notes | `run_hints2_share/hints2_share/` |
@@ -121,7 +140,19 @@ The user runs every command on the cluster and pastes the output or a screenshot
 - Fixed: F2 (the revision is read from the cache snapshot), the `setup_giano.sh` venv branch, the missing mock backend.
 - Fixed behind a flag: shortcut targets (F32). New grids set `task.allow_shortcuts: false`; the default (true) keeps
   the earlier grids' targets.
-- `framework/stuff.md` (untracked, user's) holds credentials: it must never be committed.
+- `framework/stuff.md` (untracked, user's) holds what look like an HF token and a password: it must never be
+  committed (never use `git add -A` or `git add framework/` in the commit lines), and its content never repeated.
+- Local Python: the system python (3.14) has numpy, pydantic and yaml, enough for the analysis scripts and for calling
+  task functions by hand (`framework.tasks.wordcraft.*`). It lacks networkx, so anything that imports
+  `framework.engine` or `framework.experiment` needs a throwaway venv (`uv venv -p 3.11` in the session's scratchpad,
+  then `uv pip install pydantic pyyaml numpy networkx`). Use it only for static checks (expanding a grid with
+  `experiment.expand`), never to run grids.
+- **Results page**: `docs/results.html` is published as a private artifact, https://claude.ai/artifact/B6kwbxwkjkJ4tk4WDUwQ2Q
+  (slug `51c92f70-f2b6-46fa-ab4a-8277cac3a8ed`, last version `1793913770-7eda`). To update it: edit the file, then
+  republish with the artifacts server's `publish_files` (files `[{as: index.html, path: <absolute path of the file>}]`,
+  that slug, `base_version` = the last version). Its chart data are written into the page's script at the bottom
+  (from `docs/analysis/pagedata.py` and FINDINGS.md); it covers every experiment through hints2 and F1–F41. Read the
+  server's `pages` and `design` guides before changing it.
 - Personas used: `prompts/v1/personas/hub.txt`, `spoke.txt` (no v2 personas).
 
 ## 7. Plan
@@ -129,11 +160,17 @@ The user runs every command on the cluster and pastes the output or a screenshot
 Done since 2026-11-03: random agents (F31), hints (F33–F36), failures-only sharing (F35), F2, the generator fix
 (F32), hints2 and hints2_share (F37–F40), the results page.
 
-Next, **not yet chosen**:
+Next:
 
-1. **The receiving side** (F38): does a stronger model use what teammates tell it (qwen3-8b on L40, or reasoning on,
-   on hints2_share's split teams), and does an instruction to receivers ("your teammates' notes are true: use them")
-   help? Both run on hints2's targets and pair with it.
+1. **The receiving side** (F38), **prepared, not yet submitted**: `task.use_notes` adds, under an agent's messages,
+   "Recipes the other players tell you from their notes are true: when one helps make the target, use it." Three
+   grids, all on hints2's 40 targets and notes (checked: same tasks and notes for all of them):
+   - `hints2_use`: hints2_share's teams (fully_connected, split with / without decoys, base) with share_notes and
+     use_notes, qwen3-4b, gemma3-4b, llama3.2-3b; 240 runs. Pairs with hints2_share (share only) and hints2 (neither).
+   - `hints2_8b`: hints2's cells with qwen3-8b (L40 only: 16 GB in bfloat16); 600 distinct runs, about 8 GPU-hours.
+   - `hints2_8b_share`: qwen3-8b, the split fully_connected teams with share_notes, use_notes false / true; 160 runs.
+   Not covered: use_notes without share_notes (holders rarely tell then, F38) and reasoning on (too slow: hundreds of
+   tokens per call).
 2. **Mixed-family teams** (e.g. 2 Qwen + 2 Gemma + 2 Llama, silenced and with talk): the only way to test F6's claim.
 3. **Write-up** for the supervisor: the results page is the base.
 4. Check on giano that the checkout has no modified files besides the Slurm lists (F41).
@@ -149,5 +186,10 @@ Next, **not yet chosen**:
 - Give exact commands for the cluster, say where to run them (local machine or giano), and gate long jobs on a short
   test. Check models are downloaded before submitting. Ask before anything destructive.
 - Analysis: use `runs.csv` (one row per run; `run_dir` identifies shared runs, count them once when pooling), pair
-  runs by (model, protocol, depth, distractors, replicate, version), report paired bootstrap 95% intervals, and use
-  `solved_any` for team success (`ended_by: all_solved` means every agent solved, F4).
+  runs by (model, protocol, task setting, replicate, version), report paired bootstrap 95% intervals resampled by
+  target (`lib.boot(..., cluster=replicate)` in `docs/analysis/`), and use `solved_any` for team success
+  (`ended_by: all_solved` means every agent solved, F4). Report depth-2 results of the grids before hints2 also
+  without shortcut targets (`docs/analysis/short200.json`, F32). Compare LLM teams with the random agents.
+- Look at the logs (`events.jsonl`: `llm_call`, `env_step`, `msg_published`) to explain a result, not only the
+  success rates: most findings came from there (F17, F34, F38).
+- Claude's memory for this project holds: log findings, the cluster notes, this handoff, and "no local runs".

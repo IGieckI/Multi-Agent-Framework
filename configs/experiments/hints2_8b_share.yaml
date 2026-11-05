@@ -1,0 +1,23 @@
+# hints2_share and hints2_use for qwen3-8b: the split fully connected teams with holders told to tell their notes,
+# without and with the receivers told to use them. Base only (the other versions have no messages). Pairs with
+# hints2_8b's runs
+name: hints2_8b_share
+replicates: 40
+seed: 0
+versions: [base]
+models: [qwen3-8b]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+task:
+  - {hints: split, decoys: true, use_notes: false}
+  - {hints: split, decoys: false, use_notes: false}
+  - {hints: split, decoys: true, use_notes: true}
+  - {hints: split, decoys: false, use_notes: true}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2,
+         depth: 2, distractors: 6, notes: 2, allow_shortcuts: false, share_notes: true}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}
