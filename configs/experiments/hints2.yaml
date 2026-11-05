@@ -1,0 +1,28 @@
+# Why the notes are not pooled (FINDINGS.md F33-F34), on targets without shortcuts (F32) and with 40 of them.
+# Depth 2 with 6 distractors; each agent's notes are true recipes shown only to it:
+# - split with decoys: as in `hints` (the 2 path recipes held by 2 agents, the other notes off the path)
+# - split without decoys: only the 2 holders have notes, one recipe each (do the decoys get in the way?)
+# - all: every agent holds both recipes (what perfect pooling gives)
+# hints2_share.yaml runs the split teams again, told to tell the others their notes (base only: its other versions
+# have no message slot and would be these runs again)
+name: hints2
+replicates: 40
+seed: 0
+versions: [base, all_independent, one_agent]
+models: [qwen3-4b, gemma3-4b, llama3.2-3b, mock_norepeat]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+  - {name: star, file: configs/protocols/star2.yaml,
+     personas: {hub: prompts/v1/personas/hub.txt, spoke: prompts/v1/personas/spoke.txt}}
+task:
+  - {hints: split, decoys: true}
+  - {hints: split, decoys: false}
+  - {hints: all, decoys: true}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2,
+         depth: 2, distractors: 6, notes: 2, allow_shortcuts: false}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}

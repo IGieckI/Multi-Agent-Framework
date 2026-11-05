@@ -1,0 +1,21 @@
+# hints2's split teams, each holder told "use your message to tell them what your notes say" (task.share_notes):
+# do holders then tell, and do the others use it? Only fully_connected: in star only the hub can write messages.
+# Same seed and task settings as hints2, so the same targets and notes: compare with hints2's runs pair by pair
+name: hints2_share
+replicates: 40
+seed: 0
+versions: [base]
+models: [qwen3-4b, gemma3-4b, llama3.2-3b]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+task:
+  - {hints: split, decoys: true}
+  - {hints: split, decoys: false}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2,
+         depth: 2, distractors: 6, notes: 2, allow_shortcuts: false, share_notes: true}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}
