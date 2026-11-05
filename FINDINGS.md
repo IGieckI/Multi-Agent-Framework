@@ -25,7 +25,8 @@ Sources: `run_56/shard0of2.jsonl`, `run_56/shard1of2.jsonl` (sweep logs), `run_5
 - Every run's `engine.revision` is `null` (transformers sets no `_commit_hash` with `HF_HUB_OFFLINE=1`); only
   `requested_revision` (the pinned commit) is recorded. Offline loading can only serve that snapshot, so results stay
   traceable, but the record is not the check it was meant to be.
-- **Open**: read the commit from the snapshot folder the weights were loaded from.
+- **Closed**: `hf_local.py` reads the commit from the cache snapshot folder when transformers records none
+  (`c59c6b9`); every hints run records it (e.g. Qwen3-4B `1cfa9a7…`, the pinned commit).
 
 ### F3. 44% of the pilot's runs were exact duplicates of other runs
 - `one_agent` drops the protocol, so it is the same run in all 3 protocols of a model, task setting and replicate:
@@ -63,8 +64,10 @@ Sources: `run_56/shard0of2.jsonl`, `run_56/shard1of2.jsonl` (sweep logs), `run_5
   `framework/engine/engine.py:82`), checked in `seed0_rep3` (15 calls, 15 different seeds).
 - Part of the Llama/SmolLM2 variety is noise from failed answers (F8).
 - Consequence: temperature-driven variety (`all_independent_temp_sweep`) is the baseline to beat; but the sweep as
-  built lowers the variety instead (F21), and a sweep centred on 1.0 changes nothing (F27): **superseded**, the
-  variety that helps is between families, not from temperature.
+  built lowers the variety instead (F21), and a sweep centred on 1.0 changes nothing (F27): **superseded**, variety
+  from temperature does not help. Whether variety *between families* helps is **untested**: no mixed-model team has
+  been run; this entry only shows that models whose agents differ more gain more from a team. Random agents add more
+  variety than any LLM team (F30, F31).
 
 ### F7. Model ranking (single agent, one_agent, 24 distinct runs each, `solved_any`)
 - gemma3-4b 62%, qwen3-8b 54%, qwen3-4b 50%, qwen3-1.7b 42%, gemma3-1b 38%, qwen3-0.6b 33%, smollm2-360m 33%,
@@ -350,6 +353,126 @@ runs of the main experiment (all 4 models, 80 runs per cell, shared runs counted
   model lacks", and random agents add more. The search spaces are so small that blind enumeration is a strong
   baseline: every result so far must be read against it. Talk can at best recover what herding loses (the random
   team with shared failures shows the head-room: +9 at depth 1, +19 at depth 2). And since all agents see the same
-  inventory and target, there is nothing for talk to carry except who tries what. **Open**: add a random agent to the
-  framework (`framework/agents/backends/mock.py`, the backend `engine.py` already expects), and a task where agents hold
-  different information.
+  inventory and target, there is nothing for talk to carry except who tries what. **Acted on**: random agents in the
+  framework (`framework/agents/backends/mock.py`, models `mock` and `mock_norepeat`), confirmed on the cluster (F31); a
+  task where agents hold different information (`hints`, F33–F36). Part of the depth-2 success comes from targets
+  with a shortcut (F32), but random teams still win without them (F31).
+
+---
+
+## Random agents on the cluster: `runs/random_baseline` (2026-11-04, job 74155)
+
+Grid `configs/experiments/random_baseline.yaml`: random agents `mock` (picks two items with replacement) and
+`mock_norepeat` (never repeats its own pairs, and skips pairs a teammate reported invalid when it sees them) × 5
+protocols (fully_connected, star, fully_connected3, star6, fully_connected_results) × the main grid's 2 settings × 200
+replicates (0–19 are the main targets) × base, all_independent, one_agent, one_agent_scaled_steps. 16,000 rows, 9,600
+distinct, 0 failed, code `0f59dfd` clean, rtx2080. A random agent plays each target once (its seeds are fixed by the
+replicate), so per-target comparisons are noisy. Source: `run_random_baseline/random_baseline/runs.csv` (complete; only
+1,092 of the 9,600 run folders were copied).
+
+### F31. The real pipeline confirms F30: random teams match the LLM teams at depth 1 and beat them at depth 2
+- 200 targets, with replacement / no-repeat: depth 1, 6 agents 85.0% / 83.5%, 3 agents 57.5 / 53.5, one agent 25.0 /
+  25.0; depth 2, 6 agents 67.0 / 64.0, 3 agents 49.5 / 47.5, one agent 25.5 / 27.5. The simulation of F30 gave 82 and
+  63 for 6 agents.
+- Check: `mock` ignores what it receives, and its base equals its all_independent exactly in every protocol, so the
+  pipeline adds nothing of its own.
+- Sharing helps random teams: `mock_norepeat` in fully_connected (it skips teammates' failures) vs no links: depth 1
+  86.0 vs 83.5, depth 2 **80.5 vs 64.0**; star 63.0 vs 53.5 (depth 1), 46.5 vs 47.5 (depth 2).
+- Paired with the LLMs on the main targets (4 models × 20 targets, bootstrap by target), LLM − random: depth 1, 6
+  independent agents +2.5 [−16.2, +23.8], 3-agent star +37.5 [+11.2, +61.3], one agent +55.0 [+33.8, +72.5]; depth 2,
+  6 independent agents −33.8 [−57.5, −8.8], 6 talking agents −43.8 [−65.0, −21.2], 3-agent star −18.8 [−41.2, +3.8],
+  one agent −5.0 [−25.0, +15.0].
+- Without the shortcut targets of F32, random teams of 6 still solve 53–56% at depth 2, the LLM teams 31%.
+- So the models' knowledge pays off for one agent and for small teams at depth 1; once a team has 6 agents, or the
+  task needs two steps, blind trial and error does as well or better.
+
+### F32. A quarter of the depth-2 targets can be made in one step from the starting items
+- `sample_targeted` (`framework/tasks/wordcraft/tasks.py`) picks one recipe of the target (and, at depth 2, one of an
+  ingredient) but does not check the target's other recipes against the starting items. Over 200 targets: depth 2 with
+  0 distractors 51 have a direct recipe, depth 2 with 6 distractors 54; depth 1 with 3 distractors 13 have a second
+  direct recipe.
+- In the targets used: main depth 2 3 of 20 (replicate 0 'tank' = 'car' + 'metal', 11 'solar system' = 'planet' +
+  'planet', 16 'pollen' = 'plant' + 'wind'), hints 4 of 20 (the same three and 10 'spaceship' = 'airplane' + 'space').
+  In the hints run of replicate 0, five of six agents made 'tank' from 'car' and 'metal' in round one.
+- They carry much of the depth-2 success. Main, 4 models, shortcut targets vs the rest: one agent 91.7% vs 19.1%, 6
+  independent agents 100% vs 30.9%, 6 talking agents 75.0% vs 23.5%. Hints without notes: 58–67% vs 0–10%.
+- The paired results hold without them: F16 (fully_connected, talk − no links) −6.6 [−11.0, −2.2] on 136 pairs (−9.4
+  with them); F18 (star) +1.5 [−4.4, +8.1].
+- Consequences: depth-2 success rates overstate how often agents solve two-step tasks; the paired differences stand.
+  **Acted on**: `task.allow_shortcuts: false` draws again any task where the target or the intermediate has a recipe
+  made only of starting items besides the path's own (`other_route` in `tasks.py`; at depth 1 this also rejects a
+  second direct recipe); 0 of 200 drawn tasks have one. The default stays true, so the earlier grids keep their
+  targets (checked: 60 of 60 stored tasks reproduced). Used by `hints2`. Earlier depth-2 results should be reported
+  without shortcut targets too.
+
+---
+
+## Hints: agents that hold different information, `runs/hints` (2026-11-04 → 2026-11-05)
+
+Grid `configs/experiments/hints.yaml`: qwen3-4b, gemma3-4b, llama3.2-3b and random agents (`mock_norepeat`) × 5
+protocols (fully_connected, star, fully_connected sharing only results / only messages / only failures) × depth 2 with
+6 distractors (9 items, 45 pairs) × notes split / all / none × 20 replicates × base, all_independent, one_agent. Each
+agent has 2 private notes, true recipes shown only to it. With notes split, the two recipes of the target's path go to
+two different agents (in star, 2 of 3) and every other note is a recipe off the path (a decoy); with all, every agent
+holds both; with none, nobody has notes. A single agent always gets both recipes. 3,600 rows, 1,920 distinct, all
+ended on their own, code `0f59dfd` clean. Gates 74158 (rtx2080) and 74161 (L40); full jobs 74162 (Qwen, Llama, random:
+rtx2080, float16) and 74163 (Gemma: L40, bfloat16). Every setting, protocol and model of a replicate has the same
+target, so comparisons are paired across all of them: 60 pairs per protocol (3 models × 20). Intervals are 95%
+bootstraps resampled by target. 4 of the 20 targets have a shortcut (F32); numbers exclude them (48 pairs) unless they
+say "all 20". Sources: `run_hints/hints/runs.csv` and the runs' `events.jsonl`.
+
+### F33. Talk does not pool what only some agents know
+- Success without shortcut targets (LLMs pooled, 48 runs per cell):
+  - no notes: one agent 2%, 6 independent agents 10%, teams with talk 0–8%; random teams 0%;
+  - notes split: 6 independent agents 23%, 3 independent agents 23%; with talk fully_connected 27%, results only 29%,
+    messages only 17%, failures only 25%, star 29%; **one agent holding both recipes 60%**;
+  - every agent holds both: independent teams 90%, with talk 81–88%; one agent 62%.
+- Notes split, talk − no links: fully_connected +4.2 [−6.2, +14.6], results only +6.2 [−4.2, +16.7], messages only
+  −6.2 [−14.6, +2.1], failures only +2.1 [0.0, +6.2], star +6.2 [−2.1, +14.6]. All 20 targets, the 5 protocols
+  pooled: −1.0 [−9.0, +5.3].
+- The information is in the team and unused: every agent holding both − notes split (no links) +66.7 [+50.0, +81.2];
+  notes split − none +12.5 [0.0, +25.0]. One agent holding both − 6 talking agents with the notes split +33.3 [+14.6,
+  +50.0] (fully_connected), +31.2 [+14.6, +50.0] (star).
+- Checks: one agent with notes all − with notes split (the same information) +1.7 [−5.0, +10.0]; 6 independent agents
+  holding both − one agent holding both +23.3 [+13.3, +33.3] (all 20).
+- So when the two halves of the recipe sit with two agents a team solves about a quarter of the tasks, when one agent
+  holds both 60%, and talk recovers almost none of the gap. This is the study's first test where talk had something
+  to carry, and it carried almost nothing.
+
+### F34. Why: holders seldom pass their notes on or even use them, and the others seldom act on them
+- From the logs (notes split, with talk, without shortcut targets, 48 runs per protocol):
+  - holders of the intermediate's recipe try it in 44–54% of runs (at once in 23–31%);
+  - holders name their path note in a message rarely: the intermediate's recipe in 6–11% of their messages (in 12–26%
+    of runs at least once), the target's recipe in 9–32% (23–50% of runs; most in star, where the hub hears it);
+  - the others try a recipe that only a teammate holds in 3–18% (intermediate) and 2–14% (target) of cases, against
+    4–5% and 2–5% without links (guessing); star is highest (18% and 14%);
+  - the target is mostly made by the holder of the target's recipe once it found the intermediate itself (it made the
+    intermediate in 17–33% of runs with links, 15–19% without).
+- Decoys distract: 51–57% of agents try one of their off-path notes and 27–40% of all rounds go to them, although the
+  target is shown.
+- Even one agent holding both recipes never tries the intermediate's recipe in 11 of 48 runs, and in 10 more never
+  tries the target's.
+- Notes bring premature attempts: with every agent holding both (qwen3-4b and gemma3-4b, no links), 275 of 276 refused
+  answers try the target's recipe before the intermediate exists; parse failure rate 0.07 → 0.18 (Qwen) and 0.02 →
+  0.18 (Gemma) from no notes to all.
+- Consequence: it fails at both ends. Holders do not tell (the message slot asks for "what you want to tell the other
+  players"; nothing mentions notes) and do not reason "my note makes X, and the target needs X"; receivers rarely act
+  on what they hear. **Acted on**: `hints2` (notes without decoys) and `hints2_share` (holders told to tell the others
+  what their notes say, `task.share_notes`) separate "do not think of telling" from "cannot use what is told".
+
+### F35. Sharing failures does not help LLM agents: they retry pairs a teammate reported failing
+- fully_connected sharing only failures − no links: notes split +2.1 [0.0, +6.2], none −4.2 [−10.4, 0.0] (48 pairs),
+  all −3.3 [−8.3, 0.0] (all 20). Random agents gain 16.5 points from the same information (F31, depth 2).
+- With a teammate's failure in the inbox, 20% of LLM actions repeat a pair a teammate reported failing (blind adoption
+  0.198, all hint settings); repeat rate 0.36 vs 0.35 without links, redundancy 0.62 in both.
+- So the head-room of "avoid what failed" (F30, F31) is not reached: the models do not use the failure list. Closes the
+  last herding remedy proposed after F26.
+
+### F36. On the 9-item task, talk without notes still hurts, and with full notes it does not help
+- All 20 targets, talk − no links: no notes fully_connected −10.0 [−20.0, −1.7], results / messages / failures only
+  −3.3 each, star −5.0 [−10.0, 0.0]; everyone holds both: fully_connected −5.0 [−15.0, +5.0], results only −5.0
+  [−11.7, +1.7], messages only 0.0, failures only −3.3 [−8.3, 0.0], star −5.0 [−13.3, +3.3].
+- Herding as in F17: fully_connected with talk blind adoption 0.16, 2.4 copy events per run; tokens per run 20.1k vs
+  13.6k without links; star the cheapest team, 8.9k.
+- No setting in this grid has talk significantly helping. With 20 targets the intervals are ±10–15 points: effects
+  smaller than that cannot be seen.

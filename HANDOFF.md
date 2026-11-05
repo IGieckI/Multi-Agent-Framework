@@ -1,7 +1,8 @@
-# Handoff: state of the project and plan (2026-11-03)
+# Handoff: state of the project and plan (2026-11-05)
 
-For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (29 numbered findings with their
-evidence and status). Everything below is as of commit `78e7719` plus an uncommitted update of `FINDINGS.md`.
+For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (36 numbered findings with their
+evidence and status). Everything below is as of commit `0f59dfd` plus an uncommitted update of `FINDINGS.md` (F31–F36)
+and of this file.
 
 ## 1. The project
 
@@ -16,8 +17,8 @@ team's token budget). The research question: does communication between agents h
 |---|---|
 | `framework/engine/` | the run engine (`engine.py`), run config (`config.py`), budgets (`budget.py`), token usage |
 | `framework/comm/` | protocol compiler (roles, structures, sharing rules, channels), message bus, summaries |
-| `framework/agents/` | prompt segments, answer parsing, `backends/hf_local.py` (HF transformers, batch 1) |
-| `framework/tasks/wordcraft/` | the task: env, recipes, prompt builder (`prompt.py`), metrics |
+| `framework/agents/` | prompt segments, answer parsing, `backends/hf_local.py` (HF transformers, batch 1), `backends/mock.py` (random agents: grid models `mock`, with replacement, and `mock_norepeat`, which never repeats a tried pair nor one a teammate reported invalid) |
+| `framework/tasks/wordcraft/` | the task: env, recipes, task generator (`tasks.py`, with `deal_notes` for private notes), prompt builder (`prompt.py`), metrics (incl. `own_note_use`, `others_note_use`) |
 | `framework/baselines.py` | the derived versions: all_independent, all_independent_temp_sweep, one_for_all, one_agent, one_agent_scaled_steps, one_vs_multi_token, one_vs_multi_completion_token |
 | `framework/experiment.py` | grids: expand into units (one replicate of one cell, all its versions), shard, run, evaluate; runs that are identical across units run once (`run_key`, `Unit.same_as`) |
 | `framework/evaluate.py`, `framework/metrics/` | per-run metrics (`metrics.json`) and tables |
@@ -25,20 +26,25 @@ team's token budget). The research question: does communication between agents h
 | `scripts/download_models.py`, `scripts/fetch_data.py` | weights into the HF cache (pinned revisions), the recipe file into `data/` |
 | `scripts/slurm/` | `env.sh` (scratch paths), `setup_giano.sh` (one-time setup), `sweep.sbatch` (job array) |
 | `configs/models/models.yaml` | model registry: HF id, pinned revision, sampling policy |
-| `configs/protocols/*.yaml` | protocols; used so far: isolated, fully_connected, fully_connected3, fully_connected_results, fully_connected_messages, star2 (= "star", 3 agents), star6 |
-| `configs/experiments/*.yaml` | grids: pilot, prompt_v2_check, main, followup, smoke_hf, smoke_models (smoke_mock needs a mock backend that is not in the repo) |
+| `configs/protocols/*.yaml` | protocols; used so far: isolated, fully_connected, fully_connected3, fully_connected_results, fully_connected_messages, fully_connected_failures, star2 (= "star", 3 agents), star6 |
+| `configs/experiments/*.yaml` | grids: pilot, prompt_v2_check, main, followup, random_baseline, hints, smoke_mock, smoke_hf, smoke_models |
 | `prompts/v1`, `prompts/v2` | templates; v2 differs only in the WordCraft rules (the example framed as another game); select with `task.prompts` |
-| `FINDINGS.md` | every finding from results, F1–F29 |
+| `FINDINGS.md` | every finding from results, F1–F36 |
 
 Grid features worth knowing: `task` is either axes to cross (`depth: [1, 2]`) or a list of settings
 (`- {depth: 1, distractors: 3}`); `sampling.sweep_temperatures` sets the temperature sweep of one grid only;
-`budget.show_matched_budget` shows the token-matched agent its remaining tokens instead of the 240-round safety cap.
+`budget.show_matched_budget` shows the token-matched agent its remaining tokens instead of the 240-round safety cap;
+`task.hints` (none / split / all) and `task.notes` give agents private notes (true recipes; split deals the target's
+two recipes to two different agents, the other notes are recipes off the path; a single agent gets both);
+`task.decoys: false` drops the off-path notes; `task.share_notes` tells agents that can write messages to tell the
+others their notes; `task.allow_shortcuts: false` rejects targets with a shortcut (F32).
 Every version, protocol and model of a replicate gets the same target (task seed from seed and replicate), so all
 comparisons are paired.
 
 ## 3. How experiments run: the DISI cluster
 
 The user runs every command on the cluster and pastes the output or a screenshot; Claude cannot ssh there.
+**Never run grids or sweeps on the local machine, not even the CPU-only random agents**: give the user the commands.
 
 - Login node `giano.cs.unibo.it`, user `giacomo.antonelli4@studio.unibo.it@giano.cs.unibo.it` (password). Several
   wrong passwords in a row get the IP refused for a while.
@@ -71,10 +77,20 @@ The user runs every command on the cluster and pastes the output or a screenshot
 | prompt_v2_check | 11-01 | 6 models, v2 vs the pilot's v1 on the same targets | `run_62/prompt_v2_check/` |
 | main | 11-01 | qwen3-4b, qwen3-8b, gemma3-4b, llama3.2-3b × fully_connected / star × (depth 1, 3 distractors), (depth 2, 0) × 20 reps × 5 versions, prompts v2; 1,440 runs | `run_main/main/` |
 | followup | 11-02 → 11-03 | qwen3-4b, gemma3-4b, llama3.2-3b × 6 protocols (sizes 3 and 6; results-only, messages-only) × same settings × 20 reps; fixed baselines; 2,520 runs | `run_followup/followup/` |
+| random_baseline | 11-04 | random agents (`mock`, `mock_norepeat`) × 5 protocols × the main settings × 200 reps; 9,600 runs, rtx2080 | `run_random_baseline/random_baseline/` (runs.csv complete, only 1,092 run folders copied) |
+| hints | 11-04 → 11-05 | qwen3-4b, gemma3-4b, llama3.2-3b, mock_norepeat × 5 protocols (+ failures only) × depth 2, 6 distractors, notes split / all / none × 20 reps × base, all_independent, one_agent; 1,920 runs | `run_hints/hints/` |
 
 ## 5. What we know (details and numbers in FINDINGS.md)
 
-- Teams of these small models help only through more independent attempts (F5, F19, F25).
+- **When the knowledge needed is split between agents, talk does not pool it** (F33): with the target's two recipes
+  held by two agents, teams solve ~25% with or without talk; one agent holding both 60%; a team where everyone holds
+  both ~90%. Holders seldom say or even use their notes, the others seldom act on them, decoy notes take 27–40% of
+  rounds (F34).
+- **Random agents are a strong baseline** (F30, F31): 6 random agents match 6 LLM agents at depth 1 and beat every LLM
+  team at depth 2 (64% vs 41%). The models' knowledge pays off for one agent and small teams at depth 1 only.
+- **A quarter of depth-2 targets have a one-step shortcut** from the starting items (F32): they inflate depth-2 success
+  rates; the paired differences hold without them (F16: −6.6 instead of −9.4).
+- Teams of these small models help only through more independent attempts (F5, F19, F25), and random agents add more.
 - Fully connected talk makes the team worse, by about 10 points at 6 agents and 7–8 at 3, for every model (F16, F24);
   the agents herd: they copy shared results and retry each other's suggestions (F17, F26).
 - A star (spokes report to a hub, the hub sends few messages) is neutral at 3 and 6 agents (F18, F24), and the
@@ -82,42 +98,41 @@ The user runs every command on the cluster and pastes the output or a screenshot
 - Talk erases the gain from a bigger team (F25).
 - One agent with the team's token budget matches six independent agents and beats six talking ones; three-agent
   teams beat it (F19, F28).
-- Temperature variety does not help (F21, F27); variety between model families does (F6).
+- Temperature variety does not help (F21, F27). Variety between model families is **untested** (no mixed teams yet;
+  F6 only shows that models with more varied agents gain more).
+- Sharing only failures does not help LLM agents: they retry pairs teammates reported failing (F35), while it is the
+  one sharing that helps random teams (+16.5 at depth 2, F31).
 - Prompt v1's example was copied by weak models; v2 fixed most of it (F8, F12–F14). SmolLM2 stays unreliable.
 - Runs are byte-reproducible across jobs and nodes (F23); identical configs are deduplicated (F3).
 
 ## 6. Code state and open technical issues
 
-- `main` = `origin/main` = `78e7719`; uncommitted: `FINDINGS.md` (F23–F29 and status updates) and this file.
+- `main` = `origin/main` = `0f59dfd`; uncommitted: `FINDINGS.md` (F31–F36, status updates of F2, F6, F30) and this file.
 - Local-only (git-ignored): `run_*/`, `shard*.jsonl` in the repo root, `docsHPC/` (cluster docs and a colleague's
   Slurm guide), `data/`.
-- Open: F2, the loaded weights' revision is `null` when offline (read it from the snapshot folder in
-  `framework/agents/backends/hf_local.py`).
-- Open: `scripts/slurm/setup_giano.sh` lost the `else` branch of the venv creation (if `python3.11` is missing it
-  creates nothing; if present it creates the venv twice). Harmless on giano now (the venv exists); fix before a fresh
-  setup.
-- Open: `framework/agents/backends/mock.py` does not exist, so `smoke_mock.yaml` cannot run; tests of the pipeline
-  were done with stub engines instead.
+- Fixed: F2 (the revision is read from the cache snapshot), the `setup_giano.sh` venv branch, the missing mock backend.
+- Fixed behind a flag: shortcut targets (F32). New grids set `task.allow_shortcuts: false`; the default (true) keeps
+  the earlier grids' targets.
+- `framework/stuff.md` (untracked, user's) holds credentials: it must never be committed.
 - Personas used: `prompts/v1/personas/hub.txt`, `spoke.txt` (no v2 personas).
 
 ## 7. Plan
 
-Proposed to the user, **not yet chosen**:
+Done since 2026-11-03: random agents (F31), the hints experiment (F33–F36), failures-only sharing (F35), F2, the
+generator fix (F32, behind `allow_shortcuts`).
 
-1. **Can any design make talk useful?** (recommended next). Conditions that attack the two herding channels of F26:
-   - share only failures (`result.failure`), so agents avoid repeats without copying successes; `typed_channels.yaml`
-     is close (failures to all at once, successes delayed);
-   - `subgroups.yaml` (pairs), which limits how many agents each one reads;
-   - personas that give each fully connected agent a different direction ("explore combinations with X"), or an
-     instruction to try something the others have not;
-   - spokes told to follow the hub's assignment (the hub already assigns, but adoption is only ~0.53);
-   - possibly `debate_judge.yaml` and summary channels.
-   Compare each with its own no-links baseline, on the same models (qwen3-4b, gemma3-4b, llama3.2-3b), settings and
-   20 replicates as the follow-up; about the follow-up's size (~20 GPU-hours).
-2. **Harder tasks** where dividing the work could pay off: more steps (e.g. 8), depth 2 with distractors, or the
-   open-ended task type (cover as many items as possible).
+**Running / to run** (2026-11-05): `hints2` (qwen3-4b, gemma3-4b, llama3.2-3b, random × fully_connected and star ×
+notes split with / without decoys and all × 40 targets without shortcuts × base, all_independent, one_agent; 2,400
+distinct runs) and `hints2_share` (the split fully connected teams told to tell their notes; 240 runs, paired with
+hints2's base and all_independent). Questions: do decoys get in the way (split with vs without decoys); when told,
+do holders tell, and do the others then use the notes (share vs hints2 base; `others_note_use`)?
+
+Next, **not yet chosen**:
+
+1. A stronger model as a ceiling check (qwen3-8b on L40, or reasoning on), if hints2 shows the models cannot use
+   what they are told.
+2. **Mixed-family teams** (e.g. 2 Qwen + 2 Gemma + 2 Llama, no links and with talk): the only way to test F6's claim.
 3. **Write-up**: a results page with tables and charts for the user's supervisor.
-4. Housekeeping: commit `FINDINGS.md` and this file; F2; the `setup_giano.sh` branch.
 
 ## 8. Working with the user
 
