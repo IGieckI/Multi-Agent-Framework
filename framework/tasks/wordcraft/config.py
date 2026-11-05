@@ -26,6 +26,13 @@ class WordCraftConfig(TaskConfig):
     hints: Literal["none", "split", "all"] = "none"
     # notes per agent, when there are hints
     notes: int = Field(default=2, ge=1)
+    # fill each agent's notes up to `notes` with recipes off the path; without, an agent holds only its share of the path
+    decoys: bool = True
+    # with a message slot, ask the agent to tell the others what its notes say
+    share_notes: bool = False
+    # targets whose path items can also be made another way from the starting items (e.g. a depth-2 target in one
+    # step, F32). The grids up to `hints` ran with them; new grids set false
+    allow_shortcuts: bool = True
     # prompt version: the templates in prompts/<version>/wordcraft
     prompts: Literal["v1", "v2"] = "v1"
 

@@ -52,9 +52,10 @@ class WordCraftTask:
         if self.cfg.type == "open_ended":
             self.spec = open_ended(self.cfg.step_limit())
         else:
-            self.spec = sample_targeted(self.book, rng, self.cfg.depth, self.cfg.distractors, self.cfg.step_limit())
+            self.spec = sample_targeted(self.book, rng, self.cfg.depth, self.cfg.distractors, self.cfg.step_limit(),
+                                        self.cfg.allow_shortcuts)
         # dealt after the task is drawn, so a task does not depend on its hints
-        notes = deal_notes(self.book, self.spec, len(agents), self.cfg.hints, self.cfg.notes, rng)
+        notes = deal_notes(self.book, self.spec, len(agents), self.cfg.hints, self.cfg.notes, rng, self.cfg.decoys)
         self.envs = {a: WordCraftEnv(self.book, self.spec, notes=tuple(own)) for a, own in zip(agents, notes)}
 
     def observe(self, agent: AgentId) -> Observation:
@@ -62,7 +63,7 @@ class WordCraftTask:
 
     def build_prompt(self, view: View, error: str | None) -> Prompt:
         # the rules template depends on the task type, which is static for the run
-        return build_prompt(view, self.spec.target is not None, error, self.cfg.prompts)
+        return build_prompt(view, self.spec.target is not None, error, self.cfg.prompts, self.cfg.share_notes)
 
     def truncate(self, observation: Observation) -> str | None:
         """Invalid combinations go first, then valid ones, oldest first"""

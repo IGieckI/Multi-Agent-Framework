@@ -25,14 +25,33 @@ def open_ended(max_steps: int = 200) -> TaskSpec:
 
 
 def sample_targeted(
-    book: RecipeBook, rng: random.Random, depth: int = 1, distractors: int = 3, max_steps: int = 6
+    book: RecipeBook, rng: random.Random, depth: int = 1, distractors: int = 3, max_steps: int = 6,
+    allow_shortcuts: bool = True,
 ) -> TaskSpec:
     """Generate a random targeted task(craft one given item, starting from a small inventory): 
-    pick a target item, add the deepest starting items, and add distractors
+    pick a target item, add the deepest starting items, and add distractors. Without shortcuts, a task where an item
+    of the path can also be made another way from the starting items is drawn again (FINDINGS.md F32)
     """
     if depth not in (1, 2):
         raise ValueError("depth must be 1 or 2")
     craftable = sorted({r for results in book.pairs.values() for r in results})
+    while True:
+        spec = draw_targeted(book, rng, craftable, depth, distractors, max_steps)
+        if allow_shortcuts or not other_route(book, spec):
+            return spec
+
+
+def other_route(book: RecipeBook, spec: TaskSpec) -> bool:
+    """Whether an item of the path (the target, or the intermediate) has a recipe made only of starting items besides
+    the path's own: e.g. a depth-2 target that can be made in one step"""
+    initial = set(spec.initial)
+    path = {combo(a, b) for a, b, _ in spec.path}
+    return any(c not in path and set(c) <= initial for _, _, item in spec.path for c in book.recipes_for(item))
+
+
+def draw_targeted(book: RecipeBook, rng: random.Random, craftable: list[str], depth: int, distractors: int,
+                  max_steps: int) -> TaskSpec:
+    """One draw of sample_targeted"""
     while True:
         target = rng.choice(craftable)
         base = list(rng.choice(book.recipes_for(target)))
@@ -71,11 +90,12 @@ def sample_targeted(
 Note = tuple[str, str, str]
 
 
-def deal_notes(book: RecipeBook, spec: TaskSpec, agents: int, mode: str, notes: int, rng: random.Random) -> list[list[Note]]:
+def deal_notes(book: RecipeBook, spec: TaskSpec, agents: int, mode: str, notes: int, rng: random.Random,
+               decoys_wanted: bool = True) -> list[list[Note]]:
     """Each agent's private notes, all true recipes (first item, second item, result). split: the path's recipes go to
     different agents, in random order (all of them to a single agent); all: every agent gets the whole path. Each agent's
-    notes are filled up to `notes` with recipes of the starting items that do not lead to the target, different for each
-    agent as far as there are enough"""
+    notes are filled up to `notes` with recipes of the starting items that do not lead to the target (decoys), different
+    for each agent as far as there are enough; without decoys an agent holds only its share of the path"""
     if mode == "none" or not spec.path:
         return [[] for _ in range(agents)]
     if mode == "all":
@@ -94,7 +114,7 @@ def deal_notes(book: RecipeBook, spec: TaskSpec, agents: int, mode: str, notes: 
     rng.shuffle(decoys)
     deck = iter(decoys * agents)
     for own in dealt:
-        for _ in range(min(notes - len(own), len(decoys))):
+        for _ in range(min(notes - len(own), len(decoys)) if decoys_wanted else 0):
             own.append(next(note for note in deck if note not in own))
         rng.shuffle(own)
     return dealt

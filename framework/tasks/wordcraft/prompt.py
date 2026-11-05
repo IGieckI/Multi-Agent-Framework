@@ -24,6 +24,10 @@ SOCIAL_BLOCKS = (
 )
 
 
+# with task.share_notes, under the notes of an agent that can write messages
+SHARE_NOTES = "The other players do not know your notes: use your message to tell them what your notes say.\n"
+
+
 def full_view(env: WordCraftEnv) -> View:
     """Every observation field and the whole own history, no social blocks (a single agent)"""
     return View(env.observation())
@@ -72,7 +76,8 @@ def social_segments(label: str, messages: list[Message], as_list: bool) -> list[
     return segments
 
 
-def build_prompt(view: View, targeted: bool, error: str | None = None, version: str = "v1") -> Prompt:
+def build_prompt(view: View, targeted: bool, error: str | None = None, version: str = "v1",
+                 share_notes: bool = False) -> Prompt:
     """The rules, the role's persona if any, the message slot if any, the state block and, on a retry, the error found
     in the previous answer. The state block shows only the observation fields in the view"""
     observation = view.observation
@@ -92,6 +97,8 @@ def build_prompt(view: View, targeted: bool, error: str | None = None, version: 
     if "notes" in observation:
         notes = "; ".join(f"'{a}' and '{b}' make '{result}'" for a, b, result in observation["notes"])
         segments.append(Segment(f"Your notes (true, and only you were told them): {notes}\n", "observation", "notes"))
+        if share_notes and view.message_slot:
+            segments.append(Segment(SHARE_NOTES, "template"))
     if "steps_left" in observation:
         segments.append(Segment(f"Remaining rounds: {observation['steps_left']}\n", "observation", "steps_left"))
     if "budget_left" in observation:
