@@ -13,5 +13,7 @@ __pycache__/
 /shard*.jsonl
 /slurm-*.out
 /slurm-*.err
+# the lists of a grid's Slurm logs, written on giano for the download
+/slurm_*.txt
 # the cluster's documentation and a colleague's guide: not ours to publish
 /docsHPC

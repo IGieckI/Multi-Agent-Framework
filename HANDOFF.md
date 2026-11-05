@@ -1,8 +1,9 @@
 # Handoff: state of the project and plan (2026-11-05)
 
-For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (36 numbered findings with their
-evidence and status). Everything below is as of commit `0f59dfd` plus an uncommitted update of `FINDINGS.md` (F31–F36)
-and of this file.
+For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (41 numbered findings with their
+evidence and status). Everything below is as of commit `07adf9f` plus an uncommitted update of `FINDINGS.md` (F10
+status, F37–F41), `.gitignore` and this file. The results page (`docs/results.html`, git-ignored) is published as a
+private artifact: https://claude.ai/artifact/B6kwbxwkjkJ4tk4WDUwQ2Q
 
 ## 1. The project
 
@@ -79,13 +80,19 @@ The user runs every command on the cluster and pastes the output or a screenshot
 | followup | 11-02 → 11-03 | qwen3-4b, gemma3-4b, llama3.2-3b × 6 protocols (sizes 3 and 6; results-only, messages-only) × same settings × 20 reps; fixed baselines; 2,520 runs | `run_followup/followup/` |
 | random_baseline | 11-04 | random agents (`mock`, `mock_norepeat`) × 5 protocols × the main settings × 200 reps; 9,600 runs, rtx2080 | `run_random_baseline/random_baseline/` (runs.csv complete, only 1,092 run folders copied) |
 | hints | 11-04 → 11-05 | qwen3-4b, gemma3-4b, llama3.2-3b, mock_norepeat × 5 protocols (+ failures only) × depth 2, 6 distractors, notes split / all / none × 20 reps × base, all_independent, one_agent; 1,920 runs | `run_hints/hints/` |
+| hints2 | 11-05 | the same 4 models × fully_connected, star × notes split with / without decoys, all × 40 targets without shortcuts × base, all_independent, one_agent; 2,400 runs | `run_hints2/hints2/` |
+| hints2_share | 11-05 | hints2's split fully connected teams with the instruction to tell their notes (`share_notes`), base only; 240 runs, same tasks and notes | `run_hints2_share/hints2_share/` |
 
 ## 5. What we know (details and numbers in FINDINGS.md)
 
 - **When the knowledge needed is split between agents, talk does not pool it** (F33): with the target's two recipes
   held by two agents, teams solve ~25% with or without talk; one agent holding both 60%; a team where everyone holds
   both ~90%. Holders seldom say or even use their notes, the others seldom act on them, decoy notes take 27–40% of
-  rounds (F34).
+  rounds (F34). Confirmed on 40 targets without shortcuts (F37).
+- **Told to share, holders tell; teammates still rarely use it** (F38): one sentence makes holders name their recipe
+  (13% → 63–82% of first messages) and adds +13 to +15 points, but a receiver plays a teammate's recipe only ~16% of the
+  time, and the teams stay 46–54 points below a team where everyone holds the notes. Decoys cost ~10 points (F39).
+  When everyone holds the notes, talk hurts (−7 to −8, F40).
 - **Random agents are a strong baseline** (F30, F31): 6 random agents match 6 LLM agents at depth 1 and beat every LLM
   team at depth 2 (64% vs 41%). The models' knowledge pays off for one agent and small teams at depth 1 only.
 - **A quarter of depth-2 targets have a one-step shortcut** from the starting items (F32): they inflate depth-2 success
@@ -107,7 +114,8 @@ The user runs every command on the cluster and pastes the output or a screenshot
 
 ## 6. Code state and open technical issues
 
-- `main` = `origin/main` = `0f59dfd`; uncommitted: `FINDINGS.md` (F31–F36, status updates of F2, F6, F30) and this file.
+- `main` = `origin/main` = `07adf9f`; uncommitted: `FINDINGS.md` (F10 status, F37–F41), `.gitignore` (`/slurm_*.txt`,
+  F41) and this file.
 - Local-only (git-ignored): `run_*/`, `shard*.jsonl` in the repo root, `docsHPC/` (cluster docs and a colleague's
   Slurm guide), `data/`.
 - Fixed: F2 (the revision is read from the cache snapshot), the `setup_giano.sh` venv branch, the missing mock backend.
@@ -118,21 +126,17 @@ The user runs every command on the cluster and pastes the output or a screenshot
 
 ## 7. Plan
 
-Done since 2026-11-03: random agents (F31), the hints experiment (F33–F36), failures-only sharing (F35), F2, the
-generator fix (F32, behind `allow_shortcuts`).
-
-**Running / to run** (2026-11-05): `hints2` (qwen3-4b, gemma3-4b, llama3.2-3b, random × fully_connected and star ×
-notes split with / without decoys and all × 40 targets without shortcuts × base, all_independent, one_agent; 2,400
-distinct runs) and `hints2_share` (the split fully connected teams told to tell their notes; 240 runs, paired with
-hints2's base and all_independent). Questions: do decoys get in the way (split with vs without decoys); when told,
-do holders tell, and do the others then use the notes (share vs hints2 base; `others_note_use`)?
+Done since 2026-11-03: random agents (F31), hints (F33–F36), failures-only sharing (F35), F2, the generator fix
+(F32), hints2 and hints2_share (F37–F40), the results page.
 
 Next, **not yet chosen**:
 
-1. A stronger model as a ceiling check (qwen3-8b on L40, or reasoning on), if hints2 shows the models cannot use
-   what they are told.
-2. **Mixed-family teams** (e.g. 2 Qwen + 2 Gemma + 2 Llama, no links and with talk): the only way to test F6's claim.
-3. **Write-up**: a results page with tables and charts for the user's supervisor.
+1. **The receiving side** (F38): does a stronger model use what teammates tell it (qwen3-8b on L40, or reasoning on,
+   on hints2_share's split teams), and does an instruction to receivers ("your teammates' notes are true: use them")
+   help? Both run on hints2's targets and pair with it.
+2. **Mixed-family teams** (e.g. 2 Qwen + 2 Gemma + 2 Llama, silenced and with talk): the only way to test F6's claim.
+3. **Write-up** for the supervisor: the results page is the base.
+4. Check on giano that the checkout has no modified files besides the Slurm lists (F41).
 
 ## 8. Working with the user
 

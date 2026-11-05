@@ -100,7 +100,8 @@ Sources: `run_56/shard0of2.jsonl`, `run_56/shard1of2.jsonl` (sweep logs), `run_5
   depth 1, 0 distractors 98/98/100/92%; depth 1, 3 distractors 57/63/62/38%; depth 2, 0 distractors 20/33/35/17%;
   depth 2, 3 distractors 13/13/12/8%.
 - Only depth 1 with distractors and depth 2 without separate the versions. Depth 2 with distractors in 4 steps is
-  nearly impossible. **Open**: drop the two extreme settings, or give depth 2 more steps.
+  nearly impossible. **Acted on**: the main grid and the later ones use only the two middle settings (`hints`
+  and `hints2` use depth 2 with 6 distractors instead).
 
 ### F11. Cost: about 20 GPU-hours for the pilot, nearly independent of model size
 - Mean seconds per run (base / all_independent / one_agent): qwen3-0.6b 29/24/5, qwen3-8b 35/30/6, gemma3-4b 29/21/4,
@@ -476,3 +477,71 @@ say "all 20". Sources: `run_hints/hints/runs.csv` and the runs' `events.jsonl`.
   13.6k without links; star the cheapest team, 8.9k.
 - No setting in this grid has talk significantly helping. With 20 targets the intervals are ±10–15 points: effects
   smaller than that cannot be seen.
+
+---
+
+## Hints 2: why the notes are not pooled, `runs/hints2` and `runs/hints2_share` (2026-11-05)
+
+Grid `configs/experiments/hints2.yaml`: qwen3-4b, gemma3-4b, llama3.2-3b and random agents × fully_connected and star ×
+depth 2 with 6 distractors × notes split with decoys, split without decoys (only the two holders have notes, one recipe
+each) and all × 40 targets drawn without shortcuts (`allow_shortcuts: false`; checked: 0 of 40 have another route) ×
+base, all_independent, one_agent. 2,880 rows, 2,400 distinct. `configs/experiments/hints2_share.yaml`: the split fully
+connected teams again (base only), each holder told "The other players do not know your notes: use your message to
+tell them what your notes say." (`task.share_notes`); 240 runs with the same tasks and notes as hints2 (checked: 40 of
+40). All ended on their own, 0 failed. Gates 74189 (rtx2080) and 74192 (L40); full jobs 74193 (Qwen, Llama, random:
+rtx2080, float16), 74194 (Gemma: L40, bfloat16), 74195 and 74196 (share). Code `07adf9f`, recorded as dirty (F41).
+Comparisons are paired by target: 120 pairs (3 models × 40), 95% bootstraps resampled by target. Sources:
+`run_hints2/hints2/runs.csv`, `run_hints2_share/hints2_share/runs.csv` and the runs' `events.jsonl`.
+
+### F37. On 40 targets without shortcuts, talk still does not pool split notes (F33 confirmed)
+- Success, LLMs pooled (120 runs each), notes split with decoys: 6 silenced agents 21.7%, 3 silenced 21.7%, fully
+  connected with talk 21.7%, star with talk 25.0%; one agent holding both recipes 70.0%; every agent holding both:
+  silenced 90.8% (fully_connected) and 88.3% (star). Random teams 0–2.5% in every setting.
+- Talk − silenced, notes split: fully_connected 0.0 [−7.5, +7.5], star +3.3 [−4.2, +10.8]; without decoys −0.8
+  [−10.8, +9.2] and 0.0 [−9.2, +9.2].
+- Every agent holding both − notes split (silenced): +69.2 [+60.0, +77.5] (fully_connected), +66.7 [+58.3, +75.0]
+  (star). One agent holding both − talking team with the notes split: +48.3 [+36.7, +60.0] (fully_connected), +45.0
+  [+34.2, +55.8] (star).
+- Checks: one agent with notes all vs split (the same information) −0.8 [−2.5, 0.0]; with and without decoys its runs
+  are identical (a single agent gets both recipes and no decoys either way).
+
+### F38. Told to share, holders do tell; their teammates still rarely use it
+- The instruction raises success: share − talk without it +15.0 [+9.2, +21.7] with decoys (21.7% → 36.7%; Qwen +22,
+  Gemma +12, Llama +10) and +13.3 [+4.2, +22.5] without (31.7% → 45.0%); share − silenced +15.0 [+7.5, +22.5] and
+  +12.5 [+2.5, +22.5]. It closes about a fifth of the gap: share − every agent holding both −54.2 [−63.3, −45.0]
+  (decoys) and −45.8 [−55.8, −35.8]; share − one agent holding both −33.3 [−44.2, −21.7] and −25.0 [−35.8, −14.2].
+- From the logs (fully_connected, notes split; talk without the instruction → with it; with decoys / without):
+  - the holder of the intermediate's recipe names it in its first message 13% → 63% / 17% → 82% (at least once 24% →
+    85% / 28% → 90%); the holder of the target's recipe 13% → 49% / 23% → 65% (at least once 28% → 65% / 38% → 78%);
+  - a teammate tries the intermediate's recipe 20% → 20% / 28% → 39% (silenced: 9% / 17%), the target's recipe 7% →
+    10% / 10% → 14% (silenced: 4% / 7%);
+  - without decoys, a receiver with the intermediate's recipe in its inbox in round 1 plays it in 72 of 457 answers
+    (16%);
+  - agents that make the target per run 0.57 → 0.68 / 0.73 → 0.97 (of 6); refused answers that try the target's
+    recipe before the intermediate exists 3.0 → 5.1 / 2.6 → 3.0 per run.
+- In the examples, receivers either ignore a teammate's true note or follow other teammates' unfounded claims ("I've
+  discovered the key to little alchemy by combining the alchemist and philosophy"). The rate of such claims was not
+  measured (a keyword count cannot tell them from note sharing).
+- Consequence: of the two failures of F34, "do not think of telling" is fixed by one sentence; "do not use what is
+  told" is not. These models do not act on true information from teammates. **Open**: whether a stronger model, or an
+  instruction to the receivers, changes this.
+
+### F39. Decoy notes cost about 10 points
+- Without decoys − with: 6 silenced agents +10.8 [+2.5, +19.2], 3 silenced +12.5 [+5.0, +20.0], fully_connected with
+  talk +10.0 [+0.8, +18.3], star with talk +9.2 [+0.8, +18.3], with the share instruction +8.3 [−1.7, +18.3].
+- With the share instruction, holders pass on their decoys too: 57% of messages name a decoy note, so receivers get
+  true but useless recipes beside the useful ones (F34: decoys took 27–40% of rounds).
+
+### F40. When every agent holds both recipes, talk hurts; independent attempts still help
+- Talk − silenced, every agent holding both: fully_connected −8.3 [−14.2, −2.5], star −6.7 [−12.5, −1.7], each model
+  −5 to −10. F36 showed the same direction (−5) on 20 targets; with 120 pairs it is clear.
+- 6 silenced agents holding both − one agent holding both +21.7 [+15.0, +28.3]: one agent with the whole recipe still
+  fails 30% of the time (it does not follow its notes, F34), and more independent attempts recover most of that.
+
+### F41. The hints2 runs record a dirty checkout
+- Every hints2 and hints2_share run records commit `07adf9f` with `dirty: true` (the hints runs on `0f59dfd` were
+  clean). The commit holds all the code these grids need. The likeliest cause is the untracked `slurm_hints.txt` and
+  `slurm_random_baseline.txt` lists written into the repo root on giano before these jobs started; provenance does not
+  record which files differed.
+- **Acted on**: `.gitignore` ignores `/slurm_*.txt`. **Open**: confirm with `git status --short` on giano that
+  nothing else is modified.
