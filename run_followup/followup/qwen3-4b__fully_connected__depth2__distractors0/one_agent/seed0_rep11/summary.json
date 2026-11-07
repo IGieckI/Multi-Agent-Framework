@@ -1,0 +1,55 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "day",
+      "light",
+      "planet"
+    ],
+    "max_steps": 4,
+    "target": "solar system",
+    "intermediate": [
+      "sun"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "solar system",
+        "sun"
+      ],
+      "coverage": 0.4,
+      "invalid": 0,
+      "no_valid_answers": 2
+    }
+  },
+  "usage": {
+    "total_tokens": 4554,
+    "completion_tokens": 1051,
+    "calls": 8,
+    "wall_clock_s": 86.559,
+    "lines": {
+      "agents": {
+        "total_tokens": 4554,
+        "completion_tokens": 1051,
+        "calls": 8
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

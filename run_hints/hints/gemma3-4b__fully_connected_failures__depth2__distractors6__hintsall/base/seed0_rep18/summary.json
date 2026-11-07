@@ -1,0 +1,140 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "air",
+      "earth",
+      "human",
+      "lava",
+      "livestock",
+      "paper",
+      "rope",
+      "wire",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "warrior",
+    "intermediate": [
+      "bow"
+    ],
+    "distractors": [
+      "air",
+      "earth",
+      "lava",
+      "livestock",
+      "paper",
+      "rope"
+    ],
+    "path": [
+      [
+        "wire",
+        "wood",
+        "bow"
+      ],
+      [
+        "bow",
+        "human",
+        "warrior"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0039
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "bow",
+        "warrior"
+      ],
+      "coverage": 0.0039,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "bow",
+        "warrior"
+      ],
+      "coverage": 0.0039,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "bow",
+        "warrior"
+      ],
+      "coverage": 0.0039,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "bow",
+        "warrior"
+      ],
+      "coverage": 0.0039,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "bow",
+        "warrior"
+      ],
+      "coverage": 0.0039,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "bow",
+        "warrior"
+      ],
+      "coverage": 0.0039,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6627,
+    "completion_tokens": 429,
+    "calls": 12,
+    "wall_clock_s": 15.955,
+    "lines": {
+      "agents": {
+        "total_tokens": 6627,
+        "completion_tokens": 429,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "cow",
+      "duck",
+      "human",
+      "light",
+      "steel"
+    ],
+    "max_steps": 240,
+    "target": "gold",
+    "intermediate": [],
+    "distractors": [
+      "cow",
+      "duck",
+      "human"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0137
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "gold",
+        "spotlight"
+      ],
+      "coverage": 0.0137,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 522,
+    "completion_tokens": 78,
+    "calls": 1,
+    "wall_clock_s": 4.871,
+    "lines": {
+      "agents": {
+        "total_tokens": 522,
+        "completion_tokens": 78,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

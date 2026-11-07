@@ -1,0 +1,52 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "pirate",
+      "space",
+      "steam engine"
+    ],
+    "max_steps": 4,
+    "target": "spaceship",
+    "intermediate": [
+      "pirate ship"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 0,
+    "union_coverage": 0.0
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2176,
+    "completion_tokens": 439,
+    "calls": 4,
+    "wall_clock_s": 32.691,
+    "lines": {
+      "agents": {
+        "total_tokens": 2176,
+        "completion_tokens": 439,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

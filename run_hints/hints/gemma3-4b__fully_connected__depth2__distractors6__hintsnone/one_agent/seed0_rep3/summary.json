@@ -1,0 +1,79 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "ant",
+      "day",
+      "net",
+      "sea",
+      "time",
+      "watch",
+      "water",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "roe",
+    "intermediate": [
+      "egg"
+    ],
+    "distractors": [
+      "day",
+      "net",
+      "time",
+      "watch",
+      "water",
+      "wind"
+    ],
+    "path": [
+      [
+        "ant",
+        "ant",
+        "egg"
+      ],
+      [
+        "egg",
+        "sea",
+        "roe"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.1
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ocean",
+        "wave"
+      ],
+      "coverage": 0.1,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2190,
+    "completion_tokens": 285,
+    "calls": 4,
+    "wall_clock_s": 10.539,
+    "lines": {
+      "agents": {
+        "total_tokens": 2190,
+        "completion_tokens": 285,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

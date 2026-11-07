@@ -1,0 +1,135 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "big",
+      "mouse",
+      "pressure",
+      "puddle",
+      "statue",
+      "steam",
+      "stone",
+      "wagon"
+    ],
+    "max_steps": 4,
+    "target": "lake",
+    "intermediate": [
+      "pond"
+    ],
+    "distractors": [
+      "mouse",
+      "pressure",
+      "statue",
+      "steam",
+      "stone",
+      "wagon"
+    ],
+    "path": [
+      [
+        "puddle",
+        "puddle",
+        "pond"
+      ],
+      [
+        "big",
+        "pond",
+        "lake"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.0364
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pond"
+      ],
+      "coverage": 0.0182,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "lake",
+        "pond"
+      ],
+      "coverage": 0.0364,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pond"
+      ],
+      "coverage": 0.0182,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pond"
+      ],
+      "coverage": 0.0182,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pond"
+      ],
+      "coverage": 0.0182,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "lake",
+        "pond"
+      ],
+      "coverage": 0.0364,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 20585,
+    "completion_tokens": 2092,
+    "calls": 23,
+    "wall_clock_s": 88.755,
+    "lines": {
+      "agents": {
+        "total_tokens": 20585,
+        "completion_tokens": 2092,
+        "calls": 23
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

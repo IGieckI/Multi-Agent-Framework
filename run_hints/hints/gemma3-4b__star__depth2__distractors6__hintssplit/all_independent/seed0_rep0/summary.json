@@ -1,0 +1,102 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "alchemist",
+      "boulder",
+      "car",
+      "ice",
+      "idea",
+      "livestock",
+      "metal",
+      "mineral",
+      "park"
+    ],
+    "max_steps": 4,
+    "target": "tank",
+    "intermediate": [
+      "steel"
+    ],
+    "distractors": [
+      "alchemist",
+      "boulder",
+      "ice",
+      "idea",
+      "livestock",
+      "park"
+    ],
+    "path": [
+      [
+        "metal",
+        "mineral",
+        "steel"
+      ],
+      [
+        "car",
+        "steel",
+        "tank"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.16
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fridge"
+      ],
+      "coverage": 0.04,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "gold",
+        "safe"
+      ],
+      "coverage": 0.08,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "tank"
+      ],
+      "coverage": 0.04,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6205,
+    "completion_tokens": 464,
+    "calls": 10,
+    "wall_clock_s": 19.402,
+    "lines": {
+      "agents": {
+        "total_tokens": 6205,
+        "completion_tokens": 464,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

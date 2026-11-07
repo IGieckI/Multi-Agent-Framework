@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Does Talk Help Small LLM Teams?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* layout: one reading column of ~68ch; figures and tables may widen to 960px. Report style, lab-notebook order */
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --ink: #14171c;
+  --ink-2: #474d57;
+  --ink-3: #757c87;
+  --rule: #dce0e6;
+  --accent: #1d5ca8;
+  --s1: #2a78d6;
+  --s2: #eb6834;
+  --s3: #1baf7a;
+  --s4: #eda100;
+  --good: #0ca30c;
+  --warn: #c98500;
+  --bad: #d03b3b;
+  --font-display: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111317;
+    --surface: #191c21;
+    --ink: #eceef1;
+    --ink-2: #b6bcc5;
+    --ink-3: #868d97;
+    --rule: #2d3138;
+    --accent: #7aaef0;
+    --s1: #3987e5;
+    --s2: #d95926;
+    --s3: #199e70;
+    --s4: #c98500;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111317;
+  --surface: #191c21;
+  --ink: #eceef1;
+  --ink-2: #b6bcc5;
+  --ink-3: #868d97;
+  --rule: #2d3138;
+  --accent: #7aaef0;
+  --s1: #3987e5;
+  --s2: #d95926;
+  --s3: #199e70;
+  --s4: #c98500;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  line-height: 1.6;
+}
+main { max-width: 1000px; margin: 0 auto; padding: 40px 20px 80px; }
+.col { max-width: 68ch; }
+h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; line-height: 1.25; margin: 0; }
+h1 { font-size: 2.3rem; font-weight: 600; letter-spacing: -0.01em; }
+h2 { font-size: 1.55rem; font-weight: 600; margin-top: 64px; padding-top: 18px; border-top: 2px solid var(--ink); }
+h3 { font-size: 1.15rem; font-weight: 600; margin-top: 36px; }
+h4 { font-size: 0.95rem; font-weight: 600; margin-top: 22px; color: var(--ink-2); text-transform: uppercase; letter-spacing: 0.06em; }
+p { margin: 12px 0; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, summary:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+code, .mono { font-family: var(--font-mono); font-size: 0.86em; }
+code { background: color-mix(in srgb, var(--rule) 55%, transparent); padding: 1px 4px; border-radius: 3px; }
+ul, ol { padding-left: 1.3em; margin: 10px 0; }
+li { margin: 5px 0; }
+strong { font-weight: 600; }
+.lede { font-size: 1.15rem; color: var(--ink-2); margin-top: 14px; }
+.meta { font-family: var(--font-display); font-size: 0.85rem; color: var(--ink-3); margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-display); font-size: 0.78rem; font-weight: 500; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink-2); white-space: nowrap; }
+.chip i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; background: var(--ink-3); }
+.chip.run i { background: var(--warn); }
+.chip.done i { background: var(--good); }
+.chip.open i { background: var(--bad); }
+
+nav.toc { margin-top: 28px; font-family: var(--font-display); font-size: 0.9rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 4px 20px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+nav.toc a { text-decoration: none; color: var(--ink-2); }
+nav.toc a:hover { color: var(--accent); text-decoration: underline; }
+nav.toc .n { font-family: var(--font-mono); color: var(--ink-3); margin-right: 6px; }
+
+.keys { display: grid; gap: 12px; margin-top: 18px; }
+.key { display: grid; grid-template-columns: 34px 1fr; gap: 12px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; }
+.key .k { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); padding-top: 2px; }
+.key p { margin: 0; }
+.key .refs { font-family: var(--font-display); font-size: 0.8rem; color: var(--ink-3); margin-top: 4px; }
+
+.exp { margin-top: 18px; }
+.exp-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.exp-facts { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; font-family: var(--font-display); font-size: 0.86rem; margin: 14px 0; padding: 12px 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; max-width: 68ch; }
+.exp-facts dt { color: var(--ink-3); }
+.exp-facts dd { margin: 0; color: var(--ink-2); }
+.why { border-left: 3px solid var(--accent); padding: 2px 0 2px 14px; margin: 14px 0; max-width: 68ch; }
+.why b { font-family: var(--font-display); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); display: block; }
+.changed { border-left: 3px solid var(--ink-3); padding: 2px 0 2px 14px; margin: 14px 0; max-width: 68ch; }
+.changed b { font-family: var(--font-display); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); display: block; }
+
+figure { margin: 22px 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 16px 10px; }
+figure .ftitle { font-family: var(--font-display); font-weight: 600; font-size: 0.98rem; }
+figure .fsub { font-family: var(--font-display); font-size: 0.82rem; color: var(--ink-3); margin-top: 2px; }
+figcaption { font-family: var(--font-display); font-size: 0.82rem; color: var(--ink-2); margin-top: 8px; line-height: 1.5; max-width: 80ch; }
+.chart { width: 100%; margin-top: 10px; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-family: var(--font-display); font-size: 0.82rem; color: var(--ink-2); margin-top: 10px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+.pair > div { min-width: 0; }
+.panel-title { font-family: var(--font-display); font-size: 0.86rem; font-weight: 600; color: var(--ink-2); margin-top: 8px; }
+details.tbl { margin-top: 8px; font-family: var(--font-display); font-size: 0.82rem; }
+details.tbl summary { cursor: pointer; color: var(--accent); width: max-content; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; font-family: var(--font-display); font-size: 0.85rem; margin: 10px 0; width: 100%; }
+th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 600; color: var(--ink-2); border-bottom: 1.5px solid var(--ink-3); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td code { white-space: nowrap; }
+.diagram svg { display: block; width: 100%; height: auto; color: var(--ink); }
+.diagram .hl { color: var(--accent); }
+#tip { position: fixed; pointer-events: none; z-index: 10; background: var(--ink); color: var(--bg); font-family: var(--font-display); font-size: 0.8rem; line-height: 1.4; padding: 6px 9px; border-radius: 4px; max-width: 280px; opacity: 0; transition: opacity 0.08s; }
+.findings td:first-child { font-family: var(--font-mono); white-space: nowrap; color: var(--ink-3); }
+.status { white-space: nowrap; }
+.note { font-family: var(--font-display); font-size: 0.85rem; color: var(--ink-2); background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; max-width: 68ch; }
+@media (max-width: 520px) {
+  body { font-size: 16.5px; }
+  h1 { font-size: 1.8rem; }
+  .exp-facts { grid-template-columns: 1fr; }
+  .exp-facts dt { margin-top: 6px; }
+}
+@media (prefers-reduced-motion: reduce) { #tip { transition: none; } }
+</style>
+</head>
+<body>
+<div id="tip" role="tooltip"></div>
+<main>
+
+<header>
+  <h1>Does talk help small LLM teams?</h1>
+  <p class="lede col">Every experiment of the Multi-Agent Framework study so far: why each one was run, what it ran, what it found, and what it changed. Small open models play a crafting game in teams, under different ways of communicating, and each team is compared with the same agents silenced, with a single agent and with random players.</p>
+  <div class="meta">
+    <span>29 October – 6 November 2026</span>
+    <span>11 experiments, about 22,600 distinct runs</span>
+    <span>Findings F1–F44</span>
+    <span class="chip done"><i></i>all runs finished</span>
+    <span class="chip open"><i></i>4 more queued</span>
+  </div>
+  <nav class="toc" aria-label="Contents">
+    <a href="#summary"><span class="n">1</span>In short</a>
+    <a href="#setup"><span class="n">2</span>The setup</a>
+    <a href="#pilot"><span class="n">3.1</span>Pilot</a>
+    <a href="#prompt-v2"><span class="n">3.2</span>Prompt v2 check</a>
+    <a href="#main-exp"><span class="n">3.3</span>Main experiment</a>
+    <a href="#followup"><span class="n">3.4</span>Follow-up</a>
+    <a href="#random"><span class="n">3.5</span>Random agents</a>
+    <a href="#hints"><span class="n">3.6</span>Hints</a>
+    <a href="#hints2"><span class="n">3.7</span>Hints 2: told to share</a>
+    <a href="#hints2-use"><span class="n">3.8</span>Told to use, and a bigger model</a>
+    <a href="#caveats"><span class="n">4</span>Caveats and corrections</a>
+    <a href="#findings"><span class="n">5</span>All findings</a>
+  </nav>
+</header>
+
+<section id="summary">
+  <h2>1. In short</h2>
+  <div class="keys">
+    <div class="key"><span class="k">01</span><div><p><strong>When every agent reads every other agent, talking makes the team worse.</strong> Six agents with messages and shared results solve 53% of tasks, the same six silenced 62%: −9.4 points [−13.8, −5.0], for every model. Agents herd onto the same combinations.</p><div class="refs">F16, F17, F24, F26</div></div></div>
+    <div class="key"><span class="k">02</span><div><p><strong>A star (spokes report to a hub, the hub sends a few messages) is neutral</strong>, at 3 and at 6 agents, and the cheapest team per solved task. The difference from fully connected is the structure, not the team size.</p><div class="refs">F18, F24, F29</div></div></div>
+    <div class="key"><span class="k">03</span><div><p><strong>Random players are a strong baseline.</strong> Six random agents match six LLM agents on one-step tasks (83% vs 82%) and beat them on two-step tasks (64% vs 41%). The models' knowledge pays off for a single agent and for small teams on one-step tasks only.</p><div class="refs">F30, F31</div></div></div>
+    <div class="key"><span class="k">04</span><div><p><strong>When the knowledge needed is split between agents, talk does not pool it.</strong> With the target's two recipes held by two different agents, teams solve about 22% with or without talk; one agent holding both, 70%; a team where everyone holds both, 91%. Told to share, holders do, but their teammates still rarely act on what they hear: +15 points, still 54 below the team that holds everything.</p><div class="refs">F33, F34, F37, F38</div></div></div>
+    <div class="key"><span class="k">05</span><div><p><strong>Telling the receivers to use the notes changes nothing, but a bigger model uses them.</strong> The 4B models still play a teammate's recipe about one time in ten when told it is true (−5 points). Qwen3-8B pools split notes through talk: +15 to +28 points over its silenced team, and with the share instruction it matches one agent holding both recipes (73% vs 68%). It is no better than Qwen3-4B alone; its whole gain comes through communication.</p><div class="refs">F42, F43</div></div></div>
+    <div class="key"><span class="k">06</span><div><p><strong>Teams help only by adding independent attempts</strong>: one agent given the team's token budget does as well as six silent agents. Varying the temperature adds nothing; sharing failures does not help the models either, because they retry pairs a teammate already reported failing.</p><div class="refs">F5, F19, F21, F27, F35</div></div></div>
+    <div class="key"><span class="k">07</span><div><p><strong>Agents lose track of their own progress.</strong> They remake an intermediate they already hold instead of moving on, and fully connected talk that restates the plan ("let's make explosion first!") locks the whole team into the loop: Qwen3-8B teams where everyone holds both recipes lose 25 points to talk.</p><div class="refs">F44</div></div></div>
+  </div>
+</section>
+
+<section id="setup">
+  <h2>2. The setup</h2>
+
+  <h3>The game: WordCraft</h3>
+  <div class="col">
+    <p>WordCraft uses the recipe book of Little Alchemy 2 (700 items). An agent starts with a small inventory and a target. Each round it names two items of its inventory; if the pair is a recipe, the result joins the inventory. Items are never used up, every round counts, and a repeated pair wastes a round. Teams have <strong>4 rounds</strong>.</p>
+    <ul>
+      <li><strong>Depth 1</strong>: the target is one combination away. <strong>Depth 2</strong>: an intermediate item must be made first.</li>
+      <li><strong>Distractors</strong>: extra starting items that are not on the target's path.</li>
+      <li>A team succeeds if <em>any</em> agent makes the target (<code>solved_any</code>). Each agent plays in its own copy of the game; what one makes, the others do not get.</li>
+    </ul>
+  </div>
+  <figure class="diagram">
+    <div class="ftitle">A depth-2 task, and the shortcut found later</div>
+    <svg viewBox="0 0 640 210" role="img" aria-label="Depth-2 task: metal and mineral make steel, then car and steel make tank. A dashed arrow shows car and metal making tank directly, a shortcut in the recipe book.">
+      <defs><marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+      <g class="hl"><text x="330" y="14" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-size="11.5" fill="currentColor">shortcut: car + metal → tank (F32)</text></g>
+      <g font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" fill="currentColor" transform="translate(0,20)">
+        <rect x="20" y="20" width="96" height="34" rx="5" fill="none" stroke="currentColor"/><text x="68" y="42" text-anchor="middle">metal</text>
+        <rect x="20" y="74" width="96" height="34" rx="5" fill="none" stroke="currentColor"/><text x="68" y="96" text-anchor="middle">mineral</text>
+        <rect x="20" y="136" width="96" height="34" rx="5" fill="none" stroke="currentColor"/><text x="68" y="158" text-anchor="middle">car</text>
+        <rect x="250" y="47" width="96" height="34" rx="5" fill="none" stroke="currentColor"/><text x="298" y="69" text-anchor="middle">steel</text>
+        <rect x="490" y="96" width="110" height="34" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><text x="545" y="118" text-anchor="middle" font-weight="600">tank (target)</text>
+        <line x1="116" y1="37" x2="246" y2="60" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr1)"/>
+        <line x1="116" y1="91" x2="246" y2="70" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr1)"/>
+        <text x="180" y="38" text-anchor="middle" font-size="11.5" fill="currentColor">round 1</text>
+        <line x1="346" y1="68" x2="486" y2="108" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr1)"/>
+        <line x1="116" y1="153" x2="486" y2="120" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr1)"/>
+        <text x="420" y="78" text-anchor="middle" font-size="11.5">round 2</text>
+        <g class="hl"><path d="M116,30 C300,-8 470,30 520,92" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr1)"/></g>
+      </g>
+    </svg>
+    <figcaption>The generator picks one path to the target, but a quarter of depth-2 targets can also be made in one step from the starting items. Section 3.5 shows how much this inflated the depth-2 success rates.</figcaption>
+  </figure>
+
+  <h3>The agents</h3>
+  <div class="col">
+    <p>Open models run locally through Hugging Face transformers (one call at a time), at temperature 1.0, with reasoning off and at most 256 answer tokens. Each answer has the form <code>Combination: 'a' and 'b'</code>, then <code>Reasoning:</code>, then, when the agent can talk, <code>Message:</code>. An answer that cannot be read, or that names an item outside the inventory, is refused and asked again (up to 3 times).</p>
+    <p>The pilot tried 10 models; from the main experiment on, the team used <strong>Qwen3-4B</strong>, <strong>Qwen3-8B</strong> (main only), <strong>Gemma 3 4B</strong> and <strong>Llama 3.2 3B</strong>. Two prompt versions exist: <code>v1</code> and <code>v2</code> (v2 frames the rules' example as a different game, section 3.2).</p>
+  </div>
+
+  <h3>Communication protocols</h3>
+  <div class="col"><p>A protocol says who can send what to whom. Two kinds of things travel: <strong>results</strong> (an automatic note of each valid or invalid combination an agent tried) and <strong>messages</strong> (the free text after <code>Message:</code>).</p></div>
+  <figure class="diagram">
+    <div class="ftitle">Fully connected vs star: what flows where</div>
+    <svg viewBox="0 0 640 262" role="img" aria-label="Left: six agents, each linked to every other, exchanging results and messages. Right: a hub and two spokes; spokes send results to the hub, the hub sends messages to the spokes.">
+      <defs><marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+      <g font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="currentColor">
+        <text x="150" y="18" text-anchor="middle" font-weight="600" font-size="13">fully_connected (6 agents)</text>
+        <g stroke="currentColor" stroke-width="1" opacity="0.55">
+          <line x1="150" y1="50" x2="219" y2="90"/><line x1="150" y1="50" x2="219" y2="170"/><line x1="150" y1="50" x2="150" y2="210"/><line x1="150" y1="50" x2="81" y2="170"/><line x1="150" y1="50" x2="81" y2="90"/>
+          <line x1="219" y1="90" x2="219" y2="170"/><line x1="219" y1="90" x2="150" y2="210"/><line x1="219" y1="90" x2="81" y2="170"/><line x1="219" y1="90" x2="81" y2="90"/>
+          <line x1="219" y1="170" x2="150" y2="210"/><line x1="219" y1="170" x2="81" y2="170"/><line x1="219" y1="170" x2="81" y2="90"/>
+          <line x1="150" y1="210" x2="81" y2="170"/><line x1="150" y1="210" x2="81" y2="90"/><line x1="81" y1="170" x2="81" y2="90"/>
+        </g>
+        <g fill="var(--surface)" stroke="currentColor" stroke-width="1.5">
+          <circle cx="150" cy="50" r="13"/><circle cx="219" cy="90" r="13"/><circle cx="219" cy="170" r="13"/><circle cx="150" cy="210" r="13"/><circle cx="81" cy="170" r="13"/><circle cx="81" cy="90" r="13"/>
+        </g>
+        <text x="150" y="250" text-anchor="middle" font-size="11.5">results + messages to everyone</text>
+
+        <text x="470" y="18" text-anchor="middle" font-weight="600" font-size="13">star (hub + 2 spokes)</text>
+        <circle cx="470" cy="70" r="20" fill="var(--surface)" stroke="currentColor" stroke-width="2"/><text x="470" y="74" text-anchor="middle" font-weight="600">hub</text>
+        <circle cx="380" cy="190" r="21" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/><text x="380" y="194" text-anchor="middle" font-size="10.5">spoke</text>
+        <circle cx="560" cy="190" r="21" fill="var(--surface)" stroke="currentColor" stroke-width="1.5"/><text x="560" y="194" text-anchor="middle" font-size="10.5">spoke</text>
+        <line x1="392" y1="172" x2="455" y2="88" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <line x1="548" y1="172" x2="485" y2="88" stroke="currentColor" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <g class="hl"><path d="M450,78 C410,100 390,128 382,166" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr2)"/>
+        <path d="M490,78 C530,100 550,128 558,166" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr2)"/></g>
+        <text x="350" y="128" text-anchor="end" font-size="11.5">results →</text>
+        <text x="350" y="143" text-anchor="end" font-size="11.5">to the hub</text>
+        <g class="hl"><text x="578" y="128" font-size="11.5" fill="currentColor">messages</text><text x="578" y="143" font-size="11.5" fill="currentColor">to spokes</text></g>
+        <text x="470" y="250" text-anchor="middle" font-size="11.5">spokes play first; the hub sees their results, then plays</text>
+      </g>
+    </svg>
+    <figcaption>In fully connected, each of 6 agents reads every other agent's results and messages. In star, only the hub writes messages; the spokes only report results. These are the two protocols of the main experiment; the others vary size or what is shared.</figcaption>
+  </figure>
+  <div class="scroll"><table>
+    <thead><tr><th>Protocol</th><th>Agents</th><th>What is shared</th><th>Used in</th></tr></thead>
+    <tbody>
+      <tr><td><code>isolated</code></td><td class="num">6</td><td>nothing</td><td>pilot</td></tr>
+      <tr><td><code>fully_connected</code></td><td class="num">6</td><td>results and messages, everyone to everyone</td><td>pilot → hints2</td></tr>
+      <tr><td><code>star</code> (<code>star2.yaml</code>)</td><td class="num">3</td><td>spokes' results to the hub; hub's messages to spokes. Personas: the hub coordinates, the spokes explore</td><td>pilot → hints2</td></tr>
+      <tr><td><code>fully_connected3</code></td><td class="num">3</td><td>as fully_connected</td><td>follow-up</td></tr>
+      <tr><td><code>star6</code></td><td class="num">6</td><td>as star, with 5 spokes</td><td>follow-up</td></tr>
+      <tr><td><code>fully_connected_results</code></td><td class="num">6</td><td>results only</td><td>follow-up, hints</td></tr>
+      <tr><td><code>fully_connected_messages</code></td><td class="num">6</td><td>messages only</td><td>follow-up, hints</td></tr>
+      <tr><td><code>fully_connected_failures</code></td><td class="num">6</td><td>only the invalid combinations</td><td>hints</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Versions: what each team is compared with</h3>
+  <div class="col"><p>From each team's config the framework derives baselines automatically (<code>framework/baselines.py</code>). Every version of a replicate gets the <strong>same target</strong>, so every comparison is paired: same task, one thing changed.</p></div>
+  <div class="scroll"><table>
+    <thead><tr><th>Version</th><th>What it is</th><th>Question it answers</th></tr></thead>
+    <tbody>
+      <tr><td><code>base</code></td><td>the team as configured, with its links</td><td>the condition itself</td></tr>
+      <tr><td><code>all_independent</code></td><td>the same agents, roles and personas, with every link removed</td><td>what does talking add?</td></tr>
+      <tr><td><code>all_independent_temp_sweep</code></td><td>as above, each agent at its own temperature</td><td>does variety from sampling help?</td></tr>
+      <tr><td><code>one_agent</code></td><td>one neutral agent, same rounds</td><td>does a team beat one agent?</td></tr>
+      <tr><td><code>one_vs_multi_token</code></td><td>one agent with the team's token budget, playing until it runs out</td><td>is a team better than one agent spending the same compute?</td></tr>
+      <tr><td><code>one_agent_scaled_steps</code></td><td>one agent with (agents × rounds) rounds</td><td>random-agent grid only</td></tr>
+      <tr><td><code>mock</code>, <code>mock_norepeat</code></td><td>random players (no model): pick a pair at random; <code>norepeat</code> never repeats its own pairs and skips pairs a teammate reported invalid</td><td>how hard is the task without any knowledge?</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Measures</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Measure</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><code>solved_any</code></td><td>team success: some agent made the target. (<code>all_solved</code> means every agent did, which penalises big teams, F4.)</td></tr>
+      <tr><td><code>repeat_rate</code>, <code>redundancy</code></td><td>share of rounds repeating a pair the agent already tried; share of tried pairs tried by more than one agent</td></tr>
+      <tr><td><code>pairwise_divergence</code>, <code>distinct_paths</code></td><td>how different the agents' inventories are; how many different winning pairs a team found</td></tr>
+      <tr><td><code>adoption_rate</code>, <code>blind_adoption_rate</code></td><td>with something in the inbox, how often an agent plays what it was told; how often it plays a pair a teammate reported as failing</td></tr>
+      <tr><td><code>copy_events</code></td><td>items an agent found after a teammate who messages it found them</td></tr>
+      <tr><td><code>parse_failure_rate</code></td><td>answers refused and asked again</td></tr>
+      <tr><td><code>own_note_use</code>, <code>others_note_use</code></td><td>hints only: how often an agent tries a path recipe in its own notes, or one only a teammate holds</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>How a grid runs</h3>
+  <figure class="diagram">
+    <div class="ftitle">From a grid file to the numbers on this page</div>
+    <svg viewBox="0 0 700 150" role="img" aria-label="Pipeline: a grid YAML is expanded by sweep.py plan into units; Slurm job arrays on the DISI cluster run the units; the engine writes events and metrics per run; sweep.py evaluate collects runs.csv; the analysis pairs runs and bootstraps intervals.">
+      <defs><marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+      <g font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="currentColor">
+        <g fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="6" y="40" width="104" height="48" rx="5"/><rect x="150" y="40" width="104" height="48" rx="5"/><rect x="294" y="40" width="112" height="48" rx="5"/><rect x="446" y="40" width="104" height="48" rx="5"/><rect x="590" y="40" width="104" height="48" rx="5"/>
+        </g>
+        <text x="58" y="60" text-anchor="middle" font-weight="600">grid YAML</text><text x="58" y="77" text-anchor="middle" font-size="11">configs/experiments</text>
+        <text x="202" y="60" text-anchor="middle" font-weight="600">units</text><text x="202" y="77" text-anchor="middle" font-size="11">cell × replicate</text>
+        <text x="350" y="60" text-anchor="middle" font-weight="600">engine</text><text x="350" y="77" text-anchor="middle" font-size="11">every version</text>
+        <text x="498" y="60" text-anchor="middle" font-weight="600">runs.csv</text><text x="498" y="77" text-anchor="middle" font-size="11">one row per run</text>
+        <text x="642" y="60" text-anchor="middle" font-weight="600">analysis</text><text x="642" y="77" text-anchor="middle" font-size="11">paired bootstrap</text>
+        <g stroke="currentColor" stroke-width="1.5"><line x1="110" y1="64" x2="146" y2="64" marker-end="url(#arr3)"/><line x1="254" y1="64" x2="290" y2="64" marker-end="url(#arr3)"/><line x1="406" y1="64" x2="442" y2="64" marker-end="url(#arr3)"/><line x1="550" y1="64" x2="586" y2="64" marker-end="url(#arr3)"/></g>
+        <text x="128" y="30" text-anchor="middle" font-size="11">plan</text>
+        <text x="272" y="30" text-anchor="middle" font-size="11">Slurm array</text>
+        <text x="424" y="30" text-anchor="middle" font-size="11">evaluate</text>
+        <text x="568" y="30" text-anchor="middle" font-size="11">pair runs</text>
+        <text x="202" y="112" text-anchor="middle" font-size="11">identical runs merged</text><text x="202" y="126" text-anchor="middle" font-size="11">(run_key)</text>
+        <text x="350" y="112" text-anchor="middle" font-size="11">events.jsonl, metrics.json</text><text x="350" y="126" text-anchor="middle" font-size="11">per run</text>
+      </g>
+    </svg>
+    <figcaption><code>scripts/sweep.py plan</code> expands a grid and merges runs whose configs are identical; <code>sweep.py run --shard i/n</code> runs on the DISI cluster (giano: L40 and RTX 2080 Ti nodes, at most 3 jobs at once), gated on a few test units; <code>sweep.py evaluate</code> computes every run's metrics into <code>runs.csv</code>. Runs are byte-reproducible across jobs and nodes (F23).</figcaption>
+  </figure>
+  <p class="note col"><strong>Reading the numbers.</strong> Differences are paired (same target, one thing changed) with 95% bootstrap intervals in brackets. With 24 runs per cell an interval spans about ±20 points, with 240 about ±6. Intervals on this page's charts are resampled by target and can differ by a point from those in <code>FINDINGS.md</code>.</p>
+</section>
+
+<section id="experiments">
+  <h2>3. The experiments, in order</h2>
+
+  <!-- 3.1 PILOT -->
+  <article class="exp" id="pilot">
+    <div class="exp-head"><h3>3.1 Pilot</h3><span class="chip done"><i></i>29 – 31 Oct</span></div>
+    <div class="why"><b>Why</b>A first sweep to see which models can play at all, which task settings separate conditions, what a run costs, and whether the pipeline holds up at scale.</div>
+    <dl class="exp-facts">
+      <dt>Grid</dt><dd><code>configs/experiments/pilot.yaml</code>, prompts v1</dd>
+      <dt>Ran</dt><dd>10 models (Qwen3 0.6/1.7/4/8B, Gemma 3 1/4B, Llama 3.2 1/3B, SmolLM2 360M/1.7B) × isolated, fully_connected, star × depth 1/2 × 0/3 distractors × 6 replicates × base, all_independent, one_agent</dd>
+      <dt>Size</dt><dd>2,160 runs, 0 failed; about 20 GPU-hours on L40s</dd>
+    </dl>
+    <figure>
+      <div class="ftitle">Single agent success by model</div>
+      <div class="fsub">One agent, 24 distinct runs per model, all four task settings</div>
+      <div class="chart" id="ch-ranking"></div>
+      <figcaption>Only the ends of the list are clearly apart (±20 points). Llama and SmolLM2 ranked low partly because of the prompt, see 3.2 (F7).</figcaption>
+    </figure>
+    <figure>
+      <div class="ftitle">Two of the four task settings are at the ceiling or the floor</div>
+      <div class="fsub">Team success by setting, all 10 models</div>
+      <div class="chart" id="ch-settings"></div>
+      <figcaption>Depth 1 without distractors is solved almost always; depth 2 with distractors almost never in 4 rounds. Only the two middle settings separate the versions (F10).</figcaption>
+    </figure>
+    <h4>What it found</h4>
+    <ul class="col">
+      <li><strong>44% of runs were exact duplicates</strong> (one_agent is the same in every protocol; isolated equals fully_connected without links): only 1,200 of 2,160 were distinct (F3). It also showed that runs are reproducible.</li>
+      <li><strong><code>all_solved</code> was the wrong success measure</strong> (every agent must solve), so star looked better than fully_connected only because it has fewer agents. Team success is <code>solved_any</code> from now on (F4).</li>
+      <li><strong>Teams beat one agent by making more attempts, not by talking</strong>: one agent 39%, fully connected silenced 52% vs talking 47%, star silenced 54% vs talking 52% (F5).</li>
+      <li>Teams gain more the more different their agents are; Qwen3 agents behave almost like copies (F6).</li>
+      <li><strong>Llama and SmolLM2 copied the rules' example</strong> (a "cyborg" made from metal and life) and played the real Little Alchemy ('stone', 'earth') instead of their own inventory: 59–76% of their answers were refused (F8, F12, F13).</li>
+      <li>Gemma 3-4B did not load at first (its config field is nested), fixed (F1). Cost is nearly independent of model size: generation is bound by per-token overhead (F11).</li>
+    </ul>
+    <div class="changed"><b>What it changed</b>Duplicate runs are merged automatically; success is <code>solved_any</code>; the next grids use only the two middle settings; a new prompt version was written and checked (3.2); four models were kept.</div>
+  </article>
+
+  <!-- 3.2 PROMPT V2 -->
+  <article class="exp" id="prompt-v2">
+    <div class="exp-head"><h3>3.2 Prompt v2 check</h3><span class="chip done"><i></i>1 Nov</span></div>
+    <div class="why"><b>Why</b>In v1 the rules' example was laid out exactly like the real task, under the same header, and weak models took it for their own game. v2 frames it as a different game (<code>&lt;Example task&gt; … &lt;End of example&gt;</code>) and says to use only items of one's own inventory. Nothing else changes.</div>
+    <dl class="exp-facts">
+      <dt>Grid</dt><dd><code>configs/experiments/prompt_v2_check.yaml</code>, job 74062</dd>
+      <dt>Ran</dt><dd>6 models × fully_connected, star × the two middle settings × 4 replicates, each run on the same target as its pilot twin</dd>
+      <dt>Size</dt><dd>144 distinct runs, compared pair by pair with v1</dd>
+    </dl>
+    <figure>
+      <div class="ftitle">Refused answers, prompt v1 → v2</div>
+      <div class="fsub">Share of answers refused and asked again, 24 paired runs per model</div>
+      <div class="chart" id="ch-v2"></div>
+      <div class="legend"><span><i style="background:var(--s2)"></i>v1</span><span><i style="background:var(--s1)"></i>v2</span></div>
+      <figcaption>All five weak models pooled: 0.56 → 0.37 [−0.24, −0.14]. Answers mentioning "cyborg" almost disappear. Qwen3-4B, the control, is unchanged (F14).</figcaption>
+    </figure>
+    <ul class="col">
+      <li>Llama 3.2-3B's success rises from 38% to 54% [+4, +33], close to Qwen3-4B on the same targets; it needs about half the calls.</li>
+      <li>SmolLM2 stays unreliable (format failures), so it was dropped.</li>
+    </ul>
+    <div class="changed"><b>What it changed</b>v2 replaces v1 for every later experiment; Llama 3.2-3B joins the main grid as a third model family.</div>
+  </article>
+
+  <!-- 3.3 MAIN -->
+  <article class="exp" id="main-exp">
+    <div class="exp-head"><h3>3.3 Main experiment</h3><span class="chip done"><i></i>1 Nov</span></div>
+    <div class="why"><b>Why</b>The pilot hinted that talk never helps. The main experiment tests it properly: four capable models, the two informative settings, 20 replicates, and every fair baseline, including one agent with the team's token budget.</div>
+    <dl class="exp-facts">
+      <dt>Grid</dt><dd><code>configs/experiments/main.yaml</code>, jobs 74066/74067 (L40, 6.5 h)</dd>
+      <dt>Ran</dt><dd>Qwen3-4B, Qwen3-8B, Gemma 3-4B, Llama 3.2-3B × fully_connected (6), star (3) × (depth 1, 3 distractors), (depth 2, 0 distractors) × 20 replicates × base, all_independent, temperature sweep, one_agent, one_vs_multi_token</dd>
+      <dt>Size</dt><dd>1,440 distinct runs, 0 failed; 160 pairs per protocol</dd>
+    </dl>
+    <figure>
+      <div class="ftitle">Success of each version</div>
+      <div class="fsub">All 4 models and both settings, 160 runs per bar</div>
+      <div class="chart" id="ch-main-rates"></div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>fully_connected (6 agents)</span><span><i style="background:var(--s2)"></i>star (3 agents)</span></div>
+      <figcaption>Silenced, the two teams are equal (62%). Talk lowers fully connected to 53% and leaves star at 63%. The single agent is the same run in both protocols.</figcaption>
+    </figure>
+    <figure>
+      <div class="ftitle">Effect of talking: team with links − same team silenced</div>
+      <div class="fsub">Percentage points, paired by target; 40 pairs per model, 160 pooled</div>
+      <div class="pair">
+        <div><div class="panel-title">fully_connected</div><div class="chart" id="ch-forest-fc"></div></div>
+        <div><div class="panel-title">star</div><div class="chart" id="ch-forest-star"></div></div>
+      </div>
+      <figcaption>Fully connected talk hurts every model, −9.4 [−13.8, −5.0] pooled (F16). In star it is neutral, +1.2 [−4.4, +6.9]; Qwen3-4B's +10 is one positive cell out of eight, what chance can give (F18).</figcaption>
+    </figure>
+    <h4>What it found</h4>
+    <ul class="col">
+      <li><strong>Why talk hurts: herding</strong> (F17). Agents follow what they receive 87% of the time, 26% of the time with no reason of their own. The team explores less: distinct winning paths 0.54 vs 0.64, more alike inventories, more repeats. Messages pull six agents onto one plan instead of pooling different knowledge.</li>
+      <li><strong>One agent with the team's token budget</strong> does better than six talking agents (+6.9 [+0.6, +13.1]) and as well as six silent ones (−2.5); three-agent teams still beat it (F19). It wins partly by playing longer: 17 rounds on average.</li>
+      <li>Talk in fully connected costs 54% more tokens for less success: 27.5k tokens per solved task vs 15.2k silenced (F20).</li>
+      <li><strong>Two baseline flaws found</strong>: the temperature sweep averaged 0.85, colder than everyone else's 1.0, so it tested "some colder agents" instead of variety (F21); the token-matched agent was shown 240 "remaining rounds", the safety cap, instead of its budget (F15).</li>
+      <li><strong>A confound</strong>: fully connected has 6 agents and star 3, so structure and size were mixed (F22).</li>
+    </ul>
+    <div class="changed"><b>What it changed</b>The follow-up separates size from structure, splits the two channels, centres the temperature sweep on 1.0 and shows the token-matched agent its budget.</div>
+  </article>
+
+  <!-- 3.4 FOLLOWUP -->
+  <article class="exp" id="followup">
+    <div class="exp-head"><h3>3.4 Follow-up</h3><span class="chip done"><i></i>2 – 3 Nov</span></div>
+    <div class="why"><b>Why</b>Is fully connected worse because of its structure or its size? Which channel causes the herding: shared results or messages? And do the corrected baselines change anything?</div>
+    <dl class="exp-facts">
+      <dt>Grid</dt><dd><code>configs/experiments/followup.yaml</code>, jobs 74110, 74114 (RTX 2080 Ti, float16), 74115 (L40, bfloat16)</dd>
+      <dt>Ran</dt><dd>Qwen3-4B, Gemma 3-4B, Llama 3.2-3B × 6 protocols (fully_connected and star at 3 and 6 agents; fully connected sharing only results or only messages) × the main settings × 20 replicates × the main versions, temperatures (0.7, 1.0, 1.3), budget shown</dd>
+      <dt>Size</dt><dd>2,520 distinct runs, 0 failed; 120 pairs per protocol</dd>
+    </dl>
+    <figure>
+      <div class="ftitle">Effect of talking, by protocol</div>
+      <div class="fsub">Team with links − same team silenced, percentage points, 120 pairs each</div>
+      <div class="chart" id="ch-forest-fu"></div>
+      <figcaption>Fully connected talk hurts at 6 and at 3 agents; star is neutral at 3 and at 6: the structure matters, not the size (F24). Sharing only results or only messages each hurts about half as much as both: herding comes through both channels (F26).</figcaption>
+    </figure>
+    <figure>
+      <div class="ftitle">Tokens per solved task</div>
+      <div class="fsub">Thousands of tokens, all runs of a team divided by its solved runs</div>
+      <div class="chart" id="ch-cost"></div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>with links</span><span><i style="background:var(--s2)"></i>silenced</span></div>
+      <figcaption>The 3-agent star is the cheapest team, and talk there is nearly free. In fully connected with 6 agents, talk almost doubles the cost of a solve. One agent costs about 3.3k tokens per solve (F29).</figcaption>
+    </figure>
+    <h4>What it found</h4>
+    <ul class="col">
+      <li><strong>Runs are reproducible across jobs and nodes</strong>: Gemma's repeated runs are byte-identical to the main experiment's; Qwen and Llama in float16 change exact tokens but not outcomes (0.00 [−0.03, +0.03]), so the two experiments can be read together (F23).</li>
+      <li><strong>Talk erases the gain from a bigger team</strong>: silenced, 6 agents beat 3 (+5.8 fully connected, +4.2 star); with links, size makes no difference (F25).</li>
+      <li>Shared results get copied (2.6 copy events per run); messages make agents retry each other's suggestions (repeat rate 0.37, the highest) (F26).</li>
+      <li>A temperature sweep centred on 1.0 changes nothing (F27). Showing the token-matched agent its budget changes nothing either (F28).</li>
+    </ul>
+    <div class="changed"><b>What it changed</b>The study had a consistent story: teams help by adding attempts, and talk only gets in the way. Before building more conditions on it, the next step questioned the task itself.</div>
+  </article>
+
+  <!-- 3.5 RANDOM -->
+  <article class="exp" id="random">
+    <div class="exp-head"><h3>3.5 Random agents</h3><span class="chip done"><i></i>3 – 4 Nov</span></div>
+    <div class="why"><b>Why</b>The search spaces are tiny: depth 1 has 5 items (15 pairs), depth 2 about 3 items (6 pairs). If blind trial and error solves them, "more attempts" means "more randomness", and the LLMs' knowledge may matter little. First simulated, then run through the real pipeline with random players.</div>
+    <dl class="exp-facts">
+      <dt>Grid</dt><dd><code>configs/experiments/random_baseline.yaml</code>, job 74155 (RTX 2080 Ti, CPU work)</dd>
+      <dt>Ran</dt><dd><code>mock</code> and <code>mock_norepeat</code> × 5 protocols × the main settings × 200 targets (0–19 are the main ones) × base, all_independent, one_agent, one_agent_scaled_steps</dd>
+      <dt>Size</dt><dd>9,600 distinct runs, 0 failed</dd>
+    </dl>
+    <figure>
+      <div class="ftitle">LLM agents vs random agents</div>
+      <div class="fsub">Success. LLMs: 4 models × 20 main targets; random (no repeats): 200 targets</div>
+      <div class="pair">
+        <div><div class="panel-title">depth 1 (5 items)</div><div class="chart" id="ch-rand-1"></div></div>
+        <div><div class="panel-title">depth 2 (about 3 items)</div><div class="chart" id="ch-rand-2"></div></div>
+      </div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>LLM agents</span><span><i style="background:var(--s3)"></i>random agents</span></div>
+      <figcaption>The models' knowledge makes a single agent much better than chance at depth 1 (65% vs 25%), but six random agents match six LLM agents there and beat every LLM team at depth 2. "6, with links" for random agents means they skip pairs a teammate found invalid (F30, F31).</figcaption>
+    </figure>
+    <ul class="col">
+      <li><strong>The LLMs explore badly</strong>: 41% of their depth-2 rounds repeat a pair they already tried, against the rules, and agents of one model try the same pairs. The outcome is mostly fixed by the target: silent teams of 6 and of 3 have the same outcome on 148 of 160 targets.</li>
+      <li><strong>Sharing failures is what helps random teams</strong>: +16.5 points at depth 2 (80.5% vs 64.0%). This was the room left for a talk design to win back.</li>
+      <li><strong>Shortcut targets (F32).</strong> The generator does not check a target's other recipes: 51 of 200 depth-2 targets can be made in one step from the starting items (3 of the 20 used). They carry much of the depth-2 success (six silent agents: 100% on them, 31% on the rest). The paired results hold without them: F16 becomes −6.6 [−11.0, −2.2].</li>
+    </ul>
+    <div class="changed"><b>What it changed</b>Random agents became part of the framework and a baseline for every later grid. And since every agent saw the same inventory and target, talk had nothing to carry except who tries what: the next experiment gives agents different information.</div>
+  </article>
+
+  <!-- 3.6 HINTS -->
+  <article class="exp" id="hints">
+    <div class="exp-head"><h3>3.6 Hints: agents that know different things</h3><span class="chip done"><i></i>4 – 5 Nov</span></div>
+    <div class="why"><b>Why</b>The first test where talk has something useful to carry. Each agent gets two private notes, true recipes only it can see. With notes <strong>split</strong>, the target's two recipes sit with two different agents and every other note is a true recipe off the path (a decoy); with <strong>all</strong>, every agent holds both; with <strong>none</strong>, nobody has notes. A bigger task (depth 2, 6 distractors: 9 items, 45 pairs) keeps random teams near 12%.</div>
+    <dl class="exp-facts">
+      <dt>Grid</dt><dd><code>configs/experiments/hints.yaml</code>, jobs 74158, 74161 (gates), 74162 (RTX 2080 Ti), 74163 (L40)</dd>
+      <dt>Ran</dt><dd>Qwen3-4B, Gemma 3-4B, Llama 3.2-3B, random × fully_connected, star, and fully connected sharing only results, only messages or only failures × notes split / all / none × 20 targets × base, all_independent, one_agent</dd>
+      <dt>Size</dt><dd>1,920 distinct runs, 0 failed; 4 of the 20 targets have a shortcut and are left out below</dd>
+    </dl>
+    <figure>
+      <div class="ftitle">Success by who holds the notes</div>
+      <div class="fsub">3 models pooled, 16 targets without a shortcut, 48 runs per bar</div>
+      <div class="chart" id="ch-hints"></div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>6 agents, silenced</span><span><i style="background:var(--s2)"></i>6 agents, fully connected</span><span><i style="background:var(--s3)"></i>3 agents, star</span><span><i style="background:var(--s4)"></i>1 agent (gets both recipes when there are notes)</span></div>
+      <figcaption>With the notes split, talking teams do no better than silent ones (all five protocols pooled: −1.0 [−9.0, +5.3]). The information is in the team: when every agent holds it, teams solve about 90%. A single agent holding both recipes beats every split team by 23–40 points (F33). Random teams solve 0% of these targets.</figcaption>
+    </figure>
+    <h4>Why the notes are not pooled (F34)</h4>
+    <div class="col"><p>From the logs, notes split, the 16 targets without a shortcut, 48 runs per protocol.</p></div>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">Fully connected, talking</th><th class="num">Fully connected, silenced</th><th class="num">Star, talking</th></tr></thead>
+      <tbody>
+        <tr><td>Holder tries the intermediate's recipe it was given</td><td class="num">44%</td><td class="num">52%</td><td class="num">46%</td></tr>
+        <tr><td>Holder names its recipe in a message, at least once in the run (intermediate / target recipe)</td><td class="num">12% / 23%</td><td class="num">n/a</td><td class="num">26% / 50%</td></tr>
+        <tr><td>A teammate tries a recipe only the holder was given (intermediate / target)</td><td class="num">15% / 6%</td><td class="num">5% / 2%</td><td class="num">18% / 14%</td></tr>
+        <tr><td>Rounds spent on decoy notes</td><td class="num">35%</td><td class="num">40%</td><td class="num">27%</td></tr>
+      </tbody>
+    </table></div>
+    <ul class="col">
+      <li>It fails at both ends: holders rarely tell, and seldom even use their own notes; the others rarely act on what they hear. The models do not reason "my note makes X, and the target needs X".</li>
+      <li>Even one agent holding both recipes never tries the intermediate's recipe in 11 of 48 runs. With every agent holding both, 275 of 276 refused answers try the target's recipe before the intermediate exists.</li>
+      <li><strong>Sharing only failures does not help the models</strong> (+2.1 at best): with a teammate's failure in front of them, 20% of their moves retry that same pair (F35).</li>
+      <li>Without notes, fully connected talk still hurts (−10.0 [−20.0, −1.7]); with full notes it does not help (F36).</li>
+    </ul>
+    <div class="changed"><b>What it changed</b>The generator can now reject shortcut targets (<code>task.allow_shortcuts: false</code>; old grids keep theirs). The next grid asks whether the models do not think of telling, or cannot use what they are told.</div>
+  </article>
+
+  <!-- 3.7 HINTS2 -->
+  <article class="exp" id="hints2">
+    <div class="exp-head"><h3>3.7 Hints 2: told to share</h3><span class="chip done"><i></i>5 Nov</span></div>
+    <div class="why"><b>Why</b>F34 found two failures: holders rarely tell, and teammates rarely act on what they hear. This grid separates them by telling the holders to share, checks whether the decoy notes get in the way, and repeats F33 on 40 targets drawn without shortcuts.</div>
+    <dl class="exp-facts">
+      <dt>Grids</dt><dd><code>configs/experiments/hints2.yaml</code> (jobs 74189, 74192 gates; 74193, 74194) and <code>hints2_share.yaml</code> (jobs 74195, 74196)</dd>
+      <dt>Ran</dt><dd><code>hints2</code>: Qwen3-4B, Gemma 3-4B, Llama 3.2-3B, random × fully_connected, star × notes split with decoys, split without decoys, every agent holding both × 40 targets × silenced, talking, one agent. <code>hints2_share</code>: the split fully connected teams again, each holder told "The other players do not know your notes: use your message to tell them what your notes say."</dd>
+      <dt>Size</dt><dd>2,400 + 240 distinct runs, 0 failed; the same tasks and notes in both grids, 120 pairs per comparison</dd>
+    </dl>
+    <figure>
+      <div class="ftitle">Success with the share instruction</div>
+      <div class="fsub">3 models pooled, 40 targets without shortcuts, 120 runs per bar; fully connected teams of 6</div>
+      <div class="chart" id="ch-hints2"></div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>silenced</span><span><i style="background:var(--s2)"></i>talking</span><span><i style="background:var(--s3)"></i>talking, holders told to share</span><span><i style="background:var(--s4)"></i>1 agent (gets both recipes)</span></div>
+      <figcaption>Talk alone adds nothing (0.0 [−7.5, +7.5]). The instruction adds +15.0 [+9.2, +21.7] with decoys and +13.3 [+4.2, +22.5] without, about a fifth of the gap to a team where every agent holds both recipes. Removing decoys adds about 10 points to every team. With every agent holding both, talk hurts: −8.3 [−14.2, −2.5]. Random teams: 0–2.5%.</figcaption>
+    </figure>
+    <h4>Holders now tell; teammates still don't act</h4>
+    <div class="col"><p>From the logs, fully connected, notes split, 120 runs per cell.</p></div>
+    <div class="scroll"><table>
+      <thead>
+        <tr><th></th><th class="num" colspan="3">with decoys</th><th class="num" colspan="3">without decoys</th></tr>
+        <tr><th></th><th class="num">talking</th><th class="num">told to share</th><th class="num">silenced</th><th class="num">talking</th><th class="num">told to share</th><th class="num">silenced</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Holder names the intermediate's recipe in its first message</td><td class="num">13%</td><td class="num">63%</td><td class="num">n/a</td><td class="num">17%</td><td class="num">82%</td><td class="num">n/a</td></tr>
+        <tr><td>Holder names the target's recipe in its first message</td><td class="num">13%</td><td class="num">49%</td><td class="num">n/a</td><td class="num">23%</td><td class="num">65%</td><td class="num">n/a</td></tr>
+        <tr><td>A teammate tries the intermediate's recipe</td><td class="num">20%</td><td class="num">20%</td><td class="num">9%</td><td class="num">28%</td><td class="num">39%</td><td class="num">17%</td></tr>
+        <tr><td>A teammate tries the target's recipe</td><td class="num">7%</td><td class="num">10%</td><td class="num">4%</td><td class="num">10%</td><td class="num">14%</td><td class="num">7%</td></tr>
+        <tr><td>Messages naming a decoy note</td><td class="num">14%</td><td class="num">57%</td><td class="num">n/a</td><td class="num">0%</td><td class="num">0%</td><td class="num">n/a</td></tr>
+      </tbody>
+    </table></div>
+    <ul class="col">
+      <li><strong>Telling is fixed by one sentence; using is not</strong> (F38). Without decoys, a teammate with the intermediate's recipe in its inbox plays it in 72 of 457 round-1 answers (16%). In the examples, receivers ignore a teammate's true note, or follow other teammates' unfounded claims ("I've discovered the key to little alchemy by combining the alchemist and philosophy").</li>
+      <li><strong>Decoys cost about 10 points</strong> (F39): +9 to +13 without them, for silenced and talking teams alike. Told to share, holders pass on their decoys too (57% of messages), burying the useful recipe.</li>
+      <li><strong>With every agent holding both recipes, talk hurts</strong> (F40): −8.3 fully connected, −6.7 star. Six silent agents holding both beat one agent holding both by +21.7: a single agent still ignores its own notes 30% of the time, and independent attempts recover that.</li>
+      <li>The runs record their code as commit <code>07adf9f</code> with an uncommitted change, most likely the Slurm log lists written into the repo on giano (F41; the next runs were clean).</li>
+    </ul>
+    <div class="changed"><b>What it changed</b>The bottleneck is the receiving side: these models do not act on true information from teammates. Next candidates: a stronger model or an instruction to the receivers on the same targets, and teams mixing model families (to test F6).</div>
+  </article>
+  <!-- 3.8 HINTS2 USE + QWEN3-8B -->
+  <article class="exp" id="hints2-use">
+    <div class="exp-head"><h3>3.8 Told to use, and a bigger model</h3><span class="chip done"><i></i>6 Nov</span></div>
+    <div class="why"><b>Why</b>F38 left the receiving side open: holders told to share do share, but teammates rarely act on it. Two ways to change that were tried on the same 40 targets and notes: tell the receivers that the recipes are true and to use them, or use a stronger model.</div>
+    <dl class="exp-facts">
+      <dt>Grids</dt><dd><code>hints2_use.yaml</code> (jobs 74232, 74234–74236), <code>hints2_8b.yaml</code> (74237, 74238) and <code>hints2_8b_share.yaml</code> (74239, 74240)</dd>
+      <dt>Ran</dt><dd><code>hints2_use</code>: hints2_share's teams with every agent also told "Recipes the other players tell you from their notes are true: when one helps make the target, use it." <code>hints2_8b</code>: hints2's cells with Qwen3-8B. <code>hints2_8b_share</code>: Qwen3-8B split teams told to share, with and without the use instruction.</dd>
+      <dt>Size</dt><dd>240 + 600 + 160 distinct runs, 0 failed, clean checkout; 120 pairs for the 4B models, 40 for Qwen3-8B (intervals about ±15–20 points)</dd>
+    </dl>
+    <figure>
+      <div class="ftitle">Success with notes split: 4B models vs Qwen3-8B</div>
+      <div class="fsub">Fully connected teams of 6, 40 targets; 4B: 3 models pooled, 120 runs per bar; Qwen3-8B: 40 runs per bar</div>
+      <div class="chart" id="ch-hints2-use"></div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>silenced</span><span><i style="background:var(--s2)"></i>talking</span><span><i style="background:var(--s3)"></i>talking, holders told to share</span><span><i style="background:var(--s4)"></i>told to share, receivers told to use</span></div>
+      <figcaption>One agent holding both recipes: 70.0% (4B), 67.5% (Qwen3-8B). The use instruction changes nothing: −5.0 [−12.5, +3.3] (4B), −5.0 [−20.0, +10.0] (8B). Qwen3-8B talk − silenced: +27.5 [+12.5, +45.0] with decoys, +15.0 [0.0, +32.5] without; in a star +25.0 and +27.5.</figcaption>
+    </figure>
+    <h4>The bigger model tells without being asked, and its teammates act</h4>
+    <div class="col"><p>From the logs, fully connected, notes split with decoys, talking teams without any instruction.</p></div>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">4B models</th><th class="num">Qwen3-8B</th></tr></thead>
+      <tbody>
+        <tr><td>Holder names the target's recipe in its first message</td><td class="num">13%</td><td class="num">57%</td></tr>
+        <tr><td>A receiver just told the intermediate's recipe plays it next</td><td class="num">15%</td><td class="num">40%</td></tr>
+        <tr><td>A receiver just told the target's recipe plays it next (when it can)</td><td class="num">37%</td><td class="num">53%</td></tr>
+        <tr><td>Non-holders that try the target's recipe</td><td class="num">7%</td><td class="num">24%</td></tr>
+        <tr><td>Agents that make the target, of 6</td><td class="num">0.57</td><td class="num">1.65</td></tr>
+      </tbody>
+    </table></div>
+    <ul class="col">
+      <li><strong>The use instruction does not reach the receivers</strong> (F42). Told outright that the recipes are true, a 4B receiver plays a teammate's intermediate recipe at its next move 10% of the time (9% before); holders even tell a little less.</li>
+      <li><strong>Qwen3-8B pools split notes through talk</strong> (F43), the first setting of the study where talk helps. With the share instruction it reaches 72.5% (decoys) and 65.0%, as good as one agent holding both. Alone or silenced it is no better than Qwen3-4B on the same targets (−7.5, −2.5); talking it is +17.5 to +22.5 better. One model and 40 targets: whether it is size or this model is the next test.</li>
+      <li><strong>Agents remake an intermediate they already hold</strong> (F44). With everyone holding both recipes, Qwen3-8B fully connected talk costs 25 points (87.5% → 62.5%). In all 11 targets lost, every agent makes the intermediate in round 1 and remakes it for three rounds while the messages say "Let's make explosion first!"; the prompt lists the item in its inventory. Remakes after making it: 60% silenced → 80% fully connected for Qwen3-8B, 17% → 48% for Gemma 3-4B. A star avoids it (95%, the best cell of the study).</li>
+    </ul>
+    <div class="changed"><b>What it changed</b>Queued on 7 Nov, all on the same targets and notes: Gemma 3-12B on the same cells (size or model?), Qwen3-8B on 40 more targets, a prompt line listing the items an agent made (does the loop stop?), and teams mixing Qwen, Gemma and Llama (F6).</div>
+  </article>
+</section>
+
+<section id="caveats">
+  <h2>4. Caveats and corrections</h2>
+  <ul class="col">
+    <li><strong>Small tasks and few targets.</strong> 3–9 starting items, 4 rounds, 20 targets per setting (40 in hints2). Effects under about 10 points cannot be seen (about 8 in hints2).</li>
+    <li><strong>Small models, reasoning off</strong>, one prompt wording, and personas still from v1. The one 8B result (F43) rests on one model and 40 targets; reasoning models are untested.</li>
+    <li><strong>Shortcut targets</strong> (F32) inflate every depth-2 success rate before hints2 (hints2 has none). Paired differences hold without them.</li>
+    <li><strong>An overclaim corrected:</strong> earlier notes said variety between model families helps (F6). No team mixing models has been run yet (queued on 7 Nov); F6 only shows that models whose agents differ more gain more from a team.</li>
+    <li><strong>A typo corrected:</strong> F18's pooled star value read −1.3 (the depth-1 number); it is +1.2 [−4.4, +6.9]. The conclusion is the same.</li>
+  </ul>
+</section>
+
+<section id="findings">
+  <h2>5. All findings</h2>
+  <p class="col">Every finding, as logged in <code>FINDINGS.md</code>, with its status: <strong>acted on</strong> (it led to a change), <strong>closed</strong> (resolved), <strong>superseded</strong> (replaced by a later finding), <strong>open</strong>, or <strong>result</strong> (a finding with nothing to act on).</p>
+  <div class="scroll"><table class="findings" id="tbl-findings">
+    <thead><tr><th>#</th><th>Finding</th><th>Status</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+</section>
+
+</main>
+
+<script>
+const FINDINGS = [
+  ["F1", "Gemma 3-4B did not load: the backend read a config field it nests", "acted on"],
+  ["F2", "The loaded weights' revision was not recorded offline; now read from the cache snapshot", "closed"],
+  ["F3", "44% of the pilot's runs duplicated others; identical runs are now merged", "acted on"],
+  ["F4", "all_solved means every agent solved; team success is solved_any", "acted on"],
+  ["F5", "Teams beat a single agent through more attempts, not communication", "acted on"],
+  ["F6", "Team gain follows how different the agents are; variety between families untested", "superseded"],
+  ["F7", "Model ranking for a single agent", "superseded"],
+  ["F8", "Llama and SmolLM2 took prompt v1's example for their own game", "acted on"],
+  ["F9", "Some models barely use the communication channel", "result"],
+  ["F10", "Two of the four pilot settings are at the ceiling or the floor", "acted on"],
+  ["F11", "Cost about 20 GPU-hours for the pilot, nearly independent of model size", "result"],
+  ["F12", "Copying the example explains few refusals (undercount)", "superseded"],
+  ["F13", "Refused answers: the example's items, the game's classic elements, broken format", "open"],
+  ["F14", "Prompt v2 cuts weak models' refusals by a third and lifts Llama", "acted on"],
+  ["F15", "The token-matched agent was shown the safety cap, not its budget", "closed"],
+  ["F16", "In fully connected, talking makes the team worse (−9.4)", "result"],
+  ["F17", "Why: fully connected agents herd onto the same combinations", "result"],
+  ["F18", "In star, messages neither help nor hurt (+1.2)", "result"],
+  ["F19", "One agent with the team's token budget matches silent teams, beats fully connected", "result"],
+  ["F20", "Talk in fully connected costs 54% more tokens for less success", "result"],
+  ["F21", "The temperature sweep lowered variety instead of raising it", "acted on"],
+  ["F22", "Protocol and team size were confounded", "closed"],
+  ["F23", "Runs are reproducible across jobs and nodes; results hold in float16", "result"],
+  ["F24", "Fully connected talk hurts at both sizes, star neutral at both: structure, not size", "result"],
+  ["F25", "Talking erases the gain from a bigger team", "result"],
+  ["F26", "Herding comes through both channels, messages more", "result"],
+  ["F27", "A temperature sweep centred on 1.0 changes nothing", "result"],
+  ["F28", "Showing the token-matched agent its budget changes nothing", "closed"],
+  ["F29", "The 3-agent star is the cheapest team per solved task", "result"],
+  ["F30", "Random teams match LLM teams at depth 1 and beat them at depth 2 (simulation)", "acted on"],
+  ["F31", "The real pipeline confirms F30", "result"],
+  ["F32", "A quarter of depth-2 targets can be made in one step from the starting items", "acted on"],
+  ["F33", "Talk does not pool what only some agents know", "result"],
+  ["F34", "Holders seldom pass on or use their notes; others seldom act on them", "acted on"],
+  ["F35", "Sharing failures does not help LLM agents: they retry failed pairs", "result"],
+  ["F36", "On the 9-item task, talk without notes still hurts, with full notes it does not help", "result"],
+  ["F37", "On 40 targets without shortcuts, talk still does not pool split notes", "result"],
+  ["F38", "Told to share, holders tell; their teammates still rarely use it", "closed"],
+  ["F39", "Decoy notes cost about 10 points", "result"],
+  ["F40", "With every agent holding both recipes, talk hurts; independent attempts still help", "result"],
+  ["F41", "The hints2 runs record a dirty checkout (likely the Slurm lists on giano)", "closed"],
+  ["F42", "Telling receivers to use their teammates' notes changes nothing", "result"],
+  ["F43", "Qwen3-8B pools split notes through talk: the first setting where talk helps", "open"],
+  ["F44", "Agents remake an intermediate they already hold; fully connected talk locks the team into it", "open"]
+];
+const STATUS_CLASS = {"acted on": "done", "closed": "done", "open": "open", "superseded": "", "result": ""};
+(function fillFindings() {
+  const tb = document.querySelector("#tbl-findings tbody");
+  for (const [id, text, st] of FINDINGS) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td>${id}</td><td>${text}</td><td class="status"><span class="chip ${STATUS_CLASS[st]}"><i></i>${st}</span></td>`;
+    tb.appendChild(tr);
+  }
+})();
+
+/* ---------- small chart kit: inline SVG drawn at the container's width, hover tooltips, table views ---------- */
+const NS = "http://www.w3.org/2000/svg";
+const tip = document.getElementById("tip");
+function el(tag, attrs, parent, text) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text !== undefined) e.textContent = text;
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function hover(target, html) {
+  target.addEventListener("mousemove", ev => {
+    tip.innerHTML = html; tip.style.opacity = 1;
+    const x = Math.min(ev.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+    tip.style.left = x + "px"; tip.style.top = (ev.clientY + 14) + "px";
+  });
+  target.addEventListener("mouseleave", () => { tip.style.opacity = 0; });
+}
+function txt(parent, x, y, s, opts = {}) {
+  return el("text", { x, y, "text-anchor": opts.anchor || "start", "dominant-baseline": opts.base || "auto",
+    style: `fill:var(${opts.color || "--ink-2"});font-family:var(--font-display);font-size:${opts.size || 12}px;font-weight:${opts.weight || 400};font-variant-numeric:tabular-nums` }, parent, s);
+}
+function topRounded(x, y, w, h, r) {
+  r = Math.min(r, w / 2, h);
+  return `M${x},${y + h} V${y + r} Q${x},${y} ${x + r},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h} Z`;
+}
+function rightRounded(x, y, w, h, r) {
+  r = Math.min(r, h / 2, w);
+  return `M${x},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h - r} Q${x + w},${y + h} ${x + w - r},${y + h} H${x} Z`;
+}
+function tableView(container, head, rows) {
+  const d = document.createElement("details"); d.className = "tbl";
+  d.innerHTML = `<summary>Show as table</summary><div class="scroll"><table><thead><tr>${head.map((h, i) => `<th class="${i ? "num" : ""}">${h}</th>`).join("")}</tr></thead><tbody>${rows.map(r => `<tr>${r.map((c, i) => `<td class="${i ? "num" : ""}">${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  const next = container.nextElementSibling;
+  (next && next.classList.contains("legend") ? next : container).after(d);
+}
+const fmtSigned = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1);
+
+/* vertical grouped bars, 0-100 % */
+function groupedBars(id, { categories, series, max = 100, unit = "%", height = 260 }) {
+  const box = document.getElementById(id);
+  function draw() {
+    box.innerHTML = "";
+    const W = Math.max(box.clientWidth, 280), H = height, m = { l: 34, r: 6, t: 18, b: 40 };
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": box.dataset.label || "" }, box);
+    const pw = W - m.l - m.r, ph = H - m.t - m.b, y = v => m.t + ph - v / max * ph;
+    for (let t = 0; t <= max; t += max / 4) {
+      el("line", { x1: m.l, x2: W - m.r, y1: y(t), y2: y(t), style: `stroke:var(--rule);stroke-width:1` }, svg);
+      txt(svg, m.l - 6, y(t), t + (t === max ? unit : ""), { anchor: "end", base: "middle", size: 11, color: "--ink-3" });
+    }
+    const gw = pw / categories.length, inner = gw * 0.78, bw = (inner - 2 * (series.length - 1)) / series.length;
+    const small = bw < 26;
+    categories.forEach((c, ci) => {
+      const gx = m.l + ci * gw + (gw - inner) / 2;
+      series.forEach((s, si) => {
+        const v = s.values[ci]; if (v == null) return;
+        const x = gx + si * (bw + 2), top = y(v), h = Math.max(m.t + ph - top, 0.5);
+        const p = el("path", { d: topRounded(x, top, bw, h, 4), style: `fill:var(${s.color})` }, svg);
+        const hit = el("rect", { x: x - 1, y: m.t, width: bw + 2, height: ph, fill: "transparent" }, svg);
+        hover(hit, `<b>${c}</b><br>${s.name}: ${v}${unit}`);
+        txt(svg, x + bw / 2, top - 5, small ? Math.round(v) : String(v), { anchor: "middle", size: small ? 10 : 11, color: "--ink-2" });
+      });
+      const words = c.split("\n");
+      words.forEach((w, wi) => txt(svg, m.l + ci * gw + gw / 2, H - m.b + 16 + wi * 14, w, { anchor: "middle", size: 11.5, color: "--ink-2" }));
+    });
+    el("line", { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), style: `stroke:var(--ink-3);stroke-width:1` }, svg);
+  }
+  draw(); new ResizeObserver(() => draw()).observe(box);
+  tableView(box, ["", ...series.map(s => s.name)], categories.map((c, ci) => [c.replace("\n", " "), ...series.map(s => s.values[ci] == null ? "–" : s.values[ci] + unit)]));
+}
+
+/* forest plot: dot + 95% interval per row, zero line */
+function forest(id, { rows, min, max, step = 10 }) {
+  const box = document.getElementById(id);
+  function draw() {
+    box.innerHTML = "";
+    const W = Math.max(box.clientWidth, 280), rowH = 30, m = { l: 112, r: 104, t: 8, b: 26 };
+    const H = m.t + rows.length * rowH + m.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img" }, box);
+    const pw = W - m.l - m.r, x = v => m.l + (v - min) / (max - min) * pw;
+    for (let t = min; t <= max + 1e-9; t += step) {
+      el("line", { x1: x(t), x2: x(t), y1: m.t, y2: H - m.b, style: `stroke:var(--rule);stroke-width:1` }, svg);
+      txt(svg, x(t), H - m.b + 16, (t > 0 ? "+" : t < 0 ? "−" : "") + Math.abs(t), { anchor: "middle", size: 11, color: "--ink-3" });
+    }
+    el("line", { x1: x(0), x2: x(0), y1: m.t, y2: H - m.b, style: `stroke:var(--ink-3);stroke-width:1.5` }, svg);
+    rows.forEach((r, i) => {
+      const cy = m.t + i * rowH + rowH / 2;
+      if (r.strong) el("rect", { x: 0, y: cy - rowH / 2 + 2, width: W, height: rowH - 4, rx: 4, style: "fill:var(--bg)" }, svg);
+      txt(svg, m.l - 10, cy, r.label, { anchor: "end", base: "middle", size: 12, weight: r.strong ? 600 : 400, color: r.strong ? "--ink" : "--ink-2" });
+      el("line", { x1: x(r.lo), x2: x(r.hi), y1: cy, y2: cy, style: `stroke:var(${r.color || "--s1"});stroke-width:2;stroke-linecap:round` }, svg);
+      el("circle", { cx: x(r.d), cy, r: r.strong ? 6 : 4.5, style: `fill:var(${r.color || "--s1"});stroke:var(--surface);stroke-width:2` }, svg);
+      txt(svg, W - m.r + 8, cy, `${fmtSigned(r.d)} [${fmtSigned(r.lo)}, ${fmtSigned(r.hi)}]`, { base: "middle", size: 11, color: r.strong ? "--ink" : "--ink-2", weight: r.strong ? 600 : 400 });
+      const hit = el("rect", { x: 0, y: cy - rowH / 2, width: W, height: rowH, fill: "transparent" }, svg);
+      hover(hit, `<b>${r.label}</b><br>${fmtSigned(r.d)} points, 95% interval ${fmtSigned(r.lo)} to ${fmtSigned(r.hi)}${r.extra ? "<br>" + r.extra : ""}`);
+    });
+  }
+  draw(); new ResizeObserver(() => draw()).observe(box);
+  tableView(box, ["", "difference", "95% interval"], rows.map(r => [r.label, fmtSigned(r.d), `${fmtSigned(r.lo)} to ${fmtSigned(r.hi)}`]));
+}
+
+/* horizontal bars, optionally two series per row */
+function hbars(id, { rows, series, max, unit = "", fmt = v => v }) {
+  const box = document.getElementById(id);
+  function draw() {
+    box.innerHTML = "";
+    const W = Math.max(box.clientWidth, 280), bh = 14, gap = 2, n = series.length, rowH = n * bh + (n - 1) * gap + 14;
+    const m = { l: 150, r: 52, t: 4, b: 6 }, H = m.t + rows.length * rowH + m.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img" }, box);
+    const pw = W - m.l - m.r, x = v => v / max * pw;
+    el("line", { x1: m.l, x2: m.l, y1: m.t, y2: H - m.b, style: "stroke:var(--ink-3);stroke-width:1" }, svg);
+    rows.forEach((r, i) => {
+      const y0 = m.t + i * rowH + 7;
+      txt(svg, m.l - 10, y0 + (n * bh + (n - 1) * gap) / 2, r.label, { anchor: "end", base: "middle", size: 12, color: "--ink-2" });
+      series.forEach((s, si) => {
+        const v = r.values[si]; if (v == null) return;
+        const y = y0 + si * (bh + gap);
+        el("path", { d: rightRounded(m.l, y, Math.max(x(v), 1), bh, 4), style: `fill:var(${s.color})` }, svg);
+        txt(svg, m.l + x(v) + 6, y + bh / 2, fmt(v) + unit, { base: "middle", size: 11, color: "--ink-2" });
+        const hit = el("rect", { x: m.l, y: y - 1, width: pw, height: bh + 2, fill: "transparent" }, svg);
+        hover(hit, `<b>${r.label}</b><br>${s.name ? s.name + ": " : ""}${fmt(v)}${unit}`);
+      });
+    });
+  }
+  draw(); new ResizeObserver(() => draw()).observe(box);
+  tableView(box, ["", ...series.map(s => s.name || "value")], rows.map(r => [r.label, ...r.values.map(v => v == null ? "–" : fmt(v) + unit)]));
+}
+
+/* dumbbell: before → after per row */
+function dumbbell(id, { rows, max, aName, bName }) {
+  const box = document.getElementById(id);
+  function draw() {
+    box.innerHTML = "";
+    const W = Math.max(box.clientWidth, 280), rowH = 30, m = { l: 112, r: 20, t: 6, b: 24 };
+    const H = m.t + rows.length * rowH + m.b;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img" }, box);
+    const pw = W - m.l - m.r, x = v => m.l + v / max * pw;
+    for (let t = 0; t <= max + 1e-9; t += 0.2) {
+      el("line", { x1: x(t), x2: x(t), y1: m.t, y2: H - m.b, style: "stroke:var(--rule);stroke-width:1" }, svg);
+      txt(svg, x(t), H - m.b + 16, t.toFixed(1), { anchor: "middle", size: 11, color: "--ink-3" });
+    }
+    rows.forEach((r, i) => {
+      const cy = m.t + i * rowH + rowH / 2;
+      txt(svg, m.l - 10, cy, r.label, { anchor: "end", base: "middle", size: 12, color: "--ink-2" });
+      el("line", { x1: x(r.a), x2: x(r.b), y1: cy, y2: cy, style: "stroke:var(--ink-3);stroke-width:2" }, svg);
+      el("circle", { cx: x(r.a), cy, r: 5, style: "fill:var(--s2);stroke:var(--surface);stroke-width:2" }, svg);
+      el("circle", { cx: x(r.b), cy, r: 5, style: "fill:var(--s1);stroke:var(--surface);stroke-width:2" }, svg);
+      const lo = Math.min(r.a, r.b), hi = Math.max(r.a, r.b);
+      txt(svg, x(lo) - 9, cy, (r.a < r.b ? r.a : r.b).toFixed(2), { anchor: "end", base: "middle", size: 10.5, color: "--ink-3" });
+      txt(svg, x(hi) + 9, cy, (r.a < r.b ? r.b : r.a).toFixed(2), { base: "middle", size: 10.5, color: "--ink-3" });
+      const hit = el("rect", { x: 0, y: cy - rowH / 2, width: W, height: rowH, fill: "transparent" }, svg);
+      hover(hit, `<b>${r.label}</b><br>${aName}: ${r.a.toFixed(2)} → ${bName}: ${r.b.toFixed(2)}`);
+    });
+  }
+  draw(); new ResizeObserver(() => draw()).observe(box);
+  tableView(box, ["", aName, bName], rows.map(r => [r.label, r.a.toFixed(2), r.b.toFixed(2)]));
+}
+
+/* ---------- data (from runs.csv of each experiment and FINDINGS.md) ---------- */
+hbars("ch-ranking", {
+  max: 100, unit: "%", series: [{ name: "single agent", color: "--s1" }],
+  rows: [["gemma3-4b", 62], ["qwen3-8b", 54], ["qwen3-4b", 50], ["qwen3-1.7b", 42], ["gemma3-1b", 38], ["qwen3-0.6b", 33],
+         ["smollm2-360m", 33], ["llama3.2-1b", 29], ["smollm2-1.7b", 29], ["llama3.2-3b", 17]].map(([label, v]) => ({ label, values: [v] }))
+});
+groupedBars("ch-settings", {
+  categories: ["depth 1\n0 distractors", "depth 1\n3 distractors", "depth 2\n0 distractors", "depth 2\n3 distractors"],
+  series: [
+    { name: "fully connected, talking", color: "--s1", values: [98, 57, 20, 13] },
+    { name: "fully connected, silenced", color: "--s2", values: [98, 63, 33, 13] },
+    { name: "star, talking", color: "--s3", values: [100, 62, 35, 12] },
+    { name: "one agent", color: "--s4", values: [92, 38, 17, 8] }
+  ]
+});
+(function addSettingsLegend() {
+  const box = document.getElementById("ch-settings");
+  const lg = document.createElement("div"); lg.className = "legend";
+  lg.innerHTML = '<span><i style="background:var(--s1)"></i>fully connected, talking</span><span><i style="background:var(--s2)"></i>fully connected, silenced</span><span><i style="background:var(--s3)"></i>star, talking</span><span><i style="background:var(--s4)"></i>one agent</span>';
+  box.after(lg);
+  const d = lg.nextElementSibling; if (d && d.tagName === "DETAILS") lg.after(d);
+})();
+dumbbell("ch-v2", {
+  max: 0.8, aName: "v1", bName: "v2",
+  rows: [
+    { label: "llama3.2-3b", a: 0.59, b: 0.22 }, { label: "llama3.2-1b", a: 0.63, b: 0.45 }, { label: "smollm2-1.7b", a: 0.64, b: 0.38 },
+    { label: "smollm2-360m", a: 0.69, b: 0.63 }, { label: "gemma3-1b", a: 0.26, b: 0.19 }, { label: "qwen3-4b (control)", a: 0.04, b: 0.03 }
+  ]
+});
+groupedBars("ch-main-rates", {
+  categories: ["one agent", "one agent,\nteam's tokens", "silenced,\ntemp. sweep", "silenced", "with links"],
+  series: [
+    { name: "fully_connected (6)", color: "--s1", values: [47.5, 59.4, 58.1, 61.9, 52.5] },
+    { name: "star (3)", color: "--s2", values: [47.5, 53.8, 60.0, 61.9, 63.1] }
+  ]
+});
+const mf = { "qwen3-4b": [-12.5, -22.5, -2.5], "qwen3-8b": [-7.5, -17.5, 0.0], "gemma3-4b": [-12.5, -25.0, 0.0], "llama3.2-3b": [-5.0, -12.5, 0.0], "all 4 models": [-9.4, -13.8, -5.0] };
+const ms = { "qwen3-4b": [10.0, 2.5, 20.0], "qwen3-8b": [0.0, -10.0, 10.0], "gemma3-4b": [5.0, -7.5, 17.5], "llama3.2-3b": [-10.0, -22.5, 0.0], "all 4 models": [1.2, -4.4, 6.9] };
+forest("ch-forest-fc", { min: -30, max: 30, rows: Object.entries(mf).map(([label, [d, lo, hi]]) => ({ label, d, lo, hi, strong: label.startsWith("all") })) });
+forest("ch-forest-star", { min: -30, max: 30, rows: Object.entries(ms).map(([label, [d, lo, hi]]) => ({ label, d, lo, hi, strong: label.startsWith("all"), color: "--s2" })) });
+forest("ch-forest-fu", {
+  min: -20, max: 20, step: 5,
+  rows: [
+    { label: "fully conn., 6", d: -10.8, lo: -17.5, hi: -5.0, extra: "talking 54.2% vs silenced 65.0%" },
+    { label: "fully conn., 3", d: -7.5, lo: -14.2, hi: -0.8, extra: "talking 51.7% vs silenced 59.2%" },
+    { label: "results only, 6", d: -4.2, lo: -9.2, hi: 1.7, extra: "60.8% vs 65.0%" },
+    { label: "messages only, 6", d: -6.7, lo: -13.3, hi: 0.0, extra: "58.3% vs 65.0%" },
+    { label: "star, 3", d: 4.2, lo: -2.5, hi: 10.8, color: "--s2", extra: "talking 65.8% vs silenced 61.7%" },
+    { label: "star, 6", d: 0.8, lo: -5.0, hi: 6.7, color: "--s2", extra: "talking 66.7% vs silenced 65.8%" }
+  ]
+});
+hbars("ch-cost", {
+  max: 30, unit: "k", fmt: v => v.toFixed(1),
+  series: [{ name: "with links", color: "--s1" }, { name: "silenced", color: "--s2" }],
+  rows: [
+    { label: "star, 3 agents", values: [9.2, 9.2] }, { label: "fully conn., 3", values: [12.0, 8.2] },
+    { label: "star, 6 agents", values: [17.8, 16.4] }, { label: "fully conn., 6", values: [26.9, 14.8] },
+    { label: "results only, 6", values: [17.8, null] }, { label: "messages only, 6", values: [23.5, null] }
+  ]
+});
+groupedBars("ch-rand-1", {
+  height: 240, categories: ["1 agent", "3 agents", "6 agents", "6, with\nlinks"],
+  series: [{ name: "LLM agents", color: "--s1", values: [65.0, 82.5, 82.5, 73.8] }, { name: "random agents", color: "--s3", values: [25.0, 53.5, 83.5, 86.0] }]
+});
+groupedBars("ch-rand-2", {
+  height: 240, categories: ["1 agent", "3 agents", "6 agents", "6, with\nlinks"],
+  series: [{ name: "LLM agents", color: "--s1", values: [30.0, 41.2, 41.2, 31.2] }, { name: "random agents", color: "--s3", values: [27.5, 47.5, 64.0, 80.5] }]
+});
+groupedBars("ch-hints2", {
+  height: 280, categories: ["notes split,\nwith decoys", "notes split,\nno decoys", "every agent\nholds both"],
+  series: [
+    { name: "silenced", color: "--s1", values: [21.7, 32.5, 90.8] },
+    { name: "talking", color: "--s2", values: [21.7, 31.7, 82.5] },
+    { name: "talking, told to share", color: "--s3", values: [36.7, 45.0, null] },
+    { name: "1 agent", color: "--s4", values: [70.0, 70.0, 69.2] }
+  ]
+});
+groupedBars("ch-hints2-use", {
+  height: 280, categories: ["4B models,\nwith decoys", "4B models,\nno decoys", "Qwen3-8B,\nwith decoys", "Qwen3-8B,\nno decoys"],
+  series: [
+    { name: "silenced", color: "--s1", values: [21.7, 32.5, 20.0, 22.5] },
+    { name: "talking", color: "--s2", values: [21.7, 31.7, 47.5, 37.5] },
+    { name: "talking, told to share", color: "--s3", values: [36.7, 45.0, 72.5, 65.0] },
+    { name: "told to share and to use", color: "--s4", values: [31.7, 40.8, 67.5, 60.0] }
+  ]
+});
+groupedBars("ch-hints", {
+  height: 280, categories: ["no notes", "notes split\nbetween 2 agents", "every agent\nholds both"],
+  series: [
+    { name: "6 agents, silenced", color: "--s1", values: [10.4, 22.9, 89.6] },
+    { name: "6 agents, fully connected", color: "--s2", values: [0.0, 27.1, 81.2] },
+    { name: "3 agents, star", color: "--s3", values: [4.2, 29.2, 81.2] },
+    { name: "1 agent", color: "--s4", values: [2.1, 60.4, 62.5] }
+  ]
+});
+</script>
+</body>
+</html>

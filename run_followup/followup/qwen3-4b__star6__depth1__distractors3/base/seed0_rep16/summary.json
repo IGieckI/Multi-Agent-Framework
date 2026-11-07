@@ -1,0 +1,127 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "castle",
+      "flower",
+      "pasta",
+      "water",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "pollen",
+    "intermediate": [],
+    "distractors": [
+      "castle",
+      "pasta",
+      "water"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.2222
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "leaf",
+        "pollen"
+      ],
+      "coverage": 0.1111,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "leaf",
+        "pollen"
+      ],
+      "coverage": 0.1111,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fruit",
+        "leaf",
+        "perfume",
+        "pollen"
+      ],
+      "coverage": 0.2222,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fruit",
+        "leaf",
+        "perfume",
+        "pollen"
+      ],
+      "coverage": 0.2222,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fruit",
+        "leaf",
+        "perfume",
+        "pollen"
+      ],
+      "coverage": 0.2222,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fruit",
+        "leaf",
+        "perfume",
+        "pollen"
+      ],
+      "coverage": 0.2222,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5778,
+    "completion_tokens": 605,
+    "calls": 10,
+    "wall_clock_s": 37.176,
+    "lines": {
+      "agents": {
+        "total_tokens": 5778,
+        "completion_tokens": 605,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

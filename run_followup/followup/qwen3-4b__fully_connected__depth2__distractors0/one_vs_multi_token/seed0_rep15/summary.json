@@ -1,0 +1,54 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 34,
+  "task": {
+    "initial": [
+      "life",
+      "sand",
+      "wave"
+    ],
+    "max_steps": 240,
+    "target": "animal",
+    "intermediate": [
+      "beach"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.1111
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 34,
+      "new_items": [
+        "beach"
+      ],
+      "coverage": 0.1111,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 19946,
+    "completion_tokens": 4150,
+    "calls": 34,
+    "wall_clock_s": 298.886,
+    "lines": {
+      "agents": {
+        "total_tokens": 19946,
+        "completion_tokens": 4150,
+        "calls": 34
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

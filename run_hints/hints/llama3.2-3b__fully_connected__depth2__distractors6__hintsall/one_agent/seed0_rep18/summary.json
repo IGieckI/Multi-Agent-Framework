@@ -1,0 +1,80 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "air",
+      "earth",
+      "human",
+      "lava",
+      "livestock",
+      "paper",
+      "rope",
+      "wire",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "warrior",
+    "intermediate": [
+      "bow"
+    ],
+    "distractors": [
+      "air",
+      "earth",
+      "lava",
+      "livestock",
+      "paper",
+      "rope"
+    ],
+    "path": [
+      [
+        "wire",
+        "wood",
+        "bow"
+      ],
+      [
+        "bow",
+        "human",
+        "warrior"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0039
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "bow",
+        "warrior"
+      ],
+      "coverage": 0.0039,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2463,
+    "completion_tokens": 396,
+    "calls": 4,
+    "wall_clock_s": 17.004,
+    "lines": {
+      "agents": {
+        "total_tokens": 2463,
+        "completion_tokens": 396,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "big",
+      "mouse",
+      "pressure",
+      "puddle",
+      "statue",
+      "steam",
+      "stone",
+      "wagon"
+    ],
+    "max_steps": 4,
+    "target": "lake",
+    "intermediate": [
+      "pond"
+    ],
+    "distractors": [
+      "mouse",
+      "pressure",
+      "statue",
+      "steam",
+      "stone",
+      "wagon"
+    ],
+    "path": [
+      [
+        "puddle",
+        "puddle",
+        "pond"
+      ],
+      [
+        "big",
+        "pond",
+        "lake"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.0545
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "boulder",
+        "geyser",
+        "granite"
+      ],
+      "coverage": 0.0545,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "granite"
+      ],
+      "coverage": 0.0182,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "boulder",
+        "geyser"
+      ],
+      "coverage": 0.0364,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11884,
+    "completion_tokens": 1824,
+    "calls": 16,
+    "wall_clock_s": 71.16,
+    "lines": {
+      "agents": {
+        "total_tokens": 11884,
+        "completion_tokens": 1824,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

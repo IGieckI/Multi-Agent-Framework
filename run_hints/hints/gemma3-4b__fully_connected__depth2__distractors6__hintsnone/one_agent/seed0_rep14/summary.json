@@ -1,0 +1,78 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "big",
+      "mouse",
+      "pressure",
+      "puddle",
+      "statue",
+      "steam",
+      "stone",
+      "wagon"
+    ],
+    "max_steps": 4,
+    "target": "lake",
+    "intermediate": [
+      "pond"
+    ],
+    "distractors": [
+      "mouse",
+      "pressure",
+      "statue",
+      "steam",
+      "stone",
+      "wagon"
+    ],
+    "path": [
+      [
+        "puddle",
+        "puddle",
+        "pond"
+      ],
+      [
+        "big",
+        "pond",
+        "lake"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0182
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pond"
+      ],
+      "coverage": 0.0182,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2013,
+    "completion_tokens": 116,
+    "calls": 4,
+    "wall_clock_s": 4.311,
+    "lines": {
+      "agents": {
+        "total_tokens": 2013,
+        "completion_tokens": 116,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

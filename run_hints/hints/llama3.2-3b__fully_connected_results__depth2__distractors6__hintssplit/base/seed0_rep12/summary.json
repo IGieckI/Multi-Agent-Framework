@@ -1,0 +1,150 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "air",
+      "fire",
+      "gravestone",
+      "house",
+      "machine",
+      "motion",
+      "plant",
+      "pond",
+      "pressure"
+    ],
+    "max_steps": 4,
+    "target": "windmill",
+    "intermediate": [
+      "wind"
+    ],
+    "distractors": [
+      "fire",
+      "gravestone",
+      "machine",
+      "motion",
+      "plant",
+      "pond"
+    ],
+    "path": [
+      [
+        "air",
+        "pressure",
+        "wind"
+      ],
+      [
+        "house",
+        "wind",
+        "windmill"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.0833
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "smoke",
+        "tobacco",
+        "wind"
+      ],
+      "coverage": 0.0556,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "smoke",
+        "tobacco",
+        "wind"
+      ],
+      "coverage": 0.0556,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "smoke",
+        "tobacco"
+      ],
+      "coverage": 0.0417,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "smoke",
+        "tobacco",
+        "wind"
+      ],
+      "coverage": 0.0556,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "smoke",
+        "tobacco",
+        "wind"
+      ],
+      "coverage": 0.0556,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "lake",
+        "reed",
+        "wind"
+      ],
+      "coverage": 0.0417,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 18091,
+    "completion_tokens": 2400,
+    "calls": 24,
+    "wall_clock_s": 100.052,
+    "lines": {
+      "agents": {
+        "total_tokens": 18091,
+        "completion_tokens": 2400,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "cook",
+      "cookie cutter",
+      "desert",
+      "life",
+      "painter",
+      "rainbow",
+      "science",
+      "village",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "domestication",
+    "intermediate": [
+      "animal"
+    ],
+    "distractors": [
+      "cook",
+      "cookie cutter",
+      "painter",
+      "rainbow",
+      "village",
+      "water"
+    ],
+    "path": [
+      [
+        "desert",
+        "life",
+        "animal"
+      ],
+      [
+        "animal",
+        "science",
+        "domestication"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0278
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "animal"
+      ],
+      "coverage": 0.0278,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "animal"
+      ],
+      "coverage": 0.0278,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "animal"
+      ],
+      "coverage": 0.0278,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "animal"
+      ],
+      "coverage": 0.0278,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "animal"
+      ],
+      "coverage": 0.0278,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "animal"
+      ],
+      "coverage": 0.0278,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 17753,
+    "completion_tokens": 1383,
+    "calls": 24,
+    "wall_clock_s": 51.551,
+    "lines": {
+      "agents": {
+        "total_tokens": 17753,
+        "completion_tokens": 1383,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

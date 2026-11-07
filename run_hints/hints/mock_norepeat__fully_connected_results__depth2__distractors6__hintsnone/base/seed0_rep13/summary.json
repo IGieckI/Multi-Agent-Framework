@@ -1,0 +1,134 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "big",
+      "dough",
+      "hill",
+      "light",
+      "ore",
+      "rain",
+      "rope",
+      "tree",
+      "venus"
+    ],
+    "max_steps": 4,
+    "target": "cable car",
+    "intermediate": [
+      "mountain"
+    ],
+    "distractors": [
+      "dough",
+      "light",
+      "ore",
+      "rain",
+      "tree",
+      "venus"
+    ],
+    "path": [
+      [
+        "big",
+        "hill",
+        "mountain"
+      ],
+      [
+        "mountain",
+        "rope",
+        "cable car"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.1852
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "mountain",
+        "optical fiber"
+      ],
+      "coverage": 0.0741,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "optical fiber"
+      ],
+      "coverage": 0.037,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "christmas tree"
+      ],
+      "coverage": 0.037,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "mountain",
+        "rainbow"
+      ],
+      "coverage": 0.0741,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "flood"
+      ],
+      "coverage": 0.037,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 13025,
+    "completion_tokens": 356,
+    "calls": 24,
+    "wall_clock_s": 0.111,
+    "lines": {
+      "agents": {
+        "total_tokens": 13025,
+        "completion_tokens": 356,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

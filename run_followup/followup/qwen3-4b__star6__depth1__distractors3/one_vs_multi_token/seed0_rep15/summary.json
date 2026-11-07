@@ -1,0 +1,56 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 28,
+  "task": {
+    "initial": [
+      "beach",
+      "dew",
+      "life",
+      "mountain",
+      "mountain goat"
+    ],
+    "max_steps": 240,
+    "target": "animal",
+    "intermediate": [],
+    "distractors": [
+      "dew",
+      "mountain",
+      "mountain goat"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 0,
+    "union_coverage": 0.0
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 28,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 15137,
+    "completion_tokens": 1849,
+    "calls": 28,
+    "wall_clock_s": 121.262,
+    "lines": {
+      "agents": {
+        "total_tokens": 15137,
+        "completion_tokens": 1849,
+        "calls": 28
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

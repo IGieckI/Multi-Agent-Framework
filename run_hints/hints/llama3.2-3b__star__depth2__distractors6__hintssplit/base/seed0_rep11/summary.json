@@ -1,0 +1,102 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "candle",
+      "cotton",
+      "day",
+      "juice",
+      "light",
+      "livestock",
+      "paper",
+      "planet",
+      "science"
+    ],
+    "max_steps": 4,
+    "target": "solar system",
+    "intermediate": [
+      "sun"
+    ],
+    "distractors": [
+      "candle",
+      "cotton",
+      "juice",
+      "livestock",
+      "paper",
+      "science"
+    ],
+    "path": [
+      [
+        "day",
+        "light",
+        "sun"
+      ],
+      [
+        "planet",
+        "sun",
+        "solar system"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.1667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "sun"
+      ],
+      "coverage": 0.0833,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "sun",
+        "thread"
+      ],
+      "coverage": 0.1667,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "thread"
+      ],
+      "coverage": 0.0833,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9878,
+    "completion_tokens": 1557,
+    "calls": 13,
+    "wall_clock_s": 64.577,
+    "lines": {
+      "agents": {
+        "total_tokens": 9878,
+        "completion_tokens": 1557,
+        "calls": 13
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

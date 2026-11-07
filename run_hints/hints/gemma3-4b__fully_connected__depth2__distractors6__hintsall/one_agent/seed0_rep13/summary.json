@@ -1,0 +1,80 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "big",
+      "dough",
+      "hill",
+      "light",
+      "ore",
+      "rain",
+      "rope",
+      "tree",
+      "venus"
+    ],
+    "max_steps": 4,
+    "target": "cable car",
+    "intermediate": [
+      "mountain"
+    ],
+    "distractors": [
+      "dough",
+      "light",
+      "ore",
+      "rain",
+      "tree",
+      "venus"
+    ],
+    "path": [
+      [
+        "big",
+        "hill",
+        "mountain"
+      ],
+      [
+        "mountain",
+        "rope",
+        "cable car"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0741
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "cable car",
+        "mountain"
+      ],
+      "coverage": 0.0741,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1112,
+    "completion_tokens": 97,
+    "calls": 2,
+    "wall_clock_s": 3.793,
+    "lines": {
+      "agents": {
+        "total_tokens": 1112,
+        "completion_tokens": 97,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

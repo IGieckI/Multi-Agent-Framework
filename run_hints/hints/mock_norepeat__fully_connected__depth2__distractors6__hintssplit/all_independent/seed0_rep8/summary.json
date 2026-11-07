@@ -1,0 +1,140 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "ambulance",
+      "ant",
+      "fire",
+      "human",
+      "robot",
+      "rock",
+      "story",
+      "sunflower",
+      "tree"
+    ],
+    "max_steps": 4,
+    "target": "small",
+    "intermediate": [
+      "philosophy"
+    ],
+    "distractors": [
+      "ambulance",
+      "fire",
+      "robot",
+      "rock",
+      "sunflower",
+      "tree"
+    ],
+    "path": [
+      [
+        "human",
+        "story",
+        "philosophy"
+      ],
+      [
+        "ant",
+        "philosophy",
+        "small"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 9,
+    "union_coverage": 0.0283
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "cyborg",
+        "hero",
+        "philosophy"
+      ],
+      "coverage": 0.0094,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "hero",
+        "philosophy"
+      ],
+      "coverage": 0.0063,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "charcoal",
+        "smoke"
+      ],
+      "coverage": 0.0094,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "energy",
+        "legend"
+      ],
+      "coverage": 0.0063,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "tool"
+      ],
+      "coverage": 0.0031,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "legend"
+      ],
+      "coverage": 0.0031,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12272,
+    "completion_tokens": 372,
+    "calls": 24,
+    "wall_clock_s": 0.114,
+    "lines": {
+      "agents": {
+        "total_tokens": 12272,
+        "completion_tokens": 372,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}
