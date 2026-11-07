@@ -1,0 +1,80 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "boat",
+      "earth",
+      "firefighter",
+      "lava",
+      "lumberjack",
+      "petroleum",
+      "star",
+      "sun",
+      "wizard"
+    ],
+    "max_steps": 4,
+    "target": "supernova",
+    "intermediate": [
+      "explosion"
+    ],
+    "distractors": [
+      "boat",
+      "earth",
+      "firefighter",
+      "lumberjack",
+      "star",
+      "wizard"
+    ],
+    "path": [
+      [
+        "lava",
+        "petroleum",
+        "explosion"
+      ],
+      [
+        "explosion",
+        "sun",
+        "supernova"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0769
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "explosion",
+        "supernova"
+      ],
+      "coverage": 0.0769,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1114,
+    "completion_tokens": 88,
+    "calls": 2,
+    "wall_clock_s": 3.508,
+    "lines": {
+      "agents": {
+        "total_tokens": 1114,
+        "completion_tokens": 88,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

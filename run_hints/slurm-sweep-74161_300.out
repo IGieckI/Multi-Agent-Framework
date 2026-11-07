@@ -1,0 +1,4 @@
+node=slurmng-n1 job=74161 shard=300/1200
+name, memory.total [MiB]
+NVIDIA L40, 46068 MiB
+shard 300/1200: 1 units, 0 failed runs (see /scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/hints/sweep/shard300of1200.jsonl)

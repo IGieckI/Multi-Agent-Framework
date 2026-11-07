@@ -1,0 +1,106 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "grass",
+      "human",
+      "medusa",
+      "owl",
+      "pumpkin",
+      "time",
+      "village",
+      "water",
+      "wizard"
+    ],
+    "max_steps": 4,
+    "target": "archeologist",
+    "intermediate": [
+      "ruins"
+    ],
+    "distractors": [
+      "grass",
+      "medusa",
+      "owl",
+      "pumpkin",
+      "water",
+      "wizard"
+    ],
+    "path": [
+      [
+        "time",
+        "village",
+        "ruins"
+      ],
+      [
+        "human",
+        "ruins",
+        "archeologist"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.0886
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "algae",
+        "dew",
+        "family",
+        "love"
+      ],
+      "coverage": 0.0506,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "farmer",
+        "hay",
+        "wheat"
+      ],
+      "coverage": 0.038,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "farmer"
+      ],
+      "coverage": 0.0127,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10057,
+    "completion_tokens": 802,
+    "calls": 16,
+    "wall_clock_s": 31.467,
+    "lines": {
+      "agents": {
+        "total_tokens": 10057,
+        "completion_tokens": 802,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

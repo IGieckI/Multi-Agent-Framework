@@ -1,0 +1,102 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "blade",
+      "electricity",
+      "farmer",
+      "fire",
+      "heat",
+      "knife",
+      "meat",
+      "reindeer",
+      "snow"
+    ],
+    "max_steps": 4,
+    "target": "steam",
+    "intermediate": [
+      "water"
+    ],
+    "distractors": [
+      "blade",
+      "electricity",
+      "farmer",
+      "knife",
+      "meat",
+      "reindeer"
+    ],
+    "path": [
+      [
+        "heat",
+        "snow",
+        "water"
+      ],
+      [
+        "fire",
+        "water",
+        "steam"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.0526
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "steak",
+        "water"
+      ],
+      "coverage": 0.0526,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "steak"
+      ],
+      "coverage": 0.0263,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "steak"
+      ],
+      "coverage": 0.0263,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10056,
+    "completion_tokens": 1782,
+    "calls": 15,
+    "wall_clock_s": 70.678,
+    "lines": {
+      "agents": {
+        "total_tokens": 10056,
+        "completion_tokens": 1782,
+        "calls": 15
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

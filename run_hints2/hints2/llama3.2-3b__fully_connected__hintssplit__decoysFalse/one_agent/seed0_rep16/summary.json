@@ -1,0 +1,80 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "air",
+      "corpse",
+      "human",
+      "hummingbird",
+      "motion",
+      "ocean",
+      "pencil",
+      "penguin",
+      "pipe"
+    ],
+    "max_steps": 4,
+    "target": "wave",
+    "intermediate": [
+      "wind"
+    ],
+    "distractors": [
+      "corpse",
+      "human",
+      "hummingbird",
+      "pencil",
+      "penguin",
+      "pipe"
+    ],
+    "path": [
+      [
+        "air",
+        "motion",
+        "wind"
+      ],
+      [
+        "ocean",
+        "wind",
+        "wave"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0556
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "wave",
+        "wind"
+      ],
+      "coverage": 0.0556,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1790,
+    "completion_tokens": 241,
+    "calls": 3,
+    "wall_clock_s": 9.236,
+    "lines": {
+      "agents": {
+        "total_tokens": 1790,
+        "completion_tokens": 241,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

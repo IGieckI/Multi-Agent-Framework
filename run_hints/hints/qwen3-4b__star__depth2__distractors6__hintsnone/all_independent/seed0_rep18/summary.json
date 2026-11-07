@@ -1,0 +1,101 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "air",
+      "earth",
+      "human",
+      "lava",
+      "livestock",
+      "paper",
+      "rope",
+      "wire",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "warrior",
+    "intermediate": [
+      "bow"
+    ],
+    "distractors": [
+      "air",
+      "earth",
+      "lava",
+      "livestock",
+      "paper",
+      "rope"
+    ],
+    "path": [
+      [
+        "wire",
+        "wood",
+        "bow"
+      ],
+      [
+        "bow",
+        "human",
+        "warrior"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.002
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electrician"
+      ],
+      "coverage": 0.002,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electrician"
+      ],
+      "coverage": 0.002,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electrician"
+      ],
+      "coverage": 0.002,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7995,
+    "completion_tokens": 1321,
+    "calls": 13,
+    "wall_clock_s": 94.609,
+    "lines": {
+      "agents": {
+        "total_tokens": 7995,
+        "completion_tokens": 1321,
+        "calls": 13
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "boulder",
+      "fox",
+      "hacker",
+      "machine",
+      "pipe",
+      "rope",
+      "science",
+      "storm",
+      "story"
+    ],
+    "max_steps": 4,
+    "target": "wire",
+    "intermediate": [
+      "electricity"
+    ],
+    "distractors": [
+      "boulder",
+      "fox",
+      "hacker",
+      "machine",
+      "pipe",
+      "story"
+    ],
+    "path": [
+      [
+        "science",
+        "storm",
+        "electricity"
+      ],
+      [
+        "electricity",
+        "rope",
+        "wire"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0833
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "electricity",
+        "wire"
+      ],
+      "coverage": 0.0833,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "electricity",
+        "wire"
+      ],
+      "coverage": 0.0833,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "electricity",
+        "wire"
+      ],
+      "coverage": 0.0833,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6613,
+    "completion_tokens": 573,
+    "calls": 10,
+    "wall_clock_s": 22.889,
+    "lines": {
+      "agents": {
+        "total_tokens": 6613,
+        "completion_tokens": 573,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

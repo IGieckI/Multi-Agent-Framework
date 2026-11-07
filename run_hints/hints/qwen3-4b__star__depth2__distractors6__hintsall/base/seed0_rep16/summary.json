@@ -1,0 +1,103 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "airplane",
+      "fish",
+      "garden",
+      "paper",
+      "pirate ship",
+      "plant",
+      "tool",
+      "wind",
+      "wine"
+    ],
+    "max_steps": 4,
+    "target": "pollen",
+    "intermediate": [
+      "flower"
+    ],
+    "distractors": [
+      "airplane",
+      "fish",
+      "paper",
+      "pirate ship",
+      "tool",
+      "wine"
+    ],
+    "path": [
+      [
+        "garden",
+        "plant",
+        "flower"
+      ],
+      [
+        "flower",
+        "wind",
+        "pollen"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.12
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "flower",
+        "leaf",
+        "pollen"
+      ],
+      "coverage": 0.12,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "pollen"
+      ],
+      "coverage": 0.04,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "pollen"
+      ],
+      "coverage": 0.04,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3352,
+    "completion_tokens": 474,
+    "calls": 5,
+    "wall_clock_s": 31.272,
+    "lines": {
+      "agents": {
+        "total_tokens": 3352,
+        "completion_tokens": 474,
+        "calls": 5
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

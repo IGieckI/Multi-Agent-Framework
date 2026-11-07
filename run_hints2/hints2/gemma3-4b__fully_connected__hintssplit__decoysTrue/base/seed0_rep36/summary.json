@@ -1,0 +1,129 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "alcohol",
+      "earth",
+      "explosion",
+      "garden",
+      "mineral",
+      "plant",
+      "robot",
+      "stone",
+      "sword"
+    ],
+    "max_steps": 4,
+    "target": "perfume",
+    "intermediate": [
+      "flower"
+    ],
+    "distractors": [
+      "earth",
+      "explosion",
+      "mineral",
+      "robot",
+      "stone",
+      "sword"
+    ],
+    "path": [
+      [
+        "garden",
+        "plant",
+        "flower"
+      ],
+      [
+        "alcohol",
+        "flower",
+        "perfume"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.125
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "clay"
+      ],
+      "coverage": 0.0312,
+      "invalid": 1,
+      "no_valid_answers": 2
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 2
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "grass"
+      ],
+      "coverage": 0.0312,
+      "invalid": 1,
+      "no_valid_answers": 2
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 2
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 2
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "flower",
+        "perfume"
+      ],
+      "coverage": 0.0625,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 36633,
+    "completion_tokens": 2240,
+    "calls": 45,
+    "wall_clock_s": 89.56,
+    "lines": {
+      "agents": {
+        "total_tokens": 36633,
+        "completion_tokens": 2240,
+        "calls": 45
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

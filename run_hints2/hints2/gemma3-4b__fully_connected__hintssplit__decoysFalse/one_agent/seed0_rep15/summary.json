@@ -1,0 +1,80 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "armor",
+      "charcoal",
+      "electricity",
+      "ice cream",
+      "life",
+      "roe",
+      "sand",
+      "sugar",
+      "wave"
+    ],
+    "max_steps": 4,
+    "target": "animal",
+    "intermediate": [
+      "beach"
+    ],
+    "distractors": [
+      "armor",
+      "charcoal",
+      "electricity",
+      "ice cream",
+      "roe",
+      "sugar"
+    ],
+    "path": [
+      [
+        "sand",
+        "wave",
+        "beach"
+      ],
+      [
+        "beach",
+        "life",
+        "animal"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.1053
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "animal",
+        "beach"
+      ],
+      "coverage": 0.1053,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2234,
+    "completion_tokens": 182,
+    "calls": 4,
+    "wall_clock_s": 7.278,
+    "lines": {
+      "agents": {
+        "total_tokens": 2234,
+        "completion_tokens": 182,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

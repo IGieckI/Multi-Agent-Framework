@@ -1,0 +1,102 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "cook",
+      "cookie cutter",
+      "desert",
+      "life",
+      "painter",
+      "rainbow",
+      "science",
+      "village",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "domestication",
+    "intermediate": [
+      "animal"
+    ],
+    "distractors": [
+      "cook",
+      "cookie cutter",
+      "painter",
+      "rainbow",
+      "village",
+      "water"
+    ],
+    "path": [
+      [
+        "desert",
+        "life",
+        "animal"
+      ],
+      [
+        "animal",
+        "science",
+        "domestication"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.1111
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "oasis"
+      ],
+      "coverage": 0.0278,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "city",
+        "double rainbow!"
+      ],
+      "coverage": 0.0556,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "puddle"
+      ],
+      "coverage": 0.0278,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7679,
+    "completion_tokens": 239,
+    "calls": 12,
+    "wall_clock_s": 0.09,
+    "lines": {
+      "agents": {
+        "total_tokens": 7679,
+        "completion_tokens": 239,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

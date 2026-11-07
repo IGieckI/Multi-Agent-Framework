@@ -1,0 +1,79 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "banana",
+      "bird",
+      "graveyard",
+      "heat",
+      "island",
+      "mountain goat",
+      "rainbow",
+      "sand",
+      "wheel"
+    ],
+    "max_steps": 4,
+    "target": "prism",
+    "intermediate": [
+      "glass"
+    ],
+    "distractors": [
+      "banana",
+      "bird",
+      "graveyard",
+      "island",
+      "mountain goat",
+      "wheel"
+    ],
+    "path": [
+      [
+        "heat",
+        "sand",
+        "glass"
+      ],
+      [
+        "glass",
+        "rainbow",
+        "prism"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0455
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "glass"
+      ],
+      "coverage": 0.0455,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2541,
+    "completion_tokens": 470,
+    "calls": 4,
+    "wall_clock_s": 17.855,
+    "lines": {
+      "agents": {
+        "total_tokens": 2541,
+        "completion_tokens": 470,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

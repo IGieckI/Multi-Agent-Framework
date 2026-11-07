@@ -1,0 +1,104 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "castle",
+      "cotton",
+      "earth",
+      "grass",
+      "heat",
+      "lake",
+      "leaf",
+      "lumberjack",
+      "seed"
+    ],
+    "max_steps": 4,
+    "target": "garden",
+    "intermediate": [
+      "plant"
+    ],
+    "distractors": [
+      "castle",
+      "cotton",
+      "heat",
+      "lake",
+      "leaf",
+      "lumberjack"
+    ],
+    "path": [
+      [
+        "earth",
+        "seed",
+        "plant"
+      ],
+      [
+        "grass",
+        "plant",
+        "garden"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.0053
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "flower",
+        "garden",
+        "plant"
+      ],
+      "coverage": 0.0053,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "plant"
+      ],
+      "coverage": 0.0018,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "garden",
+        "plant"
+      ],
+      "coverage": 0.0035,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7169,
+    "completion_tokens": 1101,
+    "calls": 11,
+    "wall_clock_s": 42.967,
+    "lines": {
+      "agents": {
+        "total_tokens": 7169,
+        "completion_tokens": 1101,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "cart",
+      "farmer",
+      "house",
+      "lava",
+      "paper",
+      "pressure",
+      "steel",
+      "swordfish",
+      "tree"
+    ],
+    "max_steps": 4,
+    "target": "juice",
+    "intermediate": [
+      "fruit"
+    ],
+    "distractors": [
+      "cart",
+      "house",
+      "lava",
+      "paper",
+      "steel",
+      "swordfish"
+    ],
+    "path": [
+      [
+        "farmer",
+        "tree",
+        "fruit"
+      ],
+      [
+        "fruit",
+        "pressure",
+        "juice"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.2
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "eruption",
+        "granite",
+        "treehouse"
+      ],
+      "coverage": 0.1,
+      "invalid": 1,
+      "no_valid_answers": 1
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fruit",
+        "fruit tree",
+        "nuts"
+      ],
+      "coverage": 0.1,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 3,
+      "no_valid_answers": 1
+    }
+  },
+  "usage": {
+    "total_tokens": 16953,
+    "completion_tokens": 2818,
+    "calls": 25,
+    "wall_clock_s": 110.043,
+    "lines": {
+      "agents": {
+        "total_tokens": 16953,
+        "completion_tokens": 2818,
+        "calls": 25
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

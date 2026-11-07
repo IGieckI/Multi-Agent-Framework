@@ -1,0 +1,81 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "dust",
+      "land",
+      "peat",
+      "saturn",
+      "science",
+      "stone",
+      "tornado",
+      "vegetable",
+      "wire"
+    ],
+    "max_steps": 4,
+    "target": "wheel",
+    "intermediate": [
+      "motion"
+    ],
+    "distractors": [
+      "dust",
+      "land",
+      "peat",
+      "saturn",
+      "vegetable",
+      "wire"
+    ],
+    "path": [
+      [
+        "science",
+        "tornado",
+        "motion"
+      ],
+      [
+        "motion",
+        "stone",
+        "wheel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.1304
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "juice",
+        "motion",
+        "wheel"
+      ],
+      "coverage": 0.1304,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1692,
+    "completion_tokens": 147,
+    "calls": 3,
+    "wall_clock_s": 5.837,
+    "lines": {
+      "agents": {
+        "total_tokens": 1692,
+        "completion_tokens": 147,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

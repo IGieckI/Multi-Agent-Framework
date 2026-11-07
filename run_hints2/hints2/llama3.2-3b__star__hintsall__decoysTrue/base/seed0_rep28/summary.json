@@ -1,0 +1,103 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "flamethrower",
+      "human",
+      "jack o lantern",
+      "life",
+      "owl",
+      "scuba tank",
+      "sugar",
+      "train",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "marshmallows",
+    "intermediate": [
+      "campfire"
+    ],
+    "distractors": [
+      "human",
+      "jack o lantern",
+      "life",
+      "owl",
+      "scuba tank",
+      "train"
+    ],
+    "path": [
+      [
+        "flamethrower",
+        "wood",
+        "campfire"
+      ],
+      [
+        "campfire",
+        "sugar",
+        "marshmallows"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.0138
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "campfire",
+        "marshmallows"
+      ],
+      "coverage": 0.0138,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "campfire",
+        "marshmallows"
+      ],
+      "coverage": 0.0138,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "campfire"
+      ],
+      "coverage": 0.0069,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8101,
+    "completion_tokens": 1482,
+    "calls": 11,
+    "wall_clock_s": 57.516,
+    "lines": {
+      "agents": {
+        "total_tokens": 8101,
+        "completion_tokens": 1482,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

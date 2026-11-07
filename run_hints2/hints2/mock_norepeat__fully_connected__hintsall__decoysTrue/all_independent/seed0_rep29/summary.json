@@ -1,0 +1,141 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "air",
+      "dust",
+      "energy",
+      "field",
+      "fire",
+      "human",
+      "livestock",
+      "mountain",
+      "rock"
+    ],
+    "max_steps": 4,
+    "target": "camel",
+    "intermediate": [
+      "sand"
+    ],
+    "distractors": [
+      "dust",
+      "energy",
+      "field",
+      "fire",
+      "human",
+      "mountain"
+    ],
+    "path": [
+      [
+        "air",
+        "rock",
+        "sand"
+      ],
+      [
+        "livestock",
+        "sand",
+        "camel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 10,
+    "union_coverage": 0.0201
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "mountain range",
+        "smoke",
+        "tool"
+      ],
+      "coverage": 0.006,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "gunpowder",
+        "sand"
+      ],
+      "coverage": 0.004,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "heat",
+        "sand"
+      ],
+      "coverage": 0.004,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "firefighter",
+        "tool",
+        "volcano"
+      ],
+      "coverage": 0.006,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "cold",
+        "skier"
+      ],
+      "coverage": 0.004,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "tool"
+      ],
+      "coverage": 0.002,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12276,
+    "completion_tokens": 363,
+    "calls": 24,
+    "wall_clock_s": 0.111,
+    "lines": {
+      "agents": {
+        "total_tokens": 12276,
+        "completion_tokens": 363,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "air",
+      "dust",
+      "energy",
+      "field",
+      "fire",
+      "human",
+      "livestock",
+      "mountain",
+      "rock"
+    ],
+    "max_steps": 4,
+    "target": "camel",
+    "intermediate": [
+      "sand"
+    ],
+    "distractors": [
+      "dust",
+      "energy",
+      "field",
+      "fire",
+      "human",
+      "mountain"
+    ],
+    "path": [
+      [
+        "air",
+        "rock",
+        "sand"
+      ],
+      [
+        "livestock",
+        "sand",
+        "camel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.004
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "camel",
+        "sand"
+      ],
+      "coverage": 0.004,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1175,
+    "completion_tokens": 152,
+    "calls": 2,
+    "wall_clock_s": 5.848,
+    "lines": {
+      "agents": {
+        "total_tokens": 1175,
+        "completion_tokens": 152,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

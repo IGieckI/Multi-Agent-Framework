@@ -1,0 +1,135 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "big",
+      "lizard",
+      "owl",
+      "sand",
+      "sheep",
+      "solid",
+      "time",
+      "tree",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "fossil",
+    "intermediate": [
+      "dinosaur"
+    ],
+    "distractors": [
+      "owl",
+      "sand",
+      "sheep",
+      "solid",
+      "tree",
+      "water"
+    ],
+    "path": [
+      [
+        "big",
+        "lizard",
+        "dinosaur"
+      ],
+      [
+        "dinosaur",
+        "time",
+        "fossil"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.1429
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ice"
+      ],
+      "coverage": 0.0204,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "hourglass"
+      ],
+      "coverage": 0.0204,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "dinosaur"
+      ],
+      "coverage": 0.0204,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "dinosaur",
+        "egg"
+      ],
+      "coverage": 0.0408,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "cactus",
+        "palm",
+        "puddle"
+      ],
+      "coverage": 0.0612,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 13567,
+    "completion_tokens": 359,
+    "calls": 24,
+    "wall_clock_s": 0.107,
+    "lines": {
+      "agents": {
+        "total_tokens": 13567,
+        "completion_tokens": 359,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

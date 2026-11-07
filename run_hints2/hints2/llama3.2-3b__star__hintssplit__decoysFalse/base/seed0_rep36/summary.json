@@ -1,0 +1,102 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "alcohol",
+      "earth",
+      "explosion",
+      "garden",
+      "mineral",
+      "plant",
+      "robot",
+      "stone",
+      "sword"
+    ],
+    "max_steps": 4,
+    "target": "perfume",
+    "intermediate": [
+      "flower"
+    ],
+    "distractors": [
+      "earth",
+      "explosion",
+      "mineral",
+      "robot",
+      "stone",
+      "sword"
+    ],
+    "path": [
+      [
+        "garden",
+        "plant",
+        "flower"
+      ],
+      [
+        "alcohol",
+        "flower",
+        "perfume"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.0625
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "grass"
+      ],
+      "coverage": 0.0312,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "grass"
+      ],
+      "coverage": 0.0312,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "flower",
+        "grass"
+      ],
+      "coverage": 0.0625,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9455,
+    "completion_tokens": 1504,
+    "calls": 13,
+    "wall_clock_s": 59.7,
+    "lines": {
+      "agents": {
+        "total_tokens": 9455,
+        "completion_tokens": 1504,
+        "calls": 13
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

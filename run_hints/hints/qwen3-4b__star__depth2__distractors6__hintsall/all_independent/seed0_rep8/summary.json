@@ -1,0 +1,103 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "ambulance",
+      "ant",
+      "fire",
+      "human",
+      "robot",
+      "rock",
+      "story",
+      "sunflower",
+      "tree"
+    ],
+    "max_steps": 4,
+    "target": "small",
+    "intermediate": [
+      "philosophy"
+    ],
+    "distractors": [
+      "ambulance",
+      "fire",
+      "robot",
+      "rock",
+      "sunflower",
+      "tree"
+    ],
+    "path": [
+      [
+        "human",
+        "story",
+        "philosophy"
+      ],
+      [
+        "ant",
+        "philosophy",
+        "small"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.0094
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "hero",
+        "philosophy",
+        "small"
+      ],
+      "coverage": 0.0094,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 0,
+      "no_valid_answers": 4
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "hero",
+        "philosophy",
+        "small"
+      ],
+      "coverage": 0.0094,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 13213,
+    "completion_tokens": 2357,
+    "calls": 20,
+    "wall_clock_s": 159.976,
+    "lines": {
+      "agents": {
+        "total_tokens": 13213,
+        "completion_tokens": 2357,
+        "calls": 20
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

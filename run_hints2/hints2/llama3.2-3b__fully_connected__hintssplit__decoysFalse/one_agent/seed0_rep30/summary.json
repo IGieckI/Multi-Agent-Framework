@@ -1,0 +1,80 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "clay",
+      "hail",
+      "magic",
+      "pig",
+      "smoke signal",
+      "steamboat",
+      "surfer",
+      "sword",
+      "wheel"
+    ],
+    "max_steps": 4,
+    "target": "piggy bank",
+    "intermediate": [
+      "pottery"
+    ],
+    "distractors": [
+      "hail",
+      "magic",
+      "smoke signal",
+      "steamboat",
+      "surfer",
+      "sword"
+    ],
+    "path": [
+      [
+        "clay",
+        "wheel",
+        "pottery"
+      ],
+      [
+        "pig",
+        "pottery",
+        "piggy bank"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.2222
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "piggy bank",
+        "pottery"
+      ],
+      "coverage": 0.2222,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1218,
+    "completion_tokens": 176,
+    "calls": 2,
+    "wall_clock_s": 6.73,
+    "lines": {
+      "agents": {
+        "total_tokens": 1218,
+        "completion_tokens": 176,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

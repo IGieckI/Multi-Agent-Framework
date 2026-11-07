@@ -1,0 +1,79 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "alchemist",
+      "bird",
+      "car",
+      "eagle",
+      "human",
+      "mineral",
+      "philosophy",
+      "rivulet",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "little alchemy",
+    "intermediate": [
+      "small"
+    ],
+    "distractors": [
+      "bird",
+      "car",
+      "eagle",
+      "human",
+      "mineral",
+      "wind"
+    ],
+    "path": [
+      [
+        "philosophy",
+        "rivulet",
+        "small"
+      ],
+      [
+        "alchemist",
+        "small",
+        "little alchemy"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.05
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "small"
+      ],
+      "coverage": 0.05,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3155,
+    "completion_tokens": 522,
+    "calls": 5,
+    "wall_clock_s": 19.819,
+    "lines": {
+      "agents": {
+        "total_tokens": 3155,
+        "completion_tokens": 522,
+        "calls": 5
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

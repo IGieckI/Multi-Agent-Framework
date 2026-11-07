@@ -1,0 +1,99 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "barn",
+      "day",
+      "fireworks",
+      "pigeon",
+      "pressure",
+      "sky",
+      "steak",
+      "tool",
+      "wall"
+    ],
+    "max_steps": 4,
+    "target": "jerky",
+    "intermediate": [
+      "sun"
+    ],
+    "distractors": [
+      "barn",
+      "fireworks",
+      "pigeon",
+      "pressure",
+      "tool",
+      "wall"
+    ],
+    "path": [
+      [
+        "day",
+        "sky",
+        "sun"
+      ],
+      [
+        "steak",
+        "sun",
+        "jerky"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0095
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "house"
+      ],
+      "coverage": 0.0095,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "house"
+      ],
+      "coverage": 0.0095,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6886,
+    "completion_tokens": 180,
+    "calls": 12,
+    "wall_clock_s": 0.088,
+    "lines": {
+      "agents": {
+        "total_tokens": 6886,
+        "completion_tokens": 180,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "bone",
+      "egg",
+      "horse",
+      "lake",
+      "newspaper",
+      "owl",
+      "palm",
+      "roller coaster",
+      "woodpecker"
+    ],
+    "max_steps": 4,
+    "target": "duckling",
+    "intermediate": [
+      "duck"
+    ],
+    "distractors": [
+      "bone",
+      "horse",
+      "newspaper",
+      "palm",
+      "roller coaster",
+      "woodpecker"
+    ],
+    "path": [
+      [
+        "lake",
+        "owl",
+        "duck"
+      ],
+      [
+        "duck",
+        "egg",
+        "duckling"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "duck",
+        "duckling"
+      ],
+      "coverage": 0.1667,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "duck",
+        "fish",
+        "roe"
+      ],
+      "coverage": 0.25,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "duck",
+        "duckling"
+      ],
+      "coverage": 0.1667,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8465,
+    "completion_tokens": 1535,
+    "calls": 12,
+    "wall_clock_s": 59.44,
+    "lines": {
+      "agents": {
+        "total_tokens": 8465,
+        "completion_tokens": 1535,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "crayon",
+      "dragon",
+      "electricity",
+      "flashlight",
+      "glass",
+      "ice",
+      "petroleum",
+      "steel",
+      "warrior"
+    ],
+    "max_steps": 4,
+    "target": "gold",
+    "intermediate": [
+      "light"
+    ],
+    "distractors": [
+      "crayon",
+      "dragon",
+      "glass",
+      "ice",
+      "petroleum",
+      "warrior"
+    ],
+    "path": [
+      [
+        "electricity",
+        "flashlight",
+        "light"
+      ],
+      [
+        "light",
+        "steel",
+        "gold"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.2667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "glasses",
+        "light bulb",
+        "mirror"
+      ],
+      "coverage": 0.2,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "light bulb",
+        "wire"
+      ],
+      "coverage": 0.1333,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "glasses",
+        "mirror",
+        "wire"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 1
+    }
+  },
+  "usage": {
+    "total_tokens": 13286,
+    "completion_tokens": 2245,
+    "calls": 17,
+    "wall_clock_s": 157.847,
+    "lines": {
+      "agents": {
+        "total_tokens": 13286,
+        "completion_tokens": 2245,
+        "calls": 17
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

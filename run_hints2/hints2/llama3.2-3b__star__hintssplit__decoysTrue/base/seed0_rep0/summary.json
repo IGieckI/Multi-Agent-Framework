@@ -1,0 +1,104 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "alchemist",
+      "bird",
+      "car",
+      "eagle",
+      "human",
+      "mineral",
+      "philosophy",
+      "rivulet",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "little alchemy",
+    "intermediate": [
+      "small"
+    ],
+    "distractors": [
+      "bird",
+      "car",
+      "eagle",
+      "human",
+      "mineral",
+      "wind"
+    ],
+    "path": [
+      [
+        "philosophy",
+        "rivulet",
+        "small"
+      ],
+      [
+        "alchemist",
+        "small",
+        "little alchemy"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.25
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "angel",
+        "motion"
+      ],
+      "coverage": 0.1,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg"
+      ],
+      "coverage": 0.05,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "motion"
+      ],
+      "coverage": 0.15,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11214,
+    "completion_tokens": 1582,
+    "calls": 15,
+    "wall_clock_s": 60.104,
+    "lines": {
+      "agents": {
+        "total_tokens": 11214,
+        "completion_tokens": 1582,
+        "calls": 15
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}
