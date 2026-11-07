@@ -1,9 +1,9 @@
 # Handoff: state of the project and plan (2026-11-07)
 
 For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (44 numbered findings with their
-evidence and status). Everything below is as of commit `d01c77a` plus an uncommitted update of `FINDINGS.md` (F38 and
-F41 closed, F42–F44) and this file. Every experiment so far has finished and been analysed; nothing is running and no
-next experiment has been chosen yet (section 7).
+evidence and status). Everything below is as of commit `25bb35b` plus the uncommitted code and grids of the four next
+experiments (section 7), which the user is about to commit and queue on giano. Every earlier experiment has finished
+and been analysed.
 
 ## 1. The project
 
@@ -18,7 +18,7 @@ team's token budget). The research question: does communication between agents h
 |---|---|
 | `framework/engine/` | the run engine (`engine.py`), run config (`config.py`), budgets (`budget.py`), token usage |
 | `framework/comm/` | protocol compiler (roles, structures, sharing rules, channels), message bus, summaries |
-| `framework/agents/` | prompt segments, answer parsing, `backends/hf_local.py` (HF transformers, batch 1), `backends/mock.py` (random agents: grid models `mock`, with replacement, and `mock_norepeat`, which never repeats a tried pair nor one a teammate reported invalid) |
+| `framework/agents/` | prompt segments, answer parsing, `backends/hf_local.py` (HF transformers, batch 1), `backends/mock.py` (random agents: grid models `mock`, with replacement, and `mock_norepeat`, which never repeats a tried pair nor one a teammate reported invalid), `backends/team.py` (mixed teams: one backend per agent, `engine.agent_models`) |
 | `framework/tasks/wordcraft/` | the task: env, recipes, task generator (`tasks.py`, with `deal_notes` for private notes), prompt builder (`prompt.py`), metrics (incl. `own_note_use`, `others_note_use`) |
 | `framework/baselines.py` | the derived versions: all_independent, all_independent_temp_sweep, one_for_all, one_agent, one_agent_scaled_steps, one_vs_multi_token, one_vs_multi_completion_token |
 | `framework/experiment.py` | grids: expand into units (one replicate of one cell, all its versions), shard, run, evaluate; runs that are identical across units run once (`run_key`, `Unit.same_as`) |
@@ -26,9 +26,9 @@ team's token budget). The research question: does communication between agents h
 | `scripts/sweep.py` | CLI: `plan` / `run --shard i/n` / `evaluate` a grid |
 | `scripts/download_models.py`, `scripts/fetch_data.py` | weights into the HF cache (pinned revisions), the recipe file into `data/` |
 | `scripts/slurm/` | `env.sh` (scratch paths), `setup_giano.sh` (one-time setup), `sweep.sbatch` (job array) |
-| `configs/models/models.yaml` | model registry: HF id, pinned revision, sampling policy |
+| `configs/models/models.yaml` | model registry: HF id, pinned revision, sampling policy; `teams:` mixed teams a grid can name as a model (`mix-qgl`: qwen3-4b, gemma3-4b, llama3.2-3b in turn) |
 | `configs/protocols/*.yaml` | protocols; used so far: isolated, fully_connected, fully_connected3, fully_connected_results, fully_connected_messages, fully_connected_failures, star2 (= "star", 3 agents), star6 |
-| `configs/experiments/*.yaml` | grids: pilot, prompt_v2_check, main, followup, random_baseline, hints, hints2, hints2_share, hints2_use, hints2_8b, hints2_8b_share (prepared), smoke_mock, smoke_hf, smoke_models |
+| `configs/experiments/*.yaml` | grids: pilot, prompt_v2_check, main, followup, random_baseline, hints, hints2, hints2_share, hints2_use, hints2_8b, hints2_8b_share (both extended to 80 replicates), hints2_12b, hints2_12b_share, hints2_made, mixed, mixed_hints (queued 2026-11-07), smoke_mock, smoke_hf, smoke_models |
 | `prompts/v1`, `prompts/v2` | templates; v2 differs only in the WordCraft rules (the example framed as another game); select with `task.prompts` |
 | `FINDINGS.md` | every finding from results, F1–F41 |
 | `docs/results.html` | the results web page (git-ignored, see section 6) |
@@ -41,7 +41,9 @@ Grid features worth knowing: `task` is either axes to cross (`depth: [1, 2]`) or
 two recipes to two different agents, the other notes are recipes off the path; a single agent gets both);
 `task.decoys: false` drops the off-path notes; `task.share_notes` tells agents that can write messages to tell the
 others their notes; `task.use_notes` tells agents that receive messages that the recipes others pass on from their
-notes are true and to use them; `task.allow_shortcuts: false` rejects targets with a shortcut (F32).
+notes are true and to use them; `task.allow_shortcuts: false` rejects targets with a shortcut (F32); `task.mark_made` lists under the inventory the items
+the agent made ("Items you made (already in your inventory): ...", F44). A grid's model may be a team of the registry:
+its agents take the members in turn (sorted agent ids), all loaded at once, and `meta.json` records `agent_models`.
 Every version, protocol and model of a replicate gets the same target (task seed from seed and replicate), so all
 comparisons are paired.
 
@@ -165,10 +167,12 @@ The user runs every command on the cluster and pastes the output or a screenshot
   republish with the artifacts server's `publish_files` (files `[{as: index.html, path: <absolute path of the file>}]`,
   that slug, `base_version` = the last version). Its chart data are written into the page's script at the bottom
   (from `docs/analysis/pagedata.py` and FINDINGS.md); it covers every experiment through hints2 and F1–F41. Read the
-  server's `pages` and `design` guides before changing it. It does not yet cover F42–F44.
+  server's `pages` and `design` guides before changing it. The file covers F42–F44 (section 3.8, 2026-11-07) but
+  that version is not published yet: the artifact tools failed in that session, so republish it from the file.
 - **Two-week report**: `docs/changes_2026-11-06.html` (git-ignored), private artifact
   https://claude.ai/artifact/T5GV5UVfWCorzNySfMMhuX (slug `d3261f65-e21a-48c9-82a0-e7d336856ae6`, version
-  `1793978928-cde5`): code changes 24 Oct – 5 Nov and a summary per experiment through hints2_share (F1–F41).
+  `1793978928-cde5`): code changes 24 Oct – 5 Nov and a summary per experiment through hints2_share (F1–F41). The
+  file also covers F42–F44 and the queued grids (2026-11-07), not yet republished.
 - Personas used: `prompts/v1/personas/hub.txt`, `spoke.txt` (no v2 personas).
 
 ## 7. Plan
@@ -176,15 +180,20 @@ The user runs every command on the cluster and pastes the output or a screenshot
 Done since 2026-11-05: the receiving side (hints2_use, F42), Qwen3-8B (hints2_8b, hints2_8b_share, F43), the
 intermediate loop (F44), F41 closed.
 
-Proposed next (none chosen as of 2026-11-07):
+**Queued 2026-11-07** (all on hints2's or main's targets and notes, checked: 0 differences, so every run pairs):
 
-1. **Is F43 size or this model?** Run hints2's split cells (and share) with a second larger model of another family
-   (e.g. Gemma 3 12B or Llama 3.1 8B on L40; needs adding to `configs/models/models.yaml` and a download), and more
-   targets for qwen3-8b (replicates 40–79, same grid) to tighten the ±15–20-point intervals.
-2. **The intermediate loop (F44)**: a task setting that marks the items an agent made (e.g. "You made: 'explosion'"
-   or new items listed apart from the start inventory), tested on hints2's "everyone holds both" and split cells.
-3. **Mixed-family teams** (e.g. 2 Qwen + 2 Gemma + 2 Llama): still the only test of F6's claim.
-4. **Write-up** for the supervisor; update the results page with F42–F44.
+| grid | question | runs | where |
+|---|---|---|---|
+| `hints2_12b`, `hints2_12b_share` | is F43 size or Qwen? gemma3-12b on hints2's cells, and with share (use false / true) | 600 + 160 | L40 |
+| `hints2_8b`, `hints2_8b_share` | qwen3-8b on 40 more targets (replicates 40–79; 0–39 are skipped as finished) | +600, +160 | L40 |
+| `hints2_made` | does `mark_made` stop the intermediate loop (F44)? 4 models × FC/star × split, all × 3 versions | 1,600 | qwen3-4b, llama rtx2080; gemma3-4b, qwen3-8b L40 (`SWEEP_SHARDS=4`, one model per block) |
+| `mixed`, `mixed_hints` | do mixed-family teams (mix-qgl) do better than single-model ones (F6)? base, all_independent; main's settings (20 targets) and hints2's split / all (40) | 160 + 320 | L40 |
+
+Analyses to write when they are back: 12b and 8b like `k3.py`/`k4.py`; made vs hints2/hints2_8b pair by pair, with
+k4-style counts of remakes; mixed vs main/followup (FC 6 and star 3, both settings) and vs hints2, per family of the
+note holders (from `meta.json` `agent_models` and `notes`).
+
+Then: the write-up for the supervisor.
 
 ## 8. Working with the user
 
