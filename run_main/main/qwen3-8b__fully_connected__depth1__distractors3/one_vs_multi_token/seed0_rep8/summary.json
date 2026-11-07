@@ -1,0 +1,58 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 37,
+  "task": {
+    "initial": [
+      "ant",
+      "medusa",
+      "philosophy",
+      "water",
+      "wolf"
+    ],
+    "max_steps": 240,
+    "target": "small",
+    "intermediate": [],
+    "distractors": [
+      "medusa",
+      "water",
+      "wolf"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 37,
+      "new_items": [
+        "puddle"
+      ],
+      "coverage": 0.0667,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 20631,
+    "completion_tokens": 3651,
+    "calls": 37,
+    "wall_clock_s": 118.044,
+    "lines": {
+      "agents": {
+        "total_tokens": 20631,
+        "completion_tokens": 3651,
+        "calls": 37
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

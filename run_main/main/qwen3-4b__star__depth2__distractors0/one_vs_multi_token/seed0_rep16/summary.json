@@ -1,0 +1,54 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "garden",
+      "plant",
+      "wind"
+    ],
+    "max_steps": 120,
+    "target": "pollen",
+    "intermediate": [
+      "flower"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.2
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "pollen"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 468,
+    "completion_tokens": 38,
+    "calls": 1,
+    "wall_clock_s": 1.241,
+    "lines": {
+      "agents": {
+        "total_tokens": 468,
+        "completion_tokens": 38,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

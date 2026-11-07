@@ -1,0 +1,56 @@
+{
+  "ended_by": "all_solved",
+  "steps": 25,
+  "task": {
+    "initial": [
+      "pirate",
+      "space",
+      "steam engine"
+    ],
+    "max_steps": 240,
+    "target": "spaceship",
+    "intermediate": [
+      "pirate ship"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 25,
+      "new_items": [
+        "pirate ship",
+        "spaceship",
+        "steamboat"
+      ],
+      "coverage": 0.5,
+      "invalid": 5,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 14868,
+    "completion_tokens": 2307,
+    "calls": 25,
+    "wall_clock_s": 44.405,
+    "lines": {
+      "agents": {
+        "total_tokens": 14868,
+        "completion_tokens": 2307,
+        "calls": 25
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

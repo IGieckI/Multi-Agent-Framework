@@ -1,0 +1,135 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "air",
+      "axe",
+      "barn",
+      "cotton",
+      "gardener",
+      "jupiter",
+      "pressure",
+      "smoke",
+      "tree"
+    ],
+    "max_steps": 4,
+    "target": "leaf",
+    "intermediate": [
+      "wind"
+    ],
+    "distractors": [
+      "axe",
+      "barn",
+      "cotton",
+      "gardener",
+      "jupiter",
+      "smoke"
+    ],
+    "path": [
+      [
+        "air",
+        "pressure",
+        "wind"
+      ],
+      [
+        "tree",
+        "wind",
+        "leaf"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.1429
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "forest",
+        "wood"
+      ],
+      "coverage": 0.0571,
+      "invalid": 0,
+      "no_valid_answers": 2
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "forest"
+      ],
+      "coverage": 0.0286,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "idea"
+      ],
+      "coverage": 0.0286,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "forest"
+      ],
+      "coverage": 0.0286,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "wind"
+      ],
+      "coverage": 0.0286,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "thread"
+      ],
+      "coverage": 0.0286,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 29084,
+    "completion_tokens": 2121,
+    "calls": 30,
+    "wall_clock_s": 80.8,
+    "lines": {
+      "agents": {
+        "total_tokens": 29084,
+        "completion_tokens": 2121,
+        "calls": 30
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

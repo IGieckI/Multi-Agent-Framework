@@ -1,0 +1,59 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "dinosaur",
+      "lawn",
+      "ore",
+      "sand",
+      "time"
+    ],
+    "max_steps": 240,
+    "target": "fossil",
+    "intermediate": [],
+    "distractors": [
+      "lawn",
+      "ore",
+      "sand"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.1818
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "bird",
+        "fossil"
+      ],
+      "coverage": 0.1818,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1508,
+    "completion_tokens": 116,
+    "calls": 3,
+    "wall_clock_s": 4.611,
+    "lines": {
+      "agents": {
+        "total_tokens": 1508,
+        "completion_tokens": 116,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

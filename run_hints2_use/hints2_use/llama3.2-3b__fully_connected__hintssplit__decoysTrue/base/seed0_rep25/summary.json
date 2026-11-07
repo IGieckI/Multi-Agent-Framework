@@ -1,0 +1,150 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "dam",
+      "dough",
+      "electricity",
+      "fire",
+      "human",
+      "light bulb",
+      "snow",
+      "universe",
+      "wall"
+    ],
+    "max_steps": 4,
+    "target": "angel",
+    "intermediate": [
+      "light"
+    ],
+    "distractors": [
+      "dam",
+      "dough",
+      "fire",
+      "snow",
+      "universe",
+      "wall"
+    ],
+    "path": [
+      [
+        "electricity",
+        "light bulb",
+        "light"
+      ],
+      [
+        "human",
+        "light",
+        "angel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 8,
+    "union_coverage": 0.0191
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "chill",
+        "cold",
+        "snowball",
+        "snowman"
+      ],
+      "coverage": 0.0095,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electrician",
+        "firefighter"
+      ],
+      "coverage": 0.0048,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "chill",
+        "cold",
+        "snowball",
+        "snowman"
+      ],
+      "coverage": 0.0095,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "bread",
+        "cold",
+        "science",
+        "snowball",
+        "snowman"
+      ],
+      "coverage": 0.0119,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "cold",
+        "firefighter",
+        "snowball",
+        "snowman"
+      ],
+      "coverage": 0.0095,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electrician",
+        "firefighter",
+        "science"
+      ],
+      "coverage": 0.0072,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 34387,
+    "completion_tokens": 3498,
+    "calls": 31,
+    "wall_clock_s": 148.009,
+    "lines": {
+      "agents": {
+        "total_tokens": 34387,
+        "completion_tokens": 3498,
+        "calls": 31
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

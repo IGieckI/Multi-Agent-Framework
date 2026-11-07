@@ -1,0 +1,59 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "castle",
+      "flower",
+      "pasta",
+      "water",
+      "wind"
+    ],
+    "max_steps": 240,
+    "target": "pollen",
+    "intermediate": [],
+    "distractors": [
+      "castle",
+      "pasta",
+      "water"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.1111
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "leaf",
+        "pollen"
+      ],
+      "coverage": 0.1111,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 503,
+    "completion_tokens": 67,
+    "calls": 1,
+    "wall_clock_s": 2.183,
+    "lines": {
+      "agents": {
+        "total_tokens": 503,
+        "completion_tokens": 67,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

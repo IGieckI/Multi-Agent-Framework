@@ -1,0 +1,90 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "bird",
+      "double rainbow!",
+      "house",
+      "solar system",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "woodpecker",
+    "intermediate": [],
+    "distractors": [
+      "double rainbow!",
+      "house",
+      "solar system"
+    ],
+    "path": [
+      [
+        "bird",
+        "wood",
+        "woodpecker"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.3125
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "log cabin"
+      ],
+      "coverage": 0.0625,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "peacock",
+        "toucan"
+      ],
+      "coverage": 0.125,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "log cabin",
+        "wall",
+        "woodpecker"
+      ],
+      "coverage": 0.1875,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5268,
+    "completion_tokens": 178,
+    "calls": 11,
+    "wall_clock_s": 0.089,
+    "lines": {
+      "agents": {
+        "total_tokens": 5268,
+        "completion_tokens": 178,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

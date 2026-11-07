@@ -1,0 +1,58 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "fish",
+      "house",
+      "human",
+      "water",
+      "wood"
+    ],
+    "max_steps": 120,
+    "target": "log cabin",
+    "intermediate": [],
+    "distractors": [
+      "fish",
+      "human",
+      "water"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.0085
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "log cabin"
+      ],
+      "coverage": 0.0085,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 503,
+    "completion_tokens": 68,
+    "calls": 1,
+    "wall_clock_s": 2.222,
+    "lines": {
+      "agents": {
+        "total_tokens": 503,
+        "completion_tokens": 68,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "container",
+      "flamethrower",
+      "wind",
+      "wire",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "campfire",
+    "intermediate": [],
+    "distractors": [
+      "container",
+      "wind",
+      "wire"
+    ],
+    "path": [
+      [
+        "flamethrower",
+        "wood",
+        "campfire"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.3529
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "bucket",
+        "fireplace",
+        "flute"
+      ],
+      "coverage": 0.1765,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "bow",
+        "wall"
+      ],
+      "coverage": 0.1176,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "campfire"
+      ],
+      "coverage": 0.0588,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4726,
+    "completion_tokens": 162,
+    "calls": 10,
+    "wall_clock_s": 0.073,
+    "lines": {
+      "agents": {
+        "total_tokens": 4726,
+        "completion_tokens": 162,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "air",
+      "dust",
+      "energy",
+      "field",
+      "fire",
+      "human",
+      "livestock",
+      "mountain",
+      "rock"
+    ],
+    "max_steps": 4,
+    "target": "camel",
+    "intermediate": [
+      "sand"
+    ],
+    "distractors": [
+      "dust",
+      "energy",
+      "field",
+      "fire",
+      "human",
+      "mountain"
+    ],
+    "path": [
+      [
+        "air",
+        "rock",
+        "sand"
+      ],
+      [
+        "livestock",
+        "sand",
+        "camel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.01
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "allergy",
+        "gunpowder"
+      ],
+      "coverage": 0.004,
+      "invalid": 0,
+      "no_valid_answers": 2
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "allergy"
+      ],
+      "coverage": 0.002,
+      "invalid": 0,
+      "no_valid_answers": 2
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "goat"
+      ],
+      "coverage": 0.002,
+      "invalid": 1,
+      "no_valid_answers": 1
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 3
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "goat"
+      ],
+      "coverage": 0.002,
+      "invalid": 1,
+      "no_valid_answers": 1
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "allergy",
+        "camel",
+        "sand"
+      ],
+      "coverage": 0.006,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 54006,
+    "completion_tokens": 7240,
+    "calls": 47,
+    "wall_clock_s": 469.06,
+    "lines": {
+      "agents": {
+        "total_tokens": 54006,
+        "completion_tokens": 7240,
+        "calls": 47
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

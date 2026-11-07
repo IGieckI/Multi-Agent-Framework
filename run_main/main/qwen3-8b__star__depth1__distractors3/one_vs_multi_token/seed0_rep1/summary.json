@@ -1,0 +1,60 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "fish",
+      "human",
+      "steak",
+      "sun",
+      "tool"
+    ],
+    "max_steps": 120,
+    "target": "jerky",
+    "intermediate": [],
+    "distractors": [
+      "fish",
+      "human",
+      "tool"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.1154
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fishing rod",
+        "jerky",
+        "meat"
+      ],
+      "coverage": 0.1154,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1028,
+    "completion_tokens": 131,
+    "calls": 2,
+    "wall_clock_s": 4.418,
+    "lines": {
+      "agents": {
+        "total_tokens": 1028,
+        "completion_tokens": 131,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

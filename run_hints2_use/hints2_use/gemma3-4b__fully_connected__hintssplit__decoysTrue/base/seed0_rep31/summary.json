@@ -1,0 +1,134 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "bbq",
+      "electricity",
+      "lake",
+      "metal",
+      "piranha",
+      "storm",
+      "tornado",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "snake",
+    "intermediate": [
+      "wire"
+    ],
+    "distractors": [
+      "bbq",
+      "lake",
+      "piranha",
+      "storm",
+      "tornado",
+      "water"
+    ],
+    "path": [
+      [
+        "electricity",
+        "metal",
+        "wire"
+      ],
+      [
+        "animal",
+        "wire",
+        "snake"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0417
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fish"
+      ],
+      "coverage": 0.0417,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fish"
+      ],
+      "coverage": 0.0417,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fish"
+      ],
+      "coverage": 0.0417,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fish"
+      ],
+      "coverage": 0.0417,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fish"
+      ],
+      "coverage": 0.0417,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fish"
+      ],
+      "coverage": 0.0417,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 28716,
+    "completion_tokens": 2294,
+    "calls": 28,
+    "wall_clock_s": 93.479,
+    "lines": {
+      "agents": {
+        "total_tokens": 28716,
+        "completion_tokens": 2294,
+        "calls": 28
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

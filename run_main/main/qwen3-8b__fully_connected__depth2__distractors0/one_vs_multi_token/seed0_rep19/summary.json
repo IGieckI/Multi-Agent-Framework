@@ -1,0 +1,55 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 41,
+  "task": {
+    "initial": [
+      "electricity",
+      "flashlight",
+      "steel"
+    ],
+    "max_steps": 240,
+    "target": "gold",
+    "intermediate": [
+      "light"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.2857
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 41,
+      "new_items": [
+        "chain",
+        "wire"
+      ],
+      "coverage": 0.2857,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 22094,
+    "completion_tokens": 3358,
+    "calls": 41,
+    "wall_clock_s": 107.315,
+    "lines": {
+      "agents": {
+        "total_tokens": 22094,
+        "completion_tokens": 3358,
+        "calls": 41
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

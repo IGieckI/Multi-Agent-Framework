@@ -1,0 +1,142 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "cook",
+      "cookie cutter",
+      "desert",
+      "life",
+      "painter",
+      "rainbow",
+      "science",
+      "village",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "domestication",
+    "intermediate": [
+      "animal"
+    ],
+    "distractors": [
+      "cook",
+      "cookie cutter",
+      "painter",
+      "rainbow",
+      "village",
+      "water"
+    ],
+    "path": [
+      [
+        "desert",
+        "life",
+        "animal"
+      ],
+      [
+        "animal",
+        "science",
+        "domestication"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.1667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "animal",
+        "domestication",
+        "plankton"
+      ],
+      "coverage": 0.0833,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "animal",
+        "domestication"
+      ],
+      "coverage": 0.0556,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "animal",
+        "domestication",
+        "oasis"
+      ],
+      "coverage": 0.0833,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "animal",
+        "organic matter",
+        "paint"
+      ],
+      "coverage": 0.0833,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "animal",
+        "organic matter"
+      ],
+      "coverage": 0.0556,
+      "invalid": 0,
+      "no_valid_answers": 1
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "organic matter"
+      ],
+      "coverage": 0.0278,
+      "invalid": 0,
+      "no_valid_answers": 2
+    }
+  },
+  "usage": {
+    "total_tokens": 33684,
+    "completion_tokens": 3260,
+    "calls": 31,
+    "wall_clock_s": 221.193,
+    "lines": {
+      "agents": {
+        "total_tokens": 33684,
+        "completion_tokens": 3260,
+        "calls": 31
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

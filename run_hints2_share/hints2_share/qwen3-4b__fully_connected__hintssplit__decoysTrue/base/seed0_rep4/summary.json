@@ -1,0 +1,140 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "dust",
+      "land",
+      "peat",
+      "saturn",
+      "science",
+      "stone",
+      "tornado",
+      "vegetable",
+      "wire"
+    ],
+    "max_steps": 4,
+    "target": "wheel",
+    "intermediate": [
+      "motion"
+    ],
+    "distractors": [
+      "dust",
+      "land",
+      "peat",
+      "saturn",
+      "vegetable",
+      "wire"
+    ],
+    "path": [
+      [
+        "science",
+        "tornado",
+        "motion"
+      ],
+      [
+        "motion",
+        "stone",
+        "wheel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.2174
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "juice"
+      ],
+      "coverage": 0.0435,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "juice",
+        "motion"
+      ],
+      "coverage": 0.087,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "motion",
+        "wall",
+        "wheel"
+      ],
+      "coverage": 0.1304,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "continent",
+        "juice"
+      ],
+      "coverage": 0.087,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "motion",
+        "wheel"
+      ],
+      "coverage": 0.087,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "juice",
+        "wall"
+      ],
+      "coverage": 0.087,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 28440,
+    "completion_tokens": 3151,
+    "calls": 27,
+    "wall_clock_s": 201.522,
+    "lines": {
+      "agents": {
+        "total_tokens": 28440,
+        "completion_tokens": 3151,
+        "calls": 27
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

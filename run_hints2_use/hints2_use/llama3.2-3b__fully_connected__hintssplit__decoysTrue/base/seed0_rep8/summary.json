@@ -1,0 +1,143 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "ambulance",
+      "ant",
+      "fire",
+      "human",
+      "robot",
+      "rock",
+      "story",
+      "sunflower",
+      "tree"
+    ],
+    "max_steps": 4,
+    "target": "small",
+    "intermediate": [
+      "philosophy"
+    ],
+    "distractors": [
+      "ambulance",
+      "fire",
+      "robot",
+      "rock",
+      "sunflower",
+      "tree"
+    ],
+    "path": [
+      [
+        "human",
+        "story",
+        "philosophy"
+      ],
+      [
+        "ant",
+        "philosophy",
+        "small"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.022
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "charcoal",
+        "smoke"
+      ],
+      "coverage": 0.0094,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "charcoal",
+        "egg",
+        "lumberjack",
+        "smoke",
+        "tool"
+      ],
+      "coverage": 0.0189,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "lumberjack"
+      ],
+      "coverage": 0.0031,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "charcoal",
+        "egg",
+        "firefighter",
+        "smoke"
+      ],
+      "coverage": 0.0157,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "firefighter"
+      ],
+      "coverage": 0.0031,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 27880,
+    "completion_tokens": 3507,
+    "calls": 30,
+    "wall_clock_s": 143.416,
+    "lines": {
+      "agents": {
+        "total_tokens": 27880,
+        "completion_tokens": 3507,
+        "calls": 30
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

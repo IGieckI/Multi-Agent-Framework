@@ -1,0 +1,289 @@
+{
+  "run_id": "seed0_rep15",
+  "config": {
+    "run": {
+      "name": "qwen3-8b__fully_connected__depth2__distractors0",
+      "seed": 0,
+      "replicate": 15,
+      "versions": [
+        "base",
+        "all_independent",
+        "all_independent_temp_sweep",
+        "one_agent",
+        "one_vs_multi_token"
+      ],
+      "baseline": "all_independent_temp_sweep"
+    },
+    "task": {
+      "name": "wordcraft",
+      "type": "targeted",
+      "max_steps": 4,
+      "depth": 2,
+      "distractors": 0,
+      "repeat_consumes_step": true,
+      "data": "data/alchemy2.json",
+      "prompts": "v2"
+    },
+    "engine": {
+      "backend": "hf_local",
+      "model": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+      "max_concurrency": 1,
+      "persona_host": false
+    },
+    "summarizer": null,
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": 0,
+      "max_tokens": 256,
+      "reasoning": false,
+      "agent_temperatures": [
+        0.4,
+        0.7,
+        1.0,
+        1.3
+      ]
+    },
+    "protocol": {
+      "roles": {
+        "explorer": {
+          "count": 6,
+          "where": null,
+          "visible_fields": null
+        }
+      },
+      "structure": {
+        "generator": "complete"
+      },
+      "rules": [],
+      "schedule": "all_at_once",
+      "constraints": [],
+      "channels": {}
+    },
+    "context": {
+      "max_prompt_tokens": 6000,
+      "truncation": "oldest_first"
+    },
+    "retries": {
+      "max_parse_attempts": 3,
+      "max_attempts": 3
+    },
+    "budget": {
+      "total_tokens": null,
+      "completion_tokens": null,
+      "calls": null,
+      "steps": null,
+      "wall_clock_s": 3600.0,
+      "step_reserve": {},
+      "match": null
+    },
+    "personas": {}
+  },
+  "protocol": {
+    "roles": {
+      "explorer": {
+        "count": 6,
+        "where": null,
+        "visible_fields": null
+      }
+    },
+    "structure": {
+      "generator": "complete"
+    },
+    "rules": [],
+    "schedule": "all_at_once",
+    "constraints": [],
+    "channels": {}
+  },
+  "agents": {
+    "agent_00": "explorer",
+    "agent_01": "explorer",
+    "agent_02": "explorer",
+    "agent_03": "explorer",
+    "agent_04": "explorer",
+    "agent_05": "explorer"
+  },
+  "message_types": {
+    "message": [
+      "text"
+    ],
+    "reasoning": [
+      "text"
+    ],
+    "result.failure": [
+      "combo"
+    ],
+    "result.success": [
+      "combo",
+      "result"
+    ],
+    "task": [
+      "text"
+    ],
+    "verdict": [
+      "text"
+    ]
+  },
+  "phases": [
+    [
+      "agent_00",
+      "agent_01",
+      "agent_02",
+      "agent_03",
+      "agent_04",
+      "agent_05"
+    ]
+  ],
+  "visible_fields": {
+    "agent_00": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_01": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_02": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_03": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_04": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_05": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ]
+  },
+  "social_blocks": {
+    "agent_00": [],
+    "agent_01": [],
+    "agent_02": [],
+    "agent_03": [],
+    "agent_04": [],
+    "agent_05": []
+  },
+  "message_slot": {
+    "agent_00": false,
+    "agent_01": false,
+    "agent_02": false,
+    "agent_03": false,
+    "agent_04": false,
+    "agent_05": false
+  },
+  "personas": {},
+  "task": {
+    "initial": [
+      "life",
+      "sand",
+      "wave"
+    ],
+    "max_steps": 4,
+    "target": "animal",
+    "intermediate": [
+      "beach"
+    ],
+    "distractors": []
+  },
+  "prompts": "v2",
+  "prompts_hash": "7f713b281b57e2f11765e5388f111586c58bbe3621e717f6a7c09da16aff244b",
+  "data_sha256": "757422df36f8805b1a56c418e613c6418c905b0956e6f2fb3dff78569933d25d",
+  "sampling": {
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "max_tokens": 256,
+    "reasoning": false,
+    "seed": null
+  },
+  "agent_temperatures": {
+    "agent_00": 0.4,
+    "agent_01": 0.7,
+    "agent_02": 1.0,
+    "agent_03": 1.3,
+    "agent_04": 0.4,
+    "agent_05": 0.7
+  },
+  "engine": {
+    "backend": "hf_local",
+    "engine": "transformers",
+    "engine_version": "5.22.0",
+    "model_id": "Qwen/Qwen3-8B",
+    "revision": null,
+    "requested_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "parameters": 8190735360,
+    "torch_version": "2.11.0+cu128",
+    "dtype": "torch.bfloat16",
+    "quantization": "none",
+    "context_window": 40960,
+    "device": "cuda:0",
+    "prefix_caching": false,
+    "sampling_settings": "from Sampling"
+  },
+  "summarizer": null,
+  "prompt_token_count": "backend",
+  "budget": {
+    "caps": {
+      "total_tokens": null,
+      "completion_tokens": null,
+      "calls": null,
+      "steps": null,
+      "wall_clock_s": 3600.0
+    },
+    "step_reserve": {},
+    "match": null
+  },
+  "shared_context": false,
+  "persona_host": null,
+  "started_at": "2026-11-01T19:20:34",
+  "environment": {
+    "git": {
+      "commit": "551251893d781c306a584488d9af148e5d11d0cb",
+      "dirty": true
+    },
+    "python": "3.11.18",
+    "platform": "Linux-6.12.113+deb13-amd64-x86_64-with-glibc2.41",
+    "libraries": {
+      "torch": "2.11.0+cu128",
+      "transformers": "5.22.0",
+      "accelerate": "1.15.0",
+      "sentence-transformers": "6.2.0",
+      "numpy": "2.4.6",
+      "pydantic": "2.14.2"
+    },
+    "hardware": {
+      "torch_loaded": true,
+      "cuda": "12.8",
+      "gpus": [
+        {
+          "name": "NVIDIA L40",
+          "memory_mb": 45459
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,3 @@
+t,acting_agents,action_divergence,action_change,calls,tokens,team_items,team_new_items,pairwise_divergence
+0,6,0.8444444444444446,,6,3855,5,5,0.1696969696969696
+1,5,0.2666666666666667,0.6,8,7572,6,1,0.18395493395493392

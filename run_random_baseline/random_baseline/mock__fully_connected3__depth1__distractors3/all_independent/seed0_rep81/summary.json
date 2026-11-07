@@ -1,0 +1,83 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "dam",
+      "heat",
+      "human",
+      "pottery",
+      "river"
+    ],
+    "max_steps": 4,
+    "target": "potter",
+    "intermediate": [],
+    "distractors": [
+      "dam",
+      "heat",
+      "river"
+    ],
+    "path": [
+      [
+        "human",
+        "pottery",
+        "potter"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.125
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "potter"
+      ],
+      "coverage": 0.125,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5128,
+    "completion_tokens": 163,
+    "calls": 11,
+    "wall_clock_s": 0.094,
+    "lines": {
+      "agents": {
+        "total_tokens": 5128,
+        "completion_tokens": 163,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

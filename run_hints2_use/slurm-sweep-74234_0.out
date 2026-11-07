@@ -1,0 +1,4 @@
+node=ws1gpu1-ng job=74241 shard=0/3
+name, memory.total [MiB]
+NVIDIA GeForce RTX 2080 Ti, 11264 MiB
+shard 0/3: 80 units, 0 failed runs (see /scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/hints2_use/sweep/shard0of3.jsonl)

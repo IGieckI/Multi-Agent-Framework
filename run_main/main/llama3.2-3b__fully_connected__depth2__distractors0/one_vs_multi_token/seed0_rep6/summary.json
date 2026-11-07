@@ -1,0 +1,54 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 32,
+  "task": {
+    "initial": [
+      "fire",
+      "human",
+      "universe"
+    ],
+    "max_steps": 240,
+    "target": "heat",
+    "intermediate": [
+      "science"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0714
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 32,
+      "new_items": [
+        "firefighter"
+      ],
+      "coverage": 0.0714,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 17607,
+    "completion_tokens": 2221,
+    "calls": 32,
+    "wall_clock_s": 43.635,
+    "lines": {
+      "agents": {
+        "total_tokens": 17607,
+        "completion_tokens": 2221,
+        "calls": 32
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

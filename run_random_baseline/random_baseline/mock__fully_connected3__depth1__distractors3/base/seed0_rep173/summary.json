@@ -1,0 +1,90 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "castle",
+      "human",
+      "lake",
+      "sea",
+      "sickness"
+    ],
+    "max_steps": 4,
+    "target": "monarch",
+    "intermediate": [],
+    "distractors": [
+      "lake",
+      "sea",
+      "sickness"
+    ],
+    "path": [
+      [
+        "castle",
+        "human",
+        "monarch"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.3636
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.1818,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "sailor"
+      ],
+      "coverage": 0.2727,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "monarch"
+      ],
+      "coverage": 0.0909,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5821,
+    "completion_tokens": 256,
+    "calls": 10,
+    "wall_clock_s": 0.089,
+    "lines": {
+      "agents": {
+        "total_tokens": 5821,
+        "completion_tokens": 256,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

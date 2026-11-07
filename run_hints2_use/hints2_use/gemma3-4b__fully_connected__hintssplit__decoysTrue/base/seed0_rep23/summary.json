@@ -1,0 +1,129 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "boulder",
+      "fox",
+      "hacker",
+      "machine",
+      "pipe",
+      "rope",
+      "science",
+      "storm",
+      "story"
+    ],
+    "max_steps": 4,
+    "target": "wire",
+    "intermediate": [
+      "electricity"
+    ],
+    "distractors": [
+      "boulder",
+      "fox",
+      "hacker",
+      "machine",
+      "pipe",
+      "story"
+    ],
+    "path": [
+      [
+        "science",
+        "storm",
+        "electricity"
+      ],
+      [
+        "electricity",
+        "rope",
+        "wire"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.125
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electricity"
+      ],
+      "coverage": 0.0417,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "idea"
+      ],
+      "coverage": 0.0417,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "computer",
+        "idea"
+      ],
+      "coverage": 0.0833,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 24333,
+    "completion_tokens": 1697,
+    "calls": 24,
+    "wall_clock_s": 65.747,
+    "lines": {
+      "agents": {
+        "total_tokens": 24333,
+        "completion_tokens": 1697,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

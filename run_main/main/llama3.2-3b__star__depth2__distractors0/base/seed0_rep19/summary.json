@@ -1,0 +1,78 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "electricity",
+      "flashlight",
+      "steel"
+    ],
+    "max_steps": 4,
+    "target": "gold",
+    "intermediate": [
+      "light"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.2857
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "wire"
+      ],
+      "coverage": 0.1429,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "chain",
+        "wire"
+      ],
+      "coverage": 0.2857,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "chain",
+        "wire"
+      ],
+      "coverage": 0.2857,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10324,
+    "completion_tokens": 1694,
+    "calls": 15,
+    "wall_clock_s": 33.344,
+    "lines": {
+      "agents": {
+        "total_tokens": 10324,
+        "completion_tokens": 1694,
+        "calls": 15
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

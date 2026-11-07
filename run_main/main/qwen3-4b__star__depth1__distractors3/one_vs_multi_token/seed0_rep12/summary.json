@@ -1,0 +1,58 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 13,
+  "task": {
+    "initial": [
+      "house",
+      "light",
+      "motion",
+      "potato",
+      "wind"
+    ],
+    "max_steps": 120,
+    "target": "windmill",
+    "intermediate": [],
+    "distractors": [
+      "light",
+      "motion",
+      "potato"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.2
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 13,
+      "new_items": [
+        "tornado"
+      ],
+      "coverage": 0.2,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7080,
+    "completion_tokens": 1205,
+    "calls": 13,
+    "wall_clock_s": 37.993,
+    "lines": {
+      "agents": {
+        "total_tokens": 7080,
+        "completion_tokens": 1205,
+        "calls": 13
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

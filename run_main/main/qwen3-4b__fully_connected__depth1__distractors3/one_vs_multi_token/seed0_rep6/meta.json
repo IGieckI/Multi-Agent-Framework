@@ -1,0 +1,233 @@
+{
+  "run_id": "seed0_rep6",
+  "config": {
+    "run": {
+      "name": "qwen3-4b__fully_connected__depth1__distractors3",
+      "seed": 0,
+      "replicate": 6,
+      "versions": [
+        "base",
+        "all_independent",
+        "all_independent_temp_sweep",
+        "one_agent",
+        "one_vs_multi_token"
+      ],
+      "baseline": "one_vs_multi_token"
+    },
+    "task": {
+      "name": "wordcraft",
+      "type": "targeted",
+      "max_steps": 240,
+      "depth": 1,
+      "distractors": 3,
+      "repeat_consumes_step": true,
+      "data": "data/alchemy2.json",
+      "prompts": "v2"
+    },
+    "engine": {
+      "backend": "hf_local",
+      "model": "Qwen/Qwen3-4B",
+      "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "max_concurrency": 1,
+      "persona_host": false
+    },
+    "summarizer": null,
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": 0,
+      "max_tokens": 256,
+      "reasoning": false,
+      "agent_temperatures": null
+    },
+    "protocol": {
+      "roles": {
+        "agent": {
+          "count": 1,
+          "where": null,
+          "visible_fields": null
+        }
+      },
+      "structure": {
+        "generator": "empty"
+      },
+      "rules": [],
+      "schedule": "all_at_once",
+      "constraints": [],
+      "channels": {}
+    },
+    "context": {
+      "max_prompt_tokens": 6000,
+      "truncation": "oldest_first"
+    },
+    "retries": {
+      "max_parse_attempts": 3,
+      "max_attempts": 3
+    },
+    "budget": {
+      "total_tokens": null,
+      "completion_tokens": null,
+      "calls": null,
+      "steps": null,
+      "wall_clock_s": 3600.0,
+      "step_reserve": {},
+      "match": {
+        "reference": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/main/qwen3-4b__fully_connected__depth1__distractors3/base",
+        "unit": "total_tokens"
+      }
+    },
+    "personas": {}
+  },
+  "protocol": {
+    "roles": {
+      "agent": {
+        "count": 1,
+        "where": null,
+        "visible_fields": null
+      }
+    },
+    "structure": {
+      "generator": "empty"
+    },
+    "rules": [],
+    "schedule": "all_at_once",
+    "constraints": [],
+    "channels": {}
+  },
+  "agents": {
+    "agent_00": "agent"
+  },
+  "message_types": {
+    "message": [
+      "text"
+    ],
+    "reasoning": [
+      "text"
+    ],
+    "result.failure": [
+      "combo"
+    ],
+    "result.success": [
+      "combo",
+      "result"
+    ],
+    "task": [
+      "text"
+    ],
+    "verdict": [
+      "text"
+    ]
+  },
+  "phases": [
+    [
+      "agent_00"
+    ]
+  ],
+  "visible_fields": {
+    "agent_00": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ]
+  },
+  "social_blocks": {
+    "agent_00": []
+  },
+  "message_slot": {
+    "agent_00": false
+  },
+  "personas": {},
+  "task": {
+    "initial": [
+      "fire",
+      "human",
+      "lake",
+      "safe",
+      "science"
+    ],
+    "max_steps": 240,
+    "target": "heat",
+    "intermediate": [],
+    "distractors": [
+      "human",
+      "lake",
+      "safe"
+    ]
+  },
+  "prompts": "v2",
+  "prompts_hash": "7f713b281b57e2f11765e5388f111586c58bbe3621e717f6a7c09da16aff244b",
+  "data_sha256": "757422df36f8805b1a56c418e613c6418c905b0956e6f2fb3dff78569933d25d",
+  "sampling": {
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "max_tokens": 256,
+    "reasoning": false,
+    "seed": null
+  },
+  "agent_temperatures": {},
+  "engine": {
+    "backend": "hf_local",
+    "engine": "transformers",
+    "engine_version": "5.22.0",
+    "model_id": "Qwen/Qwen3-4B",
+    "revision": null,
+    "requested_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+    "parameters": 4022468096,
+    "torch_version": "2.11.0+cu128",
+    "dtype": "torch.bfloat16",
+    "quantization": "none",
+    "context_window": 40960,
+    "device": "cuda:0",
+    "prefix_caching": false,
+    "sampling_settings": "from Sampling"
+  },
+  "summarizer": null,
+  "prompt_token_count": "backend",
+  "budget": {
+    "caps": {
+      "total_tokens": 7590,
+      "completion_tokens": null,
+      "calls": null,
+      "steps": null,
+      "wall_clock_s": 3600.0
+    },
+    "step_reserve": {},
+    "match": {
+      "run_dir": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/main/qwen3-4b__fully_connected__depth1__distractors3/base/seed0_rep6",
+      "unit": "total_tokens",
+      "reference_usage": 7590
+    }
+  },
+  "shared_context": false,
+  "persona_host": null,
+  "started_at": "2026-11-01T14:12:33",
+  "environment": {
+    "git": {
+      "commit": "551251893d781c306a584488d9af148e5d11d0cb",
+      "dirty": true
+    },
+    "python": "3.11.18",
+    "platform": "Linux-6.12.113+deb13-amd64-x86_64-with-glibc2.41",
+    "libraries": {
+      "torch": "2.11.0+cu128",
+      "transformers": "5.22.0",
+      "accelerate": "1.15.0",
+      "sentence-transformers": "6.2.0",
+      "numpy": "2.4.6",
+      "pydantic": "2.14.2"
+    },
+    "hardware": {
+      "torch_loaded": true,
+      "cuda": "12.8",
+      "gpus": [
+        {
+          "name": "NVIDIA L40",
+          "memory_mb": 45459
+        }
+      ]
+    }
+  }
+}
