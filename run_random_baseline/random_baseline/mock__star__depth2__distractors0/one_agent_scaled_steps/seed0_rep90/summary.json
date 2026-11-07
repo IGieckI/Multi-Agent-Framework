@@ -1,0 +1,69 @@
+{
+  "ended_by": "all_solved",
+  "steps": 5,
+  "task": {
+    "initial": [
+      "blade",
+      "human",
+      "vegetable"
+    ],
+    "max_steps": 12,
+    "target": "knife",
+    "intermediate": [
+      "cook"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "human",
+        "vegetable",
+        "cook"
+      ],
+      [
+        "blade",
+        "cook",
+        "knife"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 5,
+      "new_items": [
+        "cook",
+        "family",
+        "knife",
+        "love"
+      ],
+      "coverage": 0.4,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2373,
+    "completion_tokens": 79,
+    "calls": 5,
+    "wall_clock_s": 0.079,
+    "lines": {
+      "agents": {
+        "total_tokens": 2373,
+        "completion_tokens": 79,
+        "calls": 5
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

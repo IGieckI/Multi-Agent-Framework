@@ -1,0 +1,67 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "corpse",
+      "gun",
+      "human",
+      "pilot",
+      "wolf"
+    ],
+    "max_steps": 24,
+    "target": "werewolf",
+    "intermediate": [],
+    "distractors": [
+      "corpse",
+      "gun",
+      "pilot"
+    ],
+    "path": [
+      [
+        "human",
+        "wolf",
+        "werewolf"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.2727
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "bone",
+        "idea",
+        "philosophy"
+      ],
+      "coverage": 0.2727,
+      "invalid": 12,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12357,
+    "completion_tokens": 363,
+    "calls": 24,
+    "wall_clock_s": 0.105,
+    "lines": {
+      "agents": {
+        "total_tokens": 12357,
+        "completion_tokens": 363,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

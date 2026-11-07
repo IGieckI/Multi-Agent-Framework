@@ -1,0 +1,69 @@
+{
+  "ended_by": "all_solved",
+  "steps": 14,
+  "task": {
+    "initial": [
+      "air",
+      "cloud",
+      "day"
+    ],
+    "max_steps": 24,
+    "target": "sun",
+    "intermediate": [
+      "sky"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "air",
+        "cloud",
+        "sky"
+      ],
+      [
+        "day",
+        "sky",
+        "sun"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.2857
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 14,
+      "new_items": [
+        "atmosphere",
+        "sky",
+        "storm",
+        "sun"
+      ],
+      "coverage": 0.2857,
+      "invalid": 5,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6760,
+    "completion_tokens": 208,
+    "calls": 14,
+    "wall_clock_s": 0.096,
+    "lines": {
+      "agents": {
+        "total_tokens": 6760,
+        "completion_tokens": 208,
+        "calls": 14
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

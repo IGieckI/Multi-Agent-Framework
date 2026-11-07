@@ -1,0 +1,69 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "car",
+      "ice",
+      "mountain",
+      "time"
+    ],
+    "max_steps": 4,
+    "target": "snowmobile",
+    "intermediate": [],
+    "distractors": [
+      "animal",
+      "mountain",
+      "time"
+    ],
+    "path": [
+      [
+        "car",
+        "ice",
+        "snowmobile"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.0943
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "cold",
+        "human",
+        "mountain range",
+        "skier",
+        "sloth"
+      ],
+      "coverage": 0.0943,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1904,
+    "completion_tokens": 63,
+    "calls": 4,
+    "wall_clock_s": 0.075,
+    "lines": {
+      "agents": {
+        "total_tokens": 1904,
+        "completion_tokens": 63,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

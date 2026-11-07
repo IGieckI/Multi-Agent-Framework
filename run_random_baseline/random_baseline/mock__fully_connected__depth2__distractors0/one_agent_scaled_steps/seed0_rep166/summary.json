@@ -1,0 +1,70 @@
+{
+  "ended_by": "all_solved",
+  "steps": 19,
+  "task": {
+    "initial": [
+      "forest",
+      "house",
+      "tool"
+    ],
+    "max_steps": 24,
+    "target": "log cabin",
+    "intermediate": [
+      "wood"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "forest",
+        "tool",
+        "wood"
+      ],
+      [
+        "house",
+        "wood",
+        "log cabin"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 19,
+      "new_items": [
+        "book",
+        "log cabin",
+        "machine",
+        "paper",
+        "wood"
+      ],
+      "coverage": 0.3333,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9654,
+    "completion_tokens": 290,
+    "calls": 19,
+    "wall_clock_s": 0.104,
+    "lines": {
+      "agents": {
+        "total_tokens": 9654,
+        "completion_tokens": 290,
+        "calls": 19
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

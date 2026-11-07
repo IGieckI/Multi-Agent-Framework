@@ -1,0 +1,89 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "broom",
+      "container",
+      "human",
+      "santa",
+      "story"
+    ],
+    "max_steps": 4,
+    "target": "closet",
+    "intermediate": [],
+    "distractors": [
+      "human",
+      "santa",
+      "story"
+    ],
+    "path": [
+      [
+        "broom",
+        "container",
+        "closet"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.2857
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "witch"
+      ],
+      "coverage": 0.0714,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "legend",
+        "witch"
+      ],
+      "coverage": 0.1429,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.1429,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7131,
+    "completion_tokens": 324,
+    "calls": 12,
+    "wall_clock_s": 0.097,
+    "lines": {
+      "agents": {
+        "total_tokens": 7131,
+        "completion_tokens": 324,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

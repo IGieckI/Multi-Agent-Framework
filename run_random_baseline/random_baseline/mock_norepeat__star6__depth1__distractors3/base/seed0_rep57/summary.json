@@ -1,0 +1,128 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "field",
+      "grave",
+      "rain",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "livestock",
+    "intermediate": [],
+    "distractors": [
+      "grave",
+      "rain",
+      "water"
+    ],
+    "path": [
+      [
+        "animal",
+        "field",
+        "livestock"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.1875
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "fish",
+        "graveyard",
+        "horse",
+        "livestock",
+        "puddle"
+      ],
+      "coverage": 0.1562,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "horse",
+        "livestock"
+      ],
+      "coverage": 0.0625,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fish",
+        "flood"
+      ],
+      "coverage": 0.0625,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "flood",
+        "puddle"
+      ],
+      "coverage": 0.0625,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "graveyard"
+      ],
+      "coverage": 0.0312,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "graveyard",
+        "puddle"
+      ],
+      "coverage": 0.0625,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11838,
+    "completion_tokens": 389,
+    "calls": 23,
+    "wall_clock_s": 0.108,
+    "lines": {
+      "agents": {
+        "total_tokens": 11838,
+        "completion_tokens": 389,
+        "calls": 23
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

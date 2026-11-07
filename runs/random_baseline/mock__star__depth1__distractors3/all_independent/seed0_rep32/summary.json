@@ -1,0 +1,83 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "hay",
+      "human",
+      "mountain range",
+      "tool",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "skier",
+    "intermediate": [],
+    "distractors": [
+      "hay",
+      "tool",
+      "water"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.1
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "cold",
+        "skier"
+      ],
+      "coverage": 0.0333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "continent",
+        "pitchfork"
+      ],
+      "coverage": 0.0333,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "puddle",
+        "wheel"
+      ],
+      "coverage": 0.0333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5690,
+    "completion_tokens": 198,
+    "calls": 12,
+    "wall_clock_s": 0.034,
+    "lines": {
+      "agents": {
+        "total_tokens": 5690,
+        "completion_tokens": 198,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "fish",
+      "house",
+      "human",
+      "water",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "log cabin",
+    "intermediate": [],
+    "distractors": [
+      "fish",
+      "human",
+      "water"
+    ],
+    "path": [
+      [
+        "house",
+        "wood",
+        "log cabin"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 12,
+    "union_coverage": 0.1026
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "lumberjack",
+        "tool"
+      ],
+      "coverage": 0.0342,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "boat",
+        "family",
+        "love",
+        "paper",
+        "wall"
+      ],
+      "coverage": 0.0427,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "idea",
+        "lumberjack",
+        "tool"
+      ],
+      "coverage": 0.0256,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fishing rod",
+        "wall"
+      ],
+      "coverage": 0.0171,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "city",
+        "mermaid",
+        "village"
+      ],
+      "coverage": 0.0256,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "mermaid"
+      ],
+      "coverage": 0.0085,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 13192,
+    "completion_tokens": 369,
+    "calls": 24,
+    "wall_clock_s": 0.121,
+    "lines": {
+      "agents": {
+        "total_tokens": 13192,
+        "completion_tokens": 369,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

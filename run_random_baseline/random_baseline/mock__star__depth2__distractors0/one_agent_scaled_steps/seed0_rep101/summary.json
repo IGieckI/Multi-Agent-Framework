@@ -1,0 +1,67 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "fossil",
+      "liquid",
+      "wheel"
+    ],
+    "max_steps": 12,
+    "target": "combustion engine",
+    "intermediate": [
+      "petroleum"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "fossil",
+        "liquid",
+        "petroleum"
+      ],
+      [
+        "petroleum",
+        "wheel",
+        "combustion engine"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "bicycle",
+        "petroleum"
+      ],
+      "coverage": 0.3333,
+      "invalid": 5,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5773,
+    "completion_tokens": 186,
+    "calls": 12,
+    "wall_clock_s": 0.087,
+    "lines": {
+      "agents": {
+        "total_tokens": 5773,
+        "completion_tokens": 186,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

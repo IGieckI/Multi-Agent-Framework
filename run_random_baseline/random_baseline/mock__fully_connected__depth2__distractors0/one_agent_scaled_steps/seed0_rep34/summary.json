@@ -1,0 +1,67 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "animal",
+      "clay",
+      "tool"
+    ],
+    "max_steps": 24,
+    "target": "potter",
+    "intermediate": [
+      "human"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "animal",
+        "tool",
+        "human"
+      ],
+      [
+        "clay",
+        "human",
+        "potter"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.0435
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "machine",
+        "pottery"
+      ],
+      "coverage": 0.0435,
+      "invalid": 6,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11823,
+    "completion_tokens": 371,
+    "calls": 24,
+    "wall_clock_s": 0.122,
+    "lines": {
+      "agents": {
+        "total_tokens": 11823,
+        "completion_tokens": 371,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

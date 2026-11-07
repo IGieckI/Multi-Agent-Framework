@@ -1,0 +1,79 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "antarctica",
+      "lake",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "iceberg",
+    "intermediate": [
+      "sea"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pond",
+        "puddle"
+      ],
+      "coverage": 0.3333,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ocean",
+        "sea"
+      ],
+      "coverage": 0.3333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "puddle",
+        "sea"
+      ],
+      "coverage": 0.3333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6219,
+    "completion_tokens": 234,
+    "calls": 12,
+    "wall_clock_s": 0.062,
+    "lines": {
+      "agents": {
+        "total_tokens": 6219,
+        "completion_tokens": 234,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

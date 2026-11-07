@@ -1,0 +1,67 @@
+{
+  "ended_by": "all_solved",
+  "steps": 11,
+  "task": {
+    "initial": [
+      "helicopter",
+      "manatee",
+      "rock",
+      "rope",
+      "steel"
+    ],
+    "max_steps": 24,
+    "target": "wire",
+    "intermediate": [],
+    "distractors": [
+      "helicopter",
+      "manatee",
+      "rock"
+    ],
+    "path": [
+      [
+        "rope",
+        "steel",
+        "wire"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.1765
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 11,
+      "new_items": [
+        "blade",
+        "chain",
+        "wire"
+      ],
+      "coverage": 0.1765,
+      "invalid": 6,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5356,
+    "completion_tokens": 170,
+    "calls": 11,
+    "wall_clock_s": 0.091,
+    "lines": {
+      "agents": {
+        "total_tokens": 5356,
+        "completion_tokens": 170,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

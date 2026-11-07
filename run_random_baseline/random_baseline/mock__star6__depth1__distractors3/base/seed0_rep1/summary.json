@@ -1,0 +1,124 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "fish",
+      "human",
+      "steak",
+      "sun",
+      "tool"
+    ],
+    "max_steps": 4,
+    "target": "jerky",
+    "intermediate": [],
+    "distractors": [
+      "fish",
+      "human",
+      "tool"
+    ],
+    "path": [
+      [
+        "steak",
+        "sun",
+        "jerky"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 9,
+    "union_coverage": 0.3462
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "mermaid"
+      ],
+      "coverage": 0.0385,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "village"
+      ],
+      "coverage": 0.1154,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "clock",
+        "solar cell",
+        "sundial"
+      ],
+      "coverage": 0.1154,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fishing rod",
+        "meat"
+      ],
+      "coverage": 0.0769,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fishing rod",
+        "meat"
+      ],
+      "coverage": 0.0769,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12341,
+    "completion_tokens": 402,
+    "calls": 24,
+    "wall_clock_s": 0.094,
+    "lines": {
+      "agents": {
+        "total_tokens": 12341,
+        "completion_tokens": 402,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

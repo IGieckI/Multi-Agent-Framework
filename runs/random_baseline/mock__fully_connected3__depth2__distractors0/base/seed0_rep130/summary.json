@@ -1,0 +1,78 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "fish",
+      "moon"
+    ],
+    "max_steps": 4,
+    "target": "piranha",
+    "intermediate": [
+      "wolf"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.6
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "roe"
+      ],
+      "coverage": 0.4,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "wolf"
+      ],
+      "coverage": 0.4,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "wolf"
+      ],
+      "coverage": 0.2,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6990,
+    "completion_tokens": 303,
+    "calls": 12,
+    "wall_clock_s": 0.057,
+    "lines": {
+      "agents": {
+        "total_tokens": 6990,
+        "completion_tokens": 303,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

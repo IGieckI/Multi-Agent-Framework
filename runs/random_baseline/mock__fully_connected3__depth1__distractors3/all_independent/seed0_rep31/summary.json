@@ -1,0 +1,82 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "human",
+      "lake",
+      "stone",
+      "wire"
+    ],
+    "max_steps": 4,
+    "target": "snake",
+    "intermediate": [],
+    "distractors": [
+      "human",
+      "lake",
+      "stone"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.011
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "domestication"
+      ],
+      "coverage": 0.0022,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "meat",
+        "sailor",
+        "tool"
+      ],
+      "coverage": 0.0066,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electrician"
+      ],
+      "coverage": 0.0022,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5690,
+    "completion_tokens": 187,
+    "calls": 12,
+    "wall_clock_s": 0.069,
+    "lines": {
+      "agents": {
+        "total_tokens": 5690,
+        "completion_tokens": 187,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

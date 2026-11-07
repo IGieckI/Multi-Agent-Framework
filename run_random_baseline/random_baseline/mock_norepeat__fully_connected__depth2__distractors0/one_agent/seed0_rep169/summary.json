@@ -1,0 +1,66 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "pebble",
+      "tree",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "palm",
+    "intermediate": [
+      "sand"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "pebble",
+        "wind",
+        "sand"
+      ],
+      [
+        "sand",
+        "tree",
+        "palm"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.04
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "leaf"
+      ],
+      "coverage": 0.04,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1860,
+    "completion_tokens": 60,
+    "calls": 4,
+    "wall_clock_s": 0.071,
+    "lines": {
+      "agents": {
+        "total_tokens": 1860,
+        "completion_tokens": 60,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "ended_by": "all_solved",
+  "steps": 16,
+  "task": {
+    "initial": [
+      "motion",
+      "rock",
+      "steel"
+    ],
+    "max_steps": 24,
+    "target": "blender",
+    "intermediate": [
+      "blade"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "rock",
+        "steel",
+        "blade"
+      ],
+      [
+        "blade",
+        "motion",
+        "blender"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.1667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 16,
+      "new_items": [
+        "blade",
+        "blender",
+        "sword",
+        "wheel"
+      ],
+      "coverage": 0.1667,
+      "invalid": 7,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7929,
+    "completion_tokens": 240,
+    "calls": 16,
+    "wall_clock_s": 0.166,
+    "lines": {
+      "agents": {
+        "total_tokens": 7929,
+        "completion_tokens": 240,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

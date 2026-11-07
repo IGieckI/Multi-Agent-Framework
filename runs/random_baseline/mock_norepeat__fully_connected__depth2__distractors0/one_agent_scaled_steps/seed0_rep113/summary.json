@@ -1,0 +1,56 @@
+{
+  "ended_by": "all_solved",
+  "steps": 5,
+  "task": {
+    "initial": [
+      "bread",
+      "cheese",
+      "lawn"
+    ],
+    "max_steps": 24,
+    "target": "picnic",
+    "intermediate": [
+      "sandwich"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.75
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 5,
+      "new_items": [
+        "picnic",
+        "pizza",
+        "sandwich"
+      ],
+      "coverage": 0.75,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2379,
+    "completion_tokens": 78,
+    "calls": 5,
+    "wall_clock_s": 0.024,
+    "lines": {
+      "agents": {
+        "total_tokens": 2379,
+        "completion_tokens": 78,
+        "calls": 5
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

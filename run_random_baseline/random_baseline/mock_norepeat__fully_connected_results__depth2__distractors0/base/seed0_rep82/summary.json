@@ -1,0 +1,132 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "human",
+      "rope",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "warrior",
+    "intermediate": [
+      "bow"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "rope",
+        "wood",
+        "bow"
+      ],
+      [
+        "bow",
+        "human",
+        "warrior"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 8,
+    "union_coverage": 0.1951
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "bow",
+        "family",
+        "love"
+      ],
+      "coverage": 0.0732,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "wall"
+      ],
+      "coverage": 0.0732,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "axe",
+        "family",
+        "love",
+        "lumberjack",
+        "tool"
+      ],
+      "coverage": 0.122,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "bow",
+        "warrior"
+      ],
+      "coverage": 0.0488,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "bow",
+        "warrior"
+      ],
+      "coverage": 0.0488,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.0488,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11743,
+    "completion_tokens": 330,
+    "calls": 22,
+    "wall_clock_s": 0.106,
+    "lines": {
+      "agents": {
+        "total_tokens": 11743,
+        "completion_tokens": 330,
+        "calls": 22
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "ended_by": "all_solved",
+  "steps": 10,
+  "task": {
+    "initial": [
+      "air",
+      "earth",
+      "human"
+    ],
+    "max_steps": 24,
+    "target": "allergy",
+    "intermediate": [
+      "dust"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.007
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 10,
+      "new_items": [
+        "allergy",
+        "dust",
+        "pressure"
+      ],
+      "coverage": 0.007,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4738,
+    "completion_tokens": 149,
+    "calls": 10,
+    "wall_clock_s": 0.044,
+    "lines": {
+      "agents": {
+        "total_tokens": 4738,
+        "completion_tokens": 149,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

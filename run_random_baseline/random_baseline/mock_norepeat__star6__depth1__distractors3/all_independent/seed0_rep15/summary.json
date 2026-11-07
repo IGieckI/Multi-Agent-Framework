@@ -1,0 +1,112 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "beach",
+      "dew",
+      "life",
+      "mountain",
+      "mountain goat"
+    ],
+    "max_steps": 4,
+    "target": "animal",
+    "intermediate": [],
+    "distractors": [
+      "dew",
+      "mountain",
+      "mountain goat"
+    ],
+    "path": [
+      [
+        "beach",
+        "life",
+        "animal"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0909
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "animal"
+      ],
+      "coverage": 0.0909,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "animal"
+      ],
+      "coverage": 0.0909,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8458,
+    "completion_tokens": 280,
+    "calls": 18,
+    "wall_clock_s": 0.105,
+    "lines": {
+      "agents": {
+        "total_tokens": 8458,
+        "completion_tokens": 280,
+        "calls": 18
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

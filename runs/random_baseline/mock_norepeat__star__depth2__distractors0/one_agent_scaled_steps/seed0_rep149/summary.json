@@ -1,0 +1,57 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "plant",
+      "thread",
+      "tool"
+    ],
+    "max_steps": 12,
+    "target": "cotton",
+    "intermediate": [
+      "fabric"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.5714
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "cotton",
+        "fabric",
+        "machine",
+        "sewing machine"
+      ],
+      "coverage": 0.5714,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1410,
+    "completion_tokens": 46,
+    "calls": 3,
+    "wall_clock_s": 0.023,
+    "lines": {
+      "agents": {
+        "total_tokens": 1410,
+        "completion_tokens": 46,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

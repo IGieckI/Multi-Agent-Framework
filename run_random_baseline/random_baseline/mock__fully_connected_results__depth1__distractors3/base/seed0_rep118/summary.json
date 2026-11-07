@@ -1,0 +1,122 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "bicycle",
+      "duck",
+      "sunflower",
+      "water",
+      "wheel"
+    ],
+    "max_steps": 4,
+    "target": "oil",
+    "intermediate": [],
+    "distractors": [
+      "bicycle",
+      "duck",
+      "water"
+    ],
+    "path": [
+      [
+        "sunflower",
+        "wheel",
+        "oil"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.1875
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "perfume"
+      ],
+      "coverage": 0.0625,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "puddle"
+      ],
+      "coverage": 0.0625,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "car"
+      ],
+      "coverage": 0.0625,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "car",
+        "perfume"
+      ],
+      "coverage": 0.125,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "perfume"
+      ],
+      "coverage": 0.0625,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "car",
+        "puddle"
+      ],
+      "coverage": 0.125,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12966,
+    "completion_tokens": 373,
+    "calls": 24,
+    "wall_clock_s": 0.107,
+    "lines": {
+      "agents": {
+        "total_tokens": 12966,
+        "completion_tokens": 373,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

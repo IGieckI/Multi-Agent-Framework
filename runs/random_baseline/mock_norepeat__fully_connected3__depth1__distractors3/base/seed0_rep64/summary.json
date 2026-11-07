@@ -1,0 +1,81 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "fish",
+      "metal",
+      "storm",
+      "sword",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "swordfish",
+    "intermediate": [],
+    "distractors": [
+      "metal",
+      "storm",
+      "water"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.1875
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "roe",
+        "tornado"
+      ],
+      "coverage": 0.1875,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "tornado"
+      ],
+      "coverage": 0.125,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7092,
+    "completion_tokens": 308,
+    "calls": 12,
+    "wall_clock_s": 0.027,
+    "lines": {
+      "agents": {
+        "total_tokens": 7092,
+        "completion_tokens": 308,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

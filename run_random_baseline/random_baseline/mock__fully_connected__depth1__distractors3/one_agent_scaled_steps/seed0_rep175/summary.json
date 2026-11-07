@@ -1,0 +1,66 @@
+{
+  "ended_by": "all_solved",
+  "steps": 6,
+  "task": {
+    "initial": [
+      "day",
+      "flower",
+      "house",
+      "lake",
+      "sailboat"
+    ],
+    "max_steps": 24,
+    "target": "garden",
+    "intermediate": [],
+    "distractors": [
+      "day",
+      "lake",
+      "sailboat"
+    ],
+    "path": [
+      [
+        "flower",
+        "house",
+        "garden"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.2222
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 6,
+      "new_items": [
+        "garden",
+        "village"
+      ],
+      "coverage": 0.2222,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2867,
+    "completion_tokens": 92,
+    "calls": 6,
+    "wall_clock_s": 0.068,
+    "lines": {
+      "agents": {
+        "total_tokens": 2867,
+        "completion_tokens": 92,
+        "calls": 6
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

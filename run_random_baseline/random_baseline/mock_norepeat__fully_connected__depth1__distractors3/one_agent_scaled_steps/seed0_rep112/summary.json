@@ -1,0 +1,67 @@
+{
+  "ended_by": "all_solved",
+  "steps": 13,
+  "task": {
+    "initial": [
+      "bread",
+      "earth",
+      "moon",
+      "motion",
+      "seagull"
+    ],
+    "max_steps": 24,
+    "target": "earthquake",
+    "intermediate": [],
+    "distractors": [
+      "bread",
+      "moon",
+      "seagull"
+    ],
+    "path": [
+      [
+        "earth",
+        "motion",
+        "earthquake"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.25
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 13,
+      "new_items": [
+        "continent",
+        "earthquake",
+        "land"
+      ],
+      "coverage": 0.25,
+      "invalid": 9,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6546,
+    "completion_tokens": 200,
+    "calls": 13,
+    "wall_clock_s": 0.089,
+    "lines": {
+      "agents": {
+        "total_tokens": 6546,
+        "completion_tokens": 200,
+        "calls": 13
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

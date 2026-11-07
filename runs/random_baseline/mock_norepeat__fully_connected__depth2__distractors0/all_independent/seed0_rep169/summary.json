@@ -1,0 +1,115 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "pebble",
+      "tree",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "palm",
+    "intermediate": [
+      "sand"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.24
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "leaf"
+      ],
+      "coverage": 0.04,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "leaf"
+      ],
+      "coverage": 0.04,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "leaf",
+        "rock"
+      ],
+      "coverage": 0.08,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "cactus",
+        "leaf",
+        "palm",
+        "sand"
+      ],
+      "coverage": 0.16,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "leaf",
+        "tornado"
+      ],
+      "coverage": 0.08,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "rock",
+        "sand"
+      ],
+      "coverage": 0.08,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11201,
+    "completion_tokens": 362,
+    "calls": 24,
+    "wall_clock_s": 0.039,
+    "lines": {
+      "agents": {
+        "total_tokens": 11201,
+        "completion_tokens": 362,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

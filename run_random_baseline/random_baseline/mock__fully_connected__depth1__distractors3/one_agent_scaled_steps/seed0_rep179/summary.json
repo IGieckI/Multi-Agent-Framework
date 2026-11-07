@@ -1,0 +1,66 @@
+{
+  "ended_by": "all_solved",
+  "steps": 18,
+  "task": {
+    "initial": [
+      "dough",
+      "fire",
+      "lasso",
+      "oxygen",
+      "water"
+    ],
+    "max_steps": 24,
+    "target": "bread",
+    "intermediate": [],
+    "distractors": [
+      "lasso",
+      "oxygen",
+      "water"
+    ],
+    "path": [
+      [
+        "dough",
+        "fire",
+        "bread"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.1538
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 18,
+      "new_items": [
+        "bread",
+        "ozone"
+      ],
+      "coverage": 0.1538,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8861,
+    "completion_tokens": 274,
+    "calls": 18,
+    "wall_clock_s": 0.086,
+    "lines": {
+      "agents": {
+        "total_tokens": 8861,
+        "completion_tokens": 274,
+        "calls": 18
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

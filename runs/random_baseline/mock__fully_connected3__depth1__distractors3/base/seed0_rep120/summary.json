@@ -1,0 +1,80 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "cloud",
+      "fireplace",
+      "seahorse",
+      "watch",
+      "witch"
+    ],
+    "max_steps": 4,
+    "target": "cauldron",
+    "intermediate": [],
+    "distractors": [
+      "cloud",
+      "seahorse",
+      "watch"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "cauldron"
+      ],
+      "coverage": 0.3333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "storm"
+      ],
+      "coverage": 0.3333,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "cauldron"
+      ],
+      "coverage": 0.3333,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5203,
+    "completion_tokens": 246,
+    "calls": 9,
+    "wall_clock_s": 0.021,
+    "lines": {
+      "agents": {
+        "total_tokens": 5203,
+        "completion_tokens": 246,
+        "calls": 9
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

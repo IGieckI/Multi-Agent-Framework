@@ -1,0 +1,120 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "antarctica",
+      "chicken",
+      "earth",
+      "night",
+      "planet"
+    ],
+    "max_steps": 4,
+    "target": "ostrich",
+    "intermediate": [],
+    "distractors": [
+      "antarctica",
+      "night",
+      "planet"
+    ],
+    "path": [
+      [
+        "chicken",
+        "earth",
+        "ostrich"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.0633
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "land",
+        "moon"
+      ],
+      "coverage": 0.0253,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "moon"
+      ],
+      "coverage": 0.0127,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "ostrich"
+      ],
+      "coverage": 0.0127,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "ostrich"
+      ],
+      "coverage": 0.0127,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "solar system"
+      ],
+      "coverage": 0.0253,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10893,
+    "completion_tokens": 381,
+    "calls": 21,
+    "wall_clock_s": 0.105,
+    "lines": {
+      "agents": {
+        "total_tokens": 10893,
+        "completion_tokens": 381,
+        "calls": 21
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

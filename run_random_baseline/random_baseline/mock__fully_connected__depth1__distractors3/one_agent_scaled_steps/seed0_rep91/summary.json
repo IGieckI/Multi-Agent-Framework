@@ -1,0 +1,68 @@
+{
+  "ended_by": "all_solved",
+  "steps": 14,
+  "task": {
+    "initial": [
+      "dog",
+      "fruit",
+      "human",
+      "lizard",
+      "swamp"
+    ],
+    "max_steps": 24,
+    "target": "alligator",
+    "intermediate": [],
+    "distractors": [
+      "dog",
+      "fruit",
+      "human"
+    ],
+    "path": [
+      [
+        "lizard",
+        "swamp",
+        "alligator"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 14,
+      "new_items": [
+        "alligator",
+        "egg",
+        "family",
+        "love"
+      ],
+      "coverage": 0.5,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6879,
+    "completion_tokens": 211,
+    "calls": 14,
+    "wall_clock_s": 0.091,
+    "lines": {
+      "agents": {
+        "total_tokens": 6879,
+        "completion_tokens": 211,
+        "calls": 14
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

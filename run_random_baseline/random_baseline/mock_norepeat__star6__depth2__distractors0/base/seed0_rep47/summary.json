@@ -1,0 +1,136 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "blade",
+      "grass",
+      "human"
+    ],
+    "max_steps": 4,
+    "target": "grim reaper",
+    "intermediate": [
+      "scythe"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "blade",
+        "grass",
+        "scythe"
+      ],
+      [
+        "human",
+        "scythe",
+        "grim reaper"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 9,
+    "union_coverage": 0.45
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "scissors"
+      ],
+      "coverage": 0.15,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "blood",
+        "corpse",
+        "family",
+        "love"
+      ],
+      "coverage": 0.2,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "hay",
+        "love",
+        "village"
+      ],
+      "coverage": 0.2,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "farmer",
+        "love",
+        "scythe"
+      ],
+      "coverage": 0.2,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.1,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "scissors",
+        "scythe"
+      ],
+      "coverage": 0.2,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12534,
+    "completion_tokens": 409,
+    "calls": 24,
+    "wall_clock_s": 0.115,
+    "lines": {
+      "agents": {
+        "total_tokens": 12534,
+        "completion_tokens": 409,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

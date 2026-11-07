@@ -1,0 +1,79 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "big",
+      "grass",
+      "wall"
+    ],
+    "max_steps": 4,
+    "target": "ivy",
+    "intermediate": [
+      "plant"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.1739
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "fence",
+        "ivy"
+      ],
+      "coverage": 0.087,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fence",
+        "ivy"
+      ],
+      "coverage": 0.087,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "garden",
+        "plant"
+      ],
+      "coverage": 0.087,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3234,
+    "completion_tokens": 103,
+    "calls": 7,
+    "wall_clock_s": 0.04,
+    "lines": {
+      "agents": {
+        "total_tokens": 3234,
+        "completion_tokens": 103,
+        "calls": 7
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

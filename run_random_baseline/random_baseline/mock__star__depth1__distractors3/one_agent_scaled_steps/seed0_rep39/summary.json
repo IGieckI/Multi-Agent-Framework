@@ -1,0 +1,67 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "house",
+      "human",
+      "machine",
+      "oil",
+      "potato"
+    ],
+    "max_steps": 12,
+    "target": "french fries",
+    "intermediate": [],
+    "distractors": [
+      "house",
+      "human",
+      "machine"
+    ],
+    "path": [
+      [
+        "oil",
+        "potato",
+        "french fries"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.2308
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "engineer",
+        "family",
+        "love"
+      ],
+      "coverage": 0.2308,
+      "invalid": 7,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5990,
+    "completion_tokens": 184,
+    "calls": 12,
+    "wall_clock_s": 0.077,
+    "lines": {
+      "agents": {
+        "total_tokens": 5990,
+        "completion_tokens": 184,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

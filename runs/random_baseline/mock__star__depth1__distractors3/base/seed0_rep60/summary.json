@@ -1,0 +1,78 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "heat",
+      "light bulb",
+      "mouse",
+      "statue",
+      "story"
+    ],
+    "max_steps": 4,
+    "target": "golem",
+    "intermediate": [],
+    "distractors": [
+      "heat",
+      "light bulb",
+      "mouse"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "legend"
+      ],
+      "coverage": 0.25,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "plasma"
+      ],
+      "coverage": 0.25,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6219,
+    "completion_tokens": 230,
+    "calls": 12,
+    "wall_clock_s": 0.03,
+    "lines": {
+      "agents": {
+        "total_tokens": 6219,
+        "completion_tokens": 230,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "moon",
+      "philosophy",
+      "spider",
+      "sun",
+      "wall"
+    ],
+    "max_steps": 4,
+    "target": "eclipse",
+    "intermediate": [],
+    "distractors": [
+      "philosophy",
+      "spider",
+      "wall"
+    ],
+    "path": [
+      [
+        "moon",
+        "sun",
+        "eclipse"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.0909
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "big",
+        "house"
+      ],
+      "coverage": 0.0455,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "house",
+        "small"
+      ],
+      "coverage": 0.0455,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "eclipse"
+      ],
+      "coverage": 0.0227,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7048,
+    "completion_tokens": 306,
+    "calls": 12,
+    "wall_clock_s": 0.1,
+    "lines": {
+      "agents": {
+        "total_tokens": 7048,
+        "completion_tokens": 306,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

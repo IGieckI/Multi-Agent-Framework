@@ -1,0 +1,122 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "castle",
+      "flower",
+      "pasta",
+      "water",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "pollen",
+    "intermediate": [],
+    "distractors": [
+      "castle",
+      "pasta",
+      "water"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 8,
+    "union_coverage": 0.4444
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pond",
+        "puddle"
+      ],
+      "coverage": 0.1111,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fruit",
+        "perfume"
+      ],
+      "coverage": 0.1111,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "leaf",
+        "pollen"
+      ],
+      "coverage": 0.1111,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fruit",
+        "perfume",
+        "tornado"
+      ],
+      "coverage": 0.1667,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fruit",
+        "garden",
+        "perfume"
+      ],
+      "coverage": 0.1667,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "garden",
+        "pond",
+        "puddle"
+      ],
+      "coverage": 0.1667,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 16280,
+    "completion_tokens": 630,
+    "calls": 24,
+    "wall_clock_s": 0.058,
+    "lines": {
+      "agents": {
+        "total_tokens": 16280,
+        "completion_tokens": 630,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

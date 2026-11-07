@@ -1,0 +1,130 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "plant",
+      "sun",
+      "wheel"
+    ],
+    "max_steps": 4,
+    "target": "oil",
+    "intermediate": [
+      "sunflower"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "plant",
+        "sun",
+        "sunflower"
+      ],
+      [
+        "sunflower",
+        "wheel",
+        "oil"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.5556
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "clock",
+        "sundial"
+      ],
+      "coverage": 0.2222,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "oxygen",
+        "ozone",
+        "sunflower"
+      ],
+      "coverage": 0.3333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "oxygen",
+        "sunflower"
+      ],
+      "coverage": 0.2222,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "oxygen",
+        "sundial",
+        "sunflower"
+      ],
+      "coverage": 0.3333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "oxygen",
+        "sunflower"
+      ],
+      "coverage": 0.2222,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "oxygen",
+        "sundial",
+        "sunflower"
+      ],
+      "coverage": 0.3333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12376,
+    "completion_tokens": 410,
+    "calls": 24,
+    "wall_clock_s": 0.102,
+    "lines": {
+      "agents": {
+        "total_tokens": 12376,
+        "completion_tokens": 410,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

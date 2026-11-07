@@ -1,0 +1,66 @@
+{
+  "ended_by": "all_solved",
+  "steps": 9,
+  "task": {
+    "initial": [
+      "computer",
+      "heat",
+      "ocean",
+      "rainbow",
+      "steam engine"
+    ],
+    "max_steps": 24,
+    "target": "steamboat",
+    "intermediate": [],
+    "distractors": [
+      "computer",
+      "heat",
+      "rainbow"
+    ],
+    "path": [
+      [
+        "ocean",
+        "steam engine",
+        "steamboat"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 9,
+      "new_items": [
+        "plasma",
+        "steamboat"
+      ],
+      "coverage": 0.3333,
+      "invalid": 7,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4468,
+    "completion_tokens": 150,
+    "calls": 9,
+    "wall_clock_s": 0.088,
+    "lines": {
+      "agents": {
+        "total_tokens": 4468,
+        "completion_tokens": 150,
+        "calls": 9
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

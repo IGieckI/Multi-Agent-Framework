@@ -1,0 +1,54 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "atmosphere",
+      "container"
+    ],
+    "max_steps": 24,
+    "target": "boiler",
+    "intermediate": [
+      "pressure"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "boiler",
+        "pressure"
+      ],
+      "coverage": 0.6667,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1403,
+    "completion_tokens": 52,
+    "calls": 3,
+    "wall_clock_s": 0.033,
+    "lines": {
+      "agents": {
+        "total_tokens": 1403,
+        "completion_tokens": 52,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

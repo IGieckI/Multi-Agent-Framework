@@ -1,0 +1,55 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "animal",
+      "chicken",
+      "dog"
+    ],
+    "max_steps": 12,
+    "target": "fox",
+    "intermediate": [
+      "wolf"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fox",
+        "wolf"
+      ],
+      "coverage": 0.4,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 921,
+    "completion_tokens": 30,
+    "calls": 2,
+    "wall_clock_s": 0.017,
+    "lines": {
+      "agents": {
+        "total_tokens": 921,
+        "completion_tokens": 30,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

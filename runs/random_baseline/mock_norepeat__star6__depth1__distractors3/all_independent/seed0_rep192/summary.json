@@ -1,0 +1,114 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "bacteria",
+      "grass",
+      "milk",
+      "sailor"
+    ],
+    "max_steps": 4,
+    "target": "cat",
+    "intermediate": [],
+    "distractors": [
+      "bacteria",
+      "grass",
+      "sailor"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "cat"
+      ],
+      "coverage": 0.0833,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "idea"
+      ],
+      "coverage": 0.0833,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "hay"
+      ],
+      "coverage": 0.0833,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "hay"
+      ],
+      "coverage": 0.0833,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ant"
+      ],
+      "coverage": 0.0833,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "cheese",
+        "yogurt"
+      ],
+      "coverage": 0.1667,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10815,
+    "completion_tokens": 359,
+    "calls": 23,
+    "wall_clock_s": 0.033,
+    "lines": {
+      "agents": {
+        "total_tokens": 10815,
+        "completion_tokens": 359,
+        "calls": 23
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

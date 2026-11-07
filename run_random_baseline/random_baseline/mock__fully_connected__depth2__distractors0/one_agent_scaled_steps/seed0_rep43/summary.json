@@ -1,0 +1,73 @@
+{
+  "ended_by": "all_solved",
+  "steps": 18,
+  "task": {
+    "initial": [
+      "human",
+      "mountain range",
+      "sea"
+    ],
+    "max_steps": 24,
+    "target": "current",
+    "intermediate": [
+      "cold"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "human",
+        "mountain range",
+        "cold"
+      ],
+      [
+        "cold",
+        "sea",
+        "current"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 8,
+    "union_coverage": 0.3077
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 18,
+      "new_items": [
+        "arctic",
+        "chill",
+        "cold",
+        "current",
+        "idea",
+        "philosophy",
+        "sailor",
+        "skier"
+      ],
+      "coverage": 0.3077,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9371,
+    "completion_tokens": 277,
+    "calls": 18,
+    "wall_clock_s": 0.106,
+    "lines": {
+      "agents": {
+        "total_tokens": 9371,
+        "completion_tokens": 277,
+        "calls": 18
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

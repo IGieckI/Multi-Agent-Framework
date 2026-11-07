@@ -1,0 +1,69 @@
+{
+  "ended_by": "all_solved",
+  "steps": 19,
+  "task": {
+    "initial": [
+      "machine",
+      "ocean",
+      "steam"
+    ],
+    "max_steps": 24,
+    "target": "steamboat",
+    "intermediate": [
+      "steam engine"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "machine",
+        "steam",
+        "steam engine"
+      ],
+      [
+        "ocean",
+        "steam engine",
+        "steamboat"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 1.0
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 19,
+      "new_items": [
+        "geyser",
+        "pressure",
+        "steam engine",
+        "steamboat"
+      ],
+      "coverage": 1.0,
+      "invalid": 15,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9994,
+    "completion_tokens": 309,
+    "calls": 19,
+    "wall_clock_s": 0.091,
+    "lines": {
+      "agents": {
+        "total_tokens": 9994,
+        "completion_tokens": 309,
+        "calls": 19
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

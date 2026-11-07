@@ -1,0 +1,58 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "broom",
+      "doctor",
+      "house",
+      "steel",
+      "unicorn"
+    ],
+    "max_steps": 24,
+    "target": "hospital",
+    "intermediate": [],
+    "distractors": [
+      "broom",
+      "steel",
+      "unicorn"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.25
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "village"
+      ],
+      "coverage": 0.25,
+      "invalid": 11,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12243,
+    "completion_tokens": 375,
+    "calls": 24,
+    "wall_clock_s": 0.053,
+    "lines": {
+      "agents": {
+        "total_tokens": 12243,
+        "completion_tokens": 375,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

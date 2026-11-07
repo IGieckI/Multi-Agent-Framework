@@ -1,0 +1,60 @@
+{
+  "ended_by": "all_solved",
+  "steps": 6,
+  "task": {
+    "initial": [
+      "animal",
+      "car",
+      "house",
+      "moon rover",
+      "story"
+    ],
+    "max_steps": 24,
+    "target": "rv",
+    "intermediate": [],
+    "distractors": [
+      "animal",
+      "moon rover",
+      "story"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 6,
+      "new_items": [
+        "bus",
+        "garage",
+        "rv"
+      ],
+      "coverage": 0.5,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2856,
+    "completion_tokens": 91,
+    "calls": 6,
+    "wall_clock_s": 0.028,
+    "lines": {
+      "agents": {
+        "total_tokens": 2856,
+        "completion_tokens": 91,
+        "calls": 6
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

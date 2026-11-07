@@ -1,0 +1,67 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "bacteria",
+      "glass",
+      "glasses",
+      "ocean",
+      "train"
+    ],
+    "max_steps": 12,
+    "target": "microscope",
+    "intermediate": [],
+    "distractors": [
+      "glasses",
+      "ocean",
+      "train"
+    ],
+    "path": [
+      [
+        "bacteria",
+        "glass",
+        "microscope"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.75
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "plankton",
+        "pressure",
+        "swim goggles"
+      ],
+      "coverage": 0.75,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5961,
+    "completion_tokens": 194,
+    "calls": 12,
+    "wall_clock_s": 0.08,
+    "lines": {
+      "agents": {
+        "total_tokens": 5961,
+        "completion_tokens": 194,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

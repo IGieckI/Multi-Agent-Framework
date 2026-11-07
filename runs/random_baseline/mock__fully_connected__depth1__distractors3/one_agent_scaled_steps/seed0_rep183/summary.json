@@ -1,0 +1,63 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "big",
+      "human",
+      "light",
+      "metal",
+      "mountain"
+    ],
+    "max_steps": 24,
+    "target": "angel",
+    "intermediate": [],
+    "distractors": [
+      "big",
+      "metal",
+      "mountain"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.0896
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "alchemist",
+        "family",
+        "gold",
+        "love",
+        "ring",
+        "spotlight"
+      ],
+      "coverage": 0.0896,
+      "invalid": 16,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12844,
+    "completion_tokens": 363,
+    "calls": 24,
+    "wall_clock_s": 0.055,
+    "lines": {
+      "agents": {
+        "total_tokens": 12844,
+        "completion_tokens": 363,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

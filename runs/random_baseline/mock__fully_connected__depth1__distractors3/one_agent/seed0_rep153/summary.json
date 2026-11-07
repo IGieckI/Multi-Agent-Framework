@@ -1,0 +1,58 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "container",
+      "dune",
+      "horse",
+      "river",
+      "wall"
+    ],
+    "max_steps": 4,
+    "target": "camel",
+    "intermediate": [],
+    "distractors": [
+      "container",
+      "river",
+      "wall"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.1111
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "camel"
+      ],
+      "coverage": 0.1111,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 926,
+    "completion_tokens": 30,
+    "calls": 2,
+    "wall_clock_s": 0.028,
+    "lines": {
+      "agents": {
+        "total_tokens": 926,
+        "completion_tokens": 30,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

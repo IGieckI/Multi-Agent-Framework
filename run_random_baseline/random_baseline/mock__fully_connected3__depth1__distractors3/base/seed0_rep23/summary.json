@@ -1,0 +1,85 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "egg",
+      "pressure",
+      "puddle",
+      "salt",
+      "time"
+    ],
+    "max_steps": 4,
+    "target": "frog",
+    "intermediate": [],
+    "distractors": [
+      "pressure",
+      "salt",
+      "time"
+    ],
+    "path": [
+      [
+        "egg",
+        "puddle",
+        "frog"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.2222
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "frog"
+      ],
+      "coverage": 0.1111,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pond"
+      ],
+      "coverage": 0.1111,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5757,
+    "completion_tokens": 254,
+    "calls": 10,
+    "wall_clock_s": 0.088,
+    "lines": {
+      "agents": {
+        "total_tokens": 5757,
+        "completion_tokens": 254,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "air",
+      "egg",
+      "hamster",
+      "squirrel",
+      "tool"
+    ],
+    "max_steps": 24,
+    "target": "flying squirrel",
+    "intermediate": [],
+    "distractors": [
+      "egg",
+      "hamster",
+      "tool"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "airplane",
+        "bird",
+        "boiler",
+        "machine",
+        "omelette",
+        "pressure"
+      ],
+      "coverage": 0.6667,
+      "invalid": 18,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 13007,
+    "completion_tokens": 368,
+    "calls": 24,
+    "wall_clock_s": 0.056,
+    "lines": {
+      "agents": {
+        "total_tokens": 13007,
+        "completion_tokens": 368,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

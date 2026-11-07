@@ -1,0 +1,118 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "air",
+      "cloud",
+      "continent"
+    ],
+    "max_steps": 4,
+    "target": "horizon",
+    "intermediate": [
+      "sky"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 8,
+    "union_coverage": 0.3478
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "planet",
+        "pressure",
+        "rain",
+        "storm"
+      ],
+      "coverage": 0.1739,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pressure",
+        "storm"
+      ],
+      "coverage": 0.087,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "storm"
+      ],
+      "coverage": 0.0435,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "atmosphere",
+        "planet",
+        "pressure"
+      ],
+      "coverage": 0.1304,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "storm",
+        "tornado"
+      ],
+      "coverage": 0.087,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pressure",
+        "sky",
+        "wind"
+      ],
+      "coverage": 0.1304,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12369,
+    "completion_tokens": 411,
+    "calls": 24,
+    "wall_clock_s": 0.044,
+    "lines": {
+      "agents": {
+        "total_tokens": 12369,
+        "completion_tokens": 411,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

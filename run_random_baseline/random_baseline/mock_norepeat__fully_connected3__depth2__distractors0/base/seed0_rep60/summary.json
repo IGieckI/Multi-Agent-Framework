@@ -1,0 +1,90 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "hero",
+      "human",
+      "statue"
+    ],
+    "max_steps": 4,
+    "target": "golem",
+    "intermediate": [
+      "story"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "hero",
+        "human",
+        "story"
+      ],
+      [
+        "statue",
+        "story",
+        "golem"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "golem",
+        "story"
+      ],
+      "coverage": 0.2,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.2,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "story"
+      ],
+      "coverage": 0.1,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7029,
+    "completion_tokens": 309,
+    "calls": 12,
+    "wall_clock_s": 0.11,
+    "lines": {
+      "agents": {
+        "total_tokens": 7029,
+        "completion_tokens": 309,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

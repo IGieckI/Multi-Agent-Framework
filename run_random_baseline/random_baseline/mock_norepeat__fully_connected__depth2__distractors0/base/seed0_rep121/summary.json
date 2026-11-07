@@ -1,0 +1,128 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "bird",
+      "plant",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "nest",
+    "intermediate": [
+      "tree"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "plant",
+        "wood",
+        "tree"
+      ],
+      [
+        "bird",
+        "tree",
+        "nest"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 8,
+    "union_coverage": 0.32
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "forest",
+        "tree",
+        "treehouse"
+      ],
+      "coverage": 0.12,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "woodpecker"
+      ],
+      "coverage": 0.04,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "house",
+        "wall"
+      ],
+      "coverage": 0.08,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "woodpecker"
+      ],
+      "coverage": 0.08,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "nest",
+        "tree",
+        "woodpecker"
+      ],
+      "coverage": 0.12,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "tree"
+      ],
+      "coverage": 0.08,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 15088,
+    "completion_tokens": 582,
+    "calls": 23,
+    "wall_clock_s": 0.117,
+    "lines": {
+      "agents": {
+        "total_tokens": 15088,
+        "completion_tokens": 582,
+        "calls": 23
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

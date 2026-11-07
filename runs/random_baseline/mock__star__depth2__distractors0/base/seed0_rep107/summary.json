@@ -1,0 +1,80 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "farmer",
+      "tool"
+    ],
+    "max_steps": 4,
+    "target": "meat",
+    "intermediate": [
+      "livestock"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.1923
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "human",
+        "meat"
+      ],
+      "coverage": 0.0769,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "human",
+        "meat"
+      ],
+      "coverage": 0.0769,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "domestication",
+        "livestock",
+        "machine"
+      ],
+      "coverage": 0.1154,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2984,
+    "completion_tokens": 105,
+    "calls": 6,
+    "wall_clock_s": 0.022,
+    "lines": {
+      "agents": {
+        "total_tokens": 2984,
+        "completion_tokens": 105,
+        "calls": 6
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

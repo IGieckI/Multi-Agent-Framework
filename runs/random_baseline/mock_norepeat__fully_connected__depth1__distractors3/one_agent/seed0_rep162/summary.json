@@ -1,0 +1,58 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "baker",
+      "blade",
+      "lion",
+      "mountain",
+      "sound"
+    ],
+    "max_steps": 4,
+    "target": "avalanche",
+    "intermediate": [],
+    "distractors": [
+      "baker",
+      "blade",
+      "lion"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.1
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "avalanche"
+      ],
+      "coverage": 0.1,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1883,
+    "completion_tokens": 63,
+    "calls": 4,
+    "wall_clock_s": 0.041,
+    "lines": {
+      "agents": {
+        "total_tokens": 1883,
+        "completion_tokens": 63,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "alcohol",
+      "earthquake",
+      "flower",
+      "grass",
+      "stone"
+    ],
+    "max_steps": 4,
+    "target": "perfume",
+    "intermediate": [],
+    "distractors": [
+      "earthquake",
+      "grass",
+      "stone"
+    ],
+    "path": [
+      [
+        "alcohol",
+        "flower",
+        "perfume"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.25
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "moss"
+      ],
+      "coverage": 0.0625,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "garden"
+      ],
+      "coverage": 0.0625,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "garden",
+        "hay"
+      ],
+      "coverage": 0.125,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "perfume"
+      ],
+      "coverage": 0.0625,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "perfume"
+      ],
+      "coverage": 0.0625,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "moss"
+      ],
+      "coverage": 0.0625,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10374,
+    "completion_tokens": 365,
+    "calls": 20,
+    "wall_clock_s": 0.104,
+    "lines": {
+      "agents": {
+        "total_tokens": 10374,
+        "completion_tokens": 365,
+        "calls": 20
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

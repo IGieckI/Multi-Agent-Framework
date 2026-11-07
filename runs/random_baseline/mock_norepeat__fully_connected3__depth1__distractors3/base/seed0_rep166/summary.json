@@ -1,0 +1,84 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "farmer",
+      "glass",
+      "horse",
+      "house",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "log cabin",
+    "intermediate": [],
+    "distractors": [
+      "farmer",
+      "glass",
+      "horse"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.4545
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "glasses"
+      ],
+      "coverage": 0.0909,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "farm",
+        "idea",
+        "wall"
+      ],
+      "coverage": 0.2727,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "farm",
+        "idea",
+        "trojan horse"
+      ],
+      "coverage": 0.2727,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7181,
+    "completion_tokens": 319,
+    "calls": 12,
+    "wall_clock_s": 0.03,
+    "lines": {
+      "agents": {
+        "total_tokens": 7181,
+        "completion_tokens": 319,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "earth",
+      "fire",
+      "pressure"
+    ],
+    "max_steps": 4,
+    "target": "granite",
+    "intermediate": [
+      "lava"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "earth",
+        "fire",
+        "lava"
+      ],
+      [
+        "lava",
+        "pressure",
+        "granite"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.1923
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "eruption",
+        "granite",
+        "lava"
+      ],
+      "coverage": 0.1154,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "land",
+        "lava"
+      ],
+      "coverage": 0.0769,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "energy",
+        "land"
+      ],
+      "coverage": 0.0769,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5617,
+    "completion_tokens": 188,
+    "calls": 12,
+    "wall_clock_s": 0.097,
+    "lines": {
+      "agents": {
+        "total_tokens": 5617,
+        "completion_tokens": 188,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

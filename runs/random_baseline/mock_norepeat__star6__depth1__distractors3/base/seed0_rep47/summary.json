@@ -1,0 +1,121 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "human",
+      "ice",
+      "scythe",
+      "steel",
+      "stone"
+    ],
+    "max_steps": 4,
+    "target": "grim reaper",
+    "intermediate": [],
+    "distractors": [
+      "ice",
+      "steel",
+      "stone"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 8,
+    "union_coverage": 0.1702
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "blade",
+        "chill",
+        "scissors",
+        "wall"
+      ],
+      "coverage": 0.0851,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "grim reaper"
+      ],
+      "coverage": 0.0213,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fridge",
+        "wall"
+      ],
+      "coverage": 0.0426,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "blade",
+        "grim reaper"
+      ],
+      "coverage": 0.0426,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "blade",
+        "scissors"
+      ],
+      "coverage": 0.0426,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "chill",
+        "lawn mower",
+        "tool"
+      ],
+      "coverage": 0.0638,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10330,
+    "completion_tokens": 343,
+    "calls": 20,
+    "wall_clock_s": 0.051,
+    "lines": {
+      "agents": {
+        "total_tokens": 10330,
+        "completion_tokens": 343,
+        "calls": 20
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

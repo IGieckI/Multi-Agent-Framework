@@ -1,0 +1,69 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "human",
+      "rain",
+      "yogurt"
+    ],
+    "max_steps": 12,
+    "target": "frozen yogurt",
+    "intermediate": [
+      "cold"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "human",
+        "rain",
+        "cold"
+      ],
+      [
+        "cold",
+        "yogurt",
+        "frozen yogurt"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.3077
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "cold",
+        "family",
+        "flood",
+        "love"
+      ],
+      "coverage": 0.3077,
+      "invalid": 9,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5922,
+    "completion_tokens": 181,
+    "calls": 12,
+    "wall_clock_s": 0.084,
+    "lines": {
+      "agents": {
+        "total_tokens": 5922,
+        "completion_tokens": 181,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

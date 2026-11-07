@@ -1,0 +1,90 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "horse",
+      "sand",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "camel",
+    "intermediate": [
+      "dune"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "sand",
+        "wind",
+        "dune"
+      ],
+      [
+        "dune",
+        "horse",
+        "camel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.8
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "dune",
+        "sandstorm",
+        "tornado"
+      ],
+      "coverage": 0.6,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "camel"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "camel"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2793,
+    "completion_tokens": 91,
+    "calls": 6,
+    "wall_clock_s": 0.072,
+    "lines": {
+      "agents": {
+        "total_tokens": 2793,
+        "completion_tokens": 91,
+        "calls": 6
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

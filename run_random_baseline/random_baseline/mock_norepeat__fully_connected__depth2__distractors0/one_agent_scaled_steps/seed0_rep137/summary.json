@@ -1,0 +1,67 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "human",
+      "steel",
+      "wall"
+    ],
+    "max_steps": 24,
+    "target": "house",
+    "intermediate": [
+      "tool"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "human",
+        "steel",
+        "tool"
+      ],
+      [
+        "tool",
+        "wall",
+        "house"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.1053
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "house",
+        "tool"
+      ],
+      "coverage": 0.1053,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 921,
+    "completion_tokens": 30,
+    "calls": 2,
+    "wall_clock_s": 0.071,
+    "lines": {
+      "agents": {
+        "total_tokens": 921,
+        "completion_tokens": 30,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

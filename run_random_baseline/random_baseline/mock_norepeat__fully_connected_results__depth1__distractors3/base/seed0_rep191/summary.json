@@ -1,0 +1,126 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "mountain",
+      "organic matter",
+      "philosophy",
+      "water",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "mineral",
+    "intermediate": [],
+    "distractors": [
+      "philosophy",
+      "water",
+      "wood"
+    ],
+    "path": [
+      [
+        "mountain",
+        "organic matter",
+        "mineral"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 8,
+    "union_coverage": 0.0153
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "wall"
+      ],
+      "coverage": 0.0019,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "house",
+        "wall"
+      ],
+      "coverage": 0.0038,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "mineral",
+        "motion",
+        "river"
+      ],
+      "coverage": 0.0057,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "boat",
+        "paper",
+        "wall"
+      ],
+      "coverage": 0.0057,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "boat",
+        "paper"
+      ],
+      "coverage": 0.0038,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "idea"
+      ],
+      "coverage": 0.0019,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 13219,
+    "completion_tokens": 395,
+    "calls": 24,
+    "wall_clock_s": 0.128,
+    "lines": {
+      "agents": {
+        "total_tokens": 13219,
+        "completion_tokens": 395,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

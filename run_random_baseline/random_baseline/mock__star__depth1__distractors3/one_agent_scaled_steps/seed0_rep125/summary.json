@@ -1,0 +1,63 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "bacteria",
+      "barn",
+      "chicken",
+      "dune",
+      "spider"
+    ],
+    "max_steps": 12,
+    "target": "scorpion",
+    "intermediate": [],
+    "distractors": [
+      "bacteria",
+      "barn",
+      "chicken"
+    ],
+    "path": [
+      [
+        "dune",
+        "spider",
+        "scorpion"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 0,
+    "union_coverage": 0.0
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5814,
+    "completion_tokens": 186,
+    "calls": 12,
+    "wall_clock_s": 0.082,
+    "lines": {
+      "agents": {
+        "total_tokens": 5814,
+        "completion_tokens": 186,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

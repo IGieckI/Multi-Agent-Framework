@@ -1,0 +1,74 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "lizard",
+      "mud",
+      "tree"
+    ],
+    "max_steps": 4,
+    "target": "alligator",
+    "intermediate": [
+      "swamp"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "swamp"
+      ],
+      "coverage": 0.2,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "forest"
+      ],
+      "coverage": 0.2,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6927,
+    "completion_tokens": 300,
+    "calls": 12,
+    "wall_clock_s": 0.036,
+    "lines": {
+      "agents": {
+        "total_tokens": 6927,
+        "completion_tokens": 300,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

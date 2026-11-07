@@ -1,0 +1,70 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "plant",
+      "sun",
+      "wheel"
+    ],
+    "max_steps": 12,
+    "target": "oil",
+    "intermediate": [
+      "sunflower"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "plant",
+        "sun",
+        "sunflower"
+      ],
+      [
+        "sunflower",
+        "wheel",
+        "oil"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.5556
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "bicycle",
+        "oxygen",
+        "ozone",
+        "sundial",
+        "sunflower"
+      ],
+      "coverage": 0.5556,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5939,
+    "completion_tokens": 185,
+    "calls": 12,
+    "wall_clock_s": 0.092,
+    "lines": {
+      "agents": {
+        "total_tokens": 5939,
+        "completion_tokens": 185,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

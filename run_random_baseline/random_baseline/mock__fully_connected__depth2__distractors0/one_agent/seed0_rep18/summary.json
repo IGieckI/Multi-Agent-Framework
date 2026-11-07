@@ -1,0 +1,68 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "human",
+      "wire",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "warrior",
+    "intermediate": [
+      "bow"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "wire",
+        "wood",
+        "bow"
+      ],
+      [
+        "bow",
+        "human",
+        "warrior"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.0698
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electrician",
+        "fence",
+        "wall"
+      ],
+      "coverage": 0.0698,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1886,
+    "completion_tokens": 62,
+    "calls": 4,
+    "wall_clock_s": 0.087,
+    "lines": {
+      "agents": {
+        "total_tokens": 1886,
+        "completion_tokens": 62,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "ended_by": "all_solved",
+  "steps": 10,
+  "task": {
+    "initial": [
+      "armor",
+      "stone",
+      "warrior"
+    ],
+    "max_steps": 12,
+    "target": "castle",
+    "intermediate": [
+      "knight"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.5714
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 10,
+      "new_items": [
+        "castle",
+        "idea",
+        "knight",
+        "wall"
+      ],
+      "coverage": 0.5714,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4878,
+    "completion_tokens": 153,
+    "calls": 10,
+    "wall_clock_s": 0.025,
+    "lines": {
+      "agents": {
+        "total_tokens": 4878,
+        "completion_tokens": 153,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

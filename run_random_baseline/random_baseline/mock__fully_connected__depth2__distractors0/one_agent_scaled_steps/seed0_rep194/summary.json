@@ -1,0 +1,69 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "fire",
+      "grass",
+      "meat"
+    ],
+    "max_steps": 24,
+    "target": "ham",
+    "intermediate": [
+      "smoke"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "fire",
+        "grass",
+        "smoke"
+      ],
+      [
+        "meat",
+        "smoke",
+        "ham"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.4444
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "ash",
+        "hay",
+        "smoke",
+        "steak"
+      ],
+      "coverage": 0.4444,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11892,
+    "completion_tokens": 355,
+    "calls": 24,
+    "wall_clock_s": 0.125,
+    "lines": {
+      "agents": {
+        "total_tokens": 11892,
+        "completion_tokens": 355,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

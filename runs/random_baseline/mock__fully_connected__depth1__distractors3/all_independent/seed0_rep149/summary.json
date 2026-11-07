@@ -1,0 +1,119 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "bee",
+      "container",
+      "engineer",
+      "fabric",
+      "plant"
+    ],
+    "max_steps": 4,
+    "target": "cotton",
+    "intermediate": [],
+    "distractors": [
+      "bee",
+      "container",
+      "engineer"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 8,
+    "union_coverage": 0.4706
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "cotton"
+      ],
+      "coverage": 0.0588,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "beehive",
+        "egg",
+        "honey"
+      ],
+      "coverage": 0.1765,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "birdhouse",
+        "egg",
+        "honey",
+        "nest"
+      ],
+      "coverage": 0.2353,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "cotton"
+      ],
+      "coverage": 0.0588,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "greenhouse"
+      ],
+      "coverage": 0.0588,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "greenhouse",
+        "idea"
+      ],
+      "coverage": 0.1176,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9942,
+    "completion_tokens": 328,
+    "calls": 21,
+    "wall_clock_s": 0.041,
+    "lines": {
+      "agents": {
+        "total_tokens": 9942,
+        "completion_tokens": 328,
+        "calls": 21
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

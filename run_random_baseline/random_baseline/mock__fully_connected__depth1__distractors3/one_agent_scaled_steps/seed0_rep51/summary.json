@@ -1,0 +1,65 @@
+{
+  "ended_by": "all_solved",
+  "steps": 15,
+  "task": {
+    "initial": [
+      "cow",
+      "fabric",
+      "grass",
+      "thread"
+    ],
+    "max_steps": 24,
+    "target": "rope",
+    "intermediate": [],
+    "distractors": [
+      "cow",
+      "fabric",
+      "grass"
+    ],
+    "path": [
+      [
+        "thread",
+        "thread",
+        "rope"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 15,
+      "new_items": [
+        "hay",
+        "rope"
+      ],
+      "coverage": 0.5,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7264,
+    "completion_tokens": 228,
+    "calls": 15,
+    "wall_clock_s": 0.091,
+    "lines": {
+      "agents": {
+        "total_tokens": 7264,
+        "completion_tokens": 228,
+        "calls": 15
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

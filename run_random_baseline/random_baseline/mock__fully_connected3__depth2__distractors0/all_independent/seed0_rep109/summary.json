@@ -1,0 +1,89 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "electricity",
+      "flashlight",
+      "glass"
+    ],
+    "max_steps": 4,
+    "target": "light bulb",
+    "intermediate": [
+      "light"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "electricity",
+        "flashlight",
+        "light"
+      ],
+      [
+        "glass",
+        "light",
+        "light bulb"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "light"
+      ],
+      "coverage": 0.25,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "light",
+        "light bulb"
+      ],
+      "coverage": 0.5,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "light bulb"
+      ],
+      "coverage": 0.25,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3292,
+    "completion_tokens": 118,
+    "calls": 7,
+    "wall_clock_s": 0.077,
+    "lines": {
+      "agents": {
+        "total_tokens": 3292,
+        "completion_tokens": 118,
+        "calls": 7
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

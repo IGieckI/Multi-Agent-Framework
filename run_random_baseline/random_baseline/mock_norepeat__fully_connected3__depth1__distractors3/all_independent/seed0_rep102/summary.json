@@ -1,0 +1,87 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "blade",
+      "flute",
+      "thread",
+      "warrior"
+    ],
+    "max_steps": 4,
+    "target": "pan flute",
+    "intermediate": [],
+    "distractors": [
+      "blade",
+      "thread",
+      "warrior"
+    ],
+    "path": [
+      [
+        "flute",
+        "flute",
+        "pan flute"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.75
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "pan flute"
+      ],
+      "coverage": 0.25,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "idea",
+        "scissors"
+      ],
+      "coverage": 0.5,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "idea"
+      ],
+      "coverage": 0.25,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5167,
+    "completion_tokens": 169,
+    "calls": 11,
+    "wall_clock_s": 0.084,
+    "lines": {
+      "agents": {
+        "total_tokens": 5167,
+        "completion_tokens": 169,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

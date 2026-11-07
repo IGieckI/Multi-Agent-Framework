@@ -1,0 +1,66 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "grass",
+      "livestock",
+      "story"
+    ],
+    "max_steps": 12,
+    "target": "minotaur",
+    "intermediate": [
+      "cow"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "grass",
+        "livestock",
+        "cow"
+      ],
+      [
+        "cow",
+        "story",
+        "minotaur"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.1111
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "cow"
+      ],
+      "coverage": 0.1111,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5764,
+    "completion_tokens": 190,
+    "calls": 12,
+    "wall_clock_s": 0.082,
+    "lines": {
+      "agents": {
+        "total_tokens": 5764,
+        "completion_tokens": 190,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

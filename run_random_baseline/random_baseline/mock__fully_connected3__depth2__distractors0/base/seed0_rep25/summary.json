@@ -1,0 +1,93 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "electricity",
+      "human",
+      "light bulb"
+    ],
+    "max_steps": 4,
+    "target": "angel",
+    "intermediate": [
+      "light"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "electricity",
+        "light bulb",
+        "light"
+      ],
+      [
+        "human",
+        "light",
+        "angel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electrician",
+        "idea",
+        "philosophy"
+      ],
+      "coverage": 0.3333,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "idea"
+      ],
+      "coverage": 0.1111,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "idea",
+        "love",
+        "village"
+      ],
+      "coverage": 0.4444,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7257,
+    "completion_tokens": 329,
+    "calls": 12,
+    "wall_clock_s": 0.093,
+    "lines": {
+      "agents": {
+        "total_tokens": 7257,
+        "completion_tokens": 329,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

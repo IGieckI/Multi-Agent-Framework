@@ -1,0 +1,60 @@
+{
+  "ended_by": "all_solved",
+  "steps": 16,
+  "task": {
+    "initial": [
+      "cake",
+      "container",
+      "mountain",
+      "paper",
+      "village"
+    ],
+    "max_steps": 24,
+    "target": "bakery",
+    "intermediate": [],
+    "distractors": [
+      "container",
+      "mountain",
+      "paper"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.1875
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 16,
+      "new_items": [
+        "bakery",
+        "city",
+        "map"
+      ],
+      "coverage": 0.1875,
+      "invalid": 11,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8203,
+    "completion_tokens": 250,
+    "calls": 16,
+    "wall_clock_s": 0.048,
+    "lines": {
+      "agents": {
+        "total_tokens": 8203,
+        "completion_tokens": 250,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "car",
+      "desert",
+      "engineer",
+      "space",
+      "stone"
+    ],
+    "max_steps": 4,
+    "target": "pyramid",
+    "intermediate": [],
+    "distractors": [
+      "car",
+      "engineer",
+      "space"
+    ],
+    "path": [
+      [
+        "desert",
+        "stone",
+        "pyramid"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.0625
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "pyramid"
+      ],
+      "coverage": 0.0625,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 927,
+    "completion_tokens": 30,
+    "calls": 2,
+    "wall_clock_s": 0.063,
+    "lines": {
+      "agents": {
+        "total_tokens": 927,
+        "completion_tokens": 30,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

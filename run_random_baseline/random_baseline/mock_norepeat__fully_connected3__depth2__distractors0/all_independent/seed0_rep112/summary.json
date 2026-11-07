@@ -1,0 +1,89 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "earth",
+      "philosophy",
+      "river"
+    ],
+    "max_steps": 4,
+    "target": "earthquake",
+    "intermediate": [
+      "motion"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "philosophy",
+        "river",
+        "motion"
+      ],
+      [
+        "earth",
+        "motion",
+        "earthquake"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.0513
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "motion"
+      ],
+      "coverage": 0.0256,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "land",
+        "motion"
+      ],
+      "coverage": 0.0513,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "land"
+      ],
+      "coverage": 0.0256,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5619,
+    "completion_tokens": 186,
+    "calls": 12,
+    "wall_clock_s": 0.091,
+    "lines": {
+      "agents": {
+        "total_tokens": 5619,
+        "completion_tokens": 186,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

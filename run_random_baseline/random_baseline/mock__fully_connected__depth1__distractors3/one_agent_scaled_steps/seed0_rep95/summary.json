@@ -1,0 +1,65 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "chicken",
+      "gun",
+      "metal",
+      "water",
+      "wolf"
+    ],
+    "max_steps": 24,
+    "target": "fox",
+    "intermediate": [],
+    "distractors": [
+      "gun",
+      "metal",
+      "water"
+    ],
+    "path": [
+      [
+        "chicken",
+        "wolf",
+        "fox"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.0357
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "fox"
+      ],
+      "coverage": 0.0357,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1388,
+    "completion_tokens": 45,
+    "calls": 3,
+    "wall_clock_s": 0.079,
+    "lines": {
+      "agents": {
+        "total_tokens": 1388,
+        "completion_tokens": 45,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

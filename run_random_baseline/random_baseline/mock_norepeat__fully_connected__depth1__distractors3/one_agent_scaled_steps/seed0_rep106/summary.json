@@ -1,0 +1,69 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "earth",
+      "egg",
+      "sandwich",
+      "tool",
+      "warmth"
+    ],
+    "max_steps": 24,
+    "target": "toast",
+    "intermediate": [],
+    "distractors": [
+      "earth",
+      "egg",
+      "tool"
+    ],
+    "path": [
+      [
+        "sandwich",
+        "warmth",
+        "toast"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.4167
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "continent",
+        "field",
+        "land",
+        "machine",
+        "omelette"
+      ],
+      "coverage": 0.4167,
+      "invalid": 19,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12889,
+    "completion_tokens": 371,
+    "calls": 24,
+    "wall_clock_s": 0.098,
+    "lines": {
+      "agents": {
+        "total_tokens": 12889,
+        "completion_tokens": 371,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

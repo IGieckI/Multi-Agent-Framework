@@ -1,0 +1,68 @@
+{
+  "ended_by": "all_solved",
+  "steps": 15,
+  "task": {
+    "initial": [
+      "fire",
+      "human",
+      "lake",
+      "safe",
+      "science"
+    ],
+    "max_steps": 24,
+    "target": "heat",
+    "intermediate": [],
+    "distractors": [
+      "human",
+      "lake",
+      "safe"
+    ],
+    "path": [
+      [
+        "fire",
+        "science",
+        "heat"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.1379
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 15,
+      "new_items": [
+        "energy",
+        "heat",
+        "idea",
+        "sailor"
+      ],
+      "coverage": 0.1379,
+      "invalid": 11,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7566,
+    "completion_tokens": 227,
+    "calls": 15,
+    "wall_clock_s": 0.167,
+    "lines": {
+      "agents": {
+        "total_tokens": 7566,
+        "completion_tokens": 227,
+        "calls": 15
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

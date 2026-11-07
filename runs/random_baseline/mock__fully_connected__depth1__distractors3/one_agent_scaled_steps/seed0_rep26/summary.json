@@ -1,0 +1,59 @@
+{
+  "ended_by": "all_solved",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "puddle",
+      "sailor",
+      "soil",
+      "wind turbine"
+    ],
+    "max_steps": 24,
+    "target": "land",
+    "intermediate": [],
+    "distractors": [
+      "puddle",
+      "sailor",
+      "wind turbine"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.2143
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 24,
+      "new_items": [
+        "lake",
+        "land",
+        "pond"
+      ],
+      "coverage": 0.2143,
+      "invalid": 11,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12222,
+    "completion_tokens": 372,
+    "calls": 24,
+    "wall_clock_s": 0.055,
+    "lines": {
+      "agents": {
+        "total_tokens": 12222,
+        "completion_tokens": 372,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

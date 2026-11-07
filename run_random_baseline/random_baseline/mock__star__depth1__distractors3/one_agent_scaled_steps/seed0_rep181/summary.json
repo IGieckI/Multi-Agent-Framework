@@ -1,0 +1,66 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "fridge",
+      "hospital",
+      "human",
+      "painter",
+      "sky"
+    ],
+    "max_steps": 12,
+    "target": "doctor",
+    "intermediate": [],
+    "distractors": [
+      "fridge",
+      "painter",
+      "sky"
+    ],
+    "path": [
+      [
+        "hospital",
+        "human",
+        "doctor"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.25
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.25,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5871,
+    "completion_tokens": 181,
+    "calls": 12,
+    "wall_clock_s": 0.083,
+    "lines": {
+      "agents": {
+        "total_tokens": 5871,
+        "completion_tokens": 181,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "dough",
+      "metal",
+      "rock"
+    ],
+    "max_steps": 4,
+    "target": "cookie cutter",
+    "intermediate": [
+      "blade"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "metal",
+        "rock",
+        "blade"
+      ],
+      [
+        "blade",
+        "dough",
+        "cookie cutter"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.2353
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "blade",
+        "boulder",
+        "hill",
+        "mountain"
+      ],
+      "coverage": 0.2353,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "blade"
+      ],
+      "coverage": 0.0588,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "boulder"
+      ],
+      "coverage": 0.0588,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6180,
+    "completion_tokens": 224,
+    "calls": 12,
+    "wall_clock_s": 0.096,
+    "lines": {
+      "agents": {
+        "total_tokens": 6180,
+        "completion_tokens": 224,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

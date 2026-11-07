@@ -1,0 +1,91 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "air",
+      "organic matter"
+    ],
+    "max_steps": 4,
+    "target": "coal",
+    "intermediate": [
+      "pressure"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "air",
+        "air",
+        "pressure"
+      ],
+      [
+        "organic matter",
+        "pressure",
+        "coal"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.6
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "coal",
+        "pressure",
+        "wind"
+      ],
+      "coverage": 0.6,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pressure",
+        "wind"
+      ],
+      "coverage": 0.4,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "coal",
+        "pressure"
+      ],
+      "coverage": 0.4,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7161,
+    "completion_tokens": 337,
+    "calls": 12,
+    "wall_clock_s": 0.107,
+    "lines": {
+      "agents": {
+        "total_tokens": 7161,
+        "completion_tokens": 337,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

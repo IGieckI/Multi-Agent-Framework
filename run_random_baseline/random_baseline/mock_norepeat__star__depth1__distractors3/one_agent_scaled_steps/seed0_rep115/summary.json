@@ -1,0 +1,66 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "cheese",
+      "corpse",
+      "island",
+      "lava",
+      "time"
+    ],
+    "max_steps": 12,
+    "target": "skeleton",
+    "intermediate": [],
+    "distractors": [
+      "cheese",
+      "island",
+      "lava"
+    ],
+    "path": [
+      [
+        "corpse",
+        "time",
+        "skeleton"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.2857
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "bone",
+        "skeleton"
+      ],
+      "coverage": 0.2857,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 927,
+    "completion_tokens": 30,
+    "calls": 2,
+    "wall_clock_s": 0.076,
+    "lines": {
+      "agents": {
+        "total_tokens": 927,
+        "completion_tokens": 30,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

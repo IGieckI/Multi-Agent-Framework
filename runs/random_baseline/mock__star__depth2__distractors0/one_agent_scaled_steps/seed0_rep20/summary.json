@@ -1,0 +1,56 @@
+{
+  "ended_by": "all_solved",
+  "steps": 6,
+  "task": {
+    "initial": [
+      "bacteria",
+      "fire",
+      "sand"
+    ],
+    "max_steps": 12,
+    "target": "microscope",
+    "intermediate": [
+      "glass"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.4286
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 6,
+      "new_items": [
+        "glass",
+        "hourglass",
+        "microscope"
+      ],
+      "coverage": 0.4286,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2834,
+    "completion_tokens": 95,
+    "calls": 6,
+    "wall_clock_s": 0.021,
+    "lines": {
+      "agents": {
+        "total_tokens": 2834,
+        "completion_tokens": 95,
+        "calls": 6
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "ended_by": "all_solved",
+  "steps": 20,
+  "task": {
+    "initial": [
+      "broom",
+      "container",
+      "human",
+      "santa",
+      "story"
+    ],
+    "max_steps": 24,
+    "target": "closet",
+    "intermediate": [],
+    "distractors": [
+      "human",
+      "santa",
+      "story"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.3571
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 20,
+      "new_items": [
+        "book",
+        "closet",
+        "family",
+        "love",
+        "witch"
+      ],
+      "coverage": 0.3571,
+      "invalid": 10,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10377,
+    "completion_tokens": 307,
+    "calls": 20,
+    "wall_clock_s": 0.052,
+    "lines": {
+      "agents": {
+        "total_tokens": 10377,
+        "completion_tokens": 307,
+        "calls": 20
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

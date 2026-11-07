@@ -1,0 +1,58 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "blade",
+      "bread",
+      "jam",
+      "warmth",
+      "wool"
+    ],
+    "max_steps": 24,
+    "target": "toast",
+    "intermediate": [],
+    "distractors": [
+      "blade",
+      "jam",
+      "wool"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "scissors"
+      ],
+      "coverage": 0.5,
+      "invalid": 12,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12097,
+    "completion_tokens": 363,
+    "calls": 24,
+    "wall_clock_s": 0.042,
+    "lines": {
+      "agents": {
+        "total_tokens": 12097,
+        "completion_tokens": 363,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "ended_by": "all_solved",
+  "steps": 15,
+  "task": {
+    "initial": [
+      "animal",
+      "earth",
+      "plow"
+    ],
+    "max_steps": 24,
+    "target": "livestock",
+    "intermediate": [
+      "field"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "earth",
+        "plow",
+        "field"
+      ],
+      [
+        "animal",
+        "field",
+        "livestock"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.4167
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 15,
+      "new_items": [
+        "continent",
+        "field",
+        "horse",
+        "land",
+        "livestock"
+      ],
+      "coverage": 0.4167,
+      "invalid": 9,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7586,
+    "completion_tokens": 228,
+    "calls": 15,
+    "wall_clock_s": 0.088,
+    "lines": {
+      "agents": {
+        "total_tokens": 7586,
+        "completion_tokens": 228,
+        "calls": 15
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

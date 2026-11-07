@@ -1,0 +1,112 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "blade",
+      "fish",
+      "steel"
+    ],
+    "max_steps": 4,
+    "target": "swordfish",
+    "intermediate": [
+      "sword"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.6
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "sword",
+        "swordfish"
+      ],
+      "coverage": 0.4,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "swordfish"
+      ],
+      "coverage": 0.4,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "sword",
+        "swordfish"
+      ],
+      "coverage": 0.4,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "swordfish"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "swordfish"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "swordfish"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6484,
+    "completion_tokens": 210,
+    "calls": 14,
+    "wall_clock_s": 0.033,
+    "lines": {
+      "agents": {
+        "total_tokens": 6484,
+        "completion_tokens": 210,
+        "calls": 14
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

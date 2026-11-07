@@ -1,0 +1,68 @@
+{
+  "ended_by": "all_solved",
+  "steps": 5,
+  "task": {
+    "initial": [
+      "container",
+      "music",
+      "story"
+    ],
+    "max_steps": 12,
+    "target": "sheet music",
+    "intermediate": [
+      "book"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "container",
+        "story",
+        "book"
+      ],
+      [
+        "book",
+        "music",
+        "sheet music"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.75
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 5,
+      "new_items": [
+        "book",
+        "legend",
+        "sheet music"
+      ],
+      "coverage": 0.75,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2369,
+    "completion_tokens": 77,
+    "calls": 5,
+    "wall_clock_s": 0.139,
+    "lines": {
+      "agents": {
+        "total_tokens": 2369,
+        "completion_tokens": 77,
+        "calls": 5
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

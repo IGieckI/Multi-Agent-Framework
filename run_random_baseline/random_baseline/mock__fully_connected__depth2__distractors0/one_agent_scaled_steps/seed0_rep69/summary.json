@@ -1,0 +1,67 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "car",
+      "sky",
+      "time"
+    ],
+    "max_steps": 24,
+    "target": "moon rover",
+    "intermediate": [
+      "moon"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "sky",
+        "time",
+        "moon"
+      ],
+      [
+        "car",
+        "moon",
+        "moon rover"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.1111
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "bus",
+        "moon"
+      ],
+      "coverage": 0.1111,
+      "invalid": 9,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11766,
+    "completion_tokens": 338,
+    "calls": 24,
+    "wall_clock_s": 0.114,
+    "lines": {
+      "agents": {
+        "total_tokens": 11766,
+        "completion_tokens": 338,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

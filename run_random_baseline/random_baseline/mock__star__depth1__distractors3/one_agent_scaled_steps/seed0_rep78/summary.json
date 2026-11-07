@@ -1,0 +1,66 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "car",
+      "pumpkin",
+      "steel",
+      "sugar",
+      "tool"
+    ],
+    "max_steps": 12,
+    "target": "tank",
+    "intermediate": [],
+    "distractors": [
+      "pumpkin",
+      "sugar",
+      "tool"
+    ],
+    "path": [
+      [
+        "car",
+        "steel",
+        "tank"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "bell",
+        "hammer"
+      ],
+      "coverage": 0.4,
+      "invalid": 9,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5932,
+    "completion_tokens": 182,
+    "calls": 12,
+    "wall_clock_s": 0.083,
+    "lines": {
+      "agents": {
+        "total_tokens": 5932,
+        "completion_tokens": 182,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "bone",
+      "house",
+      "human",
+      "science",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "windmill",
+    "intermediate": [],
+    "distractors": [
+      "bone",
+      "human",
+      "science"
+    ],
+    "path": [
+      [
+        "house",
+        "wind",
+        "windmill"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.0417
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "windmill"
+      ],
+      "coverage": 0.0417,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 461,
+    "completion_tokens": 15,
+    "calls": 1,
+    "wall_clock_s": 0.058,
+    "lines": {
+      "agents": {
+        "total_tokens": 461,
+        "completion_tokens": 15,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

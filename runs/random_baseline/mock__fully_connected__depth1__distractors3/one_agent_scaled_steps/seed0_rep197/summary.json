@@ -1,0 +1,61 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "bicycle",
+      "ice cream",
+      "machine",
+      "steel",
+      "thread"
+    ],
+    "max_steps": 24,
+    "target": "motorcycle",
+    "intermediate": [],
+    "distractors": [
+      "ice cream",
+      "machine",
+      "thread"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "armor",
+        "fabric",
+        "needle",
+        "sewing machine"
+      ],
+      "coverage": 0.3333,
+      "invalid": 12,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12708,
+    "completion_tokens": 395,
+    "calls": 24,
+    "wall_clock_s": 0.051,
+    "lines": {
+      "agents": {
+        "total_tokens": 12708,
+        "completion_tokens": 395,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

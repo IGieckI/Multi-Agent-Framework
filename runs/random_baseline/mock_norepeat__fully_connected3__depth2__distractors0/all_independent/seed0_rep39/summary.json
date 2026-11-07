@@ -1,0 +1,80 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "earth",
+      "oil",
+      "vegetable"
+    ],
+    "max_steps": 4,
+    "target": "french fries",
+    "intermediate": [
+      "potato"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.5556
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "continent",
+        "land",
+        "planet"
+      ],
+      "coverage": 0.3333,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "french fries",
+        "land",
+        "potato"
+      ],
+      "coverage": 0.3333,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "land"
+      ],
+      "coverage": 0.1111,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5631,
+    "completion_tokens": 185,
+    "calls": 12,
+    "wall_clock_s": 0.038,
+    "lines": {
+      "agents": {
+        "total_tokens": 5631,
+        "completion_tokens": 185,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "human",
+      "lake",
+      "stone",
+      "wire"
+    ],
+    "max_steps": 4,
+    "target": "snake",
+    "intermediate": [],
+    "distractors": [
+      "human",
+      "lake",
+      "stone"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.0066
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "domestication",
+        "fish",
+        "mermaid"
+      ],
+      "coverage": 0.0066,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1894,
+    "completion_tokens": 60,
+    "calls": 4,
+    "wall_clock_s": 0.039,
+    "lines": {
+      "agents": {
+        "total_tokens": 1894,
+        "completion_tokens": 60,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

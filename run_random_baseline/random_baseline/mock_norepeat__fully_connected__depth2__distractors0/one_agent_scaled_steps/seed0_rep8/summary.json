@@ -1,0 +1,69 @@
+{
+  "ended_by": "all_solved",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "ant",
+      "human",
+      "story"
+    ],
+    "max_steps": 24,
+    "target": "small",
+    "intermediate": [
+      "philosophy"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "human",
+        "story",
+        "philosophy"
+      ],
+      [
+        "ant",
+        "philosophy",
+        "small"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 12,
+      "new_items": [
+        "hero",
+        "legend",
+        "philosophy",
+        "small"
+      ],
+      "coverage": 0.4,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6000,
+    "completion_tokens": 183,
+    "calls": 12,
+    "wall_clock_s": 0.078,
+    "lines": {
+      "agents": {
+        "total_tokens": 6000,
+        "completion_tokens": 183,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

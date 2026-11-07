@@ -1,0 +1,55 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "solid",
+      "tea",
+      "water"
+    ],
+    "max_steps": 24,
+    "target": "iced tea",
+    "intermediate": [
+      "ice"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.2222
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "ice",
+        "iced tea"
+      ],
+      "coverage": 0.2222,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 920,
+    "completion_tokens": 29,
+    "calls": 2,
+    "wall_clock_s": 0.024,
+    "lines": {
+      "agents": {
+        "total_tokens": 920,
+        "completion_tokens": 29,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

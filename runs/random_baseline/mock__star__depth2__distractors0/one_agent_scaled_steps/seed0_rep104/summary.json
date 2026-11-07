@@ -1,0 +1,57 @@
+{
+  "ended_by": "all_solved",
+  "steps": 10,
+  "task": {
+    "initial": [
+      "diamond",
+      "love",
+      "planet"
+    ],
+    "max_steps": 12,
+    "target": "saturn",
+    "intermediate": [
+      "ring"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 10,
+      "new_items": [
+        "galaxy",
+        "ring",
+        "saturn",
+        "solar system"
+      ],
+      "coverage": 0.6667,
+      "invalid": 5,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4986,
+    "completion_tokens": 164,
+    "calls": 10,
+    "wall_clock_s": 0.027,
+    "lines": {
+      "agents": {
+        "total_tokens": 4986,
+        "completion_tokens": 164,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

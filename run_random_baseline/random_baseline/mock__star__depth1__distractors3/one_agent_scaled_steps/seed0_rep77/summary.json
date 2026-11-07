@@ -1,0 +1,65 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "air",
+      "alpaca",
+      "bacteria",
+      "corpse",
+      "wheat"
+    ],
+    "max_steps": 12,
+    "target": "zombie",
+    "intermediate": [],
+    "distractors": [
+      "air",
+      "alpaca",
+      "wheat"
+    ],
+    "path": [
+      [
+        "bacteria",
+        "corpse",
+        "zombie"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.1667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "zombie"
+      ],
+      "coverage": 0.1667,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 462,
+    "completion_tokens": 16,
+    "calls": 1,
+    "wall_clock_s": 0.07,
+    "lines": {
+      "agents": {
+        "total_tokens": 462,
+        "completion_tokens": 16,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

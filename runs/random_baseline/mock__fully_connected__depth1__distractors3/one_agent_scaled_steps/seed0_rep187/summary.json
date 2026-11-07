@@ -1,0 +1,58 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "blade",
+      "blood",
+      "clock",
+      "metal",
+      "salt"
+    ],
+    "max_steps": 24,
+    "target": "sword",
+    "intermediate": [],
+    "distractors": [
+      "blood",
+      "clock",
+      "salt"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "sword"
+      ],
+      "coverage": 0.5,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1395,
+    "completion_tokens": 45,
+    "calls": 3,
+    "wall_clock_s": 0.027,
+    "lines": {
+      "agents": {
+        "total_tokens": 1395,
+        "completion_tokens": 45,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

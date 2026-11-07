@@ -1,0 +1,80 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "grim reaper",
+      "human",
+      "time"
+    ],
+    "max_steps": 4,
+    "target": "skeleton",
+    "intermediate": [
+      "corpse"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.2308
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "corpse"
+      ],
+      "coverage": 0.0769,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "bone",
+        "corpse",
+        "skeleton"
+      ],
+      "coverage": 0.2308,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "bone",
+        "corpse",
+        "skeleton"
+      ],
+      "coverage": 0.2308,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5200,
+    "completion_tokens": 203,
+    "calls": 10,
+    "wall_clock_s": 0.023,
+    "lines": {
+      "agents": {
+        "total_tokens": 5200,
+        "completion_tokens": 203,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

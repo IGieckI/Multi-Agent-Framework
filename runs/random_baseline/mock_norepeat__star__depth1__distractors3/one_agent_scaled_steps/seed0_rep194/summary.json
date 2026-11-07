@@ -1,0 +1,59 @@
+{
+  "ended_by": "all_solved",
+  "steps": 10,
+  "task": {
+    "initial": [
+      "meat",
+      "pencil",
+      "smoke",
+      "solar system",
+      "witch"
+    ],
+    "max_steps": 12,
+    "target": "ham",
+    "intermediate": [],
+    "distractors": [
+      "pencil",
+      "solar system",
+      "witch"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 10,
+      "new_items": [
+        "galaxy",
+        "ham"
+      ],
+      "coverage": 0.5,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4940,
+    "completion_tokens": 160,
+    "calls": 10,
+    "wall_clock_s": 0.021,
+    "lines": {
+      "agents": {
+        "total_tokens": 4940,
+        "completion_tokens": 160,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

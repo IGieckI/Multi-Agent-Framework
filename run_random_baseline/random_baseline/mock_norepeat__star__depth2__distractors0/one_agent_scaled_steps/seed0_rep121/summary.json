@@ -1,0 +1,70 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "bird",
+      "plant",
+      "wood"
+    ],
+    "max_steps": 12,
+    "target": "nest",
+    "intermediate": [
+      "tree"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "plant",
+        "wood",
+        "tree"
+      ],
+      [
+        "bird",
+        "tree",
+        "nest"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.2
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "birdcage",
+        "birdhouse",
+        "forest",
+        "tree",
+        "wall"
+      ],
+      "coverage": 0.2,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6051,
+    "completion_tokens": 186,
+    "calls": 12,
+    "wall_clock_s": 0.089,
+    "lines": {
+      "agents": {
+        "total_tokens": 6051,
+        "completion_tokens": 186,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

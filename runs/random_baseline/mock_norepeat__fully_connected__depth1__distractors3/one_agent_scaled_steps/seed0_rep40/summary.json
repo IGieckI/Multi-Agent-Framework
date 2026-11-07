@@ -1,0 +1,61 @@
+{
+  "ended_by": "all_solved",
+  "steps": 15,
+  "task": {
+    "initial": [
+      "carbon dioxide",
+      "human",
+      "pressure",
+      "scythe",
+      "wire"
+    ],
+    "max_steps": 24,
+    "target": "electrician",
+    "intermediate": [],
+    "distractors": [
+      "carbon dioxide",
+      "pressure",
+      "scythe"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.2857
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 15,
+      "new_items": [
+        "electrician",
+        "family",
+        "fire extinguisher",
+        "love"
+      ],
+      "coverage": 0.2857,
+      "invalid": 12,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7903,
+    "completion_tokens": 249,
+    "calls": 15,
+    "wall_clock_s": 0.035,
+    "lines": {
+      "agents": {
+        "total_tokens": 7903,
+        "completion_tokens": 249,
+        "calls": 15
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

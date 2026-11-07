@@ -1,0 +1,124 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "earth",
+      "electricity",
+      "fish",
+      "flower",
+      "motorcycle"
+    ],
+    "max_steps": 4,
+    "target": "electric eel",
+    "intermediate": [],
+    "distractors": [
+      "earth",
+      "flower",
+      "motorcycle"
+    ],
+    "path": [
+      [
+        "electricity",
+        "fish",
+        "electric eel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.2667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "car",
+        "electric eel"
+      ],
+      "coverage": 0.1333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "electric eel",
+        "garden"
+      ],
+      "coverage": 0.1333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "land"
+      ],
+      "coverage": 0.0667,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "land"
+      ],
+      "coverage": 0.0667,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "car",
+        "land"
+      ],
+      "coverage": 0.1333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "car",
+        "garden"
+      ],
+      "coverage": 0.1333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12602,
+    "completion_tokens": 439,
+    "calls": 24,
+    "wall_clock_s": 0.119,
+    "lines": {
+      "agents": {
+        "total_tokens": 12602,
+        "completion_tokens": 439,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

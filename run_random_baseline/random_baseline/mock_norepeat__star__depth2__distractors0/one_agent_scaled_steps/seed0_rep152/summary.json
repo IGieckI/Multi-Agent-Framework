@@ -1,0 +1,70 @@
+{
+  "ended_by": "all_solved",
+  "steps": 5,
+  "task": {
+    "initial": [
+      "bird",
+      "chainsaw",
+      "tree"
+    ],
+    "max_steps": 12,
+    "target": "woodpecker",
+    "intermediate": [
+      "wood"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "chainsaw",
+        "tree",
+        "wood"
+      ],
+      [
+        "bird",
+        "wood",
+        "woodpecker"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.2941
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 5,
+      "new_items": [
+        "forest",
+        "nest",
+        "wall",
+        "wood",
+        "woodpecker"
+      ],
+      "coverage": 0.2941,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2368,
+    "completion_tokens": 77,
+    "calls": 5,
+    "wall_clock_s": 0.088,
+    "lines": {
+      "agents": {
+        "total_tokens": 2368,
+        "completion_tokens": 77,
+        "calls": 5
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

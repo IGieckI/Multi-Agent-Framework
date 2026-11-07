@@ -1,0 +1,67 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "lava",
+      "petroleum",
+      "sun"
+    ],
+    "max_steps": 12,
+    "target": "supernova",
+    "intermediate": [
+      "explosion"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "lava",
+        "petroleum",
+        "explosion"
+      ],
+      [
+        "explosion",
+        "sun",
+        "supernova"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "explosion",
+        "supernova"
+      ],
+      "coverage": 0.6667,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1863,
+    "completion_tokens": 61,
+    "calls": 4,
+    "wall_clock_s": 0.065,
+    "lines": {
+      "agents": {
+        "total_tokens": 1863,
+        "completion_tokens": 61,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "big",
+      "hill",
+      "snow"
+    ],
+    "max_steps": 4,
+    "target": "glacier",
+    "intermediate": [
+      "mountain"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "big",
+        "hill",
+        "mountain"
+      ],
+      [
+        "mountain",
+        "snow",
+        "glacier"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.1667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "blizzard"
+      ],
+      "coverage": 0.0833,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "mountain"
+      ],
+      "coverage": 0.0833,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "blizzard",
+        "mountain"
+      ],
+      "coverage": 0.1667,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6144,
+    "completion_tokens": 222,
+    "calls": 12,
+    "wall_clock_s": 0.101,
+    "lines": {
+      "agents": {
+        "total_tokens": 6144,
+        "completion_tokens": 222,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

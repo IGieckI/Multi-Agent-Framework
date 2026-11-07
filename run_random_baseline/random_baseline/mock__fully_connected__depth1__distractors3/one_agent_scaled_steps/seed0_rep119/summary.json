@@ -1,0 +1,65 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "earth",
+      "solid",
+      "sound",
+      "tree",
+      "wind"
+    ],
+    "max_steps": 24,
+    "target": "stone",
+    "intermediate": [],
+    "distractors": [
+      "sound",
+      "tree",
+      "wind"
+    ],
+    "path": [
+      [
+        "earth",
+        "solid",
+        "stone"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.0323
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "stone"
+      ],
+      "coverage": 0.0323,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 460,
+    "completion_tokens": 15,
+    "calls": 1,
+    "wall_clock_s": 0.068,
+    "lines": {
+      "agents": {
+        "total_tokens": 460,
+        "completion_tokens": 15,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

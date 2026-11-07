@@ -1,0 +1,115 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "fire",
+      "grass",
+      "meat"
+    ],
+    "max_steps": 4,
+    "target": "ham",
+    "intermediate": [
+      "smoke"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.5556
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "steak"
+      ],
+      "coverage": 0.1111,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "ham",
+        "smoke"
+      ],
+      "coverage": 0.3333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "smoke"
+      ],
+      "coverage": 0.2222,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "hay",
+        "smoke"
+      ],
+      "coverage": 0.3333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash",
+        "smoke"
+      ],
+      "coverage": 0.2222,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "steak"
+      ],
+      "coverage": 0.1111,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12709,
+    "completion_tokens": 358,
+    "calls": 24,
+    "wall_clock_s": 0.057,
+    "lines": {
+      "agents": {
+        "total_tokens": 12709,
+        "completion_tokens": 358,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

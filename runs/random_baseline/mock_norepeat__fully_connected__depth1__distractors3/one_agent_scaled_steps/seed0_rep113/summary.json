@@ -1,0 +1,61 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "container",
+      "lawn",
+      "life",
+      "sandwich",
+      "wave"
+    ],
+    "max_steps": 24,
+    "target": "picnic",
+    "intermediate": [],
+    "distractors": [
+      "container",
+      "life",
+      "wave"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "birdhouse",
+        "egg",
+        "nest",
+        "tree"
+      ],
+      "coverage": 0.4,
+      "invalid": 21,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12942,
+    "completion_tokens": 374,
+    "calls": 24,
+    "wall_clock_s": 0.052,
+    "lines": {
+      "agents": {
+        "total_tokens": 12942,
+        "completion_tokens": 374,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

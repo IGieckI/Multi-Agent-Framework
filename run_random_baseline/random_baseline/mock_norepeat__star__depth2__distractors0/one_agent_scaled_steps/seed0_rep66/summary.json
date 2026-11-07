@@ -1,0 +1,68 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "pressure",
+      "star",
+      "volcano"
+    ],
+    "max_steps": 12,
+    "target": "supernova",
+    "intermediate": [
+      "explosion"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "pressure",
+        "volcano",
+        "explosion"
+      ],
+      [
+        "explosion",
+        "star",
+        "supernova"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "eruption",
+        "explosion",
+        "supernova"
+      ],
+      "coverage": 0.5,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1899,
+    "completion_tokens": 65,
+    "calls": 4,
+    "wall_clock_s": 0.092,
+    "lines": {
+      "agents": {
+        "total_tokens": 1899,
+        "completion_tokens": 65,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

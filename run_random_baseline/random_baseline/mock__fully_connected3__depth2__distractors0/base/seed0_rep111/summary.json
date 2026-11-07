@@ -1,0 +1,90 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "desert",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "dune",
+    "intermediate": [
+      "sandstorm"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "desert",
+        "wind",
+        "sandstorm"
+      ],
+      [
+        "desert",
+        "sandstorm",
+        "dune"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "dune",
+        "sandstorm"
+      ],
+      "coverage": 0.6667,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "dune",
+        "sandstorm"
+      ],
+      "coverage": 0.6667,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "dune",
+        "sandstorm"
+      ],
+      "coverage": 0.6667,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1563,
+    "completion_tokens": 78,
+    "calls": 3,
+    "wall_clock_s": 0.072,
+    "lines": {
+      "agents": {
+        "total_tokens": 1563,
+        "completion_tokens": 78,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

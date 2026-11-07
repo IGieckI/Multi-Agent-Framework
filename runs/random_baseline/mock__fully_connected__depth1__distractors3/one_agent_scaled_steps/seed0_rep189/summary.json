@@ -1,0 +1,58 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "angler",
+      "hospital",
+      "mold",
+      "sailboat",
+      "water"
+    ],
+    "max_steps": 24,
+    "target": "penicillin",
+    "intermediate": [],
+    "distractors": [
+      "angler",
+      "sailboat",
+      "water"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.1111
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "penicillin"
+      ],
+      "coverage": 0.1111,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 935,
+    "completion_tokens": 33,
+    "calls": 2,
+    "wall_clock_s": 0.025,
+    "lines": {
+      "agents": {
+        "total_tokens": 935,
+        "completion_tokens": 33,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

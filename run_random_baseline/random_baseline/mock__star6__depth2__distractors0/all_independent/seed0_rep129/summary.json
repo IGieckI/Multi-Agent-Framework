@@ -1,0 +1,127 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "fire",
+      "mist",
+      "planet"
+    ],
+    "max_steps": 4,
+    "target": "atmosphere",
+    "intermediate": [
+      "air"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "fire",
+        "mist",
+        "air"
+      ],
+      [
+        "air",
+        "planet",
+        "atmosphere"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.1163
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "solar system",
+        "sun"
+      ],
+      "coverage": 0.0465,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "air"
+      ],
+      "coverage": 0.0233,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "air",
+        "smoke"
+      ],
+      "coverage": 0.0465,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "solar system",
+        "sun"
+      ],
+      "coverage": 0.0465,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "air",
+        "energy",
+        "smoke"
+      ],
+      "coverage": 0.0698,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "air",
+        "smoke"
+      ],
+      "coverage": 0.0465,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11199,
+    "completion_tokens": 352,
+    "calls": 24,
+    "wall_clock_s": 0.094,
+    "lines": {
+      "agents": {
+        "total_tokens": 11199,
+        "completion_tokens": 352,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

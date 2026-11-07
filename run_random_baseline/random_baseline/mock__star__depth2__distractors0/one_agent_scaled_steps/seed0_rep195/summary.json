@@ -1,0 +1,66 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "bicycle",
+      "ice"
+    ],
+    "max_steps": 12,
+    "target": "snowmobile",
+    "intermediate": [
+      "car"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "bicycle",
+        "bicycle",
+        "car"
+      ],
+      [
+        "car",
+        "ice",
+        "snowmobile"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "car",
+        "snowmobile"
+      ],
+      "coverage": 0.6667,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 920,
+    "completion_tokens": 30,
+    "calls": 2,
+    "wall_clock_s": 0.07,
+    "lines": {
+      "agents": {
+        "total_tokens": 920,
+        "completion_tokens": 30,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

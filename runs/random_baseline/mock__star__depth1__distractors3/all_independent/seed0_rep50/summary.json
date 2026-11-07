@@ -1,0 +1,79 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "bullet",
+      "container",
+      "corpse",
+      "wheat",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "windmill",
+    "intermediate": [],
+    "distractors": [
+      "bullet",
+      "container",
+      "corpse"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.3
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "coffin",
+        "silo"
+      ],
+      "coverage": 0.2,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "windmill"
+      ],
+      "coverage": 0.1,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4245,
+    "completion_tokens": 138,
+    "calls": 9,
+    "wall_clock_s": 0.037,
+    "lines": {
+      "agents": {
+        "total_tokens": 4245,
+        "completion_tokens": 138,
+        "calls": 9
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

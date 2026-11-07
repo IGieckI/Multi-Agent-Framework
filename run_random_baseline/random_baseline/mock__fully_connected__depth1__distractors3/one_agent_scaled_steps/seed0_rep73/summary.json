@@ -1,0 +1,67 @@
+{
+  "ended_by": "all_solved",
+  "steps": 13,
+  "task": {
+    "initial": [
+      "cat",
+      "desert",
+      "farm",
+      "grave",
+      "rock"
+    ],
+    "max_steps": 24,
+    "target": "gravestone",
+    "intermediate": [],
+    "distractors": [
+      "cat",
+      "desert",
+      "farm"
+    ],
+    "path": [
+      [
+        "grave",
+        "rock",
+        "gravestone"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.2
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 13,
+      "new_items": [
+        "gravestone",
+        "graveyard",
+        "pyramid"
+      ],
+      "coverage": 0.2,
+      "invalid": 7,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6445,
+    "completion_tokens": 200,
+    "calls": 13,
+    "wall_clock_s": 0.093,
+    "lines": {
+      "agents": {
+        "total_tokens": 6445,
+        "completion_tokens": 200,
+        "calls": 13
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

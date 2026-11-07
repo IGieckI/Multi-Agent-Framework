@@ -1,0 +1,62 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "alarm clock",
+      "bird",
+      "fire",
+      "pebble",
+      "steel"
+    ],
+    "max_steps": 24,
+    "target": "cuckoo",
+    "intermediate": [],
+    "distractors": [
+      "fire",
+      "pebble",
+      "steel"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.1282
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "airplane",
+        "blade",
+        "egg",
+        "phoenix",
+        "rock"
+      ],
+      "coverage": 0.1282,
+      "invalid": 11,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12565,
+    "completion_tokens": 375,
+    "calls": 24,
+    "wall_clock_s": 0.073,
+    "lines": {
+      "agents": {
+        "total_tokens": 12565,
+        "completion_tokens": 375,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

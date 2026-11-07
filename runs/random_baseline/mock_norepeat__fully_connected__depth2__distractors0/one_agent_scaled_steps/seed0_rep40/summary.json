@@ -1,0 +1,59 @@
+{
+  "ended_by": "all_solved",
+  "steps": 23,
+  "task": {
+    "initial": [
+      "clay",
+      "life",
+      "wire"
+    ],
+    "max_steps": 24,
+    "target": "electrician",
+    "intermediate": [
+      "human"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 6,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 23,
+      "new_items": [
+        "electrician",
+        "family",
+        "human",
+        "love",
+        "potter",
+        "village"
+      ],
+      "coverage": 0.6667,
+      "invalid": 18,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12234,
+    "completion_tokens": 347,
+    "calls": 23,
+    "wall_clock_s": 0.076,
+    "lines": {
+      "agents": {
+        "total_tokens": 12234,
+        "completion_tokens": 347,
+        "calls": 23
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "ended_by": "all_solved",
+  "steps": 16,
+  "task": {
+    "initial": [
+      "mountain",
+      "small",
+      "water"
+    ],
+    "max_steps": 24,
+    "target": "stream",
+    "intermediate": [
+      "river"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.0588
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 16,
+      "new_items": [
+        "hill",
+        "puddle",
+        "river",
+        "stream",
+        "waterfall"
+      ],
+      "coverage": 0.0588,
+      "invalid": 6,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7980,
+    "completion_tokens": 245,
+    "calls": 16,
+    "wall_clock_s": 0.06,
+    "lines": {
+      "agents": {
+        "total_tokens": 7980,
+        "completion_tokens": 245,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

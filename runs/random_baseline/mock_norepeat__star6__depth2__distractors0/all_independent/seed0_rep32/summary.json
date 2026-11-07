@@ -1,0 +1,117 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "human",
+      "mountain"
+    ],
+    "max_steps": 4,
+    "target": "skier",
+    "intermediate": [
+      "mountain range"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.3
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "cold",
+        "skier"
+      ],
+      "coverage": 0.1,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "cold",
+        "skier"
+      ],
+      "coverage": 0.1,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "mountain range"
+      ],
+      "coverage": 0.15,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "mountain range",
+        "village"
+      ],
+      "coverage": 0.2,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.1,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.1,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8472,
+    "completion_tokens": 286,
+    "calls": 18,
+    "wall_clock_s": 0.044,
+    "lines": {
+      "agents": {
+        "total_tokens": 8472,
+        "completion_tokens": 286,
+        "calls": 18
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

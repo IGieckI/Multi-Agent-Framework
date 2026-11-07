@@ -1,0 +1,69 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "day",
+      "pipe",
+      "sand",
+      "tree",
+      "wheel"
+    ],
+    "max_steps": 24,
+    "target": "palm",
+    "intermediate": [],
+    "distractors": [
+      "day",
+      "pipe",
+      "wheel"
+    ],
+    "path": [
+      [
+        "sand",
+        "tree",
+        "palm"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.4545
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "bicycle",
+        "clock",
+        "desert",
+        "forest",
+        "sundial"
+      ],
+      "coverage": 0.4545,
+      "invalid": 19,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12900,
+    "completion_tokens": 362,
+    "calls": 24,
+    "wall_clock_s": 0.097,
+    "lines": {
+      "agents": {
+        "total_tokens": 12900,
+        "completion_tokens": 362,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

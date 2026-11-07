@@ -1,0 +1,91 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "plant",
+      "thread",
+      "tool"
+    ],
+    "max_steps": 4,
+    "target": "cotton",
+    "intermediate": [
+      "fabric"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "thread",
+        "tool",
+        "fabric"
+      ],
+      [
+        "fabric",
+        "plant",
+        "cotton"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.7143
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "cotton",
+        "fabric",
+        "machine",
+        "sewing machine"
+      ],
+      "coverage": 0.5714,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "machine"
+      ],
+      "coverage": 0.1429,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "rope"
+      ],
+      "coverage": 0.1429,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5143,
+    "completion_tokens": 168,
+    "calls": 11,
+    "wall_clock_s": 0.09,
+    "lines": {
+      "agents": {
+        "total_tokens": 5143,
+        "completion_tokens": 168,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

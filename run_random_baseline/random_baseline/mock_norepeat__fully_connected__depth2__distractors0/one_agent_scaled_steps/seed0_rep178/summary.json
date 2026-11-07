@@ -1,0 +1,69 @@
+{
+  "ended_by": "all_solved",
+  "steps": 15,
+  "task": {
+    "initial": [
+      "grass",
+      "village",
+      "wagon"
+    ],
+    "max_steps": 24,
+    "target": "roller coaster",
+    "intermediate": [
+      "park"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "grass",
+        "village",
+        "park"
+      ],
+      [
+        "park",
+        "wagon",
+        "roller coaster"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.8
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 15,
+      "new_items": [
+        "city",
+        "hay",
+        "park",
+        "roller coaster"
+      ],
+      "coverage": 0.8,
+      "invalid": 10,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7608,
+    "completion_tokens": 226,
+    "calls": 15,
+    "wall_clock_s": 0.083,
+    "lines": {
+      "agents": {
+        "total_tokens": 7608,
+        "completion_tokens": 226,
+        "calls": 15
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

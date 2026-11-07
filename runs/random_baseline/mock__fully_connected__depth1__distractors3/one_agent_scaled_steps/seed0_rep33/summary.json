@@ -1,0 +1,60 @@
+{
+  "ended_by": "all_solved",
+  "steps": 23,
+  "task": {
+    "initial": [
+      "duck",
+      "human",
+      "metal",
+      "ruins",
+      "wizard"
+    ],
+    "max_steps": 24,
+    "target": "archeologist",
+    "intermediate": [],
+    "distractors": [
+      "duck",
+      "metal",
+      "wizard"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.1304
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 23,
+      "new_items": [
+        "airplane",
+        "archeologist",
+        "pilot"
+      ],
+      "coverage": 0.1304,
+      "invalid": 9,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11654,
+    "completion_tokens": 349,
+    "calls": 23,
+    "wall_clock_s": 0.046,
+    "lines": {
+      "agents": {
+        "total_tokens": 11654,
+        "completion_tokens": 349,
+        "calls": 23
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

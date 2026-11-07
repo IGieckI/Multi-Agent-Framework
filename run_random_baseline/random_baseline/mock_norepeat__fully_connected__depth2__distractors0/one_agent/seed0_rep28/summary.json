@@ -1,0 +1,67 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "lightning",
+      "ocean",
+      "primordial soup"
+    ],
+    "max_steps": 4,
+    "target": "plankton",
+    "intermediate": [
+      "life"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "lightning",
+        "primordial soup",
+        "life"
+      ],
+      [
+        "life",
+        "ocean",
+        "plankton"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "life",
+        "plankton"
+      ],
+      "coverage": 0.5,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1414,
+    "completion_tokens": 52,
+    "calls": 3,
+    "wall_clock_s": 0.069,
+    "lines": {
+      "agents": {
+        "total_tokens": 1414,
+        "completion_tokens": 52,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

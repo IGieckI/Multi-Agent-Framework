@@ -1,0 +1,84 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "ant",
+      "fire",
+      "paper",
+      "water",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "campfire",
+    "intermediate": [],
+    "distractors": [
+      "ant",
+      "paper",
+      "water"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.1017
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ash"
+      ],
+      "coverage": 0.0169,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "campfire",
+        "charcoal",
+        "puddle",
+        "smoke"
+      ],
+      "coverage": 0.0678,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "puddle"
+      ],
+      "coverage": 0.0339,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5793,
+    "completion_tokens": 250,
+    "calls": 10,
+    "wall_clock_s": 0.031,
+    "lines": {
+      "agents": {
+        "total_tokens": 5793,
+        "completion_tokens": 250,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "earth",
+      "plant",
+      "rainbow"
+    ],
+    "max_steps": 4,
+    "target": "flower",
+    "intermediate": [
+      "grass"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.3077
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "double rainbow!",
+        "flower"
+      ],
+      "coverage": 0.1538,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "continent",
+        "flower",
+        "land"
+      ],
+      "coverage": 0.2308,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "flower"
+      ],
+      "coverage": 0.0769,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4595,
+    "completion_tokens": 217,
+    "calls": 8,
+    "wall_clock_s": 0.04,
+    "lines": {
+      "agents": {
+        "total_tokens": 4595,
+        "completion_tokens": 217,
+        "calls": 8
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

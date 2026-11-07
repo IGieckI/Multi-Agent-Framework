@@ -1,0 +1,89 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "bird",
+      "hummingbird",
+      "sundial",
+      "tree",
+      "tyrannosaurus rex"
+    ],
+    "max_steps": 4,
+    "target": "nest",
+    "intermediate": [],
+    "distractors": [
+      "hummingbird",
+      "sundial",
+      "tyrannosaurus rex"
+    ],
+    "path": [
+      [
+        "bird",
+        "tree",
+        "nest"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.75
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "nest",
+        "woodpecker"
+      ],
+      "coverage": 0.5,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "nest",
+        "woodpecker"
+      ],
+      "coverage": 0.5,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "forest"
+      ],
+      "coverage": 0.25,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4770,
+    "completion_tokens": 170,
+    "calls": 10,
+    "wall_clock_s": 0.083,
+    "lines": {
+      "agents": {
+        "total_tokens": 4770,
+        "completion_tokens": 170,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

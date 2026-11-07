@@ -1,0 +1,84 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "electricity",
+      "glasses",
+      "human",
+      "metal",
+      "wall"
+    ],
+    "max_steps": 4,
+    "target": "house",
+    "intermediate": [],
+    "distractors": [
+      "electricity",
+      "glasses",
+      "metal"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.2143
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "hacker",
+        "love"
+      ],
+      "coverage": 0.1071,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "house",
+        "tool"
+      ],
+      "coverage": 0.0714,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "electrician",
+        "house"
+      ],
+      "coverage": 0.0714,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5280,
+    "completion_tokens": 245,
+    "calls": 9,
+    "wall_clock_s": 0.026,
+    "lines": {
+      "agents": {
+        "total_tokens": 5280,
+        "completion_tokens": 245,
+        "calls": 9
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

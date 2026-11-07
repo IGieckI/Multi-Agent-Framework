@@ -1,0 +1,67 @@
+{
+  "ended_by": "all_solved",
+  "steps": 18,
+  "task": {
+    "initial": [
+      "city",
+      "net",
+      "safe",
+      "snow",
+      "wheel"
+    ],
+    "max_steps": 24,
+    "target": "bank",
+    "intermediate": [],
+    "distractors": [
+      "net",
+      "snow",
+      "wheel"
+    ],
+    "path": [
+      [
+        "city",
+        "safe",
+        "bank"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 18,
+      "new_items": [
+        "bank",
+        "bicycle",
+        "blizzard"
+      ],
+      "coverage": 0.5,
+      "invalid": 15,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9128,
+    "completion_tokens": 272,
+    "calls": 18,
+    "wall_clock_s": 0.085,
+    "lines": {
+      "agents": {
+        "total_tokens": 9128,
+        "completion_tokens": 272,
+        "calls": 18
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

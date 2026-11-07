@@ -1,0 +1,77 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "atmosphere",
+      "container"
+    ],
+    "max_steps": 4,
+    "target": "boiler",
+    "intermediate": [
+      "pressure"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 1.0
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "boiler",
+        "pressure"
+      ],
+      "coverage": 0.6667,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "scuba tank"
+      ],
+      "coverage": 0.3333,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pressure",
+        "scuba tank"
+      ],
+      "coverage": 0.6667,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5195,
+    "completion_tokens": 191,
+    "calls": 11,
+    "wall_clock_s": 0.023,
+    "lines": {
+      "agents": {
+        "total_tokens": 5195,
+        "completion_tokens": 191,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

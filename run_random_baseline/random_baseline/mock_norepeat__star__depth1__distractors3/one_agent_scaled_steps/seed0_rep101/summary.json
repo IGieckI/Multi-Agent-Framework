@@ -1,0 +1,69 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "acid rain",
+      "petroleum",
+      "sun",
+      "wall",
+      "wheel"
+    ],
+    "max_steps": 12,
+    "target": "combustion engine",
+    "intermediate": [],
+    "distractors": [
+      "acid rain",
+      "sun",
+      "wall"
+    ],
+    "path": [
+      [
+        "petroleum",
+        "wheel",
+        "combustion engine"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.3846
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "bicycle",
+        "clock",
+        "house",
+        "sundial",
+        "windmill"
+      ],
+      "coverage": 0.3846,
+      "invalid": 7,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6108,
+    "completion_tokens": 187,
+    "calls": 12,
+    "wall_clock_s": 0.09,
+    "lines": {
+      "agents": {
+        "total_tokens": 6108,
+        "completion_tokens": 187,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

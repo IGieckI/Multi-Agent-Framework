@@ -1,0 +1,96 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "light",
+      "monkey",
+      "tool"
+    ],
+    "max_steps": 4,
+    "target": "angel",
+    "intermediate": [
+      "human"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "monkey",
+        "tool",
+        "human"
+      ],
+      [
+        "human",
+        "light",
+        "angel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.2222
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "flashlight",
+        "solar cell",
+        "sundial"
+      ],
+      "coverage": 0.1667,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "flashlight",
+        "human",
+        "solar cell",
+        "sundial"
+      ],
+      "coverage": 0.2222,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "flashlight",
+        "human",
+        "solar cell",
+        "sundial"
+      ],
+      "coverage": 0.2222,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7134,
+    "completion_tokens": 322,
+    "calls": 12,
+    "wall_clock_s": 0.106,
+    "lines": {
+      "agents": {
+        "total_tokens": 7134,
+        "completion_tokens": 322,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "field",
+      "grave",
+      "rain",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "livestock",
+    "intermediate": [],
+    "distractors": [
+      "grave",
+      "rain",
+      "water"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.1875
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "graveyard",
+        "horse",
+        "livestock",
+        "puddle"
+      ],
+      "coverage": 0.125,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "horse",
+        "livestock"
+      ],
+      "coverage": 0.0625,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fish",
+        "flood"
+      ],
+      "coverage": 0.0625,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5186,
+    "completion_tokens": 166,
+    "calls": 11,
+    "wall_clock_s": 0.03,
+    "lines": {
+      "agents": {
+        "total_tokens": 5186,
+        "completion_tokens": 166,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

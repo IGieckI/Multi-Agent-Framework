@@ -1,0 +1,127 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "earth",
+      "tool",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "plow",
+    "intermediate": [
+      "field"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "earth",
+        "tool",
+        "field"
+      ],
+      [
+        "field",
+        "wood",
+        "plow"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.2692
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "house",
+        "wall"
+      ],
+      "coverage": 0.0769,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "axe",
+        "field",
+        "land"
+      ],
+      "coverage": 0.1154,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "plow"
+      ],
+      "coverage": 0.0385,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "house",
+        "wall"
+      ],
+      "coverage": 0.0769,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "axe"
+      ],
+      "coverage": 0.0385,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fence",
+        "field",
+        "plow"
+      ],
+      "coverage": 0.1154,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9678,
+    "completion_tokens": 324,
+    "calls": 19,
+    "wall_clock_s": 0.108,
+    "lines": {
+      "agents": {
+        "total_tokens": 9678,
+        "completion_tokens": 324,
+        "calls": 19
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

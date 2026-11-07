@@ -1,0 +1,58 @@
+{
+  "ended_by": "all_solved",
+  "steps": 9,
+  "task": {
+    "initial": [
+      "corpse",
+      "farm",
+      "fireplace",
+      "sword",
+      "wool"
+    ],
+    "max_steps": 24,
+    "target": "christmas stocking",
+    "intermediate": [],
+    "distractors": [
+      "corpse",
+      "farm",
+      "sword"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 9,
+      "new_items": [
+        "christmas stocking"
+      ],
+      "coverage": 0.5,
+      "invalid": 7,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4335,
+    "completion_tokens": 139,
+    "calls": 9,
+    "wall_clock_s": 0.028,
+    "lines": {
+      "agents": {
+        "total_tokens": 4335,
+        "completion_tokens": 139,
+        "calls": 9
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

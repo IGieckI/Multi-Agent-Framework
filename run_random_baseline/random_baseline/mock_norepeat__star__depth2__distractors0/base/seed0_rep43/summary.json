@@ -1,0 +1,95 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "human",
+      "mountain range",
+      "sea"
+    ],
+    "max_steps": 4,
+    "target": "current",
+    "intermediate": [
+      "cold"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "human",
+        "mountain range",
+        "cold"
+      ],
+      [
+        "cold",
+        "sea",
+        "current"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 9,
+    "union_coverage": 0.3462
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ocean",
+        "pressure"
+      ],
+      "coverage": 0.0769,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "arctic",
+        "cold",
+        "current",
+        "ocean",
+        "skier"
+      ],
+      "coverage": 0.1923,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "continent",
+        "family",
+        "love"
+      ],
+      "coverage": 0.1154,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6327,
+    "completion_tokens": 236,
+    "calls": 12,
+    "wall_clock_s": 0.075,
+    "lines": {
+      "agents": {
+        "total_tokens": 6327,
+        "completion_tokens": 236,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

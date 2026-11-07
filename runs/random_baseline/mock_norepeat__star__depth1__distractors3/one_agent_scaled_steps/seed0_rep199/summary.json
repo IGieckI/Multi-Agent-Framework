@@ -1,0 +1,62 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "earth",
+      "goat",
+      "ocean",
+      "water",
+      "wind"
+    ],
+    "max_steps": 12,
+    "target": "mud",
+    "intermediate": [],
+    "distractors": [
+      "goat",
+      "ocean",
+      "wind"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.122
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "hurricane",
+        "pressure",
+        "puddle",
+        "tornado",
+        "wave"
+      ],
+      "coverage": 0.122,
+      "invalid": 7,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6057,
+    "completion_tokens": 185,
+    "calls": 12,
+    "wall_clock_s": 0.03,
+    "lines": {
+      "agents": {
+        "total_tokens": 6057,
+        "completion_tokens": 185,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

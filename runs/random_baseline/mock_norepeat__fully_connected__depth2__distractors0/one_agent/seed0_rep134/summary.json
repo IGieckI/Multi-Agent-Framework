@@ -1,0 +1,55 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "brick",
+      "human"
+    ],
+    "max_steps": 4,
+    "target": "house",
+    "intermediate": [
+      "wall"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "wall"
+      ],
+      "coverage": 0.5,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1872,
+    "completion_tokens": 60,
+    "calls": 4,
+    "wall_clock_s": 0.025,
+    "lines": {
+      "agents": {
+        "total_tokens": 1872,
+        "completion_tokens": 60,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

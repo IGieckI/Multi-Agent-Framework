@@ -1,0 +1,60 @@
+{
+  "ended_by": "all_solved",
+  "steps": 17,
+  "task": {
+    "initial": [
+      "helicopter",
+      "metal",
+      "rock",
+      "rust",
+      "zombie"
+    ],
+    "max_steps": 24,
+    "target": "blade",
+    "intermediate": [],
+    "distractors": [
+      "helicopter",
+      "rust",
+      "zombie"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.2
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 17,
+      "new_items": [
+        "blade",
+        "boulder",
+        "hill"
+      ],
+      "coverage": 0.2,
+      "invalid": 14,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8720,
+    "completion_tokens": 265,
+    "calls": 17,
+    "wall_clock_s": 0.041,
+    "lines": {
+      "agents": {
+        "total_tokens": 8720,
+        "completion_tokens": 265,
+        "calls": 17
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

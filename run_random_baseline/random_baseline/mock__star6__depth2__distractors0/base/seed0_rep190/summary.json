@@ -1,0 +1,130 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "pirate",
+      "water",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "pirate ship",
+    "intermediate": [
+      "boat"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "water",
+        "wood",
+        "boat"
+      ],
+      [
+        "boat",
+        "pirate",
+        "pirate ship"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.2273
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "boat",
+        "paper",
+        "pirate ship"
+      ],
+      "coverage": 0.1364,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "boat",
+        "paper"
+      ],
+      "coverage": 0.0909,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "boat",
+        "paper",
+        "wall"
+      ],
+      "coverage": 0.1364,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "wall"
+      ],
+      "coverage": 0.0455,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "boat",
+        "book",
+        "paper"
+      ],
+      "coverage": 0.1364,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "boat",
+        "paper",
+        "pirate ship"
+      ],
+      "coverage": 0.1364,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11794,
+    "completion_tokens": 388,
+    "calls": 23,
+    "wall_clock_s": 0.1,
+    "lines": {
+      "agents": {
+        "total_tokens": 11794,
+        "completion_tokens": 388,
+        "calls": 23
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

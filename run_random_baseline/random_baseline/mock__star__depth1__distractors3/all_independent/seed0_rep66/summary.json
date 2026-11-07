@@ -1,0 +1,87 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "container",
+      "explosion",
+      "juice",
+      "star",
+      "time"
+    ],
+    "max_steps": 4,
+    "target": "supernova",
+    "intermediate": [],
+    "distractors": [
+      "container",
+      "juice",
+      "time"
+    ],
+    "path": [
+      [
+        "explosion",
+        "star",
+        "supernova"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.2727
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "bottle"
+      ],
+      "coverage": 0.0909,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "supernova"
+      ],
+      "coverage": 0.0909,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "galaxy"
+      ],
+      "coverage": 0.0909,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5681,
+    "completion_tokens": 189,
+    "calls": 12,
+    "wall_clock_s": 0.083,
+    "lines": {
+      "agents": {
+        "total_tokens": 5681,
+        "completion_tokens": 189,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

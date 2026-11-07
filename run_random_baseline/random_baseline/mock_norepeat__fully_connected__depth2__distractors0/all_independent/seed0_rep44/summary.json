@@ -1,0 +1,128 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "egg",
+      "sea"
+    ],
+    "max_steps": 4,
+    "target": "fish",
+    "intermediate": [
+      "ocean"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "sea",
+        "sea",
+        "ocean"
+      ],
+      [
+        "egg",
+        "ocean",
+        "fish"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.75
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "fish",
+        "roe"
+      ],
+      "coverage": 0.5,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "fish",
+        "roe"
+      ],
+      "coverage": 0.5,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "fish",
+        "ocean",
+        "roe"
+      ],
+      "coverage": 0.75,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "fish",
+        "roe"
+      ],
+      "coverage": 0.5,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fish",
+        "roe"
+      ],
+      "coverage": 0.5,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fish",
+        "ocean",
+        "roe"
+      ],
+      "coverage": 0.75,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5009,
+    "completion_tokens": 155,
+    "calls": 11,
+    "wall_clock_s": 0.075,
+    "lines": {
+      "agents": {
+        "total_tokens": 5009,
+        "completion_tokens": 155,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "human",
+      "lake",
+      "stone",
+      "wire"
+    ],
+    "max_steps": 4,
+    "target": "snake",
+    "intermediate": [],
+    "distractors": [
+      "human",
+      "lake",
+      "stone"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 8,
+    "union_coverage": 0.0176
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "domestication",
+        "fish",
+        "mermaid",
+        "wall"
+      ],
+      "coverage": 0.0088,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "domestication",
+        "fish"
+      ],
+      "coverage": 0.0044,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "ocean",
+        "sea"
+      ],
+      "coverage": 0.0088,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7141,
+    "completion_tokens": 305,
+    "calls": 12,
+    "wall_clock_s": 0.055,
+    "lines": {
+      "agents": {
+        "total_tokens": 7141,
+        "completion_tokens": 305,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

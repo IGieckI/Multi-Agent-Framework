@@ -1,0 +1,59 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "electricity",
+      "human",
+      "light bulb"
+    ],
+    "max_steps": 24,
+    "target": "angel",
+    "intermediate": [
+      "light"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "electrician",
+        "family",
+        "idea",
+        "light",
+        "love",
+        "philosophy"
+      ],
+      "coverage": 0.6667,
+      "invalid": 11,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 13097,
+    "completion_tokens": 404,
+    "calls": 24,
+    "wall_clock_s": 0.053,
+    "lines": {
+      "agents": {
+        "total_tokens": 13097,
+        "completion_tokens": 404,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

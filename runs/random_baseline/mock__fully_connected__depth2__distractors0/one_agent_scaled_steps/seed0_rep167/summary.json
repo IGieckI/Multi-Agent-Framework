@@ -1,0 +1,58 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "human",
+      "light",
+      "wire"
+    ],
+    "max_steps": 24,
+    "target": "harp",
+    "intermediate": [
+      "angel"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "angel",
+        "electrician",
+        "family",
+        "love",
+        "optical fiber"
+      ],
+      "coverage": 0.5,
+      "invalid": 13,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12932,
+    "completion_tokens": 381,
+    "calls": 24,
+    "wall_clock_s": 0.054,
+    "lines": {
+      "agents": {
+        "total_tokens": 12932,
+        "completion_tokens": 381,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

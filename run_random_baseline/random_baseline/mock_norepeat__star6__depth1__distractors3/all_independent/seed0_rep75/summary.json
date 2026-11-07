@@ -1,0 +1,125 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "atmosphere",
+      "fire",
+      "fishing rod",
+      "garden",
+      "human"
+    ],
+    "max_steps": 4,
+    "target": "energy",
+    "intermediate": [],
+    "distractors": [
+      "fishing rod",
+      "garden",
+      "human"
+    ],
+    "path": [
+      [
+        "atmosphere",
+        "fire",
+        "energy"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.3684
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "gardener"
+      ],
+      "coverage": 0.0526,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "pressure"
+      ],
+      "coverage": 0.1579,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.1053,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "firefighter",
+        "pressure"
+      ],
+      "coverage": 0.1053,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "angler",
+        "firefighter"
+      ],
+      "coverage": 0.1053,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "energy"
+      ],
+      "coverage": 0.0526,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10522,
+    "completion_tokens": 359,
+    "calls": 22,
+    "wall_clock_s": 0.107,
+    "lines": {
+      "agents": {
+        "total_tokens": 10522,
+        "completion_tokens": 359,
+        "calls": 22
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

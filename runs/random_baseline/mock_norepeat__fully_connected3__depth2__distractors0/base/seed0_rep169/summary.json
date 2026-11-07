@@ -1,0 +1,82 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "pebble",
+      "tree",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "palm",
+    "intermediate": [
+      "sand"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.28
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "leaf",
+        "tornado"
+      ],
+      "coverage": 0.08,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "forest",
+        "leaf"
+      ],
+      "coverage": 0.08,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "cactus",
+        "leaf",
+        "palm",
+        "rock",
+        "sand"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7048,
+    "completion_tokens": 305,
+    "calls": 12,
+    "wall_clock_s": 0.044,
+    "lines": {
+      "agents": {
+        "total_tokens": 7048,
+        "completion_tokens": 305,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

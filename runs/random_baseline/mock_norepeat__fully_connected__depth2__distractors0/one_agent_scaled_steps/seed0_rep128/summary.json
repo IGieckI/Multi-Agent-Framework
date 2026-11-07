@@ -1,0 +1,55 @@
+{
+  "ended_by": "all_solved",
+  "steps": 5,
+  "task": {
+    "initial": [
+      "dough",
+      "fire",
+      "warmth"
+    ],
+    "max_steps": 24,
+    "target": "toast",
+    "intermediate": [
+      "bread"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 5,
+      "new_items": [
+        "bread",
+        "toast"
+      ],
+      "coverage": 0.6667,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2343,
+    "completion_tokens": 75,
+    "calls": 5,
+    "wall_clock_s": 0.033,
+    "lines": {
+      "agents": {
+        "total_tokens": 2343,
+        "completion_tokens": 75,
+        "calls": 5
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

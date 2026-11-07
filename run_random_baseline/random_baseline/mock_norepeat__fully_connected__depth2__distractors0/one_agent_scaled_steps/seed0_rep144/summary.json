@@ -1,0 +1,71 @@
+{
+  "ended_by": "all_solved",
+  "steps": 14,
+  "task": {
+    "initial": [
+      "earth",
+      "small",
+      "wind"
+    ],
+    "max_steps": 24,
+    "target": "sand",
+    "intermediate": [
+      "pebble"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "earth",
+        "small",
+        "pebble"
+      ],
+      [
+        "pebble",
+        "wind",
+        "sand"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 6,
+    "union_coverage": 0.25
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 14,
+      "new_items": [
+        "continent",
+        "land",
+        "pebble",
+        "rock",
+        "sand",
+        "tornado"
+      ],
+      "coverage": 0.25,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7037,
+    "completion_tokens": 214,
+    "calls": 14,
+    "wall_clock_s": 0.085,
+    "lines": {
+      "agents": {
+        "total_tokens": 7037,
+        "completion_tokens": 214,
+        "calls": 14
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

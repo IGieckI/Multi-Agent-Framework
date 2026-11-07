@@ -1,0 +1,126 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "heat",
+      "sea",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "current",
+    "intermediate": [
+      "ocean"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "sea",
+        "water",
+        "ocean"
+      ],
+      [
+        "heat",
+        "ocean",
+        "current"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.4444
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "current",
+        "ocean"
+      ],
+      "coverage": 0.2222,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "current",
+        "puddle"
+      ],
+      "coverage": 0.2222,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ocean",
+        "steam"
+      ],
+      "coverage": 0.2222,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "current",
+        "steam"
+      ],
+      "coverage": 0.2222,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "ocean"
+      ],
+      "coverage": 0.1111,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "current",
+        "ocean"
+      ],
+      "coverage": 0.2222,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7892,
+    "completion_tokens": 255,
+    "calls": 16,
+    "wall_clock_s": 0.095,
+    "lines": {
+      "agents": {
+        "total_tokens": 7892,
+        "completion_tokens": 255,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

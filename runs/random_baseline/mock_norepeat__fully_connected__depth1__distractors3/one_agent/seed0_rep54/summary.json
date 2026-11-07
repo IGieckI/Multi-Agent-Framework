@@ -1,0 +1,58 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "lava",
+      "rose",
+      "stone",
+      "water",
+      "witch"
+    ],
+    "max_steps": 4,
+    "target": "steam",
+    "intermediate": [],
+    "distractors": [
+      "rose",
+      "stone",
+      "witch"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0556
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "perfume"
+      ],
+      "coverage": 0.0556,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1888,
+    "completion_tokens": 62,
+    "calls": 4,
+    "wall_clock_s": 0.031,
+    "lines": {
+      "agents": {
+        "total_tokens": 1888,
+        "completion_tokens": 62,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

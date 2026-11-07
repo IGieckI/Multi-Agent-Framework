@@ -1,0 +1,108 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "hill",
+      "mountain"
+    ],
+    "max_steps": 4,
+    "target": "mountain range",
+    "intermediate": [
+      "mountain"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.1429
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8379,
+    "completion_tokens": 380,
+    "calls": 14,
+    "wall_clock_s": 0.042,
+    "lines": {
+      "agents": {
+        "total_tokens": 8379,
+        "completion_tokens": 380,
+        "calls": 14
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

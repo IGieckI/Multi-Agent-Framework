@@ -1,0 +1,127 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "thread",
+      "tool"
+    ],
+    "max_steps": 4,
+    "target": "fabric",
+    "intermediate": [
+      "machine"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "tool",
+        "tool",
+        "machine"
+      ],
+      [
+        "machine",
+        "thread",
+        "fabric"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "fabric",
+        "needle"
+      ],
+      "coverage": 0.3333,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fabric",
+        "machine",
+        "needle"
+      ],
+      "coverage": 0.5,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "fabric",
+        "needle"
+      ],
+      "coverage": 0.3333,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "rope"
+      ],
+      "coverage": 0.1667,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "machine",
+        "rope"
+      ],
+      "coverage": 0.3333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "fabric",
+        "machine",
+        "needle"
+      ],
+      "coverage": 0.5,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7414,
+    "completion_tokens": 244,
+    "calls": 16,
+    "wall_clock_s": 0.156,
+    "lines": {
+      "agents": {
+        "total_tokens": 7414,
+        "completion_tokens": 244,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

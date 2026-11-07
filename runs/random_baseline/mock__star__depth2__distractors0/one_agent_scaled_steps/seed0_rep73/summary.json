@@ -1,0 +1,56 @@
+{
+  "ended_by": "all_solved",
+  "steps": 6,
+  "task": {
+    "initial": [
+      "coffin",
+      "forest",
+      "rock"
+    ],
+    "max_steps": 12,
+    "target": "gravestone",
+    "intermediate": [
+      "grave"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.2143
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 6,
+      "new_items": [
+        "grave",
+        "gravestone",
+        "graveyard"
+      ],
+      "coverage": 0.2143,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2864,
+    "completion_tokens": 93,
+    "calls": 6,
+    "wall_clock_s": 0.029,
+    "lines": {
+      "agents": {
+        "total_tokens": 2864,
+        "completion_tokens": 93,
+        "calls": 6
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

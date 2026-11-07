@@ -1,0 +1,67 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "lizard",
+      "mud",
+      "tree"
+    ],
+    "max_steps": 4,
+    "target": "alligator",
+    "intermediate": [
+      "swamp"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "mud",
+        "tree",
+        "swamp"
+      ],
+      [
+        "lizard",
+        "swamp",
+        "alligator"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "nest"
+      ],
+      "coverage": 0.4,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1864,
+    "completion_tokens": 59,
+    "calls": 4,
+    "wall_clock_s": 0.06,
+    "lines": {
+      "agents": {
+        "total_tokens": 1864,
+        "completion_tokens": 59,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

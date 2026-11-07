@@ -1,0 +1,78 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "big",
+      "horse",
+      "puddle",
+      "time",
+      "wagon"
+    ],
+    "max_steps": 4,
+    "target": "pond",
+    "intermediate": [],
+    "distractors": [
+      "horse",
+      "time",
+      "wagon"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.1429
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "pond"
+      ],
+      "coverage": 0.1429,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "pond"
+      ],
+      "coverage": 0.1429,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3969,
+    "completion_tokens": 139,
+    "calls": 8,
+    "wall_clock_s": 0.029,
+    "lines": {
+      "agents": {
+        "total_tokens": 3969,
+        "completion_tokens": 139,
+        "calls": 8
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

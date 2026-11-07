@@ -1,0 +1,115 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "arctic",
+      "island",
+      "lake",
+      "rope",
+      "tree"
+    ],
+    "max_steps": 4,
+    "target": "palm",
+    "intermediate": [],
+    "distractors": [
+      "arctic",
+      "lake",
+      "rope"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.4167
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "palm",
+        "swamp"
+      ],
+      "coverage": 0.1667,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "archipelago"
+      ],
+      "coverage": 0.0833,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "palm"
+      ],
+      "coverage": 0.0833,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "palm"
+      ],
+      "coverage": 0.0833,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "coral",
+        "sea"
+      ],
+      "coverage": 0.1667,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "sea"
+      ],
+      "coverage": 0.0833,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10590,
+    "completion_tokens": 433,
+    "calls": 17,
+    "wall_clock_s": 0.069,
+    "lines": {
+      "agents": {
+        "total_tokens": 10590,
+        "completion_tokens": 433,
+        "calls": 17
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

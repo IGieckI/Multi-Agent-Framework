@@ -1,0 +1,88 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "carbon dioxide",
+      "human",
+      "motion",
+      "storm",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "tornado",
+    "intermediate": [],
+    "distractors": [
+      "carbon dioxide",
+      "human",
+      "wind"
+    ],
+    "path": [
+      [
+        "motion",
+        "storm",
+        "tornado"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.375
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "tornado"
+      ],
+      "coverage": 0.125,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "tornado"
+      ],
+      "coverage": 0.125,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.25,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5929,
+    "completion_tokens": 276,
+    "calls": 10,
+    "wall_clock_s": 0.108,
+    "lines": {
+      "agents": {
+        "total_tokens": 5929,
+        "completion_tokens": 276,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "ended_by": "all_solved",
+  "steps": 17,
+  "task": {
+    "initial": [
+      "beehive",
+      "metal",
+      "rock"
+    ],
+    "max_steps": 24,
+    "target": "wax",
+    "intermediate": [
+      "blade"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "metal",
+        "rock",
+        "blade"
+      ],
+      [
+        "beehive",
+        "blade",
+        "wax"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 17,
+      "new_items": [
+        "blade",
+        "boulder",
+        "scissors",
+        "sword",
+        "wax"
+      ],
+      "coverage": 0.3333,
+      "invalid": 11,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8715,
+    "completion_tokens": 263,
+    "calls": 17,
+    "wall_clock_s": 0.087,
+    "lines": {
+      "agents": {
+        "total_tokens": 8715,
+        "completion_tokens": 263,
+        "calls": 17
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

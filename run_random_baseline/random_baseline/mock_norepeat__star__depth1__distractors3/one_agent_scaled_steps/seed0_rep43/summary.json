@@ -1,0 +1,68 @@
+{
+  "ended_by": "all_solved",
+  "steps": 8,
+  "task": {
+    "initial": [
+      "cold",
+      "confetti",
+      "philosophy",
+      "sea",
+      "sword"
+    ],
+    "max_steps": 12,
+    "target": "current",
+    "intermediate": [],
+    "distractors": [
+      "confetti",
+      "philosophy",
+      "sword"
+    ],
+    "path": [
+      [
+        "cold",
+        "sea",
+        "current"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.3077
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 8,
+      "new_items": [
+        "arctic",
+        "current",
+        "idea",
+        "scissors"
+      ],
+      "coverage": 0.3077,
+      "invalid": 5,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3915,
+    "completion_tokens": 124,
+    "calls": 8,
+    "wall_clock_s": 0.079,
+    "lines": {
+      "agents": {
+        "total_tokens": 3915,
+        "completion_tokens": 124,
+        "calls": 8
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

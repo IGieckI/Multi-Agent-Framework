@@ -1,0 +1,57 @@
+{
+  "ended_by": "all_solved",
+  "steps": 11,
+  "task": {
+    "initial": [
+      "animal",
+      "clay",
+      "tool"
+    ],
+    "max_steps": 12,
+    "target": "potter",
+    "intermediate": [
+      "human"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.087
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 11,
+      "new_items": [
+        "butcher",
+        "human",
+        "meat",
+        "potter"
+      ],
+      "coverage": 0.087,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5430,
+    "completion_tokens": 167,
+    "calls": 11,
+    "wall_clock_s": 0.03,
+    "lines": {
+      "agents": {
+        "total_tokens": 5430,
+        "completion_tokens": 167,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

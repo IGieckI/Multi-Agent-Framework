@@ -1,0 +1,91 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "cow",
+      "duck",
+      "human",
+      "light",
+      "steel"
+    ],
+    "max_steps": 4,
+    "target": "gold",
+    "intermediate": [],
+    "distractors": [
+      "cow",
+      "duck",
+      "human"
+    ],
+    "path": [
+      [
+        "light",
+        "steel",
+        "gold"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.0479
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "angel"
+      ],
+      "coverage": 0.0068,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "family",
+        "gold",
+        "love",
+        "spotlight"
+      ],
+      "coverage": 0.0274,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "minotaur"
+      ],
+      "coverage": 0.0137,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6405,
+    "completion_tokens": 279,
+    "calls": 11,
+    "wall_clock_s": 0.104,
+    "lines": {
+      "agents": {
+        "total_tokens": 6405,
+        "completion_tokens": 279,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "ended_by": "all_solved",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "hero",
+      "human",
+      "statue"
+    ],
+    "max_steps": 12,
+    "target": "golem",
+    "intermediate": [
+      "story"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "hero",
+        "human",
+        "story"
+      ],
+      [
+        "statue",
+        "story",
+        "golem"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 12,
+      "new_items": [
+        "golem",
+        "legend",
+        "philosophy",
+        "story"
+      ],
+      "coverage": 0.4,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5876,
+    "completion_tokens": 184,
+    "calls": 12,
+    "wall_clock_s": 0.086,
+    "lines": {
+      "agents": {
+        "total_tokens": 5876,
+        "completion_tokens": 184,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

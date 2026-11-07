@@ -1,0 +1,114 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "earth",
+      "hill",
+      "rain"
+    ],
+    "max_steps": 4,
+    "target": "river",
+    "intermediate": [
+      "mountain"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.3889
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "continent",
+        "land"
+      ],
+      "coverage": 0.1111,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "flood"
+      ],
+      "coverage": 0.0556,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "mountain",
+        "river",
+        "snow"
+      ],
+      "coverage": 0.1667,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "mountain",
+        "mountain range"
+      ],
+      "coverage": 0.1111,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "mountain",
+        "river"
+      ],
+      "coverage": 0.1111,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "river"
+      ],
+      "coverage": 0.0556,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8858,
+    "completion_tokens": 290,
+    "calls": 19,
+    "wall_clock_s": 0.08,
+    "lines": {
+      "agents": {
+        "total_tokens": 8858,
+        "completion_tokens": 290,
+        "calls": 19
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

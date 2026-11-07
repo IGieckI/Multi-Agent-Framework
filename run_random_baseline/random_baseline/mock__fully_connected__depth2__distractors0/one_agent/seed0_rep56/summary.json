@@ -1,0 +1,68 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "land",
+      "life",
+      "stream"
+    ],
+    "max_steps": 4,
+    "target": "beaver",
+    "intermediate": [
+      "animal"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "land",
+        "life",
+        "animal"
+      ],
+      [
+        "animal",
+        "stream",
+        "beaver"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.1154
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "animal",
+        "beaver",
+        "soil"
+      ],
+      "coverage": 0.1154,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1879,
+    "completion_tokens": 61,
+    "calls": 4,
+    "wall_clock_s": 0.073,
+    "lines": {
+      "agents": {
+        "total_tokens": 1879,
+        "completion_tokens": 61,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

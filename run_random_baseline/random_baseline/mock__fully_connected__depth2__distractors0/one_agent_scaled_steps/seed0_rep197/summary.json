@@ -1,0 +1,69 @@
+{
+  "ended_by": "all_solved",
+  "steps": 18,
+  "task": {
+    "initial": [
+      "machine",
+      "steel",
+      "wheel"
+    ],
+    "max_steps": 24,
+    "target": "motorcycle",
+    "intermediate": [
+      "bicycle"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "machine",
+        "wheel",
+        "bicycle"
+      ],
+      [
+        "bicycle",
+        "steel",
+        "motorcycle"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.8
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 18,
+      "new_items": [
+        "bicycle",
+        "car",
+        "motorcycle",
+        "tank"
+      ],
+      "coverage": 0.8,
+      "invalid": 5,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8919,
+    "completion_tokens": 280,
+    "calls": 18,
+    "wall_clock_s": 0.092,
+    "lines": {
+      "agents": {
+        "total_tokens": 8919,
+        "completion_tokens": 280,
+        "calls": 18
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

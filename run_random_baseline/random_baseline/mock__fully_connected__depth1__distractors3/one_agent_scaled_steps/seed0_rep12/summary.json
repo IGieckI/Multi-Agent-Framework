@@ -1,0 +1,67 @@
+{
+  "ended_by": "all_solved",
+  "steps": 7,
+  "task": {
+    "initial": [
+      "house",
+      "light",
+      "motion",
+      "potato",
+      "wind"
+    ],
+    "max_steps": 24,
+    "target": "windmill",
+    "intermediate": [],
+    "distractors": [
+      "light",
+      "motion",
+      "potato"
+    ],
+    "path": [
+      [
+        "house",
+        "wind",
+        "windmill"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.6
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 7,
+      "new_items": [
+        "lighthouse",
+        "village",
+        "windmill"
+      ],
+      "coverage": 0.6,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3388,
+    "completion_tokens": 106,
+    "calls": 7,
+    "wall_clock_s": 0.07,
+    "lines": {
+      "agents": {
+        "total_tokens": 3388,
+        "completion_tokens": 106,
+        "calls": 7
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

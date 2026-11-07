@@ -1,0 +1,86 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "animal",
+      "jerky",
+      "ocean",
+      "wind turbine"
+    ],
+    "max_steps": 4,
+    "target": "pressure",
+    "intermediate": [],
+    "distractors": [
+      "animal",
+      "jerky",
+      "wind turbine"
+    ],
+    "path": [
+      [
+        "ocean",
+        "ocean",
+        "pressure"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.25
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "pressure"
+      ],
+      "coverage": 0.25,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "pressure"
+      ],
+      "coverage": 0.25,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "pressure"
+      ],
+      "coverage": 0.25,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2742,
+    "completion_tokens": 133,
+    "calls": 5,
+    "wall_clock_s": 0.083,
+    "lines": {
+      "agents": {
+        "total_tokens": 2742,
+        "completion_tokens": 133,
+        "calls": 5
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "ended_by": "all_solved",
+  "steps": 20,
+  "task": {
+    "initial": [
+      "animal",
+      "container",
+      "cookie",
+      "science",
+      "story"
+    ],
+    "max_steps": 24,
+    "target": "domestication",
+    "intermediate": [],
+    "distractors": [
+      "container",
+      "cookie",
+      "story"
+    ],
+    "path": [
+      [
+        "animal",
+        "science",
+        "domestication"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 6,
+    "union_coverage": 0.375
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 20,
+      "new_items": [
+        "book",
+        "box",
+        "domestication",
+        "legend",
+        "library",
+        "zoo"
+      ],
+      "coverage": 0.375,
+      "invalid": 14,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10582,
+    "completion_tokens": 310,
+    "calls": 20,
+    "wall_clock_s": 0.089,
+    "lines": {
+      "agents": {
+        "total_tokens": 10582,
+        "completion_tokens": 310,
+        "calls": 20
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

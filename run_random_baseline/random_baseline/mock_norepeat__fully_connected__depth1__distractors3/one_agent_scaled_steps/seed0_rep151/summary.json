@@ -1,0 +1,71 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "air",
+      "farm",
+      "firetruck",
+      "human",
+      "rain"
+    ],
+    "max_steps": 24,
+    "target": "firefighter",
+    "intermediate": [],
+    "distractors": [
+      "air",
+      "farm",
+      "rain"
+    ],
+    "path": [
+      [
+        "firetruck",
+        "human",
+        "firefighter"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.2917
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "blizzard",
+        "chill",
+        "cold",
+        "family",
+        "flood",
+        "love",
+        "snow"
+      ],
+      "coverage": 0.2917,
+      "invalid": 18,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 13082,
+    "completion_tokens": 367,
+    "calls": 24,
+    "wall_clock_s": 0.099,
+    "lines": {
+      "agents": {
+        "total_tokens": 13082,
+        "completion_tokens": 367,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

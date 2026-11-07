@@ -1,0 +1,69 @@
+{
+  "ended_by": "all_solved",
+  "steps": 14,
+  "task": {
+    "initial": [
+      "container",
+      "email",
+      "vacuum cleaner"
+    ],
+    "max_steps": 24,
+    "target": "robot vacuum",
+    "intermediate": [
+      "computer"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "container",
+        "email",
+        "computer"
+      ],
+      [
+        "computer",
+        "vacuum cleaner",
+        "robot vacuum"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 1.0
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 14,
+      "new_items": [
+        "closet",
+        "computer",
+        "internet",
+        "robot vacuum"
+      ],
+      "coverage": 1.0,
+      "invalid": 10,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7270,
+    "completion_tokens": 241,
+    "calls": 14,
+    "wall_clock_s": 0.078,
+    "lines": {
+      "agents": {
+        "total_tokens": 7270,
+        "completion_tokens": 241,
+        "calls": 14
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

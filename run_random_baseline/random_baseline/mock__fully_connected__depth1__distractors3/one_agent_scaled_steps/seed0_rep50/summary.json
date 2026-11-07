@@ -1,0 +1,69 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "bullet",
+      "container",
+      "corpse",
+      "wheat",
+      "wind"
+    ],
+    "max_steps": 24,
+    "target": "windmill",
+    "intermediate": [],
+    "distractors": [
+      "bullet",
+      "container",
+      "corpse"
+    ],
+    "path": [
+      [
+        "wheat",
+        "wind",
+        "windmill"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "coffin",
+        "grave",
+        "graveyard",
+        "gun",
+        "silo"
+      ],
+      "coverage": 0.5,
+      "invalid": 15,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12881,
+    "completion_tokens": 370,
+    "calls": 24,
+    "wall_clock_s": 0.101,
+    "lines": {
+      "agents": {
+        "total_tokens": 12881,
+        "completion_tokens": 370,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

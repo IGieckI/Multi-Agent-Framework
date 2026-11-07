@@ -1,0 +1,70 @@
+{
+  "ended_by": "all_solved",
+  "steps": 20,
+  "task": {
+    "initial": [
+      "death",
+      "life",
+      "mountain"
+    ],
+    "max_steps": 24,
+    "target": "mineral",
+    "intermediate": [
+      "organic matter"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "death",
+        "life",
+        "organic matter"
+      ],
+      [
+        "mountain",
+        "organic matter",
+        "mineral"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.4545
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 20,
+      "new_items": [
+        "animal",
+        "continent",
+        "mineral",
+        "mountain range",
+        "organic matter"
+      ],
+      "coverage": 0.4545,
+      "invalid": 15,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10684,
+    "completion_tokens": 338,
+    "calls": 20,
+    "wall_clock_s": 0.097,
+    "lines": {
+      "agents": {
+        "total_tokens": 10684,
+        "completion_tokens": 338,
+        "calls": 20
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

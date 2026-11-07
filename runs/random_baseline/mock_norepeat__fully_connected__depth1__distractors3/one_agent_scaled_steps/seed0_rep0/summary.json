@@ -1,0 +1,61 @@
+{
+  "ended_by": "all_solved",
+  "steps": 16,
+  "task": {
+    "initial": [
+      "car",
+      "eagle",
+      "jupiter",
+      "steel",
+      "wagon"
+    ],
+    "max_steps": 24,
+    "target": "tank",
+    "intermediate": [],
+    "distractors": [
+      "eagle",
+      "jupiter",
+      "wagon"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.8
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 16,
+      "new_items": [
+        "airplane",
+        "bus",
+        "egg",
+        "tank"
+      ],
+      "coverage": 0.8,
+      "invalid": 12,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8087,
+    "completion_tokens": 246,
+    "calls": 16,
+    "wall_clock_s": 0.037,
+    "lines": {
+      "agents": {
+        "total_tokens": 8087,
+        "completion_tokens": 246,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

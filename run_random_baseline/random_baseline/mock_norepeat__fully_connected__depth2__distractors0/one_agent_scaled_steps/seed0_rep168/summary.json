@@ -1,0 +1,72 @@
+{
+  "ended_by": "all_solved",
+  "steps": 11,
+  "task": {
+    "initial": [
+      "human",
+      "letter",
+      "metal"
+    ],
+    "max_steps": 24,
+    "target": "mailbox",
+    "intermediate": [
+      "mailman"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "human",
+        "letter",
+        "mailman"
+      ],
+      [
+        "mailman",
+        "metal",
+        "mailbox"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 7,
+    "union_coverage": 0.3889
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 11,
+      "new_items": [
+        "family",
+        "love",
+        "mailbox",
+        "mailman",
+        "newspaper",
+        "post office",
+        "village"
+      ],
+      "coverage": 0.3889,
+      "invalid": 6,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5606,
+    "completion_tokens": 174,
+    "calls": 11,
+    "wall_clock_s": 0.083,
+    "lines": {
+      "agents": {
+        "total_tokens": 5606,
+        "completion_tokens": 174,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "big",
+      "boat",
+      "cow",
+      "human",
+      "universe"
+    ],
+    "max_steps": 24,
+    "target": "science",
+    "intermediate": [],
+    "distractors": [
+      "big",
+      "boat",
+      "cow"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.5556
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "family",
+        "love",
+        "minotaur",
+        "sailor",
+        "village"
+      ],
+      "coverage": 0.5556,
+      "invalid": 20,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12841,
+    "completion_tokens": 367,
+    "calls": 24,
+    "wall_clock_s": 0.06,
+    "lines": {
+      "agents": {
+        "total_tokens": 12841,
+        "completion_tokens": 367,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

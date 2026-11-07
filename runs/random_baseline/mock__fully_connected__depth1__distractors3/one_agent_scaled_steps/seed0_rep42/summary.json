@@ -1,0 +1,59 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "eagle",
+      "electricity",
+      "primordial soup",
+      "thread",
+      "wine"
+    ],
+    "max_steps": 24,
+    "target": "life",
+    "intermediate": [],
+    "distractors": [
+      "eagle",
+      "thread",
+      "wine"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "egg",
+        "sewing machine"
+      ],
+      "coverage": 0.3333,
+      "invalid": 13,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12612,
+    "completion_tokens": 402,
+    "calls": 24,
+    "wall_clock_s": 0.053,
+    "lines": {
+      "agents": {
+        "total_tokens": 12612,
+        "completion_tokens": 402,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

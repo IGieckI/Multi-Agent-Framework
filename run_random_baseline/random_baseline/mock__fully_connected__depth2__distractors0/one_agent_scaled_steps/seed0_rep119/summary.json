@@ -1,0 +1,68 @@
+{
+  "ended_by": "all_solved",
+  "steps": 16,
+  "task": {
+    "initial": [
+      "earth",
+      "science"
+    ],
+    "max_steps": 24,
+    "target": "stone",
+    "intermediate": [
+      "solid"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "earth",
+        "science",
+        "solid"
+      ],
+      [
+        "earth",
+        "solid",
+        "stone"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.2667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 16,
+      "new_items": [
+        "continent",
+        "land",
+        "solid",
+        "stone"
+      ],
+      "coverage": 0.2667,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7885,
+    "completion_tokens": 246,
+    "calls": 16,
+    "wall_clock_s": 0.097,
+    "lines": {
+      "agents": {
+        "total_tokens": 7885,
+        "completion_tokens": 246,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "ended_by": "all_solved",
+  "steps": 17,
+  "task": {
+    "initial": [
+      "bird",
+      "city",
+      "double rainbow!",
+      "earth",
+      "life"
+    ],
+    "max_steps": 24,
+    "target": "toucan",
+    "intermediate": [],
+    "distractors": [
+      "city",
+      "earth",
+      "life"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.1515
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 17,
+      "new_items": [
+        "egg",
+        "magic",
+        "ostrich",
+        "peacock",
+        "toucan"
+      ],
+      "coverage": 0.1515,
+      "invalid": 13,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8907,
+    "completion_tokens": 277,
+    "calls": 17,
+    "wall_clock_s": 0.06,
+    "lines": {
+      "agents": {
+        "total_tokens": 8907,
+        "completion_tokens": 277,
+        "calls": 17
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

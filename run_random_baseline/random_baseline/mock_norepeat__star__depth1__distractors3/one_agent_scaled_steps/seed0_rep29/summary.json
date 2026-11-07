@@ -1,0 +1,65 @@
+{
+  "ended_by": "all_solved",
+  "steps": 6,
+  "task": {
+    "initial": [
+      "ambulance",
+      "electricity",
+      "heat",
+      "saddle",
+      "sword"
+    ],
+    "max_steps": 12,
+    "target": "scalpel",
+    "intermediate": [],
+    "distractors": [
+      "electricity",
+      "heat",
+      "saddle"
+    ],
+    "path": [
+      [
+        "ambulance",
+        "sword",
+        "scalpel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.25
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 6,
+      "new_items": [
+        "scalpel"
+      ],
+      "coverage": 0.25,
+      "invalid": 5,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2885,
+    "completion_tokens": 99,
+    "calls": 6,
+    "wall_clock_s": 0.065,
+    "lines": {
+      "agents": {
+        "total_tokens": 2885,
+        "completion_tokens": 99,
+        "calls": 6
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

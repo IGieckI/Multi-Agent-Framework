@@ -1,0 +1,70 @@
+{
+  "ended_by": "all_solved",
+  "steps": 22,
+  "task": {
+    "initial": [
+      "air",
+      "heat",
+      "sandwich"
+    ],
+    "max_steps": 24,
+    "target": "toast",
+    "intermediate": [
+      "warmth"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "air",
+        "heat",
+        "warmth"
+      ],
+      [
+        "sandwich",
+        "warmth",
+        "toast"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.8333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 22,
+      "new_items": [
+        "plasma",
+        "pressure",
+        "toast",
+        "warmth",
+        "wind"
+      ],
+      "coverage": 0.8333,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11106,
+    "completion_tokens": 335,
+    "calls": 22,
+    "wall_clock_s": 0.107,
+    "lines": {
+      "agents": {
+        "total_tokens": 11106,
+        "completion_tokens": 335,
+        "calls": 22
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

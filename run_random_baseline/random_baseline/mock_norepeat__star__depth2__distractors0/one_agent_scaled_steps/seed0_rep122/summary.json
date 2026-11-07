@@ -1,0 +1,70 @@
+{
+  "ended_by": "all_solved",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "big",
+      "plant",
+      "sea"
+    ],
+    "max_steps": 12,
+    "target": "coral",
+    "intermediate": [
+      "tree"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "big",
+        "plant",
+        "tree"
+      ],
+      [
+        "sea",
+        "tree",
+        "coral"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.8333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 12,
+      "new_items": [
+        "coral",
+        "forest",
+        "ocean",
+        "seaweed",
+        "tree"
+      ],
+      "coverage": 0.8333,
+      "invalid": 5,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5943,
+    "completion_tokens": 178,
+    "calls": 12,
+    "wall_clock_s": 0.092,
+    "lines": {
+      "agents": {
+        "total_tokens": 5943,
+        "completion_tokens": 178,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

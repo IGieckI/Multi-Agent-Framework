@@ -1,0 +1,68 @@
+{
+  "ended_by": "all_solved",
+  "steps": 11,
+  "task": {
+    "initial": [
+      "field",
+      "mountain",
+      "rope",
+      "story",
+      "wolf"
+    ],
+    "max_steps": 24,
+    "target": "cable car",
+    "intermediate": [],
+    "distractors": [
+      "field",
+      "story",
+      "wolf"
+    ],
+    "path": [
+      [
+        "mountain",
+        "rope",
+        "cable car"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.3636
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 11,
+      "new_items": [
+        "cable car",
+        "continent",
+        "dog",
+        "mountain range"
+      ],
+      "coverage": 0.3636,
+      "invalid": 5,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5517,
+    "completion_tokens": 180,
+    "calls": 11,
+    "wall_clock_s": 0.086,
+    "lines": {
+      "agents": {
+        "total_tokens": 5517,
+        "completion_tokens": 180,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

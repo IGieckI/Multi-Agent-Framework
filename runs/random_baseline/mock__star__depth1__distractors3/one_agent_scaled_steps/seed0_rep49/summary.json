@@ -1,0 +1,59 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "egg",
+      "fire",
+      "metal",
+      "mist",
+      "sun"
+    ],
+    "max_steps": 12,
+    "target": "air",
+    "intermediate": [],
+    "distractors": [
+      "egg",
+      "metal",
+      "sun"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.0741
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "energy",
+        "solar cell"
+      ],
+      "coverage": 0.0741,
+      "invalid": 7,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5877,
+    "completion_tokens": 179,
+    "calls": 12,
+    "wall_clock_s": 0.038,
+    "lines": {
+      "agents": {
+        "total_tokens": 5877,
+        "completion_tokens": 179,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "mountain",
+      "organic matter",
+      "philosophy",
+      "water",
+      "wood"
+    ],
+    "max_steps": 24,
+    "target": "mineral",
+    "intermediate": [],
+    "distractors": [
+      "philosophy",
+      "water",
+      "wood"
+    ],
+    "path": [
+      [
+        "mountain",
+        "organic matter",
+        "mineral"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.0096
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "boat",
+        "book",
+        "map",
+        "paper",
+        "river"
+      ],
+      "coverage": 0.0096,
+      "invalid": 15,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12835,
+    "completion_tokens": 387,
+    "calls": 24,
+    "wall_clock_s": 0.122,
+    "lines": {
+      "agents": {
+        "total_tokens": 12835,
+        "completion_tokens": 387,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

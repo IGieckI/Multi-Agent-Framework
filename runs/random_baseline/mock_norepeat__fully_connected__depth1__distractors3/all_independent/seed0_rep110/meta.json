@@ -1,0 +1,266 @@
+{
+  "run_id": "seed0_rep110",
+  "config": {
+    "run": {
+      "name": "mock_norepeat__fully_connected__depth1__distractors3",
+      "seed": 0,
+      "replicate": 110,
+      "versions": [
+        "base",
+        "all_independent",
+        "one_agent",
+        "one_agent_scaled_steps"
+      ],
+      "baseline": "all_independent"
+    },
+    "task": {
+      "name": "wordcraft",
+      "type": "targeted",
+      "max_steps": 4,
+      "depth": 1,
+      "distractors": 3,
+      "repeat_consumes_step": true,
+      "data": "data/alchemy2.json",
+      "prompts": "v2"
+    },
+    "engine": {
+      "backend": "mock",
+      "model": "mock_norepeat",
+      "revision": null,
+      "max_concurrency": 1,
+      "persona_host": false
+    },
+    "summarizer": null,
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": 0,
+      "max_tokens": 256,
+      "reasoning": true,
+      "agent_temperatures": null,
+      "sweep_temperatures": null
+    },
+    "protocol": {
+      "roles": {
+        "explorer": {
+          "count": 6,
+          "where": null,
+          "visible_fields": null
+        }
+      },
+      "structure": {
+        "generator": "complete"
+      },
+      "rules": [],
+      "schedule": "all_at_once",
+      "constraints": [],
+      "channels": {}
+    },
+    "context": {
+      "max_prompt_tokens": 6000,
+      "truncation": "oldest_first"
+    },
+    "retries": {
+      "max_parse_attempts": 3,
+      "max_attempts": 3
+    },
+    "budget": {
+      "total_tokens": null,
+      "completion_tokens": null,
+      "calls": null,
+      "steps": null,
+      "wall_clock_s": null,
+      "step_reserve": {},
+      "match": null,
+      "show_matched_budget": false
+    },
+    "personas": {}
+  },
+  "protocol": {
+    "roles": {
+      "explorer": {
+        "count": 6,
+        "where": null,
+        "visible_fields": null
+      }
+    },
+    "structure": {
+      "generator": "complete"
+    },
+    "rules": [],
+    "schedule": "all_at_once",
+    "constraints": [],
+    "channels": {}
+  },
+  "agents": {
+    "agent_00": "explorer",
+    "agent_01": "explorer",
+    "agent_02": "explorer",
+    "agent_03": "explorer",
+    "agent_04": "explorer",
+    "agent_05": "explorer"
+  },
+  "message_types": {
+    "message": [
+      "text"
+    ],
+    "reasoning": [
+      "text"
+    ],
+    "result.failure": [
+      "combo"
+    ],
+    "result.success": [
+      "combo",
+      "result"
+    ],
+    "task": [
+      "text"
+    ],
+    "verdict": [
+      "text"
+    ]
+  },
+  "phases": [
+    [
+      "agent_00",
+      "agent_01",
+      "agent_02",
+      "agent_03",
+      "agent_04",
+      "agent_05"
+    ]
+  ],
+  "visible_fields": {
+    "agent_00": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_01": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_02": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_03": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_04": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_05": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ]
+  },
+  "social_blocks": {
+    "agent_00": [],
+    "agent_01": [],
+    "agent_02": [],
+    "agent_03": [],
+    "agent_04": [],
+    "agent_05": []
+  },
+  "message_slot": {
+    "agent_00": false,
+    "agent_01": false,
+    "agent_02": false,
+    "agent_03": false,
+    "agent_04": false,
+    "agent_05": false
+  },
+  "personas": {},
+  "task": {
+    "initial": [
+      "bird",
+      "computer",
+      "mud",
+      "sunflower",
+      "vacuum cleaner"
+    ],
+    "max_steps": 4,
+    "target": "robot vacuum",
+    "intermediate": [],
+    "distractors": [
+      "bird",
+      "mud",
+      "sunflower"
+    ]
+  },
+  "prompts": "v2",
+  "prompts_hash": "7f713b281b57e2f11765e5388f111586c58bbe3621e717f6a7c09da16aff244b",
+  "data_sha256": "757422df36f8805b1a56c418e613c6418c905b0956e6f2fb3dff78569933d25d",
+  "sampling": {
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "max_tokens": 256,
+    "reasoning": true,
+    "seed": null
+  },
+  "agent_temperatures": {},
+  "engine": {
+    "backend": "mock",
+    "model_id": "mock_norepeat",
+    "context_window": null
+  },
+  "summarizer": null,
+  "prompt_token_count": "approx_chars_div_4",
+  "budget": {
+    "caps": {
+      "total_tokens": null,
+      "completion_tokens": null,
+      "calls": null,
+      "steps": null,
+      "wall_clock_s": null
+    },
+    "step_reserve": {},
+    "match": null
+  },
+  "shared_context": false,
+  "persona_host": null,
+  "started_at": "2026-11-03T18:11:45",
+  "environment": {
+    "git": {
+      "commit": "78e7719af1d886d847ba38e2aaa08549772aaafc",
+      "dirty": true
+    },
+    "python": "3.11.15",
+    "platform": "Linux-7.1.11-arch1-1-x86_64-with-glibc2.44",
+    "libraries": {
+      "torch": null,
+      "transformers": null,
+      "accelerate": null,
+      "sentence-transformers": null,
+      "numpy": "2.4.6",
+      "pydantic": "2.14.2"
+    },
+    "hardware": {
+      "torch_loaded": false,
+      "cuda": null,
+      "gpus": []
+    }
+  }
+}

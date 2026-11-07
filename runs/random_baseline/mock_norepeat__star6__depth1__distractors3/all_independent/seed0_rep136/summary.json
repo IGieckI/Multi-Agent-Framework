@@ -1,0 +1,113 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "computer",
+      "heat",
+      "ocean",
+      "rainbow",
+      "steam engine"
+    ],
+    "max_steps": 4,
+    "target": "steamboat",
+    "intermediate": [],
+    "distractors": [
+      "computer",
+      "heat",
+      "rainbow"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "steamboat"
+      ],
+      "coverage": 0.1667,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "current"
+      ],
+      "coverage": 0.1667,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "steamboat"
+      ],
+      "coverage": 0.1667,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "current",
+        "steamboat"
+      ],
+      "coverage": 0.3333,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "pressure",
+        "steamboat"
+      ],
+      "coverage": 0.3333,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7582,
+    "completion_tokens": 267,
+    "calls": 16,
+    "wall_clock_s": 0.047,
+    "lines": {
+      "agents": {
+        "total_tokens": 7582,
+        "completion_tokens": 267,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

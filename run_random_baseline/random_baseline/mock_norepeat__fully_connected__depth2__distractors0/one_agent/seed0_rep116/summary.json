@@ -1,0 +1,66 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "fire",
+      "sand"
+    ],
+    "max_steps": 4,
+    "target": "hourglass",
+    "intermediate": [
+      "glass"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "fire",
+        "sand",
+        "glass"
+      ],
+      [
+        "glass",
+        "sand",
+        "hourglass"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "desert",
+        "glass"
+      ],
+      "coverage": 0.3333,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1864,
+    "completion_tokens": 61,
+    "calls": 4,
+    "wall_clock_s": 0.067,
+    "lines": {
+      "agents": {
+        "total_tokens": 1864,
+        "completion_tokens": 61,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

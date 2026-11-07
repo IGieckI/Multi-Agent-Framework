@@ -1,0 +1,58 @@
+{
+  "ended_by": "all_solved",
+  "steps": 13,
+  "task": {
+    "initial": [
+      "grass",
+      "lake",
+      "tree"
+    ],
+    "max_steps": 24,
+    "target": "reed",
+    "intermediate": [
+      "swamp"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.3571
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 13,
+      "new_items": [
+        "algae",
+        "ocean",
+        "reed",
+        "sea",
+        "swamp"
+      ],
+      "coverage": 0.3571,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6299,
+    "completion_tokens": 194,
+    "calls": 13,
+    "wall_clock_s": 0.035,
+    "lines": {
+      "agents": {
+        "total_tokens": 6299,
+        "completion_tokens": 194,
+        "calls": 13
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

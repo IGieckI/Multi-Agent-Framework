@@ -1,0 +1,69 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "bone",
+      "house",
+      "human",
+      "science",
+      "wind"
+    ],
+    "max_steps": 24,
+    "target": "windmill",
+    "intermediate": [],
+    "distractors": [
+      "bone",
+      "human",
+      "science"
+    ],
+    "path": [
+      [
+        "house",
+        "wind",
+        "windmill"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.2083
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "chill",
+        "cold",
+        "family",
+        "igloo",
+        "love"
+      ],
+      "coverage": 0.2083,
+      "invalid": 13,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12776,
+    "completion_tokens": 365,
+    "calls": 24,
+    "wall_clock_s": 0.102,
+    "lines": {
+      "agents": {
+        "total_tokens": 12776,
+        "completion_tokens": 365,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

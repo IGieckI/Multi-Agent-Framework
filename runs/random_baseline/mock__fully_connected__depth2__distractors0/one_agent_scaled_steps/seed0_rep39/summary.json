@@ -1,0 +1,56 @@
+{
+  "ended_by": "all_solved",
+  "steps": 7,
+  "task": {
+    "initial": [
+      "earth",
+      "oil",
+      "vegetable"
+    ],
+    "max_steps": 24,
+    "target": "french fries",
+    "intermediate": [
+      "potato"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 7,
+      "new_items": [
+        "french fries",
+        "land",
+        "potato"
+      ],
+      "coverage": 0.3333,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3338,
+    "completion_tokens": 110,
+    "calls": 7,
+    "wall_clock_s": 0.035,
+    "lines": {
+      "agents": {
+        "total_tokens": 3338,
+        "completion_tokens": 110,
+        "calls": 7
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

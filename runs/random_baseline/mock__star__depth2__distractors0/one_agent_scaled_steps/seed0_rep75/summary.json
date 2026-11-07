@@ -1,0 +1,57 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "air",
+      "fire",
+      "sky"
+    ],
+    "max_steps": 12,
+    "target": "energy",
+    "intermediate": [
+      "atmosphere"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.2105
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "atmosphere",
+        "aurora",
+        "smoke",
+        "sun"
+      ],
+      "coverage": 0.2105,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5790,
+    "completion_tokens": 178,
+    "calls": 12,
+    "wall_clock_s": 0.031,
+    "lines": {
+      "agents": {
+        "total_tokens": 5790,
+        "completion_tokens": 178,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

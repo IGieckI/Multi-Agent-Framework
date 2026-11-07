@@ -1,0 +1,127 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "horse",
+      "sand",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "camel",
+    "intermediate": [
+      "dune"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "sand",
+        "wind",
+        "dune"
+      ],
+      [
+        "dune",
+        "horse",
+        "camel"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.8
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "camel",
+        "dune",
+        "tornado"
+      ],
+      "coverage": 0.6,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "camel",
+        "desert"
+      ],
+      "coverage": 0.4,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "camel",
+        "desert"
+      ],
+      "coverage": 0.4,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "camel",
+        "desert"
+      ],
+      "coverage": 0.4,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "camel"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "camel",
+        "tornado"
+      ],
+      "coverage": 0.4,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7880,
+    "completion_tokens": 256,
+    "calls": 17,
+    "wall_clock_s": 0.162,
+    "lines": {
+      "agents": {
+        "total_tokens": 7880,
+        "completion_tokens": 256,
+        "calls": 17
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

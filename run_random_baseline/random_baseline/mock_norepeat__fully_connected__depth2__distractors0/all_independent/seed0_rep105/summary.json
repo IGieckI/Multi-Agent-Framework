@@ -1,0 +1,128 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "knight",
+      "wheel",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "don quixote",
+    "intermediate": [
+      "windmill"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "wheel",
+        "wind",
+        "windmill"
+      ],
+      [
+        "knight",
+        "windmill",
+        "don quixote"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.625
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "bicycle",
+        "car",
+        "idea"
+      ],
+      "coverage": 0.375,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "bicycle",
+        "windmill"
+      ],
+      "coverage": 0.25,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "bicycle",
+        "windmill"
+      ],
+      "coverage": 0.25,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "bicycle",
+        "car",
+        "windmill"
+      ],
+      "coverage": 0.375,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "idea",
+        "tornado"
+      ],
+      "coverage": 0.25,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "idea"
+      ],
+      "coverage": 0.125,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11278,
+    "completion_tokens": 367,
+    "calls": 24,
+    "wall_clock_s": 0.093,
+    "lines": {
+      "agents": {
+        "total_tokens": 11278,
+        "completion_tokens": 367,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

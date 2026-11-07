@@ -1,0 +1,94 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "night",
+      "sky",
+      "sun"
+    ],
+    "max_steps": 4,
+    "target": "dawn",
+    "intermediate": [
+      "day"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "sky",
+        "sun",
+        "day"
+      ],
+      [
+        "day",
+        "night",
+        "dawn"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.6364
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "constellation",
+        "darkness",
+        "star"
+      ],
+      "coverage": 0.2727,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "dawn",
+        "day",
+        "twilight"
+      ],
+      "coverage": 0.2727,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "darkness",
+        "space",
+        "star"
+      ],
+      "coverage": 0.2727,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5695,
+    "completion_tokens": 248,
+    "calls": 10,
+    "wall_clock_s": 0.102,
+    "lines": {
+      "agents": {
+        "total_tokens": 5695,
+        "completion_tokens": 248,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "broom",
+      "house",
+      "philosophy"
+    ],
+    "max_steps": 24,
+    "target": "closet",
+    "intermediate": [
+      "container"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.8571
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "book",
+        "city",
+        "container",
+        "idea",
+        "library",
+        "village"
+      ],
+      "coverage": 0.8571,
+      "invalid": 17,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 13013,
+    "completion_tokens": 377,
+    "calls": 24,
+    "wall_clock_s": 0.043,
+    "lines": {
+      "agents": {
+        "total_tokens": 13013,
+        "completion_tokens": 377,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

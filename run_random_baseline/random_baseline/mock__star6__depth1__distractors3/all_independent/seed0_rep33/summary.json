@@ -1,0 +1,120 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "duck",
+      "human",
+      "metal",
+      "ruins",
+      "wizard"
+    ],
+    "max_steps": 4,
+    "target": "archeologist",
+    "intermediate": [],
+    "distractors": [
+      "duck",
+      "metal",
+      "wizard"
+    ],
+    "path": [
+      [
+        "human",
+        "ruins",
+        "archeologist"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.1304
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "airplane"
+      ],
+      "coverage": 0.0435,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "archeologist"
+      ],
+      "coverage": 0.0435,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "airplane"
+      ],
+      "coverage": 0.0435,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "airplane"
+      ],
+      "coverage": 0.0435,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "tool"
+      ],
+      "coverage": 0.0435,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "airplane"
+      ],
+      "coverage": 0.0435,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9876,
+    "completion_tokens": 317,
+    "calls": 21,
+    "wall_clock_s": 0.085,
+    "lines": {
+      "agents": {
+        "total_tokens": 9876,
+        "completion_tokens": 317,
+        "calls": 21
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

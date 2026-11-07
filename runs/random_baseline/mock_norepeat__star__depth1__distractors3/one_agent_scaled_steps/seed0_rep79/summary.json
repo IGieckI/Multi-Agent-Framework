@@ -1,0 +1,60 @@
+{
+  "ended_by": "all_solved",
+  "steps": 11,
+  "task": {
+    "initial": [
+      "armor",
+      "atmosphere",
+      "flashlight",
+      "ocean",
+      "storm"
+    ],
+    "max_steps": 12,
+    "target": "hurricane",
+    "intermediate": [],
+    "distractors": [
+      "armor",
+      "atmosphere",
+      "flashlight"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.75
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 11,
+      "new_items": [
+        "hurricane",
+        "pressure",
+        "tornado"
+      ],
+      "coverage": 0.75,
+      "invalid": 8,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5554,
+    "completion_tokens": 179,
+    "calls": 11,
+    "wall_clock_s": 0.02,
+    "lines": {
+      "agents": {
+        "total_tokens": 5554,
+        "completion_tokens": 179,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

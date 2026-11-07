@@ -1,0 +1,58 @@
+{
+  "ended_by": "all_solved",
+  "steps": 23,
+  "task": {
+    "initial": [
+      "air",
+      "heat",
+      "sandwich"
+    ],
+    "max_steps": 24,
+    "target": "toast",
+    "intermediate": [
+      "warmth"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.8333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 23,
+      "new_items": [
+        "plasma",
+        "pressure",
+        "toast",
+        "warmth",
+        "wind"
+      ],
+      "coverage": 0.8333,
+      "invalid": 18,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12222,
+    "completion_tokens": 356,
+    "calls": 23,
+    "wall_clock_s": 0.041,
+    "lines": {
+      "agents": {
+        "total_tokens": 12222,
+        "completion_tokens": 356,
+        "calls": 23
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "bicycle",
+      "ice cream",
+      "machine",
+      "steel",
+      "thread"
+    ],
+    "max_steps": 4,
+    "target": "motorcycle",
+    "intermediate": [],
+    "distractors": [
+      "ice cream",
+      "machine",
+      "thread"
+    ],
+    "path": [
+      [
+        "bicycle",
+        "steel",
+        "motorcycle"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 8,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "motorcycle"
+      ],
+      "coverage": 0.0833,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "car"
+      ],
+      "coverage": 0.0833,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "motorcycle"
+      ],
+      "coverage": 0.0833,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "needle"
+      ],
+      "coverage": 0.0833,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "chain",
+        "fabric",
+        "rope",
+        "sewing machine",
+        "wire"
+      ],
+      "coverage": 0.4167,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "motorcycle",
+        "needle"
+      ],
+      "coverage": 0.1667,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9634,
+    "completion_tokens": 325,
+    "calls": 19,
+    "wall_clock_s": 0.104,
+    "lines": {
+      "agents": {
+        "total_tokens": 9634,
+        "completion_tokens": 325,
+        "calls": 19
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

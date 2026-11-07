@@ -1,0 +1,59 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "astronaut",
+      "boat",
+      "flower",
+      "painting",
+      "pirate"
+    ],
+    "max_steps": 24,
+    "target": "pirate ship",
+    "intermediate": [],
+    "distractors": [
+      "astronaut",
+      "flower",
+      "painting"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.6667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "idea",
+        "pirate ship"
+      ],
+      "coverage": 0.6667,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1421,
+    "completion_tokens": 47,
+    "calls": 3,
+    "wall_clock_s": 0.025,
+    "lines": {
+      "agents": {
+        "total_tokens": 1421,
+        "completion_tokens": 47,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "animal",
+      "earth",
+      "heat",
+      "land",
+      "ocean"
+    ],
+    "max_steps": 24,
+    "target": "current",
+    "intermediate": [],
+    "distractors": [
+      "animal",
+      "earth",
+      "land"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.0124
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "continent",
+        "fish",
+        "horse",
+        "lava",
+        "plasma",
+        "pressure",
+        "primordial soup"
+      ],
+      "coverage": 0.0124,
+      "invalid": 16,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 13319,
+    "completion_tokens": 375,
+    "calls": 24,
+    "wall_clock_s": 0.116,
+    "lines": {
+      "agents": {
+        "total_tokens": 13319,
+        "completion_tokens": 375,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

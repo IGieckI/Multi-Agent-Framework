@@ -1,0 +1,80 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "farmer",
+      "house",
+      "wolf"
+    ],
+    "max_steps": 4,
+    "target": "dog",
+    "intermediate": [
+      "farm"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.625
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "city",
+        "village"
+      ],
+      "coverage": 0.25,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "cave",
+        "idea",
+        "village"
+      ],
+      "coverage": 0.375,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "cave",
+        "dog"
+      ],
+      "coverage": 0.25,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5668,
+    "completion_tokens": 210,
+    "calls": 11,
+    "wall_clock_s": 0.034,
+    "lines": {
+      "agents": {
+        "total_tokens": 5668,
+        "completion_tokens": 210,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

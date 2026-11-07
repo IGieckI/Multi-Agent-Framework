@@ -1,0 +1,119 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "frozen yogurt",
+      "mountain",
+      "pegasus",
+      "sap"
+    ],
+    "max_steps": 4,
+    "target": "mountain range",
+    "intermediate": [],
+    "distractors": [
+      "frozen yogurt",
+      "pegasus",
+      "sap"
+    ],
+    "path": [
+      [
+        "mountain",
+        "mountain",
+        "mountain range"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.1429
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "mountain range"
+      ],
+      "coverage": 0.1429,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12422,
+    "completion_tokens": 537,
+    "calls": 19,
+    "wall_clock_s": 0.1,
+    "lines": {
+      "agents": {
+        "total_tokens": 12422,
+        "completion_tokens": 537,
+        "calls": 19
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "planet",
+      "sea",
+      "statue",
+      "steel",
+      "sun"
+    ],
+    "max_steps": 4,
+    "target": "solar system",
+    "intermediate": [],
+    "distractors": [
+      "sea",
+      "statue",
+      "steel"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.1818
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "salt"
+      ],
+      "coverage": 0.0909,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "salt"
+      ],
+      "coverage": 0.0909,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "primordial soup"
+      ],
+      "coverage": 0.0909,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5639,
+    "completion_tokens": 179,
+    "calls": 12,
+    "wall_clock_s": 0.05,
+    "lines": {
+      "agents": {
+        "total_tokens": 5639,
+        "completion_tokens": 179,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

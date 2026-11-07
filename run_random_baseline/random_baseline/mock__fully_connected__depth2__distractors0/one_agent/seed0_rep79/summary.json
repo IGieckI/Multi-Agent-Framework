@@ -1,0 +1,69 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "atmosphere",
+      "electricity",
+      "ocean"
+    ],
+    "max_steps": 4,
+    "target": "hurricane",
+    "intermediate": [
+      "storm"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "atmosphere",
+        "electricity",
+        "storm"
+      ],
+      [
+        "ocean",
+        "storm",
+        "hurricane"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "aurora",
+        "life",
+        "ozone",
+        "storm"
+      ],
+      "coverage": 0.4,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1902,
+    "completion_tokens": 70,
+    "calls": 4,
+    "wall_clock_s": 0.084,
+    "lines": {
+      "agents": {
+        "total_tokens": 1902,
+        "completion_tokens": 70,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

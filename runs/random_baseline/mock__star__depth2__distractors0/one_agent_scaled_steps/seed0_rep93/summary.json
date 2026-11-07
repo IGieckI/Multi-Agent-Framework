@@ -1,0 +1,53 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "duck",
+      "lizard"
+    ],
+    "max_steps": 12,
+    "target": "duckling",
+    "intermediate": [
+      "egg"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "egg"
+      ],
+      "coverage": 0.5,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5575,
+    "completion_tokens": 181,
+    "calls": 12,
+    "wall_clock_s": 0.026,
+    "lines": {
+      "agents": {
+        "total_tokens": 5575,
+        "completion_tokens": 181,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

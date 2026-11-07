@@ -1,0 +1,68 @@
+{
+  "ended_by": "max_steps",
+  "steps": 24,
+  "task": {
+    "initial": [
+      "lamp",
+      "mountain",
+      "pressure"
+    ],
+    "max_steps": 24,
+    "target": "lava lamp",
+    "intermediate": [
+      "volcano"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "mountain",
+        "pressure",
+        "volcano"
+      ],
+      [
+        "lamp",
+        "volcano",
+        "lava lamp"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.2143
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 24,
+      "new_items": [
+        "eruption",
+        "explosion",
+        "volcano"
+      ],
+      "coverage": 0.2143,
+      "invalid": 12,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12453,
+    "completion_tokens": 393,
+    "calls": 24,
+    "wall_clock_s": 0.101,
+    "lines": {
+      "agents": {
+        "total_tokens": 12453,
+        "completion_tokens": 393,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

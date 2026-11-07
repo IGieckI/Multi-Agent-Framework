@@ -1,0 +1,62 @@
+{
+  "ended_by": "all_solved",
+  "steps": 18,
+  "task": {
+    "initial": [
+      "human",
+      "juice",
+      "land",
+      "light",
+      "sky"
+    ],
+    "max_steps": 24,
+    "target": "angel",
+    "intermediate": [],
+    "distractors": [
+      "juice",
+      "land",
+      "sky"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 5,
+    "union_coverage": 0.1515
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 18,
+      "new_items": [
+        "angel",
+        "continent",
+        "family",
+        "love",
+        "village"
+      ],
+      "coverage": 0.1515,
+      "invalid": 14,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9292,
+    "completion_tokens": 271,
+    "calls": 18,
+    "wall_clock_s": 0.038,
+    "lines": {
+      "agents": {
+        "total_tokens": 9292,
+        "completion_tokens": 271,
+        "calls": 18
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

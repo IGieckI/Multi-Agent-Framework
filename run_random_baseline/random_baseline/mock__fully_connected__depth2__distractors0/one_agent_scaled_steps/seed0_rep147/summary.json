@@ -1,0 +1,66 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "clock",
+      "dawn",
+      "human"
+    ],
+    "max_steps": 24,
+    "target": "alarm clock",
+    "intermediate": [
+      "watch"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "clock",
+        "human",
+        "watch"
+      ],
+      [
+        "dawn",
+        "watch",
+        "alarm clock"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.1667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "alarm clock"
+      ],
+      "coverage": 0.1667,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1853,
+    "completion_tokens": 60,
+    "calls": 4,
+    "wall_clock_s": 0.071,
+    "lines": {
+      "agents": {
+        "total_tokens": 1853,
+        "completion_tokens": 60,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

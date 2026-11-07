@@ -1,0 +1,68 @@
+{
+  "ended_by": "all_solved",
+  "steps": 6,
+  "task": {
+    "initial": [
+      "air",
+      "double rainbow!",
+      "egg"
+    ],
+    "max_steps": 12,
+    "target": "toucan",
+    "intermediate": [
+      "bird"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "air",
+        "egg",
+        "bird"
+      ],
+      [
+        "bird",
+        "double rainbow!",
+        "toucan"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 6,
+      "new_items": [
+        "bird",
+        "peacock",
+        "toucan"
+      ],
+      "coverage": 0.5,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2845,
+    "completion_tokens": 91,
+    "calls": 6,
+    "wall_clock_s": 0.087,
+    "lines": {
+      "agents": {
+        "total_tokens": 2845,
+        "completion_tokens": 91,
+        "calls": 6
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

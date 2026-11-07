@@ -1,0 +1,61 @@
+{
+  "ended_by": "all_solved",
+  "steps": 15,
+  "task": {
+    "initial": [
+      "bullet",
+      "container",
+      "corpse",
+      "wheat",
+      "wind"
+    ],
+    "max_steps": 24,
+    "target": "windmill",
+    "intermediate": [],
+    "distractors": [
+      "bullet",
+      "container",
+      "corpse"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 15,
+      "new_items": [
+        "flour",
+        "silo",
+        "tornado",
+        "windmill"
+      ],
+      "coverage": 0.4,
+      "invalid": 11,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7635,
+    "completion_tokens": 234,
+    "calls": 15,
+    "wall_clock_s": 0.039,
+    "lines": {
+      "agents": {
+        "total_tokens": 7635,
+        "completion_tokens": 234,
+        "calls": 15
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

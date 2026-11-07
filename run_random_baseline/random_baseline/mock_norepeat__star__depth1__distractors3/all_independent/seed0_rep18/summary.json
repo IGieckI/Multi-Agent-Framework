@@ -1,0 +1,91 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "bow",
+      "butterfly",
+      "grass",
+      "human",
+      "wheat"
+    ],
+    "max_steps": 4,
+    "target": "warrior",
+    "intermediate": [],
+    "distractors": [
+      "butterfly",
+      "grass",
+      "wheat"
+    ],
+    "path": [
+      [
+        "bow",
+        "human",
+        "warrior"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.3529
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "farmer",
+        "hay"
+      ],
+      "coverage": 0.1176,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love",
+        "warrior"
+      ],
+      "coverage": 0.1765,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "warrior"
+      ],
+      "coverage": 0.1176,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5686,
+    "completion_tokens": 183,
+    "calls": 12,
+    "wall_clock_s": 0.082,
+    "lines": {
+      "agents": {
+        "total_tokens": 5686,
+        "completion_tokens": 183,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

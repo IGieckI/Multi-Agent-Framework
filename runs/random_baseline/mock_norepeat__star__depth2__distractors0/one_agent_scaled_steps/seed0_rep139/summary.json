@@ -1,0 +1,55 @@
+{
+  "ended_by": "all_solved",
+  "steps": 8,
+  "task": {
+    "initial": [
+      "airplane",
+      "egg",
+      "wood"
+    ],
+    "max_steps": 12,
+    "target": "woodpecker",
+    "intermediate": [
+      "bird"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.1538
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 8,
+      "new_items": [
+        "bird",
+        "woodpecker"
+      ],
+      "coverage": 0.1538,
+      "invalid": 6,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3823,
+    "completion_tokens": 121,
+    "calls": 8,
+    "wall_clock_s": 0.023,
+    "lines": {
+      "agents": {
+        "total_tokens": 3823,
+        "completion_tokens": 121,
+        "calls": 8
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

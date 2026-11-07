@@ -1,0 +1,86 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "dinosaur",
+      "lawn",
+      "ore",
+      "sand",
+      "time"
+    ],
+    "max_steps": 4,
+    "target": "fossil",
+    "intermediate": [],
+    "distractors": [
+      "lawn",
+      "ore",
+      "sand"
+    ],
+    "path": [
+      [
+        "dinosaur",
+        "time",
+        "fossil"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.2727
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "desert"
+      ],
+      "coverage": 0.0909,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "bird",
+        "fossil"
+      ],
+      "coverage": 0.1818,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5598,
+    "completion_tokens": 180,
+    "calls": 12,
+    "wall_clock_s": 0.071,
+    "lines": {
+      "agents": {
+        "total_tokens": 5598,
+        "completion_tokens": 180,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

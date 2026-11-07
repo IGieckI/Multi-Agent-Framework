@@ -1,0 +1,121 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "human",
+      "wire",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "warrior",
+    "intermediate": [
+      "bow"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 12,
+    "union_coverage": 0.2791
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electrician",
+        "fence",
+        "wall"
+      ],
+      "coverage": 0.0698,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "arrow",
+        "bow",
+        "corpse"
+      ],
+      "coverage": 0.0698,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "bow",
+        "warrior"
+      ],
+      "coverage": 0.0465,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electrician",
+        "family",
+        "love"
+      ],
+      "coverage": 0.0698,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "electrician",
+        "idea",
+        "philosophy"
+      ],
+      "coverage": 0.0698,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "bow",
+        "family",
+        "love",
+        "village"
+      ],
+      "coverage": 0.093,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11879,
+    "completion_tokens": 393,
+    "calls": 23,
+    "wall_clock_s": 0.049,
+    "lines": {
+      "agents": {
+        "total_tokens": 11879,
+        "completion_tokens": 393,
+        "calls": 23
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

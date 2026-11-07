@@ -1,0 +1,66 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "desert",
+      "sandstorm",
+      "spider"
+    ],
+    "max_steps": 24,
+    "target": "scorpion",
+    "intermediate": [
+      "dune"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "desert",
+        "sandstorm",
+        "dune"
+      ],
+      [
+        "dune",
+        "spider",
+        "scorpion"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "scorpion"
+      ],
+      "coverage": 0.3333,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 459,
+    "completion_tokens": 16,
+    "calls": 1,
+    "wall_clock_s": 0.06,
+    "lines": {
+      "agents": {
+        "total_tokens": 459,
+        "completion_tokens": 16,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

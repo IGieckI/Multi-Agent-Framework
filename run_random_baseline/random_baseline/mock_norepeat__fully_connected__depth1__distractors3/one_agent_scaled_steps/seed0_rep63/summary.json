@@ -1,0 +1,66 @@
+{
+  "ended_by": "all_solved",
+  "steps": 18,
+  "task": {
+    "initial": [
+      "baker",
+      "big",
+      "cookie dough",
+      "statue",
+      "wagon"
+    ],
+    "max_steps": 24,
+    "target": "cookie",
+    "intermediate": [],
+    "distractors": [
+      "big",
+      "statue",
+      "wagon"
+    ],
+    "path": [
+      [
+        "baker",
+        "cookie dough",
+        "cookie"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 1.0
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 18,
+      "new_items": [
+        "cookie",
+        "idea"
+      ],
+      "coverage": 1.0,
+      "invalid": 16,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9190,
+    "completion_tokens": 280,
+    "calls": 18,
+    "wall_clock_s": 0.085,
+    "lines": {
+      "agents": {
+        "total_tokens": 9190,
+        "completion_tokens": 280,
+        "calls": 18
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

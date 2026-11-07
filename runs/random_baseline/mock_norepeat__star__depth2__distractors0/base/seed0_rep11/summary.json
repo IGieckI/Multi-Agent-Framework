@@ -1,0 +1,78 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "day",
+      "light",
+      "planet"
+    ],
+    "max_steps": 4,
+    "target": "solar system",
+    "intermediate": [
+      "sun"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.4
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "solar system",
+        "sun"
+      ],
+      "coverage": 0.4,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "solar system"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "solar system",
+        "sun"
+      ],
+      "coverage": 0.4,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3059,
+    "completion_tokens": 126,
+    "calls": 6,
+    "wall_clock_s": 0.02,
+    "lines": {
+      "agents": {
+        "total_tokens": 3059,
+        "completion_tokens": 126,
+        "calls": 6
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "ended_by": "max_steps",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "algae",
+      "earth",
+      "wall"
+    ],
+    "max_steps": 12,
+    "target": "ivy",
+    "intermediate": [
+      "plant"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.1739
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 12,
+      "new_items": [
+        "continent",
+        "house",
+        "land",
+        "planet"
+      ],
+      "coverage": 0.1739,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5740,
+    "completion_tokens": 182,
+    "calls": 12,
+    "wall_clock_s": 0.027,
+    "lines": {
+      "agents": {
+        "total_tokens": 5740,
+        "completion_tokens": 182,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

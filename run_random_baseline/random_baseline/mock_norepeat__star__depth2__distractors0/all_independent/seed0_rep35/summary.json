@@ -1,0 +1,90 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "earth",
+      "egg",
+      "livestock"
+    ],
+    "max_steps": 4,
+    "target": "ostrich",
+    "intermediate": [
+      "chicken"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "egg",
+        "livestock",
+        "chicken"
+      ],
+      [
+        "chicken",
+        "earth",
+        "ostrich"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.0833
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "land"
+      ],
+      "coverage": 0.0208,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "continent",
+        "land"
+      ],
+      "coverage": 0.0417,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "chicken",
+        "ostrich"
+      ],
+      "coverage": 0.0417,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5143,
+    "completion_tokens": 168,
+    "calls": 11,
+    "wall_clock_s": 0.08,
+    "lines": {
+      "agents": {
+        "total_tokens": 5143,
+        "completion_tokens": 168,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

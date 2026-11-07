@@ -1,0 +1,66 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "human",
+      "mountain"
+    ],
+    "max_steps": 4,
+    "target": "skier",
+    "intermediate": [
+      "mountain range"
+    ],
+    "distractors": [],
+    "path": [
+      [
+        "mountain",
+        "mountain",
+        "mountain range"
+      ],
+      [
+        "human",
+        "mountain range",
+        "skier"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.1
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "cold",
+        "skier"
+      ],
+      "coverage": 0.1,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 455,
+    "completion_tokens": 16,
+    "calls": 1,
+    "wall_clock_s": 0.067,
+    "lines": {
+      "agents": {
+        "total_tokens": 455,
+        "completion_tokens": 16,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

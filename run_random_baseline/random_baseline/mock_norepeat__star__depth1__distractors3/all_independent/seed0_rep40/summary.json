@@ -1,0 +1,90 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "carbon dioxide",
+      "human",
+      "pressure",
+      "scythe",
+      "wire"
+    ],
+    "max_steps": 4,
+    "target": "electrician",
+    "intermediate": [],
+    "distractors": [
+      "carbon dioxide",
+      "pressure",
+      "scythe"
+    ],
+    "path": [
+      [
+        "human",
+        "wire",
+        "electrician"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.3571
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "fire extinguisher",
+        "love"
+      ],
+      "coverage": 0.2143,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "grim reaper"
+      ],
+      "coverage": 0.0714,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fire extinguisher",
+        "firefighter"
+      ],
+      "coverage": 0.1429,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5755,
+    "completion_tokens": 199,
+    "calls": 12,
+    "wall_clock_s": 0.081,
+    "lines": {
+      "agents": {
+        "total_tokens": 5755,
+        "completion_tokens": 199,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

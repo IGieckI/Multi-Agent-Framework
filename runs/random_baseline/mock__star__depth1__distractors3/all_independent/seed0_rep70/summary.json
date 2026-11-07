@@ -1,0 +1,81 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "dust",
+      "glass",
+      "human",
+      "solar system",
+      "village"
+    ],
+    "max_steps": 4,
+    "target": "allergy",
+    "intermediate": [],
+    "distractors": [
+      "glass",
+      "solar system",
+      "village"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.2
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "allergy"
+      ],
+      "coverage": 0.0667,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "astronaut",
+        "glasses"
+      ],
+      "coverage": 0.1333,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "glasses"
+      ],
+      "coverage": 0.0667,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4719,
+    "completion_tokens": 154,
+    "calls": 10,
+    "wall_clock_s": 0.041,
+    "lines": {
+      "agents": {
+        "total_tokens": 4719,
+        "completion_tokens": 154,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

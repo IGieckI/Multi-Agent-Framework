@@ -1,0 +1,78 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "ore",
+      "rock",
+      "tool"
+    ],
+    "max_steps": 4,
+    "target": "blade",
+    "intermediate": [
+      "metal"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.1579
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "metal"
+      ],
+      "coverage": 0.0526,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "hammer",
+        "metal"
+      ],
+      "coverage": 0.1053,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "machine",
+        "metal"
+      ],
+      "coverage": 0.1053,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5576,
+    "completion_tokens": 174,
+    "calls": 12,
+    "wall_clock_s": 0.029,
+    "lines": {
+      "agents": {
+        "total_tokens": 5576,
+        "completion_tokens": 174,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}
