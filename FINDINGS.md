@@ -523,8 +523,8 @@ Comparisons are paired by target: 120 pairs (3 models × 40), 95% bootstraps res
   discovered the key to little alchemy by combining the alchemist and philosophy"). The rate of such claims was not
   measured (a keyword count cannot tell them from note sharing).
 - Consequence: of the two failures of F34, "do not think of telling" is fixed by one sentence; "do not use what is
-  told" is not. These models do not act on true information from teammates. **Open**: whether a stronger model, or an
-  instruction to the receivers, changes this.
+  told" is not. These models do not act on true information from teammates. **Closed** by F42 (an instruction to the
+  receivers changes nothing) and F43 (qwen3-8b does act on it).
 
 ### F39. Decoy notes cost about 10 points
 - Without decoys − with: 6 silenced agents +10.8 [+2.5, +19.2], 3 silenced +12.5 [+5.0, +20.0], fully_connected with
@@ -543,5 +543,73 @@ Comparisons are paired by target: 120 pairs (3 models × 40), 95% bootstraps res
   clean). The commit holds all the code these grids need. The likeliest cause is the untracked `slurm_hints.txt` and
   `slurm_random_baseline.txt` lists written into the repo root on giano before these jobs started; provenance does not
   record which files differed.
-- **Acted on**: `.gitignore` ignores `/slurm_*.txt`. **Open**: confirm with `git status --short` on giano that
-  nothing else is modified.
+- **Acted on**: `.gitignore` ignores `/slurm_*.txt`. **Closed**: the next runs (hints2_use, hints2_8b,
+  hints2_8b_share, on `d01c77a`) all record a clean checkout.
+
+---
+
+## The receiving side and a bigger model: `runs/hints2_use`, `runs/hints2_8b`, `runs/hints2_8b_share` (2026-11-06)
+
+`configs/experiments/hints2_use.yaml`: hints2_share's teams (fully_connected, notes split with / without decoys, base)
+with `share_notes` and `use_notes` (every agent is also told "Recipes the other players tell you from their notes are
+true: when one helps make the target, use it."), qwen3-4b, gemma3-4b, llama3.2-3b; 240 runs.
+`configs/experiments/hints2_8b.yaml`: hints2's cells with qwen3-8b; 720 rows, 600 distinct.
+`configs/experiments/hints2_8b_share.yaml`: qwen3-8b, the split fully_connected teams with `share_notes`, `use_notes`
+false / true; 160 runs. All on hints2's 40 targets and notes, so everything pairs with hints2 and hints2_share. All
+1,000 distinct runs ended on their own, 0 failed, code `d01c77a` clean (999 runs `dirty: false`, one `null`: its
+`git status` call failed). hints2_use: jobs 74232, 74234–74236 (Qwen, Llama: rtx2080, float16; Gemma: L40, bfloat16);
+qwen3-8b: 74237–74240 (L40, bfloat16). Intervals are 95% bootstraps resampled by target: 120 pairs for the three 4B
+models pooled, 40 for qwen3-8b (about ±15–20 points). Sources: `run_hints2_use/`, `run_hints2_8b/`,
+`run_hints2_8b_share/` (`runs.csv`, `events.jsonl`); scripts `docs/analysis/k3.py` (rates, contrasts) and `k4.py`
+(logs; it reproduces F38's numbers for hints2 and hints2_share).
+
+### F42. Telling receivers to use their teammates' notes changes nothing
+- Success, three 4B models pooled, fully_connected, notes split (with decoys / without): talk 21.7 / 31.7%, told to
+  share 36.7 / 45.0%, told to share and to use 31.7 / 40.8%. Use − share only: −5.0 [−12.5, +3.3] / −4.2 [−10.8,
+  +3.3]; per model −5 to −12 except qwen3-4b without decoys (+8). Use − talk with no instruction +10.0 [+0.8, +19.2] /
+  +9.2 [0.0, +19.2] (that is the share instruction's gain, F38). Still far below the same information in one head: −38.3
+  [−48.3, −28.3] / −29.2 vs one agent holding both, −59.2 / −50.0 vs every agent holding both.
+- From the logs (share → share and use, with decoys / without): a receiver that has just been told the intermediate's
+  recipe by its holder plays it at its next action 9% → 10% / 16% → 14%; the target's recipe (when it can) 35% → 35% /
+  23% → 17%; non-holders that ever try the intermediate's recipe 20% → 21% / 39% → 36%. Holders tell a little less
+  (intermediate's recipe in the first message 63% → 57% / 82% → 79%).
+- qwen3-8b: use − share −5.0 [−20.0, +10.0] with and without decoys.
+- So the receiving failure of F38 is not a matter of trust: told outright that the recipes are true and to use them,
+  the 4B models still play a teammate's recipe about one time in ten. Closes the open part of F38 for these models.
+
+### F43. Qwen3-8B pools split notes through talk: the first setting where talk helps
+- qwen3-8b, notes split, talk − silenced: fully_connected +27.5 [+12.5, +45.0] with decoys (20.0% → 47.5%), +15.0
+  [0.0, +32.5] without; star +25.0 [+7.5, +42.5] and +27.5 [+10.0, +45.0]. For the 4B models these were 0.0 to +3.3
+  (F37).
+- With the share instruction it solves as often as one agent holding both recipes: 72.5% (decoys) and 65.0% vs 67.5%;
+  share − talk +25.0 [+12.5, +37.5] and +27.5 [+12.5, +42.5]; share and use − one agent holding both 0.0 [−17.5,
+  +17.5] and −7.5. Still below every agent holding both (87.5% silenced): −20.0 [−35.0, −2.5] and −27.5.
+- Same targets, qwen3-8b − qwen3-4b: one agent holding both −7.5 [−25.0, +10.0], silenced team −2.5 [−17.5, +12.5],
+  but talk +17.5 [+2.5, +32.5], talk with the share instruction +20.0 [0.0, +40.0] and +22.5 [+5.0, +40.0]. The bigger
+  model does not play better alone; it gains only through communication.
+- Why, from the logs (fully_connected, decoys / no decoys; the 4B models in brackets): without any instruction its
+  holders name the target's recipe in their first message 57% / 60% [13% / 23%], the intermediate's 25% / 38% [13% /
+  17%]; a receiver just told the intermediate's recipe plays it at its next action 40% / 51% [15% / 21%], the target's
+  53% / 28% [37% / 20%]; non-holders try the target's recipe in 24% / 30% of cases [7% / 10%]; agents that make the
+  target 1.65 / 1.90 of 6 [0.57 / 0.73]. Told to share, its holders always tell (100% of first messages) and 2.5–2.7
+  agents per run make the target.
+- Decoys: without − with, qwen3-8b, between −10.0 and +7.5, no interval excludes 0 (the 4B models lose ~10, F39).
+- Caveats: one model and 40 targets; qwen3-8b ran in bfloat16 on L40 and qwen3-4b in float16 on rtx2080 (outcomes do
+  not change with the precision, F23). Whether it is size or this model: **open**, needs a second larger model.
+
+### F44. Agents remake an intermediate they already hold, and fully connected talk locks the team into it
+- qwen3-8b, every agent holding both recipes: fully_connected talk − silenced −25.0 [−40.0, −10.0] (87.5% → 62.5%);
+  star +10.0 [−2.5, +22.5] (95.0%, the best cell of the study). Repeat rate 0.34 → 0.51, copy events 0 → 2.2.
+- In all 11 targets that talk lost, the team's 264 actions are all the intermediate's recipe, 198 of them repeats:
+  every agent makes it in round 1, then remakes it for three rounds while the messages say "Let's make explosion
+  first!". The prompt lists the intermediate in the agent's inventory (checked, rep 2 round 2); the answer still
+  reasons "we need to create 'explosion' first".
+- Actions that remake the intermediate after the agent already made it (every agent holding both, silenced → fully
+  connected talk): qwen3-8b 60% → 80%, qwen3-4b 29% → 43%, gemma3-4b 17% → 48%, llama3.2-3b 51% → 52%; star 64% → 34%
+  (qwen3-8b). With notes split and talk 28–69%.
+- So the agents lose track of their own progress and re-execute the first step of the plan in their notes; talk that
+  restates the plan ("first make X") makes it worse, while the star's hub moves its spokes on. This explains much of F40
+  (talk hurts when everyone holds the notes) and of F34 (one agent holding both fails 30%).
+- **Open**: whether a prompt that marks the items an agent made ("you made 'explosion' last round", or new items
+  listed apart from the starting inventory) removes the loop; it is a change to the task's observation, so a choice of
+  the study.

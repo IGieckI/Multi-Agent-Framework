@@ -1,10 +1,9 @@
-# Handoff: state of the project and plan (2026-11-05)
+# Handoff: state of the project and plan (2026-11-07)
 
-For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (41 numbered findings with their
-evidence and status). Everything below is as of commit `07adf9f` plus an uncommitted update of `FINDINGS.md` (F10
-status, F37–F41), `.gitignore` and this file (the user was given the commit lines). Every experiment so far has
-finished and been analysed; nothing is running. Plan item 1 (the receiving side) is prepared, not yet submitted
-(section 7).
+For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (44 numbered findings with their
+evidence and status). Everything below is as of commit `d01c77a` plus an uncommitted update of `FINDINGS.md` (F38 and
+F41 closed, F42–F44) and this file. Every experiment so far has finished and been analysed; nothing is running and no
+next experiment has been chosen yet (section 7).
 
 ## 1. The project
 
@@ -87,7 +86,10 @@ The user runs every command on the cluster and pastes the output or a screenshot
   Check the download before analysing: number of `events.jsonl` = distinct `run_dir` in `runs.csv`, `unfinished.json`
   is `[]`, every `.out` ends with `0 failed runs`, and `meta.json`'s `environment.git` (commit, dirty).
 - Job IDs so far: main 74066/74067; followup 74110, 74114, 74115; random_baseline 74155; hints 74158, 74161–74163;
-  hints2 74189, 74192–74194; hints2_share 74195, 74196.
+  hints2 74189, 74192–74194; hints2_share 74195, 74196; hints2_use 74232, 74234–74236; hints2_8b 74237, 74238;
+  hints2_8b_share 74239, 74240.
+- `sweep.py` takes the grid's file, not its name: `python scripts/sweep.py evaluate configs/experiments/<grid>.yaml`.
+  Run the download's rsync lines from the repo root (on 2026-11-06 they ran one folder up and had to be moved).
 
 ## 4. Experiments so far
 
@@ -101,8 +103,20 @@ The user runs every command on the cluster and pastes the output or a screenshot
 | hints | 11-04 → 11-05 | qwen3-4b, gemma3-4b, llama3.2-3b, mock_norepeat × 5 protocols (+ failures only) × depth 2, 6 distractors, notes split / all / none × 20 reps × base, all_independent, one_agent; 1,920 runs | `run_hints/hints/` |
 | hints2 | 11-05 | the same 4 models × fully_connected, star × notes split with / without decoys, all × 40 targets without shortcuts × base, all_independent, one_agent; 2,400 runs | `run_hints2/hints2/` |
 | hints2_share | 11-05 | hints2's split fully connected teams with the instruction to tell their notes (`share_notes`), base only; 240 runs, same tasks and notes | `run_hints2_share/hints2_share/` |
+| hints2_use | 11-06 | hints2_share's teams with receivers also told to use teammates' notes (`use_notes`); qwen3-4b, gemma3-4b, llama3.2-3b; 240 runs | `run_hints2_use/hints2_use/` |
+| hints2_8b | 11-06 | hints2's cells with qwen3-8b (L40); 600 distinct runs | `run_hints2_8b/hints2_8b/` |
+| hints2_8b_share | 11-06 | qwen3-8b, split fully connected teams with share_notes, use_notes false / true; 160 runs | `run_hints2_8b_share/hints2_8b_share/` |
 
 ## 5. What we know (details and numbers in FINDINGS.md)
+
+- **A bigger model pools split notes through talk** (F43): with Qwen3-8B, talk lifts split teams by +15 to +28 points
+  (the 4B models: 0 to +3), and with the share instruction the team matches one agent holding both recipes (65–73% vs
+  68%). Alone or silenced Qwen3-8B is no better than Qwen3-4B; its gain is all in communication. One model, 40 targets.
+- **Telling receivers to use teammates' notes changes nothing** (F42): the 4B models still play a teammate's recipe
+  about one time in ten (−5 points vs the share instruction alone; qwen3-8b −5 too).
+- **Agents remake an intermediate they already hold** (F44), and fully connected talk that restates the plan ("first
+  make X") locks the team into it: Qwen3-8B with everyone holding both recipes loses 25 points to talk; in the lost
+  runs every action remakes the intermediate. The star avoids it (95%, the best cell). Explains much of F40 and F34.
 
 - **When the knowledge needed is split between agents, talk does not pool it** (F33): with the target's two recipes
   held by two agents, teams solve ~25% with or without talk; one agent holding both 60%; a team where everyone holds
@@ -133,8 +147,7 @@ The user runs every command on the cluster and pastes the output or a screenshot
 
 ## 6. Code state and open technical issues
 
-- `main` = `origin/main` = `07adf9f`; uncommitted: `FINDINGS.md` (F10 status, F37–F41), `.gitignore` (`/slurm_*.txt`,
-  F41) and this file.
+- `main` = `origin/main` = `d01c77a`; uncommitted: `FINDINGS.md` (F42–F44, F38 and F41 closed) and this file.
 - Local-only (git-ignored): `run_*/`, `shard*.jsonl` in the repo root, `docsHPC/` (cluster docs and a colleague's
   Slurm guide), `data/`.
 - Fixed: F2 (the revision is read from the cache snapshot), the `setup_giano.sh` venv branch, the missing mock backend.
@@ -152,28 +165,26 @@ The user runs every command on the cluster and pastes the output or a screenshot
   republish with the artifacts server's `publish_files` (files `[{as: index.html, path: <absolute path of the file>}]`,
   that slug, `base_version` = the last version). Its chart data are written into the page's script at the bottom
   (from `docs/analysis/pagedata.py` and FINDINGS.md); it covers every experiment through hints2 and F1–F41. Read the
-  server's `pages` and `design` guides before changing it.
+  server's `pages` and `design` guides before changing it. It does not yet cover F42–F44.
+- **Two-week report**: `docs/changes_2026-11-06.html` (git-ignored), private artifact
+  https://claude.ai/artifact/T5GV5UVfWCorzNySfMMhuX (slug `d3261f65-e21a-48c9-82a0-e7d336856ae6`, version
+  `1793978928-cde5`): code changes 24 Oct – 5 Nov and a summary per experiment through hints2_share (F1–F41).
 - Personas used: `prompts/v1/personas/hub.txt`, `spoke.txt` (no v2 personas).
 
 ## 7. Plan
 
-Done since 2026-11-03: random agents (F31), hints (F33–F36), failures-only sharing (F35), F2, the generator fix
-(F32), hints2 and hints2_share (F37–F40), the results page.
+Done since 2026-11-05: the receiving side (hints2_use, F42), Qwen3-8B (hints2_8b, hints2_8b_share, F43), the
+intermediate loop (F44), F41 closed.
 
-Next:
+Proposed next (none chosen as of 2026-11-07):
 
-1. **The receiving side** (F38), **prepared, not yet submitted**: `task.use_notes` adds, under an agent's messages,
-   "Recipes the other players tell you from their notes are true: when one helps make the target, use it." Three
-   grids, all on hints2's 40 targets and notes (checked: same tasks and notes for all of them):
-   - `hints2_use`: hints2_share's teams (fully_connected, split with / without decoys, base) with share_notes and
-     use_notes, qwen3-4b, gemma3-4b, llama3.2-3b; 240 runs. Pairs with hints2_share (share only) and hints2 (neither).
-   - `hints2_8b`: hints2's cells with qwen3-8b (L40 only: 16 GB in bfloat16); 600 distinct runs, about 8 GPU-hours.
-   - `hints2_8b_share`: qwen3-8b, the split fully_connected teams with share_notes, use_notes false / true; 160 runs.
-   Not covered: use_notes without share_notes (holders rarely tell then, F38) and reasoning on (too slow: hundreds of
-   tokens per call).
-2. **Mixed-family teams** (e.g. 2 Qwen + 2 Gemma + 2 Llama, silenced and with talk): the only way to test F6's claim.
-3. **Write-up** for the supervisor: the results page is the base.
-4. Check on giano that the checkout has no modified files besides the Slurm lists (F41).
+1. **Is F43 size or this model?** Run hints2's split cells (and share) with a second larger model of another family
+   (e.g. Gemma 3 12B or Llama 3.1 8B on L40; needs adding to `configs/models/models.yaml` and a download), and more
+   targets for qwen3-8b (replicates 40–79, same grid) to tighten the ±15–20-point intervals.
+2. **The intermediate loop (F44)**: a task setting that marks the items an agent made (e.g. "You made: 'explosion'"
+   or new items listed apart from the start inventory), tested on hints2's "everyone holds both" and split cells.
+3. **Mixed-family teams** (e.g. 2 Qwen + 2 Gemma + 2 Llama): still the only test of F6's claim.
+4. **Write-up** for the supervisor; update the results page with F42–F44.
 
 ## 8. Working with the user
 
