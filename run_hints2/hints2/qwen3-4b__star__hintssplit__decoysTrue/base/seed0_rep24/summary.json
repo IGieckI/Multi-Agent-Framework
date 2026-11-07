@@ -1,0 +1,104 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "bone",
+      "egg",
+      "horse",
+      "lake",
+      "newspaper",
+      "owl",
+      "palm",
+      "roller coaster",
+      "woodpecker"
+    ],
+    "max_steps": 4,
+    "target": "duckling",
+    "intermediate": [
+      "duck"
+    ],
+    "distractors": [
+      "bone",
+      "horse",
+      "newspaper",
+      "palm",
+      "roller coaster",
+      "woodpecker"
+    ],
+    "path": [
+      [
+        "lake",
+        "owl",
+        "duck"
+      ],
+      [
+        "duck",
+        "egg",
+        "duckling"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.1667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fish",
+        "roe"
+      ],
+      "coverage": 0.1667,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fish",
+        "roe"
+      ],
+      "coverage": 0.1667,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "fish",
+        "roe"
+      ],
+      "coverage": 0.1667,
+      "invalid": 1,
+      "no_valid_answers": 1
+    }
+  },
+  "usage": {
+    "total_tokens": 10757,
+    "completion_tokens": 1522,
+    "calls": 15,
+    "wall_clock_s": 91.378,
+    "lines": {
+      "agents": {
+        "total_tokens": 10757,
+        "completion_tokens": 1522,
+        "calls": 15
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

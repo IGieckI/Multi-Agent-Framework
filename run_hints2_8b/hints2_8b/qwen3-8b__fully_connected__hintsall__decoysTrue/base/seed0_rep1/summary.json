@@ -1,0 +1,140 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "barn",
+      "day",
+      "fireworks",
+      "pigeon",
+      "pressure",
+      "sky",
+      "steak",
+      "tool",
+      "wall"
+    ],
+    "max_steps": 4,
+    "target": "jerky",
+    "intermediate": [
+      "sun"
+    ],
+    "distractors": [
+      "barn",
+      "fireworks",
+      "pigeon",
+      "pressure",
+      "tool",
+      "wall"
+    ],
+    "path": [
+      [
+        "day",
+        "sky",
+        "sun"
+      ],
+      [
+        "steak",
+        "sun",
+        "jerky"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.019
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "jerky",
+        "sun"
+      ],
+      "coverage": 0.019,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "jerky",
+        "sun"
+      ],
+      "coverage": 0.019,
+      "invalid": 0,
+      "no_valid_answers": 1
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "jerky",
+        "sun"
+      ],
+      "coverage": 0.019,
+      "invalid": 0,
+      "no_valid_answers": 1
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "jerky",
+        "sun"
+      ],
+      "coverage": 0.019,
+      "invalid": 0,
+      "no_valid_answers": 1
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "jerky",
+        "sun"
+      ],
+      "coverage": 0.019,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "jerky",
+        "sun"
+      ],
+      "coverage": 0.019,
+      "invalid": 0,
+      "no_valid_answers": 1
+    }
+  },
+  "usage": {
+    "total_tokens": 21350,
+    "completion_tokens": 3018,
+    "calls": 28,
+    "wall_clock_s": 95.832,
+    "lines": {
+      "agents": {
+        "total_tokens": 21350,
+        "completion_tokens": 3018,
+        "calls": 28
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "gravestone",
+      "idea",
+      "lamp",
+      "metal",
+      "pitchfork",
+      "planet",
+      "scythe",
+      "tool",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "quicksilver",
+    "intermediate": [
+      "liquid"
+    ],
+    "distractors": [
+      "gravestone",
+      "lamp",
+      "pitchfork",
+      "planet",
+      "scythe",
+      "tool"
+    ],
+    "path": [
+      [
+        "idea",
+        "water",
+        "liquid"
+      ],
+      [
+        "liquid",
+        "metal",
+        "quicksilver"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "liquid"
+      ],
+      "coverage": 0.0333,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 10224,
+    "completion_tokens": 1776,
+    "calls": 16,
+    "wall_clock_s": 54.561,
+    "lines": {
+      "agents": {
+        "total_tokens": 10224,
+        "completion_tokens": 1776,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

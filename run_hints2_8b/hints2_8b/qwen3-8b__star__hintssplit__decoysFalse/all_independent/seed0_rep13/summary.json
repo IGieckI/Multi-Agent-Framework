@@ -1,0 +1,98 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "carbon dioxide",
+      "cow",
+      "land",
+      "mailman",
+      "moon",
+      "mountain",
+      "plant",
+      "tool"
+    ],
+    "max_steps": 4,
+    "target": "lawn mower",
+    "intermediate": [
+      "grass"
+    ],
+    "distractors": [
+      "animal",
+      "carbon dioxide",
+      "cow",
+      "mailman",
+      "moon",
+      "mountain"
+    ],
+    "path": [
+      [
+        "land",
+        "plant",
+        "grass"
+      ],
+      [
+        "grass",
+        "tool",
+        "lawn mower"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.0058
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "grass",
+        "lawn mower"
+      ],
+      "coverage": 0.0058,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8374,
+    "completion_tokens": 1075,
+    "calls": 14,
+    "wall_clock_s": 33.399,
+    "lines": {
+      "agents": {
+        "total_tokens": 8374,
+        "completion_tokens": 1075,
+        "calls": 14
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

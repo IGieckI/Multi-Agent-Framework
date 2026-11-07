@@ -1,0 +1,145 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "cook",
+      "cookie cutter",
+      "desert",
+      "life",
+      "painter",
+      "rainbow",
+      "science",
+      "village",
+      "water"
+    ],
+    "max_steps": 4,
+    "target": "domestication",
+    "intermediate": [
+      "animal"
+    ],
+    "distractors": [
+      "cook",
+      "cookie cutter",
+      "painter",
+      "rainbow",
+      "village",
+      "water"
+    ],
+    "path": [
+      [
+        "desert",
+        "life",
+        "animal"
+      ],
+      [
+        "animal",
+        "science",
+        "domestication"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 6,
+    "union_coverage": 0.1667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "animal",
+        "domestication",
+        "plankton"
+      ],
+      "coverage": 0.0833,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "animal",
+        "domestication"
+      ],
+      "coverage": 0.0556,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "animal",
+        "domestication",
+        "oasis"
+      ],
+      "coverage": 0.0833,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "animal",
+        "domestication"
+      ],
+      "coverage": 0.0556,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "animal",
+        "domestication",
+        "organic matter"
+      ],
+      "coverage": 0.0833,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "animal",
+        "domestication",
+        "magic",
+        "organic matter"
+      ],
+      "coverage": 0.1111,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 22662,
+    "completion_tokens": 2571,
+    "calls": 21,
+    "wall_clock_s": 81.283,
+    "lines": {
+      "agents": {
+        "total_tokens": 22662,
+        "completion_tokens": 2571,
+        "calls": 21
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "bus",
+      "dog",
+      "lake",
+      "lumberjack",
+      "milk",
+      "ocean",
+      "sea",
+      "snow",
+      "wall"
+    ],
+    "max_steps": 4,
+    "target": "ice cream truck",
+    "intermediate": [
+      "ice cream"
+    ],
+    "distractors": [
+      "dog",
+      "lake",
+      "lumberjack",
+      "ocean",
+      "sea",
+      "wall"
+    ],
+    "path": [
+      [
+        "milk",
+        "snow",
+        "ice cream"
+      ],
+      [
+        "bus",
+        "ice cream",
+        "ice cream truck"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.1176
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "ice cream",
+        "ice cream truck"
+      ],
+      "coverage": 0.1176,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "ice cream",
+        "ice cream truck"
+      ],
+      "coverage": 0.1176,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "ice cream",
+        "ice cream truck"
+      ],
+      "coverage": 0.1176,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "ice cream",
+        "ice cream truck"
+      ],
+      "coverage": 0.1176,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "ice cream",
+        "ice cream truck"
+      ],
+      "coverage": 0.1176,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "ice cream",
+        "ice cream truck"
+      ],
+      "coverage": 0.1176,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11272,
+    "completion_tokens": 1414,
+    "calls": 15,
+    "wall_clock_s": 87.789,
+    "lines": {
+      "agents": {
+        "total_tokens": 11272,
+        "completion_tokens": 1414,
+        "calls": 15
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "campfire",
+      "city",
+      "fire",
+      "light bulb",
+      "lightning",
+      "metal",
+      "oxygen",
+      "stone",
+      "village"
+    ],
+    "max_steps": 4,
+    "target": "light",
+    "intermediate": [
+      "electricity"
+    ],
+    "distractors": [
+      "campfire",
+      "city",
+      "fire",
+      "oxygen",
+      "stone",
+      "village"
+    ],
+    "path": [
+      [
+        "lightning",
+        "metal",
+        "electricity"
+      ],
+      [
+        "electricity",
+        "light bulb",
+        "light"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 4,
+    "union_coverage": 0.1538
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "electricity",
+        "energy",
+        "light"
+      ],
+      "coverage": 0.1154,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "electricity",
+        "light"
+      ],
+      "coverage": 0.0769,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "electricity",
+        "lamp",
+        "light"
+      ],
+      "coverage": 0.1154,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "electricity",
+        "light"
+      ],
+      "coverage": 0.0769,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "electricity",
+        "energy",
+        "light"
+      ],
+      "coverage": 0.1154,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "electricity",
+        "light"
+      ],
+      "coverage": 0.0769,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 17486,
+    "completion_tokens": 2100,
+    "calls": 18,
+    "wall_clock_s": 66.022,
+    "lines": {
+      "agents": {
+        "total_tokens": 17486,
+        "completion_tokens": 2100,
+        "calls": 18
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

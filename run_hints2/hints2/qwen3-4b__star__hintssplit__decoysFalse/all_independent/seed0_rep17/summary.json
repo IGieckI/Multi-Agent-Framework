@@ -1,0 +1,98 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "fabric",
+      "gift",
+      "lake",
+      "medusa",
+      "net",
+      "phoenix",
+      "sandstorm",
+      "unicorn"
+    ],
+    "max_steps": 4,
+    "target": "web",
+    "intermediate": [
+      "spider"
+    ],
+    "distractors": [
+      "gift",
+      "lake",
+      "medusa",
+      "phoenix",
+      "sandstorm",
+      "unicorn"
+    ],
+    "path": [
+      [
+        "animal",
+        "net",
+        "spider"
+      ],
+      [
+        "fabric",
+        "spider",
+        "web"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.2
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "spider",
+        "web"
+      ],
+      "coverage": 0.2,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8271,
+    "completion_tokens": 1428,
+    "calls": 13,
+    "wall_clock_s": 93.956,
+    "lines": {
+      "agents": {
+        "total_tokens": 8271,
+        "completion_tokens": 1428,
+        "calls": 13
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

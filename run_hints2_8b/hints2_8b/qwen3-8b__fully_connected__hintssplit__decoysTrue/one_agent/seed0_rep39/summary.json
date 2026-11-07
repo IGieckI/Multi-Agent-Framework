@@ -1,0 +1,81 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "cart",
+      "farmer",
+      "house",
+      "lava",
+      "paper",
+      "pressure",
+      "steel",
+      "swordfish",
+      "tree"
+    ],
+    "max_steps": 4,
+    "target": "juice",
+    "intermediate": [
+      "fruit"
+    ],
+    "distractors": [
+      "cart",
+      "house",
+      "lava",
+      "paper",
+      "steel",
+      "swordfish"
+    ],
+    "path": [
+      [
+        "farmer",
+        "tree",
+        "fruit"
+      ],
+      [
+        "fruit",
+        "pressure",
+        "juice"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.1
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "fruit",
+        "juice",
+        "nuts"
+      ],
+      "coverage": 0.1,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1110,
+    "completion_tokens": 122,
+    "calls": 2,
+    "wall_clock_s": 3.89,
+    "lines": {
+      "agents": {
+        "total_tokens": 1110,
+        "completion_tokens": 122,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "castle",
+      "cotton",
+      "earth",
+      "grass",
+      "heat",
+      "lake",
+      "leaf",
+      "lumberjack",
+      "seed"
+    ],
+    "max_steps": 4,
+    "target": "garden",
+    "intermediate": [
+      "plant"
+    ],
+    "distractors": [
+      "castle",
+      "cotton",
+      "heat",
+      "lake",
+      "leaf",
+      "lumberjack"
+    ],
+    "path": [
+      [
+        "earth",
+        "seed",
+        "plant"
+      ],
+      [
+        "grass",
+        "plant",
+        "garden"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0035
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "garden",
+        "plant"
+      ],
+      "coverage": 0.0035,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1132,
+    "completion_tokens": 153,
+    "calls": 2,
+    "wall_clock_s": 4.871,
+    "lines": {
+      "agents": {
+        "total_tokens": 1132,
+        "completion_tokens": 153,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

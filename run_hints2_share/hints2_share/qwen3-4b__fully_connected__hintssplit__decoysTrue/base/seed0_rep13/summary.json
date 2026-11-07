@@ -1,0 +1,141 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "carbon dioxide",
+      "cow",
+      "land",
+      "mailman",
+      "moon",
+      "mountain",
+      "plant",
+      "tool"
+    ],
+    "max_steps": 4,
+    "target": "lawn mower",
+    "intermediate": [
+      "grass"
+    ],
+    "distractors": [
+      "animal",
+      "carbon dioxide",
+      "cow",
+      "mailman",
+      "moon",
+      "mountain"
+    ],
+    "path": [
+      [
+        "land",
+        "plant",
+        "grass"
+      ],
+      [
+        "grass",
+        "tool",
+        "lawn mower"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 7,
+    "union_coverage": 0.0202
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "grass",
+        "lawn mower"
+      ],
+      "coverage": 0.0058,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "field"
+      ],
+      "coverage": 0.0029,
+      "invalid": 0,
+      "no_valid_answers": 2
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "field",
+        "human",
+        "meat"
+      ],
+      "coverage": 0.0086,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "field",
+        "leather",
+        "meat",
+        "milk"
+      ],
+      "coverage": 0.0115,
+      "invalid": 0,
+      "no_valid_answers": 1
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "field",
+        "leather",
+        "meat",
+        "milk"
+      ],
+      "coverage": 0.0115,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 0,
+      "no_valid_answers": 4
+    }
+  },
+  "usage": {
+    "total_tokens": 42277,
+    "completion_tokens": 5280,
+    "calls": 40,
+    "wall_clock_s": 337.759,
+    "lines": {
+      "agents": {
+        "total_tokens": 42277,
+        "completion_tokens": 5280,
+        "calls": 40
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

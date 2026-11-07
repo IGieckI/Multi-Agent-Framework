@@ -1,0 +1,104 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "grass",
+      "human",
+      "medusa",
+      "owl",
+      "pumpkin",
+      "time",
+      "village",
+      "water",
+      "wizard"
+    ],
+    "max_steps": 4,
+    "target": "archeologist",
+    "intermediate": [
+      "ruins"
+    ],
+    "distractors": [
+      "grass",
+      "medusa",
+      "owl",
+      "pumpkin",
+      "water",
+      "wizard"
+    ],
+    "path": [
+      [
+        "time",
+        "village",
+        "ruins"
+      ],
+      [
+        "human",
+        "ruins",
+        "archeologist"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0253
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "archeologist",
+        "ruins"
+      ],
+      "coverage": 0.0253,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "archeologist",
+        "ruins"
+      ],
+      "coverage": 0.0253,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "archeologist",
+        "ruins"
+      ],
+      "coverage": 0.0253,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 8646,
+    "completion_tokens": 1131,
+    "calls": 12,
+    "wall_clock_s": 77.959,
+    "lines": {
+      "agents": {
+        "total_tokens": 8646,
+        "completion_tokens": 1131,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "grass",
+      "human",
+      "medusa",
+      "owl",
+      "pumpkin",
+      "time",
+      "village",
+      "water",
+      "wizard"
+    ],
+    "max_steps": 4,
+    "target": "archeologist",
+    "intermediate": [
+      "ruins"
+    ],
+    "distractors": [
+      "grass",
+      "medusa",
+      "owl",
+      "pumpkin",
+      "water",
+      "wizard"
+    ],
+    "path": [
+      [
+        "time",
+        "village",
+        "ruins"
+      ],
+      [
+        "human",
+        "ruins",
+        "archeologist"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0253
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "archeologist",
+        "ruins"
+      ],
+      "coverage": 0.0253,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1124,
+    "completion_tokens": 130,
+    "calls": 2,
+    "wall_clock_s": 4.149,
+    "lines": {
+      "agents": {
+        "total_tokens": 1124,
+        "completion_tokens": 130,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "campfire",
+      "city",
+      "fire",
+      "light bulb",
+      "lightning",
+      "metal",
+      "oxygen",
+      "stone",
+      "village"
+    ],
+    "max_steps": 4,
+    "target": "light",
+    "intermediate": [
+      "electricity"
+    ],
+    "distractors": [
+      "campfire",
+      "city",
+      "fire",
+      "oxygen",
+      "stone",
+      "village"
+    ],
+    "path": [
+      [
+        "lightning",
+        "metal",
+        "electricity"
+      ],
+      [
+        "electricity",
+        "light bulb",
+        "light"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0385
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "wall"
+      ],
+      "coverage": 0.0385,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 2074,
+    "completion_tokens": 65,
+    "calls": 4,
+    "wall_clock_s": 0.07,
+    "lines": {
+      "agents": {
+        "total_tokens": 2074,
+        "completion_tokens": 65,
+        "calls": 4
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

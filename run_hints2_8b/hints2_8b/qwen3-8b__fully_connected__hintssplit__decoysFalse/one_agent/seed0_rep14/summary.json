@@ -1,0 +1,81 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "air",
+      "chicken",
+      "container",
+      "cook",
+      "farmer",
+      "machine",
+      "metal",
+      "thread",
+      "volcano"
+    ],
+    "max_steps": 4,
+    "target": "apron",
+    "intermediate": [
+      "fabric"
+    ],
+    "distractors": [
+      "air",
+      "chicken",
+      "container",
+      "farmer",
+      "metal",
+      "volcano"
+    ],
+    "path": [
+      [
+        "machine",
+        "thread",
+        "fabric"
+      ],
+      [
+        "cook",
+        "fabric",
+        "apron"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.0366
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "apron",
+        "fabric",
+        "sewing machine"
+      ],
+      "coverage": 0.0366,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1740,
+    "completion_tokens": 245,
+    "calls": 3,
+    "wall_clock_s": 7.78,
+    "lines": {
+      "agents": {
+        "total_tokens": 1740,
+        "completion_tokens": 245,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

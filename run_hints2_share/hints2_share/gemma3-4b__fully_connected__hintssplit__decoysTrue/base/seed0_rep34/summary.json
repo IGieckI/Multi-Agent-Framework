@@ -1,0 +1,138 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "animal",
+      "arctic",
+      "car",
+      "clay",
+      "lawn",
+      "light",
+      "metal",
+      "story",
+      "tool"
+    ],
+    "max_steps": 4,
+    "target": "potter",
+    "intermediate": [
+      "human"
+    ],
+    "distractors": [
+      "arctic",
+      "car",
+      "lawn",
+      "light",
+      "metal",
+      "story"
+    ],
+    "path": [
+      [
+        "animal",
+        "tool",
+        "human"
+      ],
+      [
+        "clay",
+        "human",
+        "potter"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.03
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "machine"
+      ],
+      "coverage": 0.005,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "human",
+        "meat",
+        "potter"
+      ],
+      "coverage": 0.015,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pottery"
+      ],
+      "coverage": 0.005,
+      "invalid": 1,
+      "no_valid_answers": 1
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "legend"
+      ],
+      "coverage": 0.005,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "human",
+        "meat",
+        "potter"
+      ],
+      "coverage": 0.015,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pottery"
+      ],
+      "coverage": 0.005,
+      "invalid": 0,
+      "no_valid_answers": 1
+    }
+  },
+  "usage": {
+    "total_tokens": 28303,
+    "completion_tokens": 2016,
+    "calls": 28,
+    "wall_clock_s": 76.492,
+    "lines": {
+      "agents": {
+        "total_tokens": 28303,
+        "completion_tokens": 2016,
+        "calls": 28
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

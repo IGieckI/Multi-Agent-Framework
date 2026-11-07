@@ -1,0 +1,138 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "castle",
+      "cotton",
+      "earth",
+      "grass",
+      "heat",
+      "lake",
+      "leaf",
+      "lumberjack",
+      "seed"
+    ],
+    "max_steps": 4,
+    "target": "garden",
+    "intermediate": [
+      "plant"
+    ],
+    "distractors": [
+      "castle",
+      "cotton",
+      "heat",
+      "lake",
+      "leaf",
+      "lumberjack"
+    ],
+    "path": [
+      [
+        "earth",
+        "seed",
+        "plant"
+      ],
+      [
+        "grass",
+        "plant",
+        "garden"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.0106
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "garden",
+        "plant"
+      ],
+      "coverage": 0.0035,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "flower",
+        "hay"
+      ],
+      "coverage": 0.0035,
+      "invalid": 0,
+      "no_valid_answers": 2
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "flower"
+      ],
+      "coverage": 0.0018,
+      "invalid": 0,
+      "no_valid_answers": 1
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "flower",
+        "land"
+      ],
+      "coverage": 0.0035,
+      "invalid": 0,
+      "no_valid_answers": 1
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "flower"
+      ],
+      "coverage": 0.0018,
+      "invalid": 1,
+      "no_valid_answers": 1
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "algae",
+        "flower"
+      ],
+      "coverage": 0.0035,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 48469,
+    "completion_tokens": 6842,
+    "calls": 39,
+    "wall_clock_s": 223.007,
+    "lines": {
+      "agents": {
+        "total_tokens": 48469,
+        "completion_tokens": 6842,
+        "calls": 39
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

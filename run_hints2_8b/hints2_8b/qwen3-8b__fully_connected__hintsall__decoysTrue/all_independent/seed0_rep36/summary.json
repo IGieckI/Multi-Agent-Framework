@@ -1,0 +1,140 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "alcohol",
+      "earth",
+      "explosion",
+      "garden",
+      "mineral",
+      "plant",
+      "robot",
+      "stone",
+      "sword"
+    ],
+    "max_steps": 4,
+    "target": "perfume",
+    "intermediate": [
+      "flower"
+    ],
+    "distractors": [
+      "earth",
+      "explosion",
+      "mineral",
+      "robot",
+      "stone",
+      "sword"
+    ],
+    "path": [
+      [
+        "garden",
+        "plant",
+        "flower"
+      ],
+      [
+        "alcohol",
+        "flower",
+        "perfume"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0625
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "flower",
+        "perfume"
+      ],
+      "coverage": 0.0625,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "flower",
+        "perfume"
+      ],
+      "coverage": 0.0625,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "flower",
+        "perfume"
+      ],
+      "coverage": 0.0625,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "flower",
+        "perfume"
+      ],
+      "coverage": 0.0625,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "flower",
+        "perfume"
+      ],
+      "coverage": 0.0625,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "flower",
+        "perfume"
+      ],
+      "coverage": 0.0625,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 9074,
+    "completion_tokens": 1158,
+    "calls": 16,
+    "wall_clock_s": 36.357,
+    "lines": {
+      "agents": {
+        "total_tokens": 9074,
+        "completion_tokens": 1158,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

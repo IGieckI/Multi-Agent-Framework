@@ -1,0 +1,81 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "cold",
+      "earth",
+      "flashlight",
+      "letter",
+      "life",
+      "rope",
+      "tobacco",
+      "water",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "cigarette",
+    "intermediate": [
+      "paper"
+    ],
+    "distractors": [
+      "cold",
+      "earth",
+      "flashlight",
+      "letter",
+      "life",
+      "rope"
+    ],
+    "path": [
+      [
+        "water",
+        "wood",
+        "paper"
+      ],
+      [
+        "paper",
+        "tobacco",
+        "cigarette"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.005
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "boat",
+        "cigarette",
+        "paper"
+      ],
+      "coverage": 0.005,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1137,
+    "completion_tokens": 142,
+    "calls": 2,
+    "wall_clock_s": 24.705,
+    "lines": {
+      "agents": {
+        "total_tokens": 1137,
+        "completion_tokens": 142,
+        "calls": 2
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

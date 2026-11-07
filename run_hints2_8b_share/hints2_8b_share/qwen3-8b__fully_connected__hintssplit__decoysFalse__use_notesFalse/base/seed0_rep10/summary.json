@@ -1,0 +1,122 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "air",
+      "axe",
+      "barn",
+      "cotton",
+      "gardener",
+      "jupiter",
+      "pressure",
+      "smoke",
+      "tree"
+    ],
+    "max_steps": 4,
+    "target": "leaf",
+    "intermediate": [
+      "wind"
+    ],
+    "distractors": [
+      "axe",
+      "barn",
+      "cotton",
+      "gardener",
+      "jupiter",
+      "smoke"
+    ],
+    "path": [
+      [
+        "air",
+        "pressure",
+        "wind"
+      ],
+      [
+        "tree",
+        "wind",
+        "leaf"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 0,
+    "union_coverage": 0.0
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 0,
+      "no_valid_answers": 4
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 27862,
+    "completion_tokens": 3411,
+    "calls": 32,
+    "wall_clock_s": 119.092,
+    "lines": {
+      "agents": {
+        "total_tokens": 27862,
+        "completion_tokens": 3411,
+        "calls": 32
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

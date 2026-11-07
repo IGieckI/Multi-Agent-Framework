@@ -1,0 +1,122 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "cold",
+      "earth",
+      "flashlight",
+      "letter",
+      "life",
+      "rope",
+      "tobacco",
+      "water",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "cigarette",
+    "intermediate": [
+      "paper"
+    ],
+    "distractors": [
+      "cold",
+      "earth",
+      "flashlight",
+      "letter",
+      "life",
+      "rope"
+    ],
+    "path": [
+      [
+        "water",
+        "wood",
+        "paper"
+      ],
+      [
+        "paper",
+        "tobacco",
+        "cigarette"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 0,
+    "union_coverage": 0.0
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 1
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 1
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 1
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 2
+    }
+  },
+  "usage": {
+    "total_tokens": 30717,
+    "completion_tokens": 4725,
+    "calls": 38,
+    "wall_clock_s": 303.204,
+    "lines": {
+      "agents": {
+        "total_tokens": 30717,
+        "completion_tokens": 4725,
+        "calls": 38
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

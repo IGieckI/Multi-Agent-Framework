@@ -1,0 +1,141 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "air",
+      "corpse",
+      "human",
+      "hummingbird",
+      "motion",
+      "ocean",
+      "pencil",
+      "penguin",
+      "pipe"
+    ],
+    "max_steps": 4,
+    "target": "wave",
+    "intermediate": [
+      "wind"
+    ],
+    "distractors": [
+      "corpse",
+      "human",
+      "hummingbird",
+      "pencil",
+      "penguin",
+      "pipe"
+    ],
+    "path": [
+      [
+        "air",
+        "motion",
+        "wind"
+      ],
+      [
+        "ocean",
+        "wind",
+        "wave"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 9,
+    "union_coverage": 0.25
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "pressure"
+      ],
+      "coverage": 0.0556,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "sailor",
+        "wave",
+        "wind"
+      ],
+      "coverage": 0.0833,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "pressure",
+        "vulture"
+      ],
+      "coverage": 0.0556,
+      "invalid": 1,
+      "no_valid_answers": 1
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "current",
+        "egg"
+      ],
+      "coverage": 0.0556,
+      "invalid": 0,
+      "no_valid_answers": 1
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.0556,
+      "invalid": 1,
+      "no_valid_answers": 1
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "family",
+        "love"
+      ],
+      "coverage": 0.0556,
+      "invalid": 1,
+      "no_valid_answers": 2
+    }
+  },
+  "usage": {
+    "total_tokens": 36845,
+    "completion_tokens": 2476,
+    "calls": 36,
+    "wall_clock_s": 94.31,
+    "lines": {
+      "agents": {
+        "total_tokens": 36845,
+        "completion_tokens": 2476,
+        "calls": 36
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

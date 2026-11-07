@@ -1,0 +1,5416 @@
+{
+  "experiment": "hints2_share",
+  "grid": {
+    "name": "hints2_share",
+    "base": {
+      "task": {
+        "name": "wordcraft",
+        "type": "targeted",
+        "max_steps": 4,
+        "repeat_consumes_step": true,
+        "prompts": "v2",
+        "depth": 2,
+        "distractors": 6,
+        "notes": 2,
+        "allow_shortcuts": false,
+        "share_notes": true
+      },
+      "engine": {
+        "max_concurrency": 1
+      },
+      "sampling": {
+        "temperature": 1.0
+      },
+      "context": {
+        "max_prompt_tokens": 6000,
+        "truncation": "oldest_first"
+      },
+      "retries": {
+        "max_parse_attempts": 3,
+        "max_attempts": 3
+      },
+      "budget": {
+        "wall_clock_s": 3600
+      }
+    },
+    "models": [
+      "qwen3-4b",
+      "gemma3-4b",
+      "llama3.2-3b"
+    ],
+    "protocols": [
+      {
+        "name": "fully_connected",
+        "file": "configs/protocols/fully_connected.yaml",
+        "personas": {}
+      }
+    ],
+    "task": [
+      {
+        "hints": "split",
+        "decoys": true
+      },
+      {
+        "hints": "split",
+        "decoys": false
+      }
+    ],
+    "versions": [
+      "base"
+    ],
+    "replicates": 40,
+    "seed": 0
+  },
+  "grid_sha256": "9a21508b45a58d234dc439498b8091b2b4b86233779677037d2e6e9285ca504d",
+  "models": {
+    "qwen3-4b": {
+      "family": "qwen3",
+      "model": "Qwen/Qwen3-4B",
+      "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "parameters": 4022468096,
+      "link": "https://huggingface.co/Qwen/Qwen3-4B",
+      "gated": false,
+      "native_reasoning": true,
+      "sampling": {
+        "max_tokens": 256,
+        "reasoning": false,
+        "top_p": 1.0,
+        "top_k": 0
+      }
+    },
+    "gemma3-4b": {
+      "family": "gemma3",
+      "model": "google/gemma-3-4b-it",
+      "revision": "093f9f388b31de276ce2de164bdc2081324b9767",
+      "parameters": 4300079472,
+      "link": "https://huggingface.co/google/gemma-3-4b-it",
+      "gated": true,
+      "native_reasoning": false,
+      "sampling": {
+        "max_tokens": 256,
+        "reasoning": false,
+        "top_p": 1.0,
+        "top_k": 0
+      }
+    },
+    "llama3.2-3b": {
+      "family": "llama3.2",
+      "model": "meta-llama/Llama-3.2-3B-Instruct",
+      "revision": "0cb88a4f764b7a12671c53f0838cd831a0843b95",
+      "parameters": 3212749824,
+      "link": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "gated": true,
+      "native_reasoning": false,
+      "sampling": {
+        "max_tokens": 256,
+        "reasoning": false,
+        "top_p": 1.0,
+        "top_k": 0
+      }
+    }
+  },
+  "units": [
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep0",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 0,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "c9ef145493bb8ac49d2ac30fd287bafe2e30376939c6147d0bb41532431017d0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep1",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 1,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "c451c37b702031e1a2bdf6f0b94e4be7f20eeeb5580322fadb50ea6cef4f219b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep2",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 2,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "6bf3fea511b78c0acbd6c801f72a184b9251d0fd563ec477b3e9b99bf02f911e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep3",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 3,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "27bd5271d051bee13c267642b7d53087be5e5759ecb2cb00959780b889befdcb",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep4",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 4,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep4",
+          "config_sha256": "7e7c101dba135f8395d1ab8a109670f0682846892f6dd1749d39c7adb75da8af",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep5",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 5,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep5",
+          "config_sha256": "316c8f9718559ac159994dd17bef1bcba22a5da95554f6afa82ef0ce7bdabb87",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep6",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 6,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep6",
+          "config_sha256": "4352ddef6842aae114e31643da2ef94355eb728a3f3500c32397b96918ca1009",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep7",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 7,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep7",
+          "config_sha256": "bd407423e53f5aadf2dbc4850f3ec2313c5257f1348a591e0976063738493b3d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep8",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 8,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep8",
+          "config_sha256": "9287cdae6778b6752346198202bc33323c9f6e7dad0ded99b6c14ca5836fd1b1",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep9",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 9,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep9",
+          "config_sha256": "7232afd7823bd7e570c42c8f7a06257485b9bac8b2c24b7d9ed8c09c481b4adc",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep10",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 10,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep10",
+          "config_sha256": "39d60ead23e9d69e85c09c8a39552f08918e89a4aeb9e08c5a47ca41b8a544de",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep11",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 11,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep11",
+          "config_sha256": "9bf65ba783a8abb863e143cb30d450f0529a1d0f2fafbdf6031fa698838fc9f0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep12",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 12,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep12",
+          "config_sha256": "c0a72b19a990c9cfd5a9e30602dbf6c2654f4cd8efe320a7071a8ab389e5868b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep13",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 13,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep13",
+          "config_sha256": "996aca724c70afce19edecb77c36eed64086d27df3467dfc8ba7965a999758bc",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep14",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 14,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep14",
+          "config_sha256": "eae2c341e14097707bfc5bd6850c51ca3271d344f43b258f8cdc2b6d1fbb208a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep15",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 15,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep15",
+          "config_sha256": "d6ae2ada27c3232534ce97bc7a686233c95eefbd7a9899747c3dcce189125942",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep16",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 16,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep16",
+          "config_sha256": "4ec9ba9c5b668586de64cee3adfb64a3aaf3cc7eef8ae85643acdfff7d9e5cd0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep17",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 17,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep17",
+          "config_sha256": "73d263e130533850ab0813c6af3940e82ea2a626e62bcdaccd14d18da1c322e2",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep18",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 18,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep18",
+          "config_sha256": "b08cf0f36b06ba657922d70e63b9e1afc0cd97108712af7ffcf392a702e00b46",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep19",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 19,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep19",
+          "config_sha256": "2c336fd9e2ac5fee0925430ca1dac9a92bdc1c4267a80534fb3f53ce2c848b98",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep20",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 20,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep20",
+          "config_sha256": "d86ce8b6145432f7f52f75c61843c1b38d611b8f1bf87a78afb0418795f20fa7",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep21",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 21,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep21",
+          "config_sha256": "127b94bee334aca37c930e1bd193a1793aed3fb27f3f624849d270fed2bc9eb4",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep22",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 22,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep22",
+          "config_sha256": "7ec296368ace68a27454aa81de5dacf1a80ff6a5c42e92d61bba11f4d3ec89a6",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep23",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 23,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep23",
+          "config_sha256": "d77be8c8f0632681f5ee370d66e403d5d63beccd4d7c2e80b00e3cd21dbb0f18",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep24",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 24,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep24",
+          "config_sha256": "975e663896975b262a19e40c62761788269b2578ef68d26356bed1a69d366e0d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep25",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 25,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep25",
+          "config_sha256": "59798c6e3903b9b922a6b79b1b80a6f69027e4c36619520e08d6cdb1c287aae3",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep26",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 26,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep26",
+          "config_sha256": "cba69c965879e6cdb357410a5ac0e6497e8a07d3dbc2294040111e18cb4d1ee1",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep27",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 27,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep27",
+          "config_sha256": "38e7a1c350d1bb05466670dcad4120cae2e06f1e70a3ee28af3298f6b1cbc209",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep28",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 28,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep28",
+          "config_sha256": "cbb01eec876b7e00b9b4e951f34433d858f93b1017a241a7745dce419e0c9f19",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep29",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 29,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep29",
+          "config_sha256": "5713b531ed0215bfd9274e9e4bd8f24d6def4922ef30920e7646d59860d2e87e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep30",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 30,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep30",
+          "config_sha256": "0eaa9374c235d15274361e3942dbb050e1e507ec4c166731727cd6fc862d6440",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep31",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 31,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep31",
+          "config_sha256": "70d3c7b9c288e8edc67ed772defc29e5c83878745aece8ee94b365fefe38c29c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep32",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 32,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep32",
+          "config_sha256": "e4a7320e96530daddf075a4042185df530950a5a251e8de33f3272aeb09bd9ea",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep33",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 33,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep33",
+          "config_sha256": "c25bc45c36dbff4bedd9f2f0d840654bf530634d185a2e0230281afc029220e1",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep34",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 34,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep34",
+          "config_sha256": "4af4e1037da97513b084944312aadbecf1de219d63f360f98e33830847788e9e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep35",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 35,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep35",
+          "config_sha256": "f69a5567ece4a53a858ce04232e64ef9f9c35129ff93a78006f0d0d9e15ab77c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep36",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 36,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep36",
+          "config_sha256": "5e487ac271be72ae9e6ea40cd870cfd501b505409e84ef78a42d336c65c80c61",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep37",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 37,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep37",
+          "config_sha256": "26015a359144c59bef9ca75224697819f769930770aea0c8cf75fb9f729ec63c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep38",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 38,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep38",
+          "config_sha256": "94eb3435363a9da5badacc2cab29e7cd02b41d1ba648158258d9868c962fcc62",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysTrue/rep39",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 39,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep39",
+          "config_sha256": "b3e7120a4efd25cdfa678f32d8eec5a3c86be7052c6c9944f6b27a54ea6fc030",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep0",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 0,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "a1285fcf39c98f6a602389a3f8dabc18243d2f0063930099834ef136348f3826",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep1",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 1,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "499843b94b97d49abb091ad709e0431d006033349cb4b678c85cb7c7f906c05c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep2",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 2,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "fa7713a50e98e8c59523fb0237b0cf1670c711f99174f68848a037c2ffe0ab19",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep3",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 3,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "16222791115169e5fe926a0b3a2b64a334232ab2b2897fa7bb471d99451711ba",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep4",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 4,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep4",
+          "config_sha256": "b65b2bf64e97d3fdef776cf6182ff2f53a2ffa7600c70557fa5b5de51eeb7028",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep5",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 5,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep5",
+          "config_sha256": "955d3469a2d2e569b405cad5254cfa4242366d2f6e34d752ef410b42a83a7751",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep6",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 6,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep6",
+          "config_sha256": "a2ec0b39d79e5961ba43975a4694a77c49eab1622c9f33e796d00f3e012f75f3",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep7",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 7,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep7",
+          "config_sha256": "5d0cc8fc389c40d400e53a597fe14ecb5792c2beded4b36ee41025757e86cb33",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep8",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 8,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep8",
+          "config_sha256": "1b5bf0d3cc333d15b8d4b621383cd92d71181acd9c86de226866f27af7436b42",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep9",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 9,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep9",
+          "config_sha256": "dcdad2d1534deb40868bf394e6e45708e2fd41a685b07a8088ff0945392ea850",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep10",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 10,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep10",
+          "config_sha256": "5edec6dd5e2de43f4b97bf54c11a9b1750107bb29b6ee3a810609cd01b0f4bc7",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep11",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 11,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep11",
+          "config_sha256": "ffa759e12608d25513b4cbc427e5ea257cf6518a1c1033038a91f1cda0983521",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep12",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 12,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep12",
+          "config_sha256": "6f9d3dbd0de011ebfa567cbe9dee8bcde999ee38ed06482e5a8a20c2c4edb33f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep13",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 13,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep13",
+          "config_sha256": "cfb7006ddd702e5b2d77a6d0f6d1199b3ac5fbb639b48ad043d0226bce1ddc4d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep14",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 14,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep14",
+          "config_sha256": "c872b5e74e9f8402abc5361c522dfe182120285e5a57f227c38b2064ace247b0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep15",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 15,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep15",
+          "config_sha256": "7db4bdcfda55dd11001dda6ca97f9ca5214612b81040bdf16c702e9530952d11",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep16",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 16,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep16",
+          "config_sha256": "c1376de1491c324b948f6f12fe8c6c805ff6682a4c819427ecc9f94906fba63f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep17",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 17,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep17",
+          "config_sha256": "7e8360dc327f36471b5719d394a40bccd1a24ba832e2b806291cc39f318b5cb2",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep18",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 18,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep18",
+          "config_sha256": "56d511f299d6b7f463a884e1fd58bf8829daaa577c6cdbdb89c7c60f0ac856a6",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep19",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 19,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep19",
+          "config_sha256": "28373a354f37918088c00ab448319c383812279df9c4e5bb2cc0e056aec00a9b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep20",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 20,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep20",
+          "config_sha256": "c09da65b0f81ad172a4037aba855539014a9b9973c592a380ec9fa4601a56a24",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep21",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 21,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep21",
+          "config_sha256": "2421429188b6e49683178dd7387480e00c246ffbaf7b3102fd23ad3afcb96f86",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep22",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 22,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep22",
+          "config_sha256": "242dbf4aa01f46552f86650b303a17549fb9ca90d03e66584f4743abfc93d0a7",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep23",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 23,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep23",
+          "config_sha256": "c70df969b1dbf5940b35d960f7aa5a1047331957e2b266774ced0011a381449e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep24",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 24,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep24",
+          "config_sha256": "0de1ec0177fef72f005e8bae4a4b4b5954aa9f4f2a5f83acc8a882eb3731940b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep25",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 25,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep25",
+          "config_sha256": "161761985c88d28cc9f0255ae463f4a6944fb7c7b0f36e311da05dd3223f2319",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep26",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 26,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep26",
+          "config_sha256": "be4dd1836b2d8f6284557a978771c71892fa931225fa318ea4bfcecb7ea87db8",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep27",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 27,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep27",
+          "config_sha256": "6792dea633400cd2cb12ca3462d260e65c24117de28ec94d19068508a37152cf",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep28",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 28,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep28",
+          "config_sha256": "a1b73c36d708872292044b9f20ce57c9f1645e497cd3ce25d62e561749483dcd",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep29",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 29,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep29",
+          "config_sha256": "de883c0ca7de069cd2adf4aa43e11ce67a6b7a5af5daf3ce7055a64f0c2e30a5",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep30",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 30,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep30",
+          "config_sha256": "abe7730f4ad489efa20188387f197cf2968724595bd0d120282aa5af67479fbd",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep31",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 31,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep31",
+          "config_sha256": "493d00aad6bef6a54b667b179edaf0a77854fae1dcce2bcfd33cd231df0b2c78",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep32",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 32,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep32",
+          "config_sha256": "8e11884bbacdeb0a3a8cca43935e0c3f5b847c9f72cb77e79f587aed84890353",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep33",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 33,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep33",
+          "config_sha256": "87a492c5a30651d5a7392d695052db0c7bf94aa9f0d9214ee08758cac92e4a48",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep34",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 34,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep34",
+          "config_sha256": "5a7bb8ccef64097ebf15627d100c71375b3237fcb1f024f07588e195d0806a38",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep35",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 35,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep35",
+          "config_sha256": "63f99c1dd46209c42454323115ebbf07f89774528ba935dff5175c722959d3b8",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep36",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 36,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep36",
+          "config_sha256": "eca3e01d0558851a9749b3bc59f8d4c4b6b12c9a3979256abf71e01b9b595959",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep37",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 37,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep37",
+          "config_sha256": "d62378dc0f00aaf6b7363fecc0efcb4b55160ced7f1d13e1e6eed999283095e0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep38",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 38,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep38",
+          "config_sha256": "47c9b7ed52af287b3ba0ed57cf6418b1b5bc8716458f391388e81ce7f94833c5",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__hintssplit__decoysFalse/rep39",
+      "cell": "qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 39,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/qwen3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep39",
+          "config_sha256": "deb5420c048236ea331ce6ce2b2434668da68ba552659f8f6b3a9e0c40f040d4",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep0",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 0,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "dee8a414a314fff6b0b0ef5837ef5be60af76e4e1a98ddef6c1342d40f0cfd76",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep1",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 1,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "f6ca49d3197b048faddfba0e0fe4b2829660324b673afa8fbb9d9789eb8ff814",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep2",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 2,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "e9d3f79eaf64293240abcf18ac7161901fbfc41abc44d1c03f130a6087b33ec7",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep3",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 3,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "f98dc78f68b47b682a7a7a75547cc322542799d172ed3a74d27865cac27b40e1",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep4",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 4,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep4",
+          "config_sha256": "0922bf978090185ce7b3444970d8aa6e3435e04fb2ed989728a23971f6e61fd1",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep5",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 5,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep5",
+          "config_sha256": "a8cb6ded4cd00c39cdd0b03a77bee3a68dae1c76564116523fa765c79969ab70",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep6",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 6,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep6",
+          "config_sha256": "8e8f1d376b107857e4a3a1b3e62b5391bcef98370559a4231ca031733d3c061c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep7",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 7,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep7",
+          "config_sha256": "bcd7fe5d6236103305163b9c97903e5f17132e0901a341c2f9e2915c4e790c63",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep8",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 8,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep8",
+          "config_sha256": "e2037448967031e3c1481c421e07bd8740539170e1ab94c1d352b7f434716c06",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep9",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 9,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep9",
+          "config_sha256": "956265ae8618b24eb78aa0d100f3d13d317984239214c461e599481ead3e86b0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep10",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 10,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep10",
+          "config_sha256": "8cf4064fd1dfaea11d6a570d6d3648d22e435abab1fdab96917108807630a9fb",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep11",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 11,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep11",
+          "config_sha256": "6b5cd96b554aac75bfb190fa7ea420d44badabb5334260e8d0f4a4330316886b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep12",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 12,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep12",
+          "config_sha256": "35442367ea5d247b4ba002bac95bc64cb56969990849fb1c5afba8a4244042e7",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep13",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 13,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep13",
+          "config_sha256": "461741203c66998f65810815b4ef54f342571a790027bc2ba7ebc63aafe4989a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep14",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 14,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep14",
+          "config_sha256": "765f3cca8e9850e20a186206ccf19261ea5f9d98ac911501967ba8f38345cba9",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep15",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 15,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep15",
+          "config_sha256": "598d7ba49cc7069c5a138d2343d7d75a2afa87cefec3540af03fb12e7f63b484",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep16",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 16,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep16",
+          "config_sha256": "e36224691ef2a59cdf64ec1cf2e673b6401c82f3168e453f7805fd5ef0b8cbe9",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep17",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 17,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep17",
+          "config_sha256": "0317a8d887e3dee5d036ed2e66383d672edb3ca2906e603c7aba6fe180d4b57e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep18",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 18,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep18",
+          "config_sha256": "8ccc3b4a1151a4f16295674eb16842a6a9381fe545dd633ee335daf8ffea0b95",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep19",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 19,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep19",
+          "config_sha256": "341e0f70df1768119979cc16c4819ad8ef101eb897707006c93f326f7da38a4f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep20",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 20,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep20",
+          "config_sha256": "acbda6ab32f32bfedba527f1db41ea220d457b55c6b9ac508b4270215445e42e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep21",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 21,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep21",
+          "config_sha256": "f5ac79ac4021d2811a4083af37a8ea22ffd42e08ed18b4b9ddc79ead276f093a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep22",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 22,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep22",
+          "config_sha256": "500f0bb7d61962d9df72728cbd70905a8d446d10042fc912b617ad960e350048",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep23",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 23,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep23",
+          "config_sha256": "9b632bb4a8283441a3dab797a40128370f975a0bf48d256d8deae9ac645324d4",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep24",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 24,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep24",
+          "config_sha256": "5ea60a2ea1d1219c8a4f869c58125388778825f42b420cad37a1d74a13039120",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep25",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 25,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep25",
+          "config_sha256": "3ec576765c3323e5f75f95793b40f78710b55ba2d96e30715437944090316058",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep26",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 26,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep26",
+          "config_sha256": "4245c0ac4e8583d40f4537c099aedb0b23c8fe6f889d39540567cacea874494e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep27",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 27,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep27",
+          "config_sha256": "c8e1a867dbc4b186c478f79e440142e65c3edfc92c5f08bee0222166760bb2ac",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep28",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 28,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep28",
+          "config_sha256": "3c3539e8d486f8fbe5ec31b382e87d65b6b37db4e09222b7d9df29b5ee96e6ad",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep29",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 29,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep29",
+          "config_sha256": "a99312874873072170b991551f64e90bfe9613e1c913d9df6464a4d42032e127",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep30",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 30,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep30",
+          "config_sha256": "12ad9b6c3aa0b8d9c83080c366a5970b40f33d2520a295aa1f336c5b82e847c5",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep31",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 31,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep31",
+          "config_sha256": "b7bb773cf70e05327c335012770ffb872d759222dc6dda8f9ac9001b78507808",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep32",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 32,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep32",
+          "config_sha256": "fd64dc978f5d02d931be0f5c08e464c7aa1ba1b014690e984584cf7ec7ea83ad",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep33",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 33,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep33",
+          "config_sha256": "40ffbb760af3119a991ef7df72e9c943d984cc1fbec35667a33654d9f25a981e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep34",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 34,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep34",
+          "config_sha256": "1390a2d5c9e64053d3fce0c65f154c1233f340e9dc70dea917c754c111a1b0b4",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep35",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 35,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep35",
+          "config_sha256": "aba7aca0d0f111002afd4d40a8d670c69e4875349bf6b7918d144739a5bde5c9",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep36",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 36,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep36",
+          "config_sha256": "0c044b09f94bc5afdfa5006a24a1bef2c6836ed0c99f4d635076f60614e1b095",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep37",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 37,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep37",
+          "config_sha256": "f6f800e4e1d7045c480893d81d7b70e515c41f4c03c71ffde4aae9cb8e47ad06",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep38",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 38,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep38",
+          "config_sha256": "c18a5e0936a230560b081b14f5ec7d3536bd39feee557619ff6a362fe929535f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysTrue/rep39",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 39,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep39",
+          "config_sha256": "155f2fcf15042e4be8592513f74ec59926a99b40ee48405dbde19f8cd9581999",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep0",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 0,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "66ccc4cf06423e68fd3c4281c859c1b9f4130b0d999673850afe5aae0ec76bd8",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep1",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 1,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "c97862de24ecd86f673da1d6709545a85397b95b25ece6492b959ce175c8e73c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep2",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 2,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "70cd496c89567cf5b763769eb883d3b35ca381cfcee63d0f6a0aba1df4f72e38",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep3",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 3,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "3e64f3c8e160fb0a91998bc52c927c1caeff0d88a263242963bae658b68b91f2",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep4",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 4,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep4",
+          "config_sha256": "d226b97bdfd16a5a4c6954a9d54d2725c9c00517cbfe700e7d872d4f2ef83623",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep5",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 5,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep5",
+          "config_sha256": "f3e0de9c0e979ef3f59e6766a1ef5dd9d41d9b8275e14d1b998da68dd0272ac9",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep6",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 6,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep6",
+          "config_sha256": "f7876d289715137835e5fe9954c1c1e3057a4a75b95b33683075435018dd81f0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep7",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 7,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep7",
+          "config_sha256": "f3be39a16ecd1508d3b597a80f33947818822898861f32d0434d984b0ae60653",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep8",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 8,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep8",
+          "config_sha256": "9f9005dfd1810d67bbd329cc8d1fa102ebe8455ab9601dab44181a2fcebe511d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep9",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 9,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep9",
+          "config_sha256": "c32f5a6cf60465ae87d6d530bc075fd90dad9ac81ce41f876de5b11c8304b440",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep10",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 10,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep10",
+          "config_sha256": "747253d972198ad8ce12616724bf8e34044e37830cd62ef7676f8d036ee2f0ac",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep11",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 11,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep11",
+          "config_sha256": "6dd2b2e4172c34a712ab5067825c7f38acd8d79ba14b67a6cf16d3e0e6e44aea",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep12",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 12,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep12",
+          "config_sha256": "04298c7860b07c0dd53df0f3017cf448821fde56784409b4220bcfd57fe9e1a0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep13",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 13,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep13",
+          "config_sha256": "acc8aa3a88b0a1c2c48e4e78c91c9759affd25f9ba175398b396178c52bab185",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep14",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 14,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep14",
+          "config_sha256": "4da89bdf1f09baa1ed62b3e990fa6bf2f6784333f9bbbe2212d903ab58956e73",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep15",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 15,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep15",
+          "config_sha256": "d169d885e9429f274a256ea1286971045943fc503456e50e0180c8b79b613998",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep16",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 16,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep16",
+          "config_sha256": "d7e11e45b7605ad8d30606ce03d8205d8428ea930545d02ec8ce58fb9f5fbe0f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep17",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 17,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep17",
+          "config_sha256": "4a43de0c0c3b7d52447e6fc84a89a1db320c8b24cb6169a5581b91838d282071",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep18",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 18,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep18",
+          "config_sha256": "69ac5a5f41185ad103dcc98c79491b3647d0a57bc96b3d2f3d5929f04d9d8b4d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep19",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 19,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep19",
+          "config_sha256": "cb512f92820cf2b4ab415bd13d2763f003878b225d6f8d39bb9caab0d514bc72",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep20",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 20,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep20",
+          "config_sha256": "020a7b9afe21b7da0f666919c6ab56b79910f90fff5a19bd2381d0513c9c7611",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep21",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 21,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep21",
+          "config_sha256": "bfb4b6808fa6e312159dc29a8771279d7e78fce44dc0cf06d2f1cc15bec7a898",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep22",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 22,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep22",
+          "config_sha256": "4d658a390a43bb18a9b31b54b751809e5d2c4ad66b89d6380af542203a272537",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep23",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 23,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep23",
+          "config_sha256": "7902398c7f83828da52127dda6068830eeaba82077e6e66b834b628af2250f88",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep24",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 24,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep24",
+          "config_sha256": "301212104ea01049de11281b3becb69b2588259fa4914f1d1daab11e446a1188",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep25",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 25,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep25",
+          "config_sha256": "e925ba822e1e75b295fa4e6ae35598ed89fa97d5078dab21dd34d6fd9e33710b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep26",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 26,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep26",
+          "config_sha256": "50fa90518f593ef9aee5012bf1a5c4465ffce34081deaffcbb065197f18bd642",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep27",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 27,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep27",
+          "config_sha256": "c5ad8b0d10fafd56590abf62835cb69c89869a01ea5263b15fe38b72f2211381",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep28",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 28,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep28",
+          "config_sha256": "216862529d494731238bf75bfff62300c71bbd522bc40250da5903465239e030",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep29",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 29,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep29",
+          "config_sha256": "1c3903c37360b48ea9a38684475bbce1c119c5081599c2681a4e0538cb95f4f2",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep30",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 30,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep30",
+          "config_sha256": "806fa410c780c686351b52c82c4f2c1ef09f50b8431c610e036cd5a7f4e943ac",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep31",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 31,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep31",
+          "config_sha256": "01601161eafc8d79510cc4c8987c9c55c8c445ca880c515ffb480ef18854a921",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep32",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 32,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep32",
+          "config_sha256": "79fc17518384fb93dee0893d3f92e545396ffb7c4fbfd9fa415f222c043b70f2",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep33",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 33,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep33",
+          "config_sha256": "73478c863c7659aa448b7142e157d4e48b843901d3d36099dc1e865c77002eee",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep34",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 34,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep34",
+          "config_sha256": "3832b9092f9db7022ac25ed182265723d661841d9b5d0a00428d09132638e8f5",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep35",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 35,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep35",
+          "config_sha256": "96d1398a3311158324438605f05e40eca1e60f33e05f9f81f501d714fd46ec0c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep36",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 36,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep36",
+          "config_sha256": "c87970916f9d221f437f7831c5d6b919d2f66a9a972658a24f6995e6069f115e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep37",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 37,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep37",
+          "config_sha256": "7456a6a24f83495aa59391d66c512cc4943d45b65bb9fbbdce28fb0e90e67e67",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep38",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 38,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep38",
+          "config_sha256": "9ecc822b0dd1de85c299bd70fd09bf13e1a45722d9722c2e8c15b24e3ea7f434",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-4b__fully_connected__hintssplit__decoysFalse/rep39",
+      "cell": "gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 39,
+      "attrs": {
+        "model": "gemma3-4b",
+        "family": "gemma3",
+        "parameters": 4300079472,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/gemma3-4b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep39",
+          "config_sha256": "12e31b8e31dbc0cb7f9ac6373e9a8e145e9ffea519bd96d6fa0cb42ef4a20d33",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep0",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 0,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "dcb2879080ed9daab2d8912eb22f0dab41fa29fd71f869384b6f0248b27b3441",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep1",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 1,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "03ee7919346404ea8f05928044c3d149c06555b5e5e76e1f68cb4ab4676b1145",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep2",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 2,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "80571ed8e47513861f90896a52da3b0f64daed5a1aec49146b1229f6881ed592",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep3",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 3,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "b404a0fc1f31f48e1656a37a8756b561db6578208553a04cf25f1ed68743cc82",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep4",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 4,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep4",
+          "config_sha256": "1af9f13f4b17c8d66ec88f7b21f8981e3c08b804fd6a2039e1d50d45aed2363b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep5",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 5,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep5",
+          "config_sha256": "754c54579ed71e8a7e896ae2c802d86746b29efbf4e9c9011fc60198da65d99d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep6",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 6,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep6",
+          "config_sha256": "334262c1e250313099a835152263b61994a78118dc5e69595e51b59fc95eae65",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep7",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 7,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep7",
+          "config_sha256": "754f8ca8bd3908565286141c6f607d379a5e956640a7f033cf00ebdb790eddbb",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep8",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 8,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep8",
+          "config_sha256": "caebf0fbd58173ad4a9f0f7f103342d63a61009d8008e0b2828354add587296d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep9",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 9,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep9",
+          "config_sha256": "ce96747ed5075e6303be6a37b1c19f9830ab95e77d900abdb78664e9cd199c3a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep10",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 10,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep10",
+          "config_sha256": "139de08aa0f56d55013ede5dfb80f5f2c7caaee5decfeca4048bda68efb53035",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep11",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 11,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep11",
+          "config_sha256": "c636545b86fe0a4fd07c1c36d24a78df33bc8f853ea5f8661f68dd62a634da28",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep12",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 12,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep12",
+          "config_sha256": "8fc9070d2438c1c2c05e724f287242515dee88393ceee1feab082485915d60fd",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep13",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 13,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep13",
+          "config_sha256": "0ef0dba5af33fd5706723b0ded8d37562be6df020ff1d47f74d8fd9779b219b1",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep14",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 14,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep14",
+          "config_sha256": "5a083f349fc8885eebf569ddbbf580643d3155cc8ba86a7bdb316913b4ae2e55",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep15",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 15,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep15",
+          "config_sha256": "32e57f5e6ffd2143762dbf2edfc429f0faabae8892483c0f855a203da8d2d580",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep16",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 16,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep16",
+          "config_sha256": "62880d5757da0badc79f667d71de96968ecbf7de3b0a59f069c5da8273abaac1",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep17",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 17,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep17",
+          "config_sha256": "79fd2a3c5fda7576f014b5d1633e40e523d030b07841e40b3ece780f2e8f6765",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep18",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 18,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep18",
+          "config_sha256": "a39ab9338486400507734b96a07be179e76f3c5efb831acda5f0f6f016a0c93f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep19",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 19,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep19",
+          "config_sha256": "308ccc81e75f5d087a692483b79bcb292f7c85e2c8516c439f0b63db8847179e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep20",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 20,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep20",
+          "config_sha256": "75edddf0c9f7b14be535edf838e926f0f9ddcdcbfad9e2dd97421eb815620d6b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep21",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 21,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep21",
+          "config_sha256": "31bbc73cf46353d084769259e72987e7484cdb5452beee635552a9dd09c3f299",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep22",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 22,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep22",
+          "config_sha256": "8b5ebdb7cc4dad200068aafdcad9f228a8b958115162d0f86607e5b95695356b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep23",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 23,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep23",
+          "config_sha256": "e9c914b3d02fa73895234f55a61d3a50217840bc17d1f229eac465548a0e30be",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep24",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 24,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep24",
+          "config_sha256": "5a4a6288e05873c24c516282252cefae5e86de1cf60f6493a38e23356027e331",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep25",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 25,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep25",
+          "config_sha256": "6c1a7c06ccf1bdc62b69bf46039f804556bae846dca0aee267cfd57eb5ef7521",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep26",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 26,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep26",
+          "config_sha256": "c0c41a1f26e49d41acf5ba4923ebbc61d801fe325d52d58bba034f6e206d2f16",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep27",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 27,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep27",
+          "config_sha256": "8497aa65a0aa479382d6ea82bfc6076ad38fb80c9c4f3c9b32cd3c2694bf83a7",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep28",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 28,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep28",
+          "config_sha256": "c91a499ea71da627e363562c238c0e871305fadb41f5309a9b7cb88f2b3b36e1",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep29",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 29,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep29",
+          "config_sha256": "95e550ea7f295b3c4ebf9afeeb420c91d29f910bb900ab63706163647074bb8b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep30",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 30,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep30",
+          "config_sha256": "96849c94efe6b98e1c49669d80f83ab8c4fd94217d984bc4cc9fd58eb77de829",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep31",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 31,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep31",
+          "config_sha256": "ba528747e886b9442bea02794f62d7d1af42d701b97c75c75ee9c1551f277894",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep32",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 32,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep32",
+          "config_sha256": "93fe252bdb5c41e8ed28ac58b09b301e0afd999439b2ce0a97747947631fd60c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep33",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 33,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep33",
+          "config_sha256": "475d71a9b8c818f03e8cdabaaeb59ab0f1e813c202b7b69a0b55306cacf042f5",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep34",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 34,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep34",
+          "config_sha256": "a65c53e4d16812870721c4cbf79bb4449ed6fe8200f533a20713f042b8c2d42e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep35",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 35,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep35",
+          "config_sha256": "be5b511cc1751614dbd68bfab6df364a36f1ad5f7a10bc0f603848b0a5a7f6f0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep36",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 36,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep36",
+          "config_sha256": "7d6a4ecdd26e302782fa117aefcec7e51d314c1f2e9d7dd690a7095dba762904",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep37",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 37,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep37",
+          "config_sha256": "21e65d4d7eef2332b8fa5c25e03a880bcf5a295c34d6af700dd30ea161cea4cb",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep38",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 38,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep38",
+          "config_sha256": "41d35d48016f6fd1b9ff0829378ea32064bbc19bc8bb4219319be836abef3b7e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysTrue/rep39",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "replicate": 39,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep39",
+          "config_sha256": "f64c46fb264a28663e6eb3f33654deadab609790b7e9a6fef7f38478f8e4c12d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep0",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 0,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "e770de83da5fd8e4186403f62d39e1323b074d1041f3996b2be9b8b8117f4eb3",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep1",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 1,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "7ac2b9784340f7f02f14da7d0b132c4cfe6f434a8dcf6c482df90b36540cf013",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep2",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 2,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "f65bb4a7667b88d5bb92f20874018e68e419c259f57cdced43865925aef8574d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep3",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 3,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "5d31945af256f141d4d03f59fa69b4e3657b5bc100a4ef78692d0f16d1c83a01",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep4",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 4,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep4",
+          "config_sha256": "b3f0da1c3b9460358d7f259cd784979c35982822af31068434a15c6b7a193b74",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep5",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 5,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep5",
+          "config_sha256": "ca27e1f5db8a60d92ec5cd784f54cd6d960697037a16054b6d6811599f5fe831",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep6",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 6,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep6",
+          "config_sha256": "7921b3d803c28f95a9df41817c47dd7335a700125547a88084c58be0a955f51b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep7",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 7,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep7",
+          "config_sha256": "fe3ef2e893f17af49d5bc042a1e9d8859c06b52c6c183faf4208069bf15db24a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep8",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 8,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep8",
+          "config_sha256": "bfeb8f56544348efa782da3eaa40494a5d6cfc2fe66537bd2702cbe5e5c1b6ea",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep9",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 9,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep9",
+          "config_sha256": "6ffd2c0bb8aaebf47b6c92f00b3e657cafc87147d99f0b0ffc722ba347be5ce6",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep10",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 10,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep10",
+          "config_sha256": "85c9d7ff4b0f202e3deeaa62d99bf050baea1cb36312fe2b4c11634f3e992974",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep11",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 11,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep11",
+          "config_sha256": "e4ae32c2270ef682059654ac4d690f4fb4198a6a395cc93071be2fb2ca005aee",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep12",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 12,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep12",
+          "config_sha256": "ab03e2d3f96a0f04c3f85a31d6590f30b348b5c4313eeadaac6632d4c532715d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep13",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 13,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep13",
+          "config_sha256": "32ad9a111ba338cfcd09ad518a699876556797a77373428e839c945ff4db099d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep14",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 14,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep14",
+          "config_sha256": "6481da0c2e562c441202abd6626684a4b2e2de524e679cc62cc99fb23c7db219",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep15",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 15,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep15",
+          "config_sha256": "02a3eecce8de2c0d3bc7945f9051b37a11b3767cbf65ea0b4cb2360ee8182507",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep16",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 16,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep16",
+          "config_sha256": "4ef73fccf2b9ac0a33bfd3f3b774e9aad4f223d91dfad8bcf46effa98d115afc",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep17",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 17,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep17",
+          "config_sha256": "e0127f398bc1bd5fea4be7bd7a0a4cd4b2beda6057239bb5a224aba47767d054",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep18",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 18,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep18",
+          "config_sha256": "20347d1201711195116ec1e3ba9244d4cc5229527a3f6a023d5ccf28636a4d9a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep19",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 19,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep19",
+          "config_sha256": "778f61c72ae3ac580fbc6d5907833e60f7944f9dbc68cee3654ca0ba220b6e99",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep20",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 20,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep20",
+          "config_sha256": "bfe7f948b7000bc6b37c7e0fd8ba7cb6cb6c1c34a0e28c50733349b519ab0a14",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep21",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 21,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep21",
+          "config_sha256": "0832535e386ce39184eb756149da6c28bd101a60fabc66398871c0dda6c28a2f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep22",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 22,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep22",
+          "config_sha256": "7da96102cde76d48d2b98a46efbf757b34be11d8403f43f75341ed4c8c7dfb36",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep23",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 23,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep23",
+          "config_sha256": "86e1c9f5d0f47b4591960c631bad3b8ee94b5284bc053a8296c6eabc6b684a9f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep24",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 24,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep24",
+          "config_sha256": "ab9760b928554e1b52e4b82a217f60ccf141366812b2614e8197319ca82bf77a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep25",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 25,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep25",
+          "config_sha256": "7c46fcb851e937e3bdc21dfebc1f284f7a6acf445b5588d302af66ef7dab02e0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep26",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 26,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep26",
+          "config_sha256": "4e0b759477748525f47252873a0d83f7bdefad90eeb08765be2cfa13391c07b0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep27",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 27,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep27",
+          "config_sha256": "7f5c526cbb76583682f73b8cea4f4df2763bd4346504920edcab7eaafe3d71cc",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep28",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 28,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep28",
+          "config_sha256": "a7da44285ca2bd2c72ce7e7fe0c969b30631e238af4d36c5aebec10ab0963393",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep29",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 29,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep29",
+          "config_sha256": "d7513401ddc843fd42fa9a61f8501443b8d51a4563526af73a36be9dc04d33b4",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep30",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 30,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep30",
+          "config_sha256": "d3bc9a7d9741f5a8c20ac6797da17ab5bff875de709666bcf4174b1e00644611",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep31",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 31,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep31",
+          "config_sha256": "4cb2a86b7655c63cec268dea3b321d293916007474b4808372e5ebe77d697d7d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep32",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 32,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep32",
+          "config_sha256": "cc72cc9eb87c5780c2c3a57a616ecd38f459959bced3610a8d07bebfc8fe486c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep33",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 33,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep33",
+          "config_sha256": "2a6d95899f4b2f50e302d67f64228e0d48ec87674d9a5290cda5b4dc5e86e228",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep34",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 34,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep34",
+          "config_sha256": "f2a8df738e0866419e08b4075b45d8246a2a0d639b919afafa216c279501cacf",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep35",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 35,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep35",
+          "config_sha256": "06509cd7c0ce99f3fa54fcc20d6067dfb832d9d755b5e55bff2263057445dc8d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep36",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 36,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep36",
+          "config_sha256": "0a0d17c6d29ccc58cb11aabca9a038fdd9292790a31c8684bd5880c898c4089b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep37",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 37,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep37",
+          "config_sha256": "eeb9275cfd2f2536184652452494d74276f35b6b32f39e1026f39567dbfcaecb",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep38",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 38,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep38",
+          "config_sha256": "53a0841468800d239b6daa62e4a878e73b2d59a78bc5aabebb82dbb719926da8",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__hintssplit__decoysFalse/rep39",
+      "cell": "llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "replicate": 39,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false
+      },
+      "folder": "runs/hints2_share/llama3.2-3b__fully_connected__hintssplit__decoysFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep39",
+          "config_sha256": "6368dc007eb22213620de479ba45474f5dd309625c8485de369284554a1d250a",
+          "same_as": null
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-11-05T02:17:35",
+  "environment": {
+    "git": {
+      "commit": "07adf9f869ea94298062249f18280d6ef324d5e2",
+      "dirty": true
+    },
+    "python": "3.11.18",
+    "platform": "Linux-6.12.113+deb13-amd64-x86_64-with-glibc2.41",
+    "libraries": {
+      "torch": "2.11.0+cu128",
+      "transformers": "5.22.0",
+      "accelerate": "1.15.0",
+      "sentence-transformers": "6.2.0",
+      "numpy": "2.4.6",
+      "pydantic": "2.14.2"
+    },
+    "hardware": {
+      "torch_loaded": false,
+      "cuda": null,
+      "gpus": []
+    }
+  }
+}

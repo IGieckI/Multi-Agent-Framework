@@ -1,0 +1,143 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "bird",
+      "desert",
+      "drone",
+      "electricity",
+      "machine",
+      "sap",
+      "scissors",
+      "stone",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "confetti",
+    "intermediate": [
+      "paper"
+    ],
+    "distractors": [
+      "bird",
+      "desert",
+      "drone",
+      "electricity",
+      "sap",
+      "stone"
+    ],
+    "path": [
+      [
+        "machine",
+        "wood",
+        "paper"
+      ],
+      [
+        "paper",
+        "scissors",
+        "confetti"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.098
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "confetti",
+        "paper",
+        "wall"
+      ],
+      "coverage": 0.0588,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "axe",
+        "confetti",
+        "paper",
+        "tool"
+      ],
+      "coverage": 0.0784,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "axe",
+        "tool"
+      ],
+      "coverage": 0.0392,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "confetti",
+        "paper"
+      ],
+      "coverage": 0.0392,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "confetti",
+        "paper"
+      ],
+      "coverage": 0.0392,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "confetti",
+        "paper"
+      ],
+      "coverage": 0.0392,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 26322,
+    "completion_tokens": 3229,
+    "calls": 24,
+    "wall_clock_s": 106.717,
+    "lines": {
+      "agents": {
+        "total_tokens": 26322,
+        "completion_tokens": 3229,
+        "calls": 24
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

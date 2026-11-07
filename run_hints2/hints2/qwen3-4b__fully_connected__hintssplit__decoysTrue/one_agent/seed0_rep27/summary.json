@@ -1,0 +1,81 @@
+{
+  "ended_by": "all_solved",
+  "steps": 3,
+  "task": {
+    "initial": [
+      "cheese",
+      "container",
+      "continent",
+      "gift",
+      "love",
+      "sandwich",
+      "sheep",
+      "sword",
+      "warmth"
+    ],
+    "max_steps": 4,
+    "target": "grilled cheese",
+    "intermediate": [
+      "toast"
+    ],
+    "distractors": [
+      "container",
+      "continent",
+      "gift",
+      "love",
+      "sheep",
+      "sword"
+    ],
+    "path": [
+      [
+        "sandwich",
+        "warmth",
+        "toast"
+      ],
+      [
+        "cheese",
+        "toast",
+        "grilled cheese"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 3,
+    "union_coverage": 0.1579
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "cheeseburger",
+        "grilled cheese",
+        "toast"
+      ],
+      "coverage": 0.1579,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1754,
+    "completion_tokens": 233,
+    "calls": 3,
+    "wall_clock_s": 13.861,
+    "lines": {
+      "agents": {
+        "total_tokens": 1754,
+        "completion_tokens": 233,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

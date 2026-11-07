@@ -1,0 +1,140 @@
+{
+  "ended_by": "all_solved",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "banana",
+      "bird",
+      "graveyard",
+      "heat",
+      "island",
+      "mountain goat",
+      "rainbow",
+      "sand",
+      "wheel"
+    ],
+    "max_steps": 4,
+    "target": "prism",
+    "intermediate": [
+      "glass"
+    ],
+    "distractors": [
+      "banana",
+      "bird",
+      "graveyard",
+      "island",
+      "mountain goat",
+      "wheel"
+    ],
+    "path": [
+      [
+        "heat",
+        "sand",
+        "glass"
+      ],
+      [
+        "glass",
+        "rainbow",
+        "prism"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0909
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "glass",
+        "prism"
+      ],
+      "coverage": 0.0909,
+      "invalid": 0,
+      "no_valid_answers": 2
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "glass",
+        "prism"
+      ],
+      "coverage": 0.0909,
+      "invalid": 1,
+      "no_valid_answers": 1
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "glass",
+        "prism"
+      ],
+      "coverage": 0.0909,
+      "invalid": 0,
+      "no_valid_answers": 2
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "glass",
+        "prism"
+      ],
+      "coverage": 0.0909,
+      "invalid": 1,
+      "no_valid_answers": 1
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "glass",
+        "prism"
+      ],
+      "coverage": 0.0909,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "glass",
+        "prism"
+      ],
+      "coverage": 0.0909,
+      "invalid": 0,
+      "no_valid_answers": 2
+    }
+  },
+  "usage": {
+    "total_tokens": 29594,
+    "completion_tokens": 5046,
+    "calls": 42,
+    "wall_clock_s": 313.982,
+    "lines": {
+      "agents": {
+        "total_tokens": 29594,
+        "completion_tokens": 5046,
+        "calls": 42
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

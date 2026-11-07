@@ -1,0 +1,80 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "clay",
+      "container",
+      "darkness",
+      "house",
+      "life",
+      "manatee",
+      "mountain goat",
+      "pencil",
+      "steel"
+    ],
+    "max_steps": 4,
+    "target": "family",
+    "intermediate": [
+      "human"
+    ],
+    "distractors": [
+      "container",
+      "darkness",
+      "manatee",
+      "mountain goat",
+      "pencil",
+      "steel"
+    ],
+    "path": [
+      [
+        "clay",
+        "life",
+        "human"
+      ],
+      [
+        "house",
+        "human",
+        "family"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0153
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "family",
+        "human"
+      ],
+      "coverage": 0.0153,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 1644,
+    "completion_tokens": 161,
+    "calls": 3,
+    "wall_clock_s": 9.716,
+    "lines": {
+      "agents": {
+        "total_tokens": 1644,
+        "completion_tokens": 161,
+        "calls": 3
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

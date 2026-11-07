@@ -1,0 +1,104 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "bird",
+      "desert",
+      "drone",
+      "electricity",
+      "machine",
+      "sap",
+      "scissors",
+      "stone",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "confetti",
+    "intermediate": [
+      "paper"
+    ],
+    "distractors": [
+      "bird",
+      "desert",
+      "drone",
+      "electricity",
+      "sap",
+      "stone"
+    ],
+    "path": [
+      [
+        "machine",
+        "wood",
+        "paper"
+      ],
+      [
+        "paper",
+        "scissors",
+        "confetti"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.0392
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "confetti",
+        "paper"
+      ],
+      "coverage": 0.0392,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "confetti",
+        "paper"
+      ],
+      "coverage": 0.0392,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "confetti",
+        "paper"
+      ],
+      "coverage": 0.0392,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5419,
+    "completion_tokens": 742,
+    "calls": 8,
+    "wall_clock_s": 61.532,
+    "lines": {
+      "agents": {
+        "total_tokens": 5419,
+        "completion_tokens": 742,
+        "calls": 8
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

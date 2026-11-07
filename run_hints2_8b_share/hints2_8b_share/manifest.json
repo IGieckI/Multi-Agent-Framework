@@ -1,0 +1,3796 @@
+{
+  "experiment": "hints2_8b_share",
+  "grid": {
+    "name": "hints2_8b_share",
+    "base": {
+      "task": {
+        "name": "wordcraft",
+        "type": "targeted",
+        "max_steps": 4,
+        "repeat_consumes_step": true,
+        "prompts": "v2",
+        "depth": 2,
+        "distractors": 6,
+        "notes": 2,
+        "allow_shortcuts": false,
+        "share_notes": true
+      },
+      "engine": {
+        "max_concurrency": 1
+      },
+      "sampling": {
+        "temperature": 1.0
+      },
+      "context": {
+        "max_prompt_tokens": 6000,
+        "truncation": "oldest_first"
+      },
+      "retries": {
+        "max_parse_attempts": 3,
+        "max_attempts": 3
+      },
+      "budget": {
+        "wall_clock_s": 3600
+      }
+    },
+    "models": [
+      "qwen3-8b"
+    ],
+    "protocols": [
+      {
+        "name": "fully_connected",
+        "file": "configs/protocols/fully_connected.yaml",
+        "personas": {}
+      }
+    ],
+    "task": [
+      {
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      {
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      {
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      {
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      }
+    ],
+    "versions": [
+      "base"
+    ],
+    "replicates": 40,
+    "seed": 0
+  },
+  "grid_sha256": "4bdce23d0f15173c78054f856d06ff5f31a7e32d3ede01a2353c035760e7ace3",
+  "models": {
+    "qwen3-8b": {
+      "family": "qwen3",
+      "model": "Qwen/Qwen3-8B",
+      "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+      "parameters": 8190735360,
+      "link": "https://huggingface.co/Qwen/Qwen3-8B",
+      "gated": false,
+      "native_reasoning": true,
+      "sampling": {
+        "max_tokens": 256,
+        "reasoning": false,
+        "top_p": 1.0,
+        "top_k": 0
+      }
+    }
+  },
+  "units": [
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep0",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 0,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "bd775c54f7a2a380ebb40735799fc13e24a2dd1843ed37df8308d6395e0874ad",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep1",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 1,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "6b76759585fa064fc41a13f0b2b7c80914aa397fd875c554eff34e13347da01c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep2",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 2,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "620db64d13dab02e29dab4c5ad753fe90f4994c22b108d652188e32f65e445f5",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep3",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 3,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "7a1c7d96d810b9ed7579c0ed7d85e5142e5b4ad3f0e23048fe69050bb88f013b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep4",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 4,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep4",
+          "config_sha256": "acfa23b89c33af8f0636e45d975d81f71f22193e1997a4ce00190b765a4bbacf",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep5",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 5,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep5",
+          "config_sha256": "aa599e91aeb32cf1e7b1cfb37b2bf16a8b3ea9f2f67ff29e83e1f45197439d30",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep6",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 6,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep6",
+          "config_sha256": "9ce2a6a41202e6e26dfd3682d5eeac5003df7b8f5b9c1a3bfea44480368198d5",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep7",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 7,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep7",
+          "config_sha256": "481a7545e55bbe3054f3aa4d1606512b9b486b74d582f893f4c7b2cc482491d4",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep8",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 8,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep8",
+          "config_sha256": "e1d7686e3b271a98544cc8f1c0a409f2eba9c3705fa7b748d185a03d85563b1c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep9",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 9,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep9",
+          "config_sha256": "1b98e4f18b3ef1773e15c2ee6d6b8f73431fb98def959e3400eb847fb67d6c87",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep10",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 10,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep10",
+          "config_sha256": "8b1657555a9367bac6b238e029556fd196426a1f9d723fc42162a346d55ddf99",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep11",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 11,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep11",
+          "config_sha256": "9cfe55031733fc358c44ed21419bbd4b086a5cb5196551213a6af7c66f54cf03",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep12",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 12,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep12",
+          "config_sha256": "b5feeadb19db39c8fb322b791e337fd9e4107a9437d15b4bfc6184a9cdb471de",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep13",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 13,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep13",
+          "config_sha256": "a23dcccceade69e8b9bab51f4f31e67e25334182bee0183e1e6af61b900d3529",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep14",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 14,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep14",
+          "config_sha256": "c3a714a6cdf71dfeb40a91b1f8729452f0587731462e6d58094e69d869f43538",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep15",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 15,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep15",
+          "config_sha256": "3c3b345af90df2ee54870f0f5e76f0bf6f5a4c1ba70c3861cc69cc56a90af926",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep16",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 16,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep16",
+          "config_sha256": "dc02c7f90dabef94c4ef4f81def21812e6e568e80ee17b985035db0e0a5be945",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep17",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 17,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep17",
+          "config_sha256": "a81469b212325d7e7b5a8f65987cdc51fe43c2b36074456bcd808e4275905673",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep18",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 18,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep18",
+          "config_sha256": "104ff7bc3daa2cce108c1d2edaffbe16a31131bfa7dfe9ce14cff562d3f64c58",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep19",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 19,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep19",
+          "config_sha256": "4e9a15b936adf786fcd64db17e3397c9857c0a65d8ee6289c3422ba17f72a14e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep20",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 20,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep20",
+          "config_sha256": "253d8912d33c81613fe89854b268ea9d3fa9dfe637291a7265d1eb7acc1d6632",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep21",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 21,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep21",
+          "config_sha256": "5140268fd937b775c765f73c60400475928a02286a0b800f36656002218fcc5a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep22",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 22,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep22",
+          "config_sha256": "5024fa6ab4d7a59174da172ea3ddabd544d388737829b2e4f5d3704ce9a1f2d1",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep23",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 23,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep23",
+          "config_sha256": "cfde0be5c6ce73620acbfbc5ec40b04d7e29c24390b04c6d4b6e4b43b40e9bd8",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep24",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 24,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep24",
+          "config_sha256": "7cdf0cd6c18e3dac223650de1a4d6f0c7bd23a768592fcb31953835a36ef76f8",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep25",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 25,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep25",
+          "config_sha256": "89e89ddd9053567643f19ec1d43935f5d35437b4f117239125792361157a7bfd",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep26",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 26,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep26",
+          "config_sha256": "8d92485f2e2fa18f90561fd3bfbfaa8ce8323a6b7a0dda2260e19113d72a0a04",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep27",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 27,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep27",
+          "config_sha256": "32509e8cdd555b1a4f1cdd45887c2efe2cdd63769a6360b7ab4f64172f81c3f0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep28",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 28,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep28",
+          "config_sha256": "34357f47f9a0dd4b9b61ae8add4af61e5fccbce1bd38e2d0560e9d28efedc7f9",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep29",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 29,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep29",
+          "config_sha256": "515774ed43ae7b1a9519dcb5705f411df0052ec3d57a7ad814ca023cdff83fe7",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep30",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 30,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep30",
+          "config_sha256": "ffb238c492f44c16c0889fd9bc718cdba6ef393dff9d792eaba18a792a9b0c8e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep31",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 31,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep31",
+          "config_sha256": "6bf55a91300c945e8f76d42b31969aa7c0fc569c825e74fb31f84dd91db27209",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep32",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 32,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep32",
+          "config_sha256": "35d859901352361e467c48c9b576be3a49456a50122c9eba828204b3fd029440",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep33",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 33,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep33",
+          "config_sha256": "9dc65e3e40f6e5be3697a384da886b357f146dd1ee58ac81004b5eef29d9fe95",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep34",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 34,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep34",
+          "config_sha256": "87e7e5bd4c914ad5f6a0fdcad2ec05622a35984ddd00e712be1cfddee9ea72c1",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep35",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 35,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep35",
+          "config_sha256": "4e277c948770ff05da2f9f21a4dc34d2f52e266dbf41ac660f181ad316b4adee",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep36",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 36,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep36",
+          "config_sha256": "31b18aa3ac5cab1ab4eec8fd93dcb6f6574bdc071e0217f1feb93175c476ebf9",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep37",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 37,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep37",
+          "config_sha256": "fed655bc3dd5a25762160cbada3d3b1ada2d8272683ea38d5fe4499004e26559",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep38",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 38,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep38",
+          "config_sha256": "f4b0d76fda02808299458f647d2d1b6e9cc2e9c1c1eeb4bbbdd43eed4c3bbfd2",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse/rep39",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "replicate": 39,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep39",
+          "config_sha256": "b8f6db2949a0008e47882035f42e055bb397a4a9f7aa6835876046764567dbf7",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep0",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 0,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "469dfc2fca6886d8e5de64752f1d786e32c874abd79b23b06bf297e0762783f8",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep1",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 1,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "d44bacb68a272e321026c393afec4beba9f8642380a4ebfe81d83d85fa612771",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep2",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 2,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "da830a9a308b1b2427b87359b264a8c00fbe0e4cfa0ad8c1aa236e5e861d5acc",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep3",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 3,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "cebba95c6880796706be8f7e7d7ebefd5270094b79ec2d0593f0e8b492f4bfc6",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep4",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 4,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep4",
+          "config_sha256": "5b36c0cfefebcaf8cf2dd6f0caefd7ef7ffadbe247ef8309677e4b811fd746a8",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep5",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 5,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep5",
+          "config_sha256": "31bbec0b196af5a9bd43f7f309936f2354ce4204d11bd901d44a801050d44717",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep6",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 6,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep6",
+          "config_sha256": "3ef3728e630d5064887e8061c651ce0f33541723d1508d5e2fcffbbb0b6b3065",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep7",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 7,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep7",
+          "config_sha256": "f2b38453f4ee564880c3061bdecd1a30da9434700c5ef600ef24b7716b42b950",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep8",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 8,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep8",
+          "config_sha256": "ebee33bcf052c722df921bf74e1c2def87f1bf617e1e75d1da3e8ab5880d0f65",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep9",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 9,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep9",
+          "config_sha256": "97c2f2c2946f1f408731e77ea25a6b3f60fc30515c9ac1dd5abfcd92216f7bad",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep10",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 10,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep10",
+          "config_sha256": "2082a8fce4661d648535f62b203ca4fb4cb03aa8a00120795fe079c8b8834103",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep11",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 11,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep11",
+          "config_sha256": "c37f69869ec7a82d3b6720168807b4649a96d2ccc1adafee97b79a67a1417088",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep12",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 12,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep12",
+          "config_sha256": "910f652c21e8cda320154986f12799f41e338ef2d73bd914d27b069ffd0f895c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep13",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 13,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep13",
+          "config_sha256": "9d72c328b250ed7fb47968375ca96ea416f947e0bfc1eb2227ae721cf2cfeb4d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep14",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 14,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep14",
+          "config_sha256": "72e6e1c7c5b4c02cdc0c796a84c95e0256483f50eb3c7b6e9fd2b8d00c15459b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep15",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 15,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep15",
+          "config_sha256": "1b5d35dbfbc5e05e0adb7c9eaf12cb005854ddb41a12f4ace6ad9bff2cf7872b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep16",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 16,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep16",
+          "config_sha256": "a8908e5b3d14aef99ea59a72085445480fe587e2f12da3825708b0558deb4140",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep17",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 17,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep17",
+          "config_sha256": "08f58875f67973aedf6359b773b2aeb9509a251537e5938a9abc27dfe056f7e3",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep18",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 18,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep18",
+          "config_sha256": "3f12043f18f8fbe501974d1472aa7ad2981f5c25cd907fd23a7408419ea011a2",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep19",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 19,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep19",
+          "config_sha256": "efc60f653d11030adfc738900c66894c7f094280ecc7696cfdfb7fb9fa2291a5",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep20",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 20,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep20",
+          "config_sha256": "346dd025ea3066a531e89825185fbeb74b18925f390eb909e9834bc13d2d707d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep21",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 21,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep21",
+          "config_sha256": "31717e44fd735cf6e135dd319799fedd09402e421f04e8e141a72b2780c5f463",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep22",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 22,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep22",
+          "config_sha256": "168f8fbf496bc8a27e0346861b0d76d3a4a8d7e9fe1cc4517ff4b99632104307",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep23",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 23,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep23",
+          "config_sha256": "8b088ccf302e8eba938df59a31c01a70f6eee78ef3429de421daaf2a59924e02",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep24",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 24,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep24",
+          "config_sha256": "bdf73e510e314a9d21c8ce44f4fb340a21f4b95d7e597ed646d033292e67dae0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep25",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 25,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep25",
+          "config_sha256": "6437cb55fceb9859fca07d0ec5c531389616f14160f856f78878fe69b9211537",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep26",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 26,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep26",
+          "config_sha256": "efdd6c0fd0b77a4fa63e259241d501fed231d17ba37a867836acf6abd6cc4f4d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep27",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 27,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep27",
+          "config_sha256": "5e89cb9f34715f4f53f7b4fff063be6793a89a81cdbd857928647f202f33aebc",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep28",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 28,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep28",
+          "config_sha256": "54cab290180c1f5ccd02f4ba0c23c8b861395de413ebb6c01057f8db29fd0f07",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep29",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 29,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep29",
+          "config_sha256": "2f9384ca4125daa0a3bed287fbd7256ae2e7b758baf8d3c14cebcf0d557b2d09",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep30",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 30,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep30",
+          "config_sha256": "aed0287428ce4bbdb624714366488f15929d53923b457a3a42b00d6f699d91de",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep31",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 31,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep31",
+          "config_sha256": "d09cac1598fe390a7bf4d2f39b99364c8007e5fba9dbc69d55482439c5f1ae41",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep32",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 32,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep32",
+          "config_sha256": "c08502ea9b092f9cfc5890d1968cd695b0edb569379dd9afd2479595f3095d27",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep33",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 33,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep33",
+          "config_sha256": "85012b62b80c3eb259406efa945ffa700fb6131da2b77203194a2f090934913c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep34",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 34,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep34",
+          "config_sha256": "48eb2d90c1bf66ee488c6c154bb5c2f478eebb4693da4c7d089813c3d58a65ea",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep35",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 35,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep35",
+          "config_sha256": "0922418d61035311c701e2ff5fc935a5abd30fa5ce576642c9904512701254fb",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep36",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 36,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep36",
+          "config_sha256": "f817c1df7684a53a76b6747f2e3ceaf7fe92ca837ed85ec3497dbf27185d6043",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep37",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 37,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep37",
+          "config_sha256": "2a2ee5d73a9e15a6d6922985469b92afbf7125f6ace7a11720046d166f5b01a2",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep38",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 38,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep38",
+          "config_sha256": "fa7b839168d7869893db357622f46cff568a307a94914d8507b493ac679fcbfa",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse/rep39",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "replicate": 39,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": false
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesFalse",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep39",
+          "config_sha256": "cafd997c32db91dfa0017183691cd007e73977e244a0289d5851125845d72e5d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep0",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 0,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "4d06d346a2b83e98f003d41a23478ef2d39ea485d381843fb4f3f0443e6ef895",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep1",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 1,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "a98bb9002781b4192e7d7a877cf0c4ecc5375a6f0c5fc4ee292608d831ab22b0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep2",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 2,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "2c7117d86291d971bd66ca7ab80c669afce96a9c74ddea3f80bcf23fe43968e0",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep3",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 3,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "9c8287a960e7c04d11dcef14c1fee63edddfe88fcead03840c48b1008c8d9725",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep4",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 4,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep4",
+          "config_sha256": "b7df5dbf4f4adf4fa6fea326e8a7e573d2ca514582c3a6ba0ea17dd3b67bc38f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep5",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 5,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep5",
+          "config_sha256": "080217479bc0c68c68d4d70ccbe43bb599fcf36ef4262434a4df1d0ea8c9e4d8",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep6",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 6,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep6",
+          "config_sha256": "831a3e4ccf0d178ae158123fd984e24545719de1ed297946632f1ed08fdfb432",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep7",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 7,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep7",
+          "config_sha256": "ec13c538cdc5505e267c717f582b216700c935c9bf4a1e54c5680bb2255356ed",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep8",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 8,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep8",
+          "config_sha256": "c9ac57da0e1d39cec6f75d068d2ebc23c55ae8efc0c69c83ca8d66466aa34706",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep9",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 9,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep9",
+          "config_sha256": "27e70b664dfe1e2ba006db9d09c0136860035c037ba209f56ad878d6ff49c1a5",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep10",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 10,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep10",
+          "config_sha256": "2beeaf4d5aa8d47af49ef5b90e919a0166a999439b3ed4ed199279cb6ed6779d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep11",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 11,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep11",
+          "config_sha256": "6783f71ccb4ca690cfcfc1df696c2d137277da69aac8ba2655c6d66df655a35b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep12",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 12,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep12",
+          "config_sha256": "4df1f0b16456c95c70c639f592782ba53d1b771ec215d68346d362024ab17a4e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep13",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 13,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep13",
+          "config_sha256": "595422629d1b87aefdf4e377a585518aa0d8916fe97dbf83504adb59e908b15d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep14",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 14,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep14",
+          "config_sha256": "3f8ae6c787afdde759dc82c564dee81ba0c909822860ede9d7161cd8f0e6d15d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep15",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 15,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep15",
+          "config_sha256": "508883c1e431c82a905cf2e1b0a6755748b052ee899e236f744016d7b43d82f7",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep16",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 16,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep16",
+          "config_sha256": "4f88642167873d8d8ede566f04230fa049aa4b358d1c0451d67567244b0da988",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep17",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 17,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep17",
+          "config_sha256": "1616387bfda0cedd4b046bfd5d89e456c990df5716666bd49f5fd4d34d980c8d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep18",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 18,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep18",
+          "config_sha256": "fca56d29d3e772a492d9f424f4a9e359e63ba421b09ae32d0c73e4c69f22a47a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep19",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 19,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep19",
+          "config_sha256": "cb43c83373b7e770aaae1c0d6533e9ae01fa26c7b7b837896f45e12a2e081866",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep20",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 20,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep20",
+          "config_sha256": "45304ff01d358102c3ab98de3bb63b2aca345c8c823bf2b1d93f0ceec054f894",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep21",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 21,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep21",
+          "config_sha256": "4925f7347013e7a88e318f5f668ab76629fc0f689c89ba6be7a13aebfb2e56ed",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep22",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 22,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep22",
+          "config_sha256": "ab0c39b1c108c093f773ddda839a9370795c75b9b509d2e682a8cde11a1ca5ae",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep23",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 23,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep23",
+          "config_sha256": "500e246e7674b464995743095bf4532bdb50ec46b9c7d277ddbe59f21c1292e5",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep24",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 24,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep24",
+          "config_sha256": "0535604907e2b37aa7714235f6ef2507dea2b98115301e7703bf2e8e341522cd",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep25",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 25,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep25",
+          "config_sha256": "ca7110f20ee7804c72accadce4f7d13b3e78871b8c6c52ef5e8b40c686c50e13",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep26",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 26,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep26",
+          "config_sha256": "1fd10872ba59d5cc01d325b60a82acc445f3132a05339e121818f168c6379494",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep27",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 27,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep27",
+          "config_sha256": "fca032569be8420f820521f582a33d6c6209fd287010fb03854f65069515c0ff",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep28",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 28,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep28",
+          "config_sha256": "5b41afc9740a05550af9958c328b0c05543972b0797cd05c67c50d267b38dfb8",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep29",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 29,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep29",
+          "config_sha256": "988277f43e9c752a0a2972db9ec1010bed4492433ea45473ef885a4c3b6d857f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep30",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 30,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep30",
+          "config_sha256": "a306d5f854fbccc83b39d6e86b68fa9a60a402ae2e143e8475d366152cf8aa8e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep31",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 31,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep31",
+          "config_sha256": "92b315dbf9cab85d1ae2f40ff73e942963b472184d550f798617d6824df8b128",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep32",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 32,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep32",
+          "config_sha256": "74dbf4bd0ea812ff6d65707a8c7d1d8bfb4a6e58853b6aa3cbd7ae7c8125ba8c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep33",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 33,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep33",
+          "config_sha256": "5bb4f6582b0d372fd8874aa9cde3af5ec1e6e5308289d67ab27f5d41af10d2d4",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep34",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 34,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep34",
+          "config_sha256": "6dd964dec40359f30ab917d4c628c40dfc0853d49669bc0563119b0740a3365b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep35",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 35,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep35",
+          "config_sha256": "dfd74887a7b1daf4c3737bb53b264d4bbd73490b06350e0663de93057178815d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep36",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 36,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep36",
+          "config_sha256": "80333926129cf4d668b827ec12f3ad163c42779dc42060c3e3b078b969d04f1c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep37",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 37,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep37",
+          "config_sha256": "0e7b62cef712fa73130ece912ca3dc86f1d423cef65250ff576678e736fe5c64",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep38",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 38,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep38",
+          "config_sha256": "a340d4425df6f5881df87c73d1e89e2cd84db797e361d83dee7153a6ff59f73c",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue/rep39",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "replicate": 39,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": true,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysTrue__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep39",
+          "config_sha256": "55056b0797e30e1c650f1615a2c9ca3517deb12040d7c97af0c1f4ebfbfe1b6b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep0",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 0,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "29a4a5f04efebc973a4e8e5695670facb60e7715dbc26ab4ae903d2dbfb13546",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep1",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 1,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "c699c05b06e9842eb5875c8d793dfcaef3b2572576fa08e7705afcf9fb211e2e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep2",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 2,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "39001ebeb1c5c4e948a6cb0546c2e69511749694e22a2f46088fbb31fe698366",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep3",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 3,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "48e01a31cb7e4c6c1320191ffde675d3878e5c13e7019b31c812d6fd7dcad7c5",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep4",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 4,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep4",
+          "config_sha256": "e879c18ff4a7c3d119b18c7e3373483b238d17c6a7b9b4c0a0302459fd4e1559",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep5",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 5,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep5",
+          "config_sha256": "bf5b2cc3b4e2ad3ca7f4d024ad49733df3402d469c2ba46d64c3b54ef13f5aba",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep6",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 6,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep6",
+          "config_sha256": "a671c638703c33eedf78d3a50ea19d22a9483d8cf389270757a3e8eced49e919",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep7",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 7,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep7",
+          "config_sha256": "90ca5b002b2bf53116f499ab36401ee2c8984e03582ecc32b2875d2b6cec1b8b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep8",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 8,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep8",
+          "config_sha256": "f371ebc90c31f271dab3d679a25070218839cbd3e5865c369c039847b80f93f4",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep9",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 9,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep9",
+          "config_sha256": "5fd3bc1365cdfb2f447be0689a11cf0e5e0dce0ac7e8b2a29a76bd7b48d54319",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep10",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 10,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep10",
+          "config_sha256": "37c5d1089726027619ce50135f4ddcede637fa26f8a31c474a939dfd7152875a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep11",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 11,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep11",
+          "config_sha256": "8dd0525b5c84b21303c722505749248cf2e77ca02f8801cc69e29dd6ae846873",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep12",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 12,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep12",
+          "config_sha256": "26776e099a40d9f61c68fc2e1846f4b1903d7a3a2f9b3814e5c8d4004b499c54",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep13",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 13,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep13",
+          "config_sha256": "2afdc92a308a9abc25161deac5eecfc4b93b89e5dea95c9ef3c144d304ddcb35",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep14",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 14,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep14",
+          "config_sha256": "3e2a18bc7f70367bbf40149392877c3b70913e551bd4cb862f99074349746232",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep15",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 15,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep15",
+          "config_sha256": "63216c6a1a46f962fbf60814d6465877785c040ccbd5b13f6adc34f776c2a78d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep16",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 16,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep16",
+          "config_sha256": "87006f2fd457fe9ef0adf7936915394cbf1510edff7fa3dfe63fcc4f82368c1a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep17",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 17,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep17",
+          "config_sha256": "08814d0d618920eaab674799f1d1da55b1fcc6b40fb15151fab93ce0aa7ab9e9",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep18",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 18,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep18",
+          "config_sha256": "d3863b7b8cc280dadd630067626f3733197d11701e024ce39a3d9550492fb21d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep19",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 19,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep19",
+          "config_sha256": "fb8f7611082939e175e414b4fbf4412c306dba4fe6e33d3fb07f217ab4408917",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep20",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 20,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep20",
+          "config_sha256": "4f6d6fcf74a917578ed984ba26013194b9074be1e01c46ab94fb3276e47c92cf",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep21",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 21,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep21",
+          "config_sha256": "84c8c385db57a944e53dbe16255776e9aa2469a455e7326b61104a254fd4c63b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep22",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 22,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep22",
+          "config_sha256": "e9bc504023b6daab5356a261a65f9fb6d3a2cafc0f9e3c2f5025627d176ce29e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep23",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 23,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep23",
+          "config_sha256": "879a2de1d177cdebec951affcec80245ad5c58394fa639bf5727c701b9b731aa",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep24",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 24,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep24",
+          "config_sha256": "338002c6ed85f9a930ff9e8005da26d5faf5d8ba197267d56373f4165a5b5211",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep25",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 25,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep25",
+          "config_sha256": "7a4450f287ed74a0fb986113fc15264380d1c9aec70977ed0c1eaed83096335f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep26",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 26,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep26",
+          "config_sha256": "5a09fea4e9c9b26170d502844622f467572284eabac73ff3563a3938c0c9c03e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep27",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 27,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep27",
+          "config_sha256": "4b8237eb1050f1bd4c12a4be2ff7ff960770e54525e4c6f410dfe9c060c35067",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep28",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 28,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep28",
+          "config_sha256": "9d6395cb79c01dd8ba69b005664a7acc38fc37001d704a0d19e65cf2ecb9852f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep29",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 29,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep29",
+          "config_sha256": "9c2365d19c0f7dd408d640ac20c884a51dbb313e46efcd37f408254c33a2ce2d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep30",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 30,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep30",
+          "config_sha256": "8b78c765d2800d143e812ef85b4d6250e1269f8794ad63b848bee29a0e1146ee",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep31",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 31,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep31",
+          "config_sha256": "d57fe86b71976809cdf2e2f53f408b7c84201e02db29569a2eaffba5ac8d73fe",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep32",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 32,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep32",
+          "config_sha256": "92e60c46a81366e822a63562bdc75c85ab46fe1873a1816e38c4bfbfd265a415",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep33",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 33,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep33",
+          "config_sha256": "8dbe0cf62b0891f1239c2d6e5a4894376795c5dae2d8536397f4b8d3c45feec6",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep34",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 34,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep34",
+          "config_sha256": "898a406cd967474f1bcf402f9aff283b637d0f3ae5d94416ece46da82102c041",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep35",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 35,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep35",
+          "config_sha256": "b70b5c6a80579bfcd4f0066462caa0aa83b637e2cb4a47d91b8fd26376c08999",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep36",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 36,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep36",
+          "config_sha256": "56e40da37e673abcdef928d58dc126a5010a56b982b9d31b91826691d58d9e75",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep37",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 37,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep37",
+          "config_sha256": "a3ea202baf1760e86cf9e67e88120de152ddb3181c8d56410a9a833b2de4acd6",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep38",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 38,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep38",
+          "config_sha256": "e72424bb17adee2416311b5bafaf107383bd32b8251498b3c8cc9362828aeb9a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue/rep39",
+      "cell": "qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "replicate": 39,
+      "attrs": {
+        "model": "qwen3-8b",
+        "family": "qwen3",
+        "parameters": 8190735360,
+        "protocol": "fully_connected",
+        "hints": "split",
+        "decoys": false,
+        "use_notes": true
+      },
+      "folder": "runs/hints2_8b_share/qwen3-8b__fully_connected__hintssplit__decoysFalse__use_notesTrue",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep39",
+          "config_sha256": "f9c2761f2cc8300069665091cd215ed5fd07431d1b0b97bec344757ef0aacbe5",
+          "same_as": null
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-11-05T22:50:34",
+  "environment": {
+    "git": {
+      "commit": "d01c77ae76ae478f0cbbd14eff94e9d20f6c1faf",
+      "dirty": false
+    },
+    "python": "3.11.18",
+    "platform": "Linux-6.12.113+deb13-amd64-x86_64-with-glibc2.41",
+    "libraries": {
+      "torch": "2.11.0+cu128",
+      "transformers": "5.22.0",
+      "accelerate": "1.15.0",
+      "sentence-transformers": "6.2.0",
+      "numpy": "2.4.6",
+      "pydantic": "2.14.2"
+    },
+    "hardware": {
+      "torch_loaded": false,
+      "cuda": null,
+      "gpus": []
+    }
+  }
+}

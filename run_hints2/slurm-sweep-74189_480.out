@@ -1,0 +1,4 @@
+node=ws2gpu2-ng job=74191 shard=480/960
+name, memory.total [MiB]
+NVIDIA GeForce RTX 2080 Ti, 11264 MiB
+shard 480/960: 1 units, 0 failed runs (see /scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/hints2/sweep/shard480of960.jsonl)

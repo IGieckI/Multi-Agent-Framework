@@ -1,0 +1,102 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "chainsaw",
+      "chicken soup",
+      "fish",
+      "forest",
+      "house",
+      "life",
+      "quicksilver",
+      "water",
+      "wax"
+    ],
+    "max_steps": 4,
+    "target": "log cabin",
+    "intermediate": [
+      "wood"
+    ],
+    "distractors": [
+      "chicken soup",
+      "fish",
+      "life",
+      "quicksilver",
+      "water",
+      "wax"
+    ],
+    "path": [
+      [
+        "chainsaw",
+        "forest",
+        "wood"
+      ],
+      [
+        "house",
+        "wood",
+        "log cabin"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.1
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "log cabin",
+        "wood"
+      ],
+      "coverage": 0.0667,
+      "invalid": 0,
+      "no_valid_answers": 2
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "animal",
+        "log cabin",
+        "wood"
+      ],
+      "coverage": 0.1,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 2,
+      "no_valid_answers": 1
+    }
+  },
+  "usage": {
+    "total_tokens": 14852,
+    "completion_tokens": 2796,
+    "calls": 20,
+    "wall_clock_s": 202.48,
+    "lines": {
+      "agents": {
+        "total_tokens": 14852,
+        "completion_tokens": 2796,
+        "calls": 20
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

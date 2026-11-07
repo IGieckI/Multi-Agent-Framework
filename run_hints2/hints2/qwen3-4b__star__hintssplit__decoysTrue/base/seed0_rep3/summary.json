@@ -1,0 +1,105 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "ant",
+      "day",
+      "net",
+      "sea",
+      "time",
+      "watch",
+      "water",
+      "wind"
+    ],
+    "max_steps": 4,
+    "target": "roe",
+    "intermediate": [
+      "egg"
+    ],
+    "distractors": [
+      "day",
+      "net",
+      "time",
+      "watch",
+      "water",
+      "wind"
+    ],
+    "path": [
+      [
+        "ant",
+        "ant",
+        "egg"
+      ],
+      [
+        "egg",
+        "sea",
+        "roe"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 4,
+    "union_coverage": 0.2
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "ocean"
+      ],
+      "coverage": 0.1,
+      "invalid": 0,
+      "no_valid_answers": 1
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 3,
+      "new_items": [
+        "egg",
+        "fish",
+        "ocean",
+        "roe"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "egg",
+        "ocean"
+      ],
+      "coverage": 0.1,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 11783,
+    "completion_tokens": 1756,
+    "calls": 16,
+    "wall_clock_s": 109.054,
+    "lines": {
+      "agents": {
+        "total_tokens": 11783,
+        "completion_tokens": 1756,
+        "calls": 16
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

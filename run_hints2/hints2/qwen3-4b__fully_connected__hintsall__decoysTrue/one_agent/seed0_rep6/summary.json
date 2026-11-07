@@ -1,0 +1,79 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "fire",
+      "human",
+      "legend",
+      "magic",
+      "sand",
+      "sap",
+      "tool",
+      "unicorn",
+      "universe"
+    ],
+    "max_steps": 4,
+    "target": "heat",
+    "intermediate": [
+      "science"
+    ],
+    "distractors": [
+      "legend",
+      "magic",
+      "sand",
+      "sap",
+      "tool",
+      "unicorn"
+    ],
+    "path": [
+      [
+        "human",
+        "universe",
+        "science"
+      ],
+      [
+        "fire",
+        "science",
+        "heat"
+      ]
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0286
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "glass"
+      ],
+      "coverage": 0.0286,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3502,
+    "completion_tokens": 542,
+    "calls": 6,
+    "wall_clock_s": 47.736,
+    "lines": {
+      "agents": {
+        "total_tokens": 3502,
+        "completion_tokens": 542,
+        "calls": 6
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}
