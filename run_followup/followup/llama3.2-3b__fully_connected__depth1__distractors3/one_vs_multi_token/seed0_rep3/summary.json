@@ -1,0 +1,59 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "container",
+      "dawn",
+      "egg",
+      "sea",
+      "wind"
+    ],
+    "max_steps": 240,
+    "target": "roe",
+    "intermediate": [],
+    "distractors": [
+      "container",
+      "dawn",
+      "wind"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.1176
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "fish",
+        "roe"
+      ],
+      "coverage": 0.1176,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 521,
+    "completion_tokens": 56,
+    "calls": 1,
+    "wall_clock_s": 2.184,
+    "lines": {
+      "agents": {
+        "total_tokens": 521,
+        "completion_tokens": 56,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

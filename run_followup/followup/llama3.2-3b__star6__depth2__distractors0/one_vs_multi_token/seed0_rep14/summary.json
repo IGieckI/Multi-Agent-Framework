@@ -1,0 +1,53 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 28,
+  "task": {
+    "initial": [
+      "big",
+      "puddle"
+    ],
+    "max_steps": 240,
+    "target": "lake",
+    "intermediate": [
+      "pond"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.2
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 27,
+      "new_items": [
+        "pond"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 14816,
+    "completion_tokens": 2087,
+    "calls": 27,
+    "wall_clock_s": 79.309,
+    "lines": {
+      "agents": {
+        "total_tokens": 14816,
+        "completion_tokens": 2087,
+        "calls": 27
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

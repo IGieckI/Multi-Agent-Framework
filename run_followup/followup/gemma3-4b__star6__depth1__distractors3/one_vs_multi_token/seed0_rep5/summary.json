@@ -1,0 +1,58 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 31,
+  "task": {
+    "initial": [
+      "animal",
+      "container",
+      "cookie",
+      "science",
+      "story"
+    ],
+    "max_steps": 240,
+    "target": "domestication",
+    "intermediate": [],
+    "distractors": [
+      "container",
+      "cookie",
+      "story"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0625
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 31,
+      "new_items": [
+        "zoo"
+      ],
+      "coverage": 0.0625,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 16354,
+    "completion_tokens": 1278,
+    "calls": 31,
+    "wall_clock_s": 51.341,
+    "lines": {
+      "agents": {
+        "total_tokens": 16354,
+        "completion_tokens": 1278,
+        "calls": 31
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

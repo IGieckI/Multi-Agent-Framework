@@ -1,0 +1,55 @@
+{
+  "ended_by": "all_solved",
+  "steps": 13,
+  "task": {
+    "initial": [
+      "desert",
+      "life",
+      "science"
+    ],
+    "max_steps": 240,
+    "target": "domestication",
+    "intermediate": [
+      "animal"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 2,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 13,
+      "new_items": [
+        "animal",
+        "domestication"
+      ],
+      "coverage": 0.3333,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6717,
+    "completion_tokens": 568,
+    "calls": 13,
+    "wall_clock_s": 24.186,
+    "lines": {
+      "agents": {
+        "total_tokens": 6717,
+        "completion_tokens": 568,
+        "calls": 13
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

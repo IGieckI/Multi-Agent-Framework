@@ -1,0 +1,113 @@
+{
+  "ended_by": "all_solved",
+  "steps": 2,
+  "task": {
+    "initial": [
+      "broom",
+      "doctor",
+      "house",
+      "steel",
+      "unicorn"
+    ],
+    "max_steps": 4,
+    "target": "hospital",
+    "intermediate": [],
+    "distractors": [
+      "broom",
+      "steel",
+      "unicorn"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.25
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "hospital"
+      ],
+      "coverage": 0.25,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "hospital"
+      ],
+      "coverage": 0.25,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "hospital"
+      ],
+      "coverage": 0.25,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_03": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "hospital"
+      ],
+      "coverage": 0.25,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_04": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "hospital"
+      ],
+      "coverage": 0.25,
+      "invalid": 1,
+      "no_valid_answers": 0
+    },
+    "agent_05": {
+      "role": "explorer",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "hospital"
+      ],
+      "coverage": 0.25,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 4695,
+    "completion_tokens": 1208,
+    "calls": 7,
+    "wall_clock_s": 46.13,
+    "lines": {
+      "agents": {
+        "total_tokens": 4695,
+        "completion_tokens": 1208,
+        "calls": 7
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

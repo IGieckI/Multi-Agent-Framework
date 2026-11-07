@@ -1,19 +1,6 @@
 # Game data is downloaded by scripts/fetch_data.py and never committed (CLAUDE.md rule 4)
-data/
 .venv/
 __pycache__/
 *.egg-info/
 .pytest_cache/
 .hypothesis/
-/runs
-/docs
-
-# local copies of cluster results, and the cluster's Slurm outputs (untracked files make a run's code "dirty")
-/run_*/
-/shard*.jsonl
-/slurm-*.out
-/slurm-*.err
-# the lists of a grid's Slurm logs, written on giano for the download
-/slurm_*.txt
-# the cluster's documentation and a colleague's guide: not ours to publish
-/docsHPC

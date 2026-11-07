@@ -1,0 +1,58 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "big",
+      "helicopter",
+      "pond",
+      "steam",
+      "wagon"
+    ],
+    "max_steps": 120,
+    "target": "lake",
+    "intermediate": [],
+    "distractors": [
+      "helicopter",
+      "steam",
+      "wagon"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.2
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "lake"
+      ],
+      "coverage": 0.2,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 533,
+    "completion_tokens": 68,
+    "calls": 1,
+    "wall_clock_s": 2.661,
+    "lines": {
+      "agents": {
+        "total_tokens": 533,
+        "completion_tokens": 68,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

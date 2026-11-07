@@ -1,0 +1,54 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 32,
+  "task": {
+    "initial": [
+      "day",
+      "sky",
+      "steak"
+    ],
+    "max_steps": 240,
+    "target": "jerky",
+    "intermediate": [
+      "sun"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 32,
+      "new_items": [
+        "sun"
+      ],
+      "coverage": 0.5,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 19752,
+    "completion_tokens": 2764,
+    "calls": 35,
+    "wall_clock_s": 111.038,
+    "lines": {
+      "agents": {
+        "total_tokens": 19752,
+        "completion_tokens": 2764,
+        "calls": 35
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

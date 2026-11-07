@@ -1,0 +1,58 @@
+{
+  "ended_by": "all_solved",
+  "steps": 1,
+  "task": {
+    "initial": [
+      "computer",
+      "life",
+      "pirate ship",
+      "space",
+      "vegetable"
+    ],
+    "max_steps": 120,
+    "target": "spaceship",
+    "intermediate": [],
+    "distractors": [
+      "computer",
+      "life",
+      "vegetable"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": true,
+    "union_new_items": 1,
+    "union_coverage": 0.1429
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": true,
+      "steps": 1,
+      "new_items": [
+        "spaceship"
+      ],
+      "coverage": 0.1429,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 514,
+    "completion_tokens": 66,
+    "calls": 1,
+    "wall_clock_s": 3.987,
+    "lines": {
+      "agents": {
+        "total_tokens": 514,
+        "completion_tokens": 66,
+        "calls": 1
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

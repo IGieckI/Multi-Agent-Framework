@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+
+    <link rel="alternate" hreflang="it" href="https://disi.unibo.it/it/dipartimento/organizzazione/servizi-informatici/accesso-remoto" />
+<link rel="alternate" hreflang="en" href="https://disi.unibo.it/en/department/organisation-and-people/it-services/remote-acces" />
+
+
+  <!-- plone.analytics.head goes here -->
+  <!-- Matomo -->
+<script>
+(function () {
+    window._paq = window._paq || [];
+
+    function configureMatomo() {
+        var classList = document.body.className.split(/\s+/);
+
+        function getBodyClassValue(prefix) {
+            var className = classList.find(function (c) {
+                return c.indexOf(prefix) === 0;
+            });
+            return className ? className.slice(prefix.length) : "";
+        }
+        var u = "https://analytics.unibo.it/";
+        var idsite = getBodyClassValue("matomo-id-");
+
+        if (!/^\d+$/.test(idsite)) {
+            console.log("Missing Matomo site ID in body; not tracking.");
+            return;
+        }
+
+        window._paq.push(["setTrackerUrl", u+"matomo.php"]);
+        window._paq.push(["setSiteId", parseInt(idsite, 10)]);
+        window._paq.push(["trackPageView"]);
+        window._paq.push(["enableLinkTracking"]);
+
+        var d = document;
+        var g = d.createElement("script");
+        var s = d.getElementsByTagName("script")[0];
+
+        g.async = true;
+        g.src = u + "matomo.js";
+        s.parentNode.insertBefore(g, s);
+    }
+
+    if (document.body) {
+        configureMatomo();
+    } else {
+        document.addEventListener("DOMContentLoaded", configureMatomo, {
+            once: true
+        });
+    }
+})();
+</script>
+<!-- End Matomo -->
+
+<!-- Contentsquare -->
+<script>
+(function () {
+    window._uxa = window._uxa || [];
+
+    var pagePath = window.location.pathname +
+        window.location.hash.replace("#", "?__");
+
+    if (typeof CS_CONF === "undefined") {
+        window._uxa.push(["setPath", pagePath]);
+
+        var mt = document.createElement("script");
+        mt.type = "text/javascript";
+        mt.async = true;
+        mt.src = "https://t.contentsquare.net/uxa/80807a583d824.js";
+
+        document.getElementsByTagName("head")[0].appendChild(mt);
+    } else {
+        window._uxa.push(["trackPageview", pagePath]);
+    }
+})();
+</script>
+<!-- End Contentsquare -->
+
+
+
+
+<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" content="Informatica - Scienza e Ingegneria" />
+<meta property="og:title" content="Accesso Remoto" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://disi.unibo.it/it/dipartimento/organizzazione/servizi-informatici/accesso-remoto" />
+<meta property="og:image" content="https://disi.unibo.it/++resource++plone-logo.svg" />
+<meta property="og:image:type" content="image/svg+xml" />
+
+<title>Accesso Remoto — Informatica - Scienza e Ingegneria</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    
+    
+    
+    
+
+    <script data-bundle="plone-formwidget-geolocation" integrity="sha384-xMgvhPDEXyzXrnmWKBnC+TXS/3fFGgGMZum7+zLZv/doxdrEg1tmii4BP44vbw/t" src="https://disi.unibo.it/++webresource++f1d8e050-964b-5294-aeea-8994c27d0891/++plone++plone.formwidget.geolocation/bundle-remote.min.js"></script>
+<script data-bundle="plone-fullscreen" integrity="sha384-yAbXscL0aoE/0AkFhaGNz6d74lDy9Cz7PXfkWNqRnFm0/ewX0uoBBoyPBU5qW7Nr" src="https://disi.unibo.it/++webresource++6aa4c841-faf5-51e8-8109-90bd97e7aa07/++plone++static/plone-fullscreen/fullscreen.js"></script>
+<script data-bundle="plone" integrity="sha384-CdWQRhElUIpN66nfwZXeMQSYAg4HTwpxhF7xcgLiUcGU+nww6SmsG69waiJCe/CF" src="https://disi.unibo.it/++webresource++a9287630-bd38-545f-8033-7b0fe4f4f349/++plone++static/bundle-plone/bundle.min.js"></script>
+    
+
+    
+
+
+    <link rel="canonical" href="https://disi.unibo.it/it/dipartimento/organizzazione/servizi-informatici/accesso-remoto" />
+
+  <link href="https://disi.unibo.it/it/favicon.ico?name=favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+  <link href="https://disi.unibo.it/it/favicon.ico?name=favicon.ico" rel="mask-icon" />
+
+
+
+  <link href="https://disi.unibo.it/it/@@search" rel="search" title="Cerca nel sito" />
+
+
+
+
+<link data-bundle="multilingual" href="https://disi.unibo.it/++webresource++f30a16e6-dac4-5f5f-a036-b24364abdfc8/++resource++plone.app.multilingual.stylesheet/multilingual.css" media="all" rel="stylesheet" type="text/css" />
+<link data-bundle="plone-fullscreen" href="https://disi.unibo.it/++webresource++ac83a459-aa2c-5a45-80a9-9d3e95ae0847/++plone++static/plone-fullscreen/fullscreen.css" media="all" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/++theme++unibo-dipartimenti-theme/dist/assets/style.Dl7WNhWU.min.css" />
+<script type="module" src="/++theme++unibo-dipartimenti-theme/dist/assets/main.C7mXig-O.min.js"></script>
+<script type="module" src="/++resource++unibo.matomo/assets/admin-D36C1kUN.js"></script>
+<script type="module" src="/++resource++unibo.tiles/assets/admin-OPqqrYTt.js"></script>
+
+    <meta name="generator" content="Plone - https://plone.org/" />
+
+  </head>
+
+  <body id="visual-portal-wrapper" class="col-content frontend icons-on pat-markspeciallinks portaltype-document section-dipartimento site-it subsection-organizzazione subsection-organizzazione-servizi-informatici subsection-organizzazione-servizi-informatici-accesso-remoto template-view thumbs-on userrole-anonymous viewpermission-view scienze disi matomo-id-10940" dir="ltr" data-base-url="https://disi.unibo.it/it/dipartimento/organizzazione/servizi-informatici/accesso-remoto" data-view-url="https://disi.unibo.it/it/dipartimento/organizzazione/servizi-informatici/accesso-remoto" data-portal-url="https://disi.unibo.it" data-i18ncatalogurl="https://disi.unibo.it/plonejsi18n" data-pat-markspeciallinks="{&quot;external_links_open_new_window&quot;: true, &quot;mark_special_links&quot;: false}" data-pat-plone-modal="{&quot;actionOptions&quot;: {&quot;displayInModal&quot;: false, &quot;timeout&quot;: 30000} }" data-pat-pickadate="{&quot;date&quot;: {&quot;selectYears&quot;: 200}, &quot;time&quot;: {&quot;interval&quot;: 5 } }"><div id="u-site-toolbar" class="site-toolbar"></div><div id="u-editors-toolbar" class="editor-bar"></div><div id="u-hiddenKeys" class="accesskeys-nav" role="navigation" aria-label="scorciatoie per la navigazione">
+      <a href="#content" accesskey="c">vai al contenuto della pagina</a>
+      <a href="#u-main-menu" accesskey="n">vai al menu di navigazione</a>
+    </div><header class="site-header" id="u-header">
+      <div class="container-xl d-flex">
+        
+  <div class="site-title">
+    <a class="site-logo" title="Vai alla Homepage del Portale di Ateneo" data-umc="topbar" data-uml="Logo unibo" href="https://www.unibo.it/it">
+      <picture>
+        <source media="(min-width: 1025px)" srcset="++theme++unibo-dipartimenti-theme/dist/media/header/logo.png 2x">
+        <source srcset="++theme++unibo-dipartimenti-theme/dist/media/header/logo_sm.png 2x">
+        <img src="++theme++unibo-dipartimenti-theme/dist/media/header/logo_sm.png" alt="Logo Università di Bologna" />
+      </source></source></picture>
+    </a>
+    <div class="site-identity">
+      <a href="https://disi.unibo.it/it">
+        <span class="site-label" id="js-siteLabel">Dipartimento di</span>
+        <p class="site-name" data-site-name="">Informatica - Scienza e Ingegneria</p>
+      </a>
+    </div>
+  </div>
+
+        <div class="nav-container">
+          <div class="toolbar-container">
+            <div id="languageselector" class="language-selector">
+              <div id="portal-languageselector">
+    
+      
+    
+      <a href="https://disi.unibo.it/@@multilingual-selector/4a816f460d2e4a1e9f95ddec46cdc47c/en?set_language=en" title="English" lang="en" xml:lang="en" aria-label="English" xml:lang="en">
+        en
+      </a>
+    
+  </div>
+            </div>
+            <aside class="unibo-noparse unibo-toolbar" data-nosnippet="" id="u-toolbar" aria-label="link a servizi online e applicativi">
+  <ul>
+    <li>
+      <button class="button-popup-toolbar" aria-controls="cerca" data-target="#cerca">
+        <i class="fa-light fa-search" aria-hidden="true"></i>
+        <span>Cerca</span>
+      </button>
+      <div id="cerca" aria-hidden="true" class="popup-wrapper-toolbar">
+        <form target="_blank" method="get" action="https://www.unibo.it/UniboWeb/UniboSearch/Default.aspx" class="search" id="uniboSearch">
+          <input type="hidden" name="lang" value="it" />
+          
+            <input type="hidden" name="site" value="disi.unibo.it" />
+            <input type="hidden" name="filter" value="site:disi.unibo.it" />
+            <fieldset>
+              <input type="text" placeholder="Cerca nel sito" aria-label="Cerca nel sito" value="" name="query" />
+              <button class="umtrack" title="Vai" data-umc="topbar" data-uml="Cerca">
+                <span>Vai</span>
+                <i class="fa-light fa-search" aria-hidden="true"></i>
+              </button>
+            </fieldset>
+          
+          
+        </form>
+        <button aria-controls="cerca" class="close" data-target="#cerca">Chiudi</button>
+      </div>
+    </li>
+    <li>
+      <button class="button-popup-toolbar umtrack" aria-controls="rubrica" aria-expanded="false" data-umc="topbar" data-uml="Popup rubrica" data-target="#rubrica">
+        <i class="fa-light fa-address-book" aria-hidden="true"></i>
+        <span>Rubrica</span>
+      </button>
+      <div id="rubrica" aria-hidden="true" class="popup-wrapper-toolbar">
+        <form target="_blank" action="https://www.unibo.it/UniboWeb/UniboSearch/Rubrica.aspx" method="get" class="address-book">
+          <fieldset>
+            <input type="hidden" value="FullTextPanel" name="tab" />
+            <input type="hidden" name="lang" value="it" />
+            <div role="radiogroup" aria-label="seleziona">
+              <input type="radio" id="pers" value="people" checked="checked" name="tipo" />
+              <label for="pers">Persone</label>
+              <input type="radio" id="strut" value="struct" name="tipo" />
+              <label for="strut">Strutture</label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <input type="text" placeholder="Cerca nella rubrica" aria-label="Cerca nella rubrica" value="" name="query" />
+            <button class="umtrack" title="Vai" data-umc="topbar" data-uml="Cerca Rubrica">
+              <span>Vai</span>
+              <i class="fa-light fa-search" aria-hidden="true"></i>
+            </button>
+          </fieldset>
+        </form>
+        <button aria-controls="rubrica" class="close" data-target="#rubrica">Chiudi</button>
+      </div>
+    </li>
+    <li>
+      <button class="button-popup-toolbar umtrack" aria-controls="servizi" aria-expanded="false" data-umc="topbar" data-uml="Popup servizi" data-target="#servizi">
+        <i class="fa-light fa-cogs" aria-hidden="true"></i>
+        <span>Servizi Online</span>
+      </button>
+      <div id="servizi" class="popup-wrapper-toolbar" aria-hidden="true">
+        <div class="service-list">
+          <ul aria-label="Comunità studentesca">
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - AlmaEsami" href="https://almaesami.unibo.it/almaesami/studenti/home.htm">AlmaEsami</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - AlmaRM - Mobilità internazionale" href="https://almarm.unibo.it/almarm/welcomeStudenti.htm">AlmaRM - Mobilità internazionale</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - Autocertificazioni e certificati" href="https://studenti.unibo.it">Autocertificazioni e certificati</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - Corsi di lingua" href="https://centri.unibo.it/cla/it/corsi">Corsi di lingua</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - EOL - Esami online" href="https://eol.unibo.it">EOL - Esami online</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - Offerte di lavoro" href="https://jobplacement.unibo.it/it/studenti-e-laureati/offerte-di-lavoro">Offerte di lavoro</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - Servizi bibliotecari" href="https://sba.unibo.it/it">Servizi bibliotecari</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - SPEIS - Prenotazione spazi studenti" href="https://www.unibo.it/speis">SPEIS - Prenotazione spazi studenti</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - Sportelli Virtuali - Uffici online" href="https://sportelli.unibo.it">Sportelli Virtuali - Uffici online</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - Studenti Online - Gestione degli studi" href="https://studenti.unibo.it">Studenti Online - Gestione degli studi</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - Tirocini Online - Elenco offerte" href="https://tirocini.unibo.it/tirocini/">Tirocini Online - Elenco offerte</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - Tesi Online - Archivio" href="https://www.unibo.it/it/servizi-e-opportunita/servizi-online/guida-servizi-online-studenti/ams-tesi-online">Tesi Online - Archivio</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - UnibooK - Open knowledge" href="https://book.unibo.it/">UnibooK - Open knowledge</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Studenti - Virtuale - Materiali didattici" href="https://virtuale.unibo.it">Virtuale - Materiali didattici</a>
+              </li>
+            
+          </ul>
+          <ul aria-label="Personale">
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - AlmaEsami" href="https://almaesami.unibo.it/almaesami/welcome.htm">AlmaEsami</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - AlmaRegistri" href="https://almaregistri.unibo.it/almaregistri/welcome.htm">AlmaRegistri</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - AlmaRM - Mobilità internazionale" href="https://almarm.unibo.it/almarm/personale/home.htm">AlmaRM - Mobilità internazionale</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - Cedolini web" href="https://cedolini.unibo.it/">Cedolini web</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - Concilium" href="https://www.unibo.it/concilium">Concilium</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - Convenzioni e tirocini" href="https://tirocini.unibo.it/tirocini/">Convenzioni e tirocini</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - Incarichi extraistituzionali" href="https://incarichiextraistituzionali.unibo.it/incarichiextraistituzionali/init.do">Incarichi extraistituzionali</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - IRIS - Archivio produzione scientifica" href="https://cris.unibo.it">IRIS - Archivio produzione scientifica</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - OrganiWeb" href="https://intranet.unibo.it/organiweb">OrganiWeb</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - Presenze - EVO" href="https://personale-unibo.hrgpi.it/">Presenze - EVO</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - Segnala un evento" href="https://segnalaunevento.unibo.it/">Segnala un evento</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - Servizi bibliotecari" href="https://sba.unibo.it/it">Servizi bibliotecari</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - Titulus" href="https://intranet.unibo.it/MioPortale/Pagine/TitulusProtocollo.aspx">Titulus</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - UniboImmagine - Foto, video, brochure" href="https://uniboimmagine.unibo.it">UniboImmagine - Foto, video, brochure</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - U-Web Missioni" href="https://missioni.unibo.it">U-Web Missioni</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - U-Web Reporting - Contabilità progetti" href="https://unibo.u-web.cineca.it/apprep/#!/lanciorapido">U-Web Reporting - Contabilità progetti</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - Virtuale - Materiali didattici" href="https://virtuale.unibo.it/">Virtuale - Materiali didattici</a>
+              </li>
+            
+              <li>
+                <a class="umtrack" data-umc="topbar" data-uml="Personale - Vedi tutti" href="https://intranet.unibo.it/MioPortale/Pagine/ServiziOnline.aspx">Vedi tutti</a>
+              </li>
+            
+          </ul>
+        </div>
+        <button aria-controls="servizi" class="close" data-target="#servizi">Chiudi</button>
+      </div>
+    </li>
+    <li>
+      <button class="button-popup-toolbar" aria-controls="restricted-area" aria-expanded="false" data-target="#restricted-area">
+        <i class="fa-light fa-lock" aria-hidden="true"></i>
+        <span>Area riservata</span>
+      </button>
+      <div id="restricted-area" aria-hidden="true" class="popup-wrapper-toolbar">
+        <ul>
+          <li><a class="umtrack" href="https://intranet.unibo.it/" target="_blank" data-umc="topbar" data-uml="Intranet">Intranet d'Ateneo</a></li>
+          <li><a class="umtrack" href="https://studenti.unibo.it/" target="_blank" data-umc="topbar" data-uml="Studenti Online">Studenti Online</a></li>
+        </ul>
+        <button aria-controls="restricted-area" class="close" data-target="#restricted-area">Chiudi</button>
+      </div>
+    </li>
+    <li>
+      <button class="button-popup-toolbar umtrack" aria-controls="email" aria-expanded="false" data-umc="topbar" data-uml="Popup email" data-target="#email">
+        <i class="fa-light fa-envelope" aria-hidden="true"></i>
+        <span>La mia e-mail</span>
+      </button>
+      <div id="email" aria-hidden="true" class="popup-wrapper-toolbar">
+        <ul>
+          <li><a href="https://outlook.office.com/unibo.it/" target="_blank" class="umtrack" data-umc="topbar" data-uml="Accedi">Accedi</a></li>
+          <li><a href="https://www.unibo.it/it/ateneo/organizzazione-e-sedi/servizi-di-ateneo/servizi-online/la-mia-e-mail" target="_blank" class="umtrack" data-umc="topbar" data-uml="Guida e informazioni">Guida e informazioni</a></li>
+        </ul>
+        <button aria-controls="email" class="close" data-target="#email">Chiudi</button>
+      </div>
+    </li>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        function getTarget(element, target) {
+          if (target.includes('#')) {
+            return $(target)
+          } else {
+            //se si vuole usare la classe nell'html bottone e panel
+            //devono avere lo stesso parent
+            return element.parent().find($(target))
+          }
+        }
+
+        function openclosebutton(button_selector, accordion) {
+          $("body").on("click", button_selector, function(event) {
+            event.preventDefault();
+            var aria_exp = $(this).attr("aria-expanded");
+            if (accordion) {
+              $(button_selector).each(function() {
+                var target_el = getTarget($(this), $(this).data("target"));
+                $(this).attr("aria-expanded", "false");
+                target_el.attr("aria-hidden", "true");
+              });
+            }
+            var target_el = getTarget($(this), $(this).data("target"));
+
+            if ($(this).hasClass('close')) {
+              target_el.attr("aria-hidden", "true");
+              $('.unibo-toolbar button').attr('aria-expanded', false);
+              return;
+            }
+            if (aria_exp == "true") {
+              $(this).attr("aria-expanded", "false");
+              target_el.attr("aria-hidden", "true");
+            } else {
+              $(this).attr("aria-expanded", "true");
+              target_el.attr("aria-hidden", "false");
+            }
+          });
+        }
+        openclosebutton('#u-toolbar button.button-popup-toolbar', true);
+        openclosebutton('#u-toolbar .close', true);
+      });
+
+    </script>
+</ul></aside>
+          </div>
+          <nav id="u-main-menu" class="navbar navbar-expand-xl main-menu" aria-label="Menu principale">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenuCollapse" aria-controls="mainMenuCollapse" aria-expanded="false" aria-label="Apri il menu di navigazione">
+      <span class="d-xl-none"> Menu </span>
+      <i class="fa-regular fa-bars" aria-hidden="true"></i>
+      <i class="fa-regular fa-xmark" aria-hidden="true"></i>
+    </button>
+
+    <div id="mainMenuCollapse" class="collapse navbar-collapse">
+      <ul id="mainMenuAccordion" class="navbar-nav accordion">
+        <li class="nav-item"><a class="nav-link" href="https://disi.unibo.it/it">Home</a></li><li class="nav-item accordion-item current"><button type="button" class="nav-link accordion-button collapsed active immutable" id="main-menu-submenu-dipartimento-trigger" data-bs-toggle="collapse" data-bs-target="#main-menu-submenu-dipartimento" aria-expanded="false" aria-controls="main-menu-submenu-dipartimento">Dipartimento</button><ul id="main-menu-submenu-dipartimento" class="accordion-collapse collapse accordion-body" aria-labelledby="main-menu-submenu-dipartimento-trigger" data-bs-parent="#mainMenuAccordion"><li class="explore"><a class="immutable" href="https://disi.unibo.it/it/dipartimento">Scopri chi siamo</a></li><li class=""><a class="" href="https://disi.unibo.it/it/dipartimento/sedi-e-contatti">Sedi e contatti</a></li><li class=""><a class="" href="https://disi.unibo.it/it/dipartimento/organizzazione" aria-current="page">Organizzazione e persone</a></li><li class=""><a class="" href="https://disi.unibo.it/it/dipartimento/strategia-e-qualita">Strategia e qualità</a></li><li class=""><a class="" href="https://disi.unibo.it/it/dipartimento/bandi-gare-e-concorsi">Bandi, gare e concorsi</a></li></ul></li><li class="nav-item accordion-item"><button type="button" class="nav-link accordion-button collapsed published" id="main-menu-submenu-ricerca-trigger" data-bs-toggle="collapse" data-bs-target="#main-menu-submenu-ricerca" aria-expanded="false" aria-controls="main-menu-submenu-ricerca">Ricerca</button><ul id="main-menu-submenu-ricerca" class="accordion-collapse collapse accordion-body" aria-labelledby="main-menu-submenu-ricerca-trigger" data-bs-parent="#mainMenuAccordion"><li class="explore"><a class="published" href="https://disi.unibo.it/it/ricerca">Esplora la ricerca</a></li><li class=""><a class="" href="https://disi.unibo.it/it/ricerca/ambiti-e-progetti">Ambiti e progetti</a></li><li class=""><a class="" href="https://disi.unibo.it/it/ricerca/laboratori-di-ricerca">Laboratori</a></li></ul></li><li class="nav-item accordion-item"><button type="button" class="nav-link accordion-button collapsed immutable" id="main-menu-submenu-studiare-trigger" data-bs-toggle="collapse" data-bs-target="#main-menu-submenu-studiare" aria-expanded="false" aria-controls="main-menu-submenu-studiare">Studiare</button><ul id="main-menu-submenu-studiare" class="accordion-collapse collapse accordion-body" aria-labelledby="main-menu-submenu-studiare-trigger" data-bs-parent="#mainMenuAccordion"><li class="explore"><a class="immutable" href="https://disi.unibo.it/it/studiare">Studia con noi</a></li><li class=""><a class="" href="https://disi.unibo.it/it/studiare/corsi">Lauree e Lauree magistrali</a></li><li class=""><a class="" href="https://disi.unibo.it/it/studiare/master-universitari">Master universitari</a></li><li class=""><a class="" href="https://disi.unibo.it/it/studiare/dottorati-di-ricerca">Dottorati di ricerca</a></li></ul></li><li class="nav-item accordion-item"><button type="button" class="nav-link accordion-button collapsed immutable" id="main-menu-submenu-con-societa-e-impresa-trigger" data-bs-toggle="collapse" data-bs-target="#main-menu-submenu-con-societa-e-impresa" aria-expanded="false" aria-controls="main-menu-submenu-con-societa-e-impresa">Con società e impresa</button><ul id="main-menu-submenu-con-societa-e-impresa" class="accordion-collapse collapse accordion-body" aria-labelledby="main-menu-submenu-con-societa-e-impresa-trigger" data-bs-parent="#mainMenuAccordion"><li class="explore"><a class="immutable" href="https://disi.unibo.it/it/con-societa-e-impresa">Sviluppo, dialogo e responsabilità</a></li><li class=""><a class="" href="https://disi.unibo.it/it/con-societa-e-impresa/enti-e-imprese">Enti e imprese</a></li><li class=""><a class="" href="https://disi.unibo.it/it/con-societa-e-impresa/scuola-e-comunita">Scuola e comunità</a></li></ul></li><li class="nav-item"><a class="nav-link immutable" href="https://disi.unibo.it/it/news">News</a></li><li class="nav-item"><a class="nav-link immutable" href="https://disi.unibo.it/it/eventi">Eventi</a></li>
+      </ul>
+    </div>
+  </nav>
+        </div>
+      </div>
+    </header><main id="content">
+      <div class="container-xl">
+        <div class="row justify-content-center">
+          <div class="col-12 col-xl-10">
+            <nav id="portal-breadcrumbs" class="plone-breadcrumb">
+  <span id="breadcrumbs-you-are-here" class="hiddenStructure">Tu sei qui:</span>
+  <ol aria-labelledby="breadcrumbs-you-are-here">
+    <li id="breadcrumbs-home">
+      <a href="https://disi.unibo.it/it">Home</a>
+    </li>
+    <li id="breadcrumbs-1">
+      
+        <a href="https://disi.unibo.it/it/dipartimento">Dipartimento</a>
+        
+      
+    </li>
+    <li id="breadcrumbs-2">
+      
+        <a href="https://disi.unibo.it/it/dipartimento/organizzazione">Organizzazione e persone</a>
+        
+      
+    </li>
+    <li id="breadcrumbs-3">
+      
+        <a href="https://disi.unibo.it/it/dipartimento/organizzazione/servizi-informatici">Servizi informatici</a>
+        
+      
+    </li>
+    <li id="breadcrumbs-4">
+      
+        
+        <span id="breadcrumbs-current">Accesso Remoto</span>
+      
+    </li>
+  </ol>
+</nav>
+          </div>
+        </div>
+
+        <div id="u-portal-message"></div>
+        <div id="u-content-wrapper" class="content-wrapper">
+
+      
+
+      
+
+        
+
+          <article id="content">
+
+            
+
+              
+
+              <div id="viewlet-above-content-body"></div>
+
+              <div id="content-core">
+                
+    
+      
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        
+        
+        
+      </div>
+    </div>
+    <header id="u-lead" class="page-header">
+      <div class="row justify-content-center">
+        <div class="col-12 col-xl-10">
+          
+            
+              
+            
+          
+          
+            <div class="header-info">
+              <h1 class="page-title">Accesso Remoto</h1>
+              
+            </div>
+          
+          
+        </div>
+      </div>
+    </header>
+  
+
+      <div class="content-core" id="u-content-core">
+        <div class="field kssattr-fieldname-form.widgets.content_tiles" id="formfield-content_tiles">
+  
+
+  <div class="fieldErrorBox"></div>
+
+  
+
+  <div class="tilesList tiles-list-content-tiles" data-field-name="content_tiles">
+    
+      <div class="tile type-summary_auto" data-tileid="449ca85f557e4517bf9029bd7a60731b">
+        
+  
+
+        <div class="tile-wrapper" id="tile-449ca85f557e4517bf9029bd7a60731b">
+          <div class="tile-sommario-automatico js-tileSommarioAutomatico">
+  
+</div>
+
+        </div>
+      </div>
+    
+      <div class="tile type-richtext" data-tileid="77577e6ab4c344e99577d93fd322ace8">
+        
+  
+
+        <div class="tile-wrapper" id="tile-77577e6ab4c344e99577d93fd322ace8">
+          <div class="tile-testo-immagine">
+  <div class="richtext-box">
+    
+
+    <p>Permette a chi ha il proprio account Unibo abilitato di accedere da remoto alle macchine sulle quali sono presenti il proprio ambiente di lavoro e la propria Home.</p>
+<h3>A chi è rivolto</h3>
+<p>Docenti e ricercatori, studenti, collaboratori, guest</p>
+<h3>Descrizione</h3>
+<p>Le macchine gestite dal Dipartimento sono raggiungibili da remoto, sia internamente che esternamente alla rete di Dipartimento. L'accesso può essere effettuato partendo sia da sistemi Windows che Linux o Mac.<br />Per accedere alle macchine Linux del Dipartimento, basta utilizzare un client ssh.</p>
+<p><b><br />Macchine Linux</b></p>
+<p>Il cluster delle macchine e' diviso in due gruppi: le macchine dei laboratori e le macchine docenti. Mentre le macchine dei laboratorio permettono l'accesso (anche da remoto) agli studenti, le macchine docenti permettono l'accesso soltanto ai docenti e ricercatori, collaboratori e guest.</p>
+<p>L'accesso remoto alle workstation di Dipartimento e' sempre possibile; tuttavia, in alcuni periodi le macchine dei laboratori didattici possono essere riservate in via esclusiva per lo svolgimento di sessioni d'esame e in tal caso l'accesso remoto viene temporaneamente disabilitato.</p>
+<p>Per accedere alle macchine e' necessario aprire un qualsiasi terminale e lanciare il comando ssh utente@macchina.cs.unibo.it</p>
+<p>es: pippo@marullo.cs.unibo.it<br /><br /></p>
+<p>Workstation Laboratorio Ercolani</p>
+<table class="plain">
+<tbody>
+<tr>
+<td>
+<p>marullo.cs.unibo.it</p>
+</td>
+<td>morales.cs.unibo.it</td>
+<td>remendado.cs.unibo.it</td>
+</tr>
+<tr>
+<td>roderigo.cs.unibo.it</td>
+<td>dancairo.cs.unibo.it</td>
+<td>moschina.cs.unibo.it</td>
+</tr>
+<tr>
+<td>giovanna.cs.unibo.it</td>
+<td>zuniga.cs.unibo.it</td>
+<td>edmondo.cs.unibo.it</td>
+</tr>
+<tr>
+<td>altoum.cs.unibo.it</td>
+<td>doncurzio.cs.unibo.it</td>
+<td>pancrazio.cs.unibo.it</td>
+</tr>
+<tr>
+<td>lucia.cs.unibo.it</td>
+<td>abigaille.cs.unibo.it</td>
+<td>melot.cs.unibo.it</td>
+</tr>
+<tr>
+<td>brangania.cs.unibo.it</td>
+<td>donbasilio.cs.unibo.it</td>
+<td>aremberg.cs.unibo.it</td>
+</tr>
+<tr>
+<td>amneris.cs.unibo.it            </td>
+<td>arianna.cs.unibo.it</td>
+<td>norina.cs.unibo.it</td>
+</tr>
+<tr>
+<td>benes.cs.unibo.it</td>
+<td>berta.cs.unibo.it</td>
+<td>bettina.cs.unibo.it</td>
+</tr>
+<tr>
+<td>brander.cs.unibo.it</td>
+<td>dalibor.cs.unibo.it</td>
+<td>donandronico.cs.unibo.it </td>
+</tr>
+<tr>
+<td>donbartolo.cs.unibo.it</td>
+<td>donpasquale.cs.unibo.it</td>
+<td>donprocopio.cs.unibo.it</td>
+</tr>
+<tr>
+<td>dorina.cs.unibo.it</td>
+<td>douphol.cs.unibo.it</td>
+<td>eboli.cs.unibo.it</td>
+</tr>
+<tr>
+<td>edgar.cs.unibo.it</td>
+<td>elisabetta.cs.unibo.it</td>
+<td>ernesto.cs.unibo.it</td>
+</tr>
+<tr>
+<td>eufemia.cs.unibo.it</td>
+<td>ferrando.cs.unibo.it</td>
+<td>fidelia.cs.unibo.it</td>
+</tr>
+<tr>
+<td>filindo.cs.unibo.it</td>
+<td>fiorello.cs.unibo.it</td>
+<td>frank.cs.unibo.it</td>
+</tr>
+<tr>
+<td>grenvil.cs.unibo.it</td>
+<td>gretel.cs.unibo.it</td>
+<td>gualtiero.cs.unibo.it</td>
+</tr>
+<tr>
+<td>hansel.cs.unibo.it</td>
+<td>ines.cs.unibo.it</td>
+<td>leonora.cs.unibo.it</td>
+</tr>
+<tr>
+<td>lily.cs.unibo.it</td>
+<td>malatesta.cs.unibo.it</td>
+<td>manrico.cs.unibo.it</td>
+</tr>
+<tr>
+<td>margherita.cs.unibo.it</td>
+<td>milada.cs.unibo.it</td>
+<td>
+<p>mingo.cs.unibo.it</p>
+</td>
+</tr>
+<tr>
+<td>rosina.cs.unibo.it</td>
+<td></td>
+<td>
+<p></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p></p>
+<p>Workstation virtuali laboratorio</p>
+<table class="plain">
+<tbody>
+<tr>
+<td style="width: 0.0166667px;">annina.cs.unibo.it</td>
+<td style="width: 0.0166667px;">nabucco.cs.unibo.it</td>
+<td style="width: 0.0166667px;">eva.cs.unibo.it</td>
+</tr>
+<tr>
+<td style="width: 0.0166667px;">maria.cs.unibo.it</td>
+<td style="width: 0.0166667px;">giuseppe.cs.unibo.it</td>
+<td style="width: 0.0166667px;">emilia.cs.unibo.it</td>
+</tr>
+</tbody>
+</table>
+<p><br /> </p>
+<p>Workstation docenti</p>
+<table class="plain">
+<tbody>
+<tr>
+<td>laura.cs.unibo.it</td>
+<td>flora.cs.unibo.it</td>
+<td>magda.cs.unibo.it</td>
+</tr>
+<tr>
+<td>marcello.cs.unibo.it</td>
+<td>carmen.cs.unibo.it</td>
+<td>gilda.cs.unibo.it</td>
+</tr>
+<tr>
+<td>normanno.cs.unibo.it</td>
+<td>colline.cs.unibo.it</td>
+<td>zerlina.cs.unibo.it</td>
+</tr>
+<tr>
+<td>papagena.cs.unibo.it</td>
+<td>maddalena.cs.unibo.it</td>
+<td>donnaelvira.cs.unibo.it</td>
+</tr>
+<tr>
+<td>alice.cs.unibo.it</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+  </div>
+</div>
+
+        </div>
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+
+
+
+</div>
+
+
+        <!-- <tal:tile tal:replace="structure view/widgets/banners_tile" /> -->
+      </div>
+
+    
+  
+              </div>
+
+              <div id="viewlet-below-content-body">
+
+
+
+
+
+
+</div>
+
+            
+            <footer>
+              <div id="viewlet-below-content">
+
+
+</div>
+            </footer>
+          </article>
+        
+      
+
+      
+    </div>
+      </div>
+    </main><footer class="site-footer">
+  <div class="container-xl" id="u-footer">
+    <div class="site-footer-main">
+      <div class="site-footer-social" id="follow-us-menu">
+        <p class="site-footer-social-label">Seguici su:</p>
+        <ul class="site-footer-social-list">
+          <li>
+            <a class="site-footer-social-link" href="https://www.linkedin.com/school/unibo/" aria-label="Seguici su LinkedIn" data-social="linkedin">
+              <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a class="site-footer-social-link" href="https://www.instagram.com/uniboper" aria-label="Seguici su Instagram" data-social="instagram">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a class="site-footer-social-link" href="https://www.youtube.com/user/UniBologna" aria-label="Seguici su YouTube" data-social="youtube">
+              <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a class="site-footer-social-link" href="https://www.facebook.com/unibo.it" aria-label="Seguici su Facebook" data-social="facebook">
+              <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a class="site-footer-social-link" href="https://unibo.network.podigee.io/podcasts" aria-label="Seguici su Podigee" data-social="podigee">
+              
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="site-footer-sedi">
+        <p></p><p><span>Il Dipartimento è presente nel Campus di <strong>Bologna </strong>e nel Campus di <strong>Cesena</strong>.</span></p>
+        <a class="cta-arrow" href="https://disi.unibo.it/it/dipartimento/sedi-e-contatti">
+          <span class="cta-arrow__text">Sedi e contatti</span>
+        </a>
+      </div>
+
+      <nav class="site-footer-links" aria-label="Link utili">
+        <ul>
+          <li>
+            <a class="site-footer-link" href="https://unimpatto.unibo.it">Donazioni e 5x1000</a>
+          </li>
+          <li>
+            <a class="site-footer-link" href="https://site.unibo.it/alumni-association/it">Alumni Community</a>
+          </li>
+          <li>
+            <a class="site-footer-link" href="https://svc.unibo.it/dipartimenti/DISI/default.aspx">Area riservata</a>
+          </li>
+          <li>
+            <a class="site-footer-link" href="https://form.agid.gov.it/uni_bo/disi/dichiarazione">Dichiarazione di accessibilità</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-footer-copyright" id="u-copyright">
+      <p class="site-footer-copyright-text">
+        © Copyright 2026 - ALMA MATER STUDIORUM - Università di Bologna - Via Zamboni, 33 - 40126 Bologna - PI: 01131710376 - CF: 80007010376
+      </p>
+      <nav class="site-footer-legal" aria-label="Link legali">
+        <ul>
+          <li>
+            <a class="site-footer-link" href="https://www.unibo.it/it/ateneo/privacy-e-note-legali/privacy/informative-sul-trattamento-dei-dati-personali">Privacy</a>
+          </li>
+          <li>
+            <a class="site-footer-link" href="https://www.unibo.it/it/ateneo/privacy-e-note-legali/note-legali">Note legali</a>
+          </li>
+          <li>
+            <a class="site-footer-link" href="https://disi.unibo.it/it/dipartimento/informazioni-sul-sito-e-accessibilita">Informazioni sul sito e accessibilità</a>
+          </li>
+          <li>
+            <a class="site-footer-link" href="#" data-cc-open="">Impostazioni Cookie</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer><!-- <a aria-hidden="true" tabindex="-1" class="pat-backtotop back-to-top" href="#">
+    <i class="fa fa-angle-up"></i>
+    <span class="hiddenKeys">Torna su</span>
+  </a> --><script src="https://disi.unibo.it/++resource++unibo.cookiebanner/unibo-cookies.min.js?v=21"></script></body>
+</html>

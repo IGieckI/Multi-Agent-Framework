@@ -1,0 +1,60 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 13,
+  "task": {
+    "initial": [
+      "bow",
+      "butterfly",
+      "grass",
+      "human",
+      "wheat"
+    ],
+    "max_steps": 120,
+    "target": "warrior",
+    "intermediate": [],
+    "distractors": [
+      "butterfly",
+      "grass",
+      "wheat"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 3,
+    "union_coverage": 0.1765
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 13,
+      "new_items": [
+        "farmer",
+        "hay",
+        "hay bale"
+      ],
+      "coverage": 0.1765,
+      "invalid": 4,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7075,
+    "completion_tokens": 530,
+    "calls": 13,
+    "wall_clock_s": 20.763,
+    "lines": {
+      "agents": {
+        "total_tokens": 7075,
+        "completion_tokens": 530,
+        "calls": 13
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

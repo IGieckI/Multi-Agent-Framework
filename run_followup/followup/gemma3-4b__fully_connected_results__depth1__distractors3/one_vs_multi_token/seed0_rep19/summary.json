@@ -1,0 +1,58 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 10,
+  "task": {
+    "initial": [
+      "cow",
+      "duck",
+      "human",
+      "light",
+      "steel"
+    ],
+    "max_steps": 240,
+    "target": "gold",
+    "intermediate": [],
+    "distractors": [
+      "cow",
+      "duck",
+      "human"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.0068
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 10,
+      "new_items": [
+        "airplane"
+      ],
+      "coverage": 0.0068,
+      "invalid": 6,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5286,
+    "completion_tokens": 372,
+    "calls": 10,
+    "wall_clock_s": 13.923,
+    "lines": {
+      "agents": {
+        "total_tokens": 5286,
+        "completion_tokens": 372,
+        "calls": 10
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

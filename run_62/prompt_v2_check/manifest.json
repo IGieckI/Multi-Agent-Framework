@@ -1,0 +1,2875 @@
+{
+  "experiment": "prompt_v2_check",
+  "grid": {
+    "name": "prompt_v2_check",
+    "base": {
+      "task": {
+        "name": "wordcraft",
+        "type": "targeted",
+        "max_steps": 4,
+        "repeat_consumes_step": true,
+        "prompts": "v2"
+      },
+      "engine": {
+        "max_concurrency": 1
+      },
+      "sampling": {
+        "temperature": 1.0
+      },
+      "context": {
+        "max_prompt_tokens": 6000,
+        "truncation": "oldest_first"
+      },
+      "retries": {
+        "max_parse_attempts": 3,
+        "max_attempts": 3
+      },
+      "budget": {
+        "wall_clock_s": 3600
+      }
+    },
+    "models": [
+      "llama3.2-1b",
+      "llama3.2-3b",
+      "smollm2-360m",
+      "smollm2-1.7b",
+      "gemma3-1b",
+      "qwen3-4b"
+    ],
+    "protocols": [
+      {
+        "name": "fully_connected",
+        "file": "configs/protocols/fully_connected.yaml",
+        "personas": {}
+      },
+      {
+        "name": "star",
+        "file": "configs/protocols/star2.yaml",
+        "personas": {
+          "hub": "prompts/v1/personas/hub.txt",
+          "spoke": "prompts/v1/personas/spoke.txt"
+        }
+      }
+    ],
+    "task": {
+      "depth": [
+        1,
+        2
+      ],
+      "distractors": [
+        3
+      ]
+    },
+    "versions": [
+      "base",
+      "one_agent"
+    ],
+    "replicates": 4,
+    "seed": 0
+  },
+  "grid_sha256": "4a193608e611258d5377a6295526ba5a2b27008b0e656bef35fbafe5d5e5623a",
+  "models": {
+    "llama3.2-1b": {
+      "family": "llama3.2",
+      "model": "meta-llama/Llama-3.2-1B-Instruct",
+      "revision": "9213176726f574b556790deb65791e0c5aa438b6",
+      "parameters": 1235814400,
+      "link": "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct",
+      "gated": true,
+      "native_reasoning": false,
+      "sampling": {
+        "max_tokens": 256,
+        "reasoning": false,
+        "top_p": 1.0,
+        "top_k": 0
+      }
+    },
+    "llama3.2-3b": {
+      "family": "llama3.2",
+      "model": "meta-llama/Llama-3.2-3B-Instruct",
+      "revision": "0cb88a4f764b7a12671c53f0838cd831a0843b95",
+      "parameters": 3212749824,
+      "link": "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct",
+      "gated": true,
+      "native_reasoning": false,
+      "sampling": {
+        "max_tokens": 256,
+        "reasoning": false,
+        "top_p": 1.0,
+        "top_k": 0
+      }
+    },
+    "smollm2-360m": {
+      "family": "smollm2",
+      "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+      "revision": "a10cc1512eabd3dde888204e902eca88bddb4951",
+      "parameters": 361821120,
+      "link": "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct",
+      "gated": false,
+      "native_reasoning": false,
+      "sampling": {
+        "max_tokens": 256,
+        "reasoning": false,
+        "top_p": 1.0,
+        "top_k": 0
+      }
+    },
+    "smollm2-1.7b": {
+      "family": "smollm2",
+      "model": "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "revision": "31b70e2e869a7173562077fd711b654946d38674",
+      "parameters": 1711376384,
+      "link": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "gated": false,
+      "native_reasoning": false,
+      "sampling": {
+        "max_tokens": 256,
+        "reasoning": false,
+        "top_p": 1.0,
+        "top_k": 0
+      }
+    },
+    "gemma3-1b": {
+      "family": "gemma3",
+      "model": "google/gemma-3-1b-it",
+      "revision": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
+      "parameters": 999885952,
+      "link": "https://huggingface.co/google/gemma-3-1b-it",
+      "gated": true,
+      "native_reasoning": false,
+      "sampling": {
+        "max_tokens": 256,
+        "reasoning": false,
+        "top_p": 1.0,
+        "top_k": 0
+      }
+    },
+    "qwen3-4b": {
+      "family": "qwen3",
+      "model": "Qwen/Qwen3-4B",
+      "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+      "parameters": 4022468096,
+      "link": "https://huggingface.co/Qwen/Qwen3-4B",
+      "gated": false,
+      "native_reasoning": true,
+      "sampling": {
+        "max_tokens": 256,
+        "reasoning": false,
+        "top_p": 1.0,
+        "top_k": 0
+      }
+    }
+  },
+  "units": [
+    {
+      "id": "llama3.2-1b__fully_connected__depth1__distractors3/rep0",
+      "cell": "llama3.2-1b__fully_connected__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "c6b50399ef51da7293bcee5dac0fe89d1b41c3ed6997e573b7611ed7cdb9c969",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "d7d3ea70d31197bfc664eaac51518161ced08830cc55c9280769795dd278fb35",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__fully_connected__depth1__distractors3/rep1",
+      "cell": "llama3.2-1b__fully_connected__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "ee332d58a6e0471e8bbc78cc9580c74ccf2c16449e9c638de97e34615c2bb013",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "bf00133832f9ebf5770f0a4ba6caaf41e3a19c00fa90c428acae3425321a72cd",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__fully_connected__depth1__distractors3/rep2",
+      "cell": "llama3.2-1b__fully_connected__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "3348f193f3e10d4c84a3dba12ea29eaaaed67e285f4ef162f18ee5c895fa47d0",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "3be6bbfbea269714b7841222bf7c29af0119c8473969ea94069d06a8f939501e",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__fully_connected__depth1__distractors3/rep3",
+      "cell": "llama3.2-1b__fully_connected__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "b4548290f3394a252358d97fb702234bf94a8d35486a7510684e41a01b4bd66f",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "8241fe6b0d958f751cb4c0f4bb58b74b017133dbd1dd8fcebd4bc29a757ea513",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__fully_connected__depth2__distractors3/rep0",
+      "cell": "llama3.2-1b__fully_connected__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "56543c297ccb609f8a46f99f51c9540e1eb68d5b740d831c7a2c135d4b42de68",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "3ccfe35fd40f8c6e8ebf22ef58f863274dc2f93fd66b5dab8c2cbb3dc134ed9b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__fully_connected__depth2__distractors3/rep1",
+      "cell": "llama3.2-1b__fully_connected__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "b36c76b8fe26172def073b0d251b82c45f128a6c768a1c14156e9b6e2e6b21d2",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "f29d14967971110b0910496a32d4cb9ddb1c2be097c208fad909c829fbe9f091",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__fully_connected__depth2__distractors3/rep2",
+      "cell": "llama3.2-1b__fully_connected__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "f873df3d3d8d72a5ef4cb50df49d9cd6df32c034207839bd6c14a3e0c1c9bc35",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "05ef21c5d1f6da61c793bd2ed3687fc0f95fed21f9a60896fd816dffc318fe2b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__fully_connected__depth2__distractors3/rep3",
+      "cell": "llama3.2-1b__fully_connected__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "dcdf3296337eeb29fe26739509cc16734a68ba1457ea30f958f33e0b3e0f5353",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "4faf89109cf662a75555a1532c97abedfb9374c77100f191f4c2583af8865a9a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__star__depth1__distractors3/rep0",
+      "cell": "llama3.2-1b__star__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "08d5922936a022008f335ef17007fa51ce17a3f75e963317249ce107cb153fa3",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "f59e3bea65d6612d1669c48e682565e8fd7fd2fb17f968ed9dc873af90712e5b",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-1b__fully_connected__depth1__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__star__depth1__distractors3/rep1",
+      "cell": "llama3.2-1b__star__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "b014dbde6a8c6b5c93df105a6569d6bfda41b35e3b19e84f07608137ffdd36af",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "c3bf0d6863a1e4c77692904b1b74c22052136e0d71b9cb2ab03d495f711b7e8a",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-1b__fully_connected__depth1__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__star__depth1__distractors3/rep2",
+      "cell": "llama3.2-1b__star__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "6c1c8e9aeb49af5b8faf5dcd8cc3aa2bd718c99a7cd6fd56f9b9baa5bff90d87",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "9fd56e6a99411045428b98ab97aef899a015b6fceebe04babd42e7ebae04905e",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-1b__fully_connected__depth1__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__star__depth1__distractors3/rep3",
+      "cell": "llama3.2-1b__star__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "f786416478f9e2482aef628b220a389404bb697554f73849369877b1664f486c",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "6230a5d74da64ccec9d09a93ec5e8e3ba27b1f9d15952ec471b18be86b16ad67",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-1b__fully_connected__depth1__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__star__depth2__distractors3/rep0",
+      "cell": "llama3.2-1b__star__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "44b6ffbea2ec7e809419e802a0d673e371d7feb6da987527855dfc700183400b",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "bdb10c5a860eb82c66ef860638cc2cd199cb0a6fceb9319c61fe3801bda0e82c",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-1b__fully_connected__depth2__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__star__depth2__distractors3/rep1",
+      "cell": "llama3.2-1b__star__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "defe4c7fee97ef831fce990aa1d09e80e627c90778e7bdd9fcdd85f5f561b01b",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "696a88ade72f5b97bb0e91a68e27796ce55468d7065ff66620bbf2ca7d0870f4",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-1b__fully_connected__depth2__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__star__depth2__distractors3/rep2",
+      "cell": "llama3.2-1b__star__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "284c26068ec1a31383b7273faef2d26b16f14e9a4d581f061844833fe7bebced",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "25e80f5797f64fac072b8f30624afb5aae5c58d3a4f5d28838144aa13684d867",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-1b__fully_connected__depth2__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-1b__star__depth2__distractors3/rep3",
+      "cell": "llama3.2-1b__star__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "llama3.2-1b",
+        "family": "llama3.2",
+        "parameters": 1235814400,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-1b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "502840ebdb2f47b63b161ae61e4be231877b9e2b9f8bf1a5574fe0466fca4585",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "50fec6ad34afca513b3e33cd8eea431adbf33cb0c196de7df2e102f545ad6810",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-1b__fully_connected__depth2__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__depth1__distractors3/rep0",
+      "cell": "llama3.2-3b__fully_connected__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "816e473def30ab9d993e7f035d4db584d60f5f7a0e20a78cb952d8b891ce90ea",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "cf06b4bc832004e9d1847e7c24e77bf4f15e42a1618054227e77bfaaf56b608f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__depth1__distractors3/rep1",
+      "cell": "llama3.2-3b__fully_connected__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "736fa296f4e689b74faaea548c3de5a58e592d3271d834f03071033ed8634b90",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "9259d1a68ff6cc6753c126a1eb7d37aeb5cb6050ec26815c6af5c1041799b278",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__depth1__distractors3/rep2",
+      "cell": "llama3.2-3b__fully_connected__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "8b112a8f05b9891cc372b9ba243a7cc149661f10ef07e6c103c05dc0cf79e775",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "0b6236eee73ee864293df482e671a87c0de3af79534dceaf7ab9c4b9ac766901",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__depth1__distractors3/rep3",
+      "cell": "llama3.2-3b__fully_connected__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "ef5dd54b5a77cdd42bddb7fe666209c26a3396b3beaccc50c8a3809f32d76d86",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "771a8574b1aeb0d5327261e89642925db58a3e1e3d0a25838d4d38c8bde93711",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__depth2__distractors3/rep0",
+      "cell": "llama3.2-3b__fully_connected__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "9675858e9075aeed319a6b1f995b25a7ec17056eb88217201404040ca5888c33",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "ea28493d6e1542f1d38aea69a6d8566d9772c2d9523aaf065eefcfc057f17aa4",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__depth2__distractors3/rep1",
+      "cell": "llama3.2-3b__fully_connected__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "a7809c042d5ba13cd2d57f9c61738eb042f4b900dfebbaf82d5b5206ac479e06",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "eed867c5f39f49ff0fed5d6dd7e0ae5cd89f05bacf38e9389d0bb3c49870ecdb",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__depth2__distractors3/rep2",
+      "cell": "llama3.2-3b__fully_connected__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "e6677f45ea3e05bf90fe3e13ff5b2cc1c9a1d176b60179dad93885bcd9353ae5",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "103f3cea8e282414198081e832495a6165440011024ee7c657887edb0723c3bb",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__fully_connected__depth2__distractors3/rep3",
+      "cell": "llama3.2-3b__fully_connected__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "f03992a7811b336b52f38f71c9a2eb13bc73ea479e765b4d786d70596334f6f3",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "3bebc0f82a0c92db18a69a731d61334a1cc8b415a27aa6968d885a812c770e43",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__star__depth1__distractors3/rep0",
+      "cell": "llama3.2-3b__star__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "9a7c68473f7fc03869e63b7969c934b184308751df3eba5c5ca34d1a8e274546",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "b76b61d43689dd1dfaa992646e9e0b6aacd89077d20ab99fb4bada278e4b9888",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-3b__fully_connected__depth1__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__star__depth1__distractors3/rep1",
+      "cell": "llama3.2-3b__star__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "86a66b3dd51d7f95ccae2ccab134e787612d7c3522da3e7e331eac95d8073006",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "806a77f4ea2aee5895b7dfd15318fa754cefab5c421b7d8a3295e04944c2551f",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-3b__fully_connected__depth1__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__star__depth1__distractors3/rep2",
+      "cell": "llama3.2-3b__star__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "0957898775cdd2d0a1e3e4fc13eff5af82935b89d27176a71405b3481b4a6cc8",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "ff6eef9c468107a6ec4fb4b5462b772be947883cd7ad8c79ed23fee9733fc9b4",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-3b__fully_connected__depth1__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__star__depth1__distractors3/rep3",
+      "cell": "llama3.2-3b__star__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "ea169e94dc2cd7b1c231e258f195c3c8953a304483f53ce483719d308f568df9",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "ae00b96f52d9bacf211097cbb489b7e0f3ef79a32ffdbcb148896eb8f3db0597",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-3b__fully_connected__depth1__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__star__depth2__distractors3/rep0",
+      "cell": "llama3.2-3b__star__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "092df3bf153df44c8f940ba38a38c8673ba4bcd0124aeeb82224ba68acb47601",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "432eb3a2a6a7936b433b34da9ff42e44bcf7e390dc283f341dbe5fa56d4ab076",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-3b__fully_connected__depth2__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__star__depth2__distractors3/rep1",
+      "cell": "llama3.2-3b__star__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "1fab8566d60613557445beba24d5a59ef54b79e70c26cb14462a7dfbd20685d2",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "d2f0eaad0321a973f4efa6af5821e09e9b4899f8f467a7884844aafdbb410d33",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-3b__fully_connected__depth2__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__star__depth2__distractors3/rep2",
+      "cell": "llama3.2-3b__star__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "067cacd84e26a8db16e76065795705b0694eb4eab8a758279d3c9af760cdc506",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "f6765884dd55e692b09579a7847d77f0e38f7a030980886aa518db62f7fb0708",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-3b__fully_connected__depth2__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "llama3.2-3b__star__depth2__distractors3/rep3",
+      "cell": "llama3.2-3b__star__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "llama3.2-3b",
+        "family": "llama3.2",
+        "parameters": 3212749824,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/llama3.2-3b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "3421abd383c05538b3f0b61bba2a50e199855936a5eef6645a348282da7c0b00",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "fe93a6f27f5f52a27fba27c72d71e37dd5761ddc159eb2e3d7ad9be6bf8c73e6",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/llama3.2-3b__fully_connected__depth2__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__fully_connected__depth1__distractors3/rep0",
+      "cell": "smollm2-360m__fully_connected__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "15055463a100fcbbe1f2645d56e26297cc8ba3f971989b7b309339bb8d7c43b3",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "605b89b6e40429785200b1696d97cead66508011622766ff75cef5613f09c5eb",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__fully_connected__depth1__distractors3/rep1",
+      "cell": "smollm2-360m__fully_connected__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "65af7d127750ce1edba28bd6ef4908b42cf05d13ad4b57ee779c11d791f0d035",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "857a92fabd97feafc615058a0c33818276af991c5eba7f804569bab3678ea910",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__fully_connected__depth1__distractors3/rep2",
+      "cell": "smollm2-360m__fully_connected__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "b0f792a1ec003b679681ed95c2913ca52a74521d0d6d5964931dd7d0f9ee1f80",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "54259ed79aa7654b36253dfd0a43d45db2ba7031dad0630062da778105e1e30a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__fully_connected__depth1__distractors3/rep3",
+      "cell": "smollm2-360m__fully_connected__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "880f8bd871825e1c1336948b79f269ee2309659561c67fa732275f4803979cea",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "587548f5f4488444f9ef5d9f3856c784995216a5bdfcba123aea263b88ff7e67",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__fully_connected__depth2__distractors3/rep0",
+      "cell": "smollm2-360m__fully_connected__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "f3f845552a2c779f14d694fb203a4739f6e64a79e98a48b16dcbac7f469183f0",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "521052c5bf7a6b09a251215060658c6e69c1c8ecd670d27269b0a8571f2c4db4",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__fully_connected__depth2__distractors3/rep1",
+      "cell": "smollm2-360m__fully_connected__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "441c8f4eb52efc7d9bfccc44dffbf4f0183380be61b604e00777d16c2e22c74a",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "40ae4d21ef4b28a23386cc7f5ddf7092198e2ef1e4fc7e7a94b446a3b6308612",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__fully_connected__depth2__distractors3/rep2",
+      "cell": "smollm2-360m__fully_connected__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "6a3c207ffab2db8148ca311c8c73b97cbe555208ca2cfa6febbd98564187f977",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "9ff23528aeba6f08565db7259cd9c37e9fee7805a2e663c87a3ae791136cfcfd",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__fully_connected__depth2__distractors3/rep3",
+      "cell": "smollm2-360m__fully_connected__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "2c726b5ab58bff21bc678b6706295c5bdf336a64c7e2c1581031736784b84d87",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "04afdb95ec0032288d7d4ccefe202d61cd5f8dbf85a5960e39a3b75496421325",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__star__depth1__distractors3/rep0",
+      "cell": "smollm2-360m__star__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "8912a87fd7ed8c2e9787b10f746a57ff9346ec13816e9b1106a2640130928ce1",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "9451ef8d34d5fe9f114c4267a8591f1f3525453c5c83a7ea4fe3608347d8fd86",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-360m__fully_connected__depth1__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__star__depth1__distractors3/rep1",
+      "cell": "smollm2-360m__star__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "7b93bb800144b206731daed8d13c7fd11f1d1e0922f1b6b07ca4247f649fbde8",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "71136981f9070c9bfe1d720bda6e935c1f7cb2f71cf66e266bb4059c7ebec44a",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-360m__fully_connected__depth1__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__star__depth1__distractors3/rep2",
+      "cell": "smollm2-360m__star__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "85f5099431f571b3f04a78f5ddb1a8e7b609428fedf1f90afd0195e75d6c6c1f",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "d1bb505a406351d189c9b05888b43f6be995b12ddf9ad33f2232ee6c9625b706",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-360m__fully_connected__depth1__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__star__depth1__distractors3/rep3",
+      "cell": "smollm2-360m__star__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "b430fe243752a49bb1ae98b1bee7af5af76e8e5dd7fa54710abb1ca13c1f534f",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "55d8ad011840657f03f89b6dca1056a040129efbabdc75e943d9416982451d41",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-360m__fully_connected__depth1__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__star__depth2__distractors3/rep0",
+      "cell": "smollm2-360m__star__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "c1cb58f8fc4fd36040729e23ac4b36e3c79e10fb22e2e025f1ec75931d442215",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "e024f5acecf44ea47b1eed60d5f8b15d9aece46ba82971b7612f891fee80d0c1",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-360m__fully_connected__depth2__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__star__depth2__distractors3/rep1",
+      "cell": "smollm2-360m__star__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "3d0e29bac7564e7abe29e484b5c90e291d97762ffcf511fd287bbc3355f3ccec",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "700318a66c90626adc59b4202e71ab3b3b39dfc8cd3914cbe674958c9c367c78",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-360m__fully_connected__depth2__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__star__depth2__distractors3/rep2",
+      "cell": "smollm2-360m__star__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "e07b3faf7899a1b4dfd707bf255dde9498cc3cc4922cad61084e36d89d49d3a6",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "88360c453c69cc71e1593e9123ffd2256c899b7eaeb510823edd13b5a866b89e",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-360m__fully_connected__depth2__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-360m__star__depth2__distractors3/rep3",
+      "cell": "smollm2-360m__star__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "smollm2-360m",
+        "family": "smollm2",
+        "parameters": 361821120,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-360m__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "e31a76b3e5ce648be5dd05aab335b092f1c43f9ae0a41da130ad850fb6105013",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "ca0cc7b6a9bea0f8f8eb5d35fc16dd557fa2a1fbc6105a15dc85aa96853f69af",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-360m__fully_connected__depth2__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__fully_connected__depth1__distractors3/rep0",
+      "cell": "smollm2-1.7b__fully_connected__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "ff143b54fe8e31ca647c9db3c117aaa68865f095c0c6690971e813f6112803de",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "76cef71b004321280f1e7a80310337ed0f610050e95b65f1b92fcedee72b695a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__fully_connected__depth1__distractors3/rep1",
+      "cell": "smollm2-1.7b__fully_connected__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "05e4a058f4cecaa91ffa0916350ad2aac468a27196736e4b4281bedd403fcee7",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "7258ac34c69b36e9a275c55f16eaef6da2b4710bb537a9d3e23f75c299acc1c8",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__fully_connected__depth1__distractors3/rep2",
+      "cell": "smollm2-1.7b__fully_connected__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "b201b7bf610b60d2d78d520f23fe7810c13ba2941c19597f36c64e02900ff7c9",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "041edf3635d8dcfe3183b8a7014efedd80d7facc982aacf95bc5aba6fc14f088",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__fully_connected__depth1__distractors3/rep3",
+      "cell": "smollm2-1.7b__fully_connected__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "08afd954b4061cc89a477ad39082ccca026eb3b2507c1f10dc9e60ac744719ea",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "964673c8917356699f7dc8b4b1dfa26de1077a75e8017340f670cdb7fb2baad7",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__fully_connected__depth2__distractors3/rep0",
+      "cell": "smollm2-1.7b__fully_connected__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "55fde2f8cf2d9223d2587c773cc54e6745aff8cabec6a91183405edef7f433d9",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "cb755539e2d293bf9b2ecad1c8bfd665a450749ab228630e81d0ddbd3ca6a9fe",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__fully_connected__depth2__distractors3/rep1",
+      "cell": "smollm2-1.7b__fully_connected__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "74dd8b427106e425ead6fec17ab8821d196e224c83675c116e319df6014ba08e",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "7e9b8d72e2ba5a8d54120af78a5914e9aabc7eb8dd1b8856e7980fa5b9d0fbf3",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__fully_connected__depth2__distractors3/rep2",
+      "cell": "smollm2-1.7b__fully_connected__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "88aa0f1cb9582bfa384233b9cbf0cf18c85ae0f42b66dafb9a6cccb7f59cbf3d",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "78ac8e1a2d894b921ac983f7aa9dcf1f416d2d1b248ea53b9d8d1ca943ff54ec",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__fully_connected__depth2__distractors3/rep3",
+      "cell": "smollm2-1.7b__fully_connected__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "4c7ceae4b6b1b232d76a0dfafcae24be31a284455d596974d71f6c4360a1ba3e",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "3c10c642d0f42d5be93cf78d4e7e08be4fb471737490d6ed84d47c2bad2f9001",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__star__depth1__distractors3/rep0",
+      "cell": "smollm2-1.7b__star__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "e8a514a43e1a24cb904e539feade7a7ae4553ed98aa688c95f4a57d0aa085ad4",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "12a60b6326b55c3f24b43c22305ab51f4e5e84c96a8f7bb81c563ca46d0cba95",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth1__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__star__depth1__distractors3/rep1",
+      "cell": "smollm2-1.7b__star__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "6fa22ee1346a8630653e8d3567222acc1d2e91901acba5053aaa943a32933dbe",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "02d344589b05fa12c1624014704ce125e9c482ce7d5f0993a2ce62362605982d",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth1__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__star__depth1__distractors3/rep2",
+      "cell": "smollm2-1.7b__star__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "70507ebeab087939c27289fb1c9c4de4f12610faa9ae73b20a671fb473e2bdcd",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "ff78ca9adad111d56662e2d3188da5695c85c6b2e9d9a24097837563d8e1a790",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth1__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__star__depth1__distractors3/rep3",
+      "cell": "smollm2-1.7b__star__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "8b61e24773af426b02fd8a4fab9b6625166c341ebf4482286c366ef4d54658ba",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "268fb7c336db8a57f6a9c1e5f7f5fe2a8f1758dc574a7496741efa533f6495a5",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth1__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__star__depth2__distractors3/rep0",
+      "cell": "smollm2-1.7b__star__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "dea9513d25c6c14552e57d1f89cf7f60c7049675c8ec745a6191ff3ed171f08f",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "98e22f8db845e71d4460645eb96cfa37ccb24b1c4d83364187c9ae9354849dde",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth2__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__star__depth2__distractors3/rep1",
+      "cell": "smollm2-1.7b__star__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "7a42285f0dbfa03b55ea487146e9cd2c22a0c2305ce537f10ac0cd8a090f8602",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "67d5ea451b46dbc70a6c3e9ef2369928ae702bb9bb09acf10358414306362119",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth2__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__star__depth2__distractors3/rep2",
+      "cell": "smollm2-1.7b__star__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "88ed0c842e376f0812b9c624fcd1352b79db0871dec4840a15e7a0c623ea4f0a",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "9d650df2cdd44497b5abcbc12d26727c807a2c53c52bf504436082fe32e89634",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth2__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "smollm2-1.7b__star__depth2__distractors3/rep3",
+      "cell": "smollm2-1.7b__star__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "smollm2-1.7b",
+        "family": "smollm2",
+        "parameters": 1711376384,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/smollm2-1.7b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "548a5afc92afaf72a8620d54ab04abb07ff409ec78566123c54753f1545ea62c",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "9e869eb7039fea6c6e49da09872ecb2adfdf4f53813474cadf4d9b0de9e56014",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/smollm2-1.7b__fully_connected__depth2__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__fully_connected__depth1__distractors3/rep0",
+      "cell": "gemma3-1b__fully_connected__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "7df944ae89db6069df31117b3d0b80c8dc0666bea0afc7be6f51da1d52a69aa4",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "27787edb0496182b05cb1419681a1760a7c7ede00f10f36f9653f106768f5b3b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__fully_connected__depth1__distractors3/rep1",
+      "cell": "gemma3-1b__fully_connected__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "6d2598afc0b7576384f27b43456711d0ae5cbc0186c90180b4335c6eb993bc10",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "af3675117e5dc9640be3306c1f1e80937554fa5688c6ea0f91548e09c0026671",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__fully_connected__depth1__distractors3/rep2",
+      "cell": "gemma3-1b__fully_connected__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "5eef2e1f373a9f5b0aaf9e6873196a0c5b59fa0521adeb1970f01e1fedf734a5",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "bec6fd4c9d4759299d799371d55d6f4704290a42d53612b85109d04b72aa4e9d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__fully_connected__depth1__distractors3/rep3",
+      "cell": "gemma3-1b__fully_connected__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "e0ffd02d09523be6b6ff88e51cc865f7df0b5b9abce36630dd13ea40f7730a29",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "d01abca0c20f7320ffb88bcf03e2480eb2ad2a825af8fddb1948e2baf8e895cc",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__fully_connected__depth2__distractors3/rep0",
+      "cell": "gemma3-1b__fully_connected__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "f3010e3480aaba4081ae4216349e5e15f50b130960033fdea23954a8cf9160f1",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "706da39225ca60c3cf9897fe41b1a76b30436e2e69818019e124c2fcf6d7cc0a",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__fully_connected__depth2__distractors3/rep1",
+      "cell": "gemma3-1b__fully_connected__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "dee23a5bba85b2e38665117fa2934402f970b0a07ee5ff13522eceee5bcbb1ce",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "bb7de53a67de7012bb0dbdad5b0a3973ff2109f25f275b6f55dc188e6651688b",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__fully_connected__depth2__distractors3/rep2",
+      "cell": "gemma3-1b__fully_connected__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "2ef0ff79f71a6f5d404688d116310e91b6bbcf5cc927bf4f407c94d2b6a4e722",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "2f88aeeace73e4213fbac27ecde280bd59555d331f682571a35ce3a15f8d6d7f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__fully_connected__depth2__distractors3/rep3",
+      "cell": "gemma3-1b__fully_connected__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "91ad8a96c3681ae41302df4c4581091a4fd8d54f28ddb69a381230dd96fa4b3f",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "4ea8c31f390c7f2b3197fbaae9073c4bbf50b93e1028d03dfede0e04c1974635",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__star__depth1__distractors3/rep0",
+      "cell": "gemma3-1b__star__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "985a59388d153775728a0157c6f553365032346299e4ff59c18a6a4cae441b2d",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "33064be895c2f636eb270dcd52c3bab398942e76483de04589cc54e1784587de",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/gemma3-1b__fully_connected__depth1__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__star__depth1__distractors3/rep1",
+      "cell": "gemma3-1b__star__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "ca72b2e93a077d914516f1ae90dc718c1473b9f23a7f419423c9b35fabdefb32",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "6e4ec7908c3951fc3b7c8f0430ce139cc70c93613b079d9b111e1ff05fdd590c",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/gemma3-1b__fully_connected__depth1__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__star__depth1__distractors3/rep2",
+      "cell": "gemma3-1b__star__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "8cec2332e706b0eba40d69e7b9602414a0e39fad8ac36a7f69aa88564b15263d",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "3f6ca354faf1d0754fc61b069000d8951b8a47c208f219493ac3e76ea2633623",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/gemma3-1b__fully_connected__depth1__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__star__depth1__distractors3/rep3",
+      "cell": "gemma3-1b__star__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "4796e60976707f3b0ae70bf040fb6d72f9ed2cce3342a2773f5385981afa5e21",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "8af2f3d588cffd94894e3e77e92f48a956c94936bb3d7653e1b0d40dac0cdce9",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/gemma3-1b__fully_connected__depth1__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__star__depth2__distractors3/rep0",
+      "cell": "gemma3-1b__star__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "f4a91115082ed95f5af645485edec7840df33896f31b31e69f31efa4b83437d1",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "71bbfdf11ba2644fbee6d32469e90f3b6f49149d3a539696a6be15210d6cdd31",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/gemma3-1b__fully_connected__depth2__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__star__depth2__distractors3/rep1",
+      "cell": "gemma3-1b__star__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "36022e253e862f0e2301668f59233db92750a6e7b28634d05ecdb0e7ff035c06",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "599a2644f95dac3af679d72987e2838cde5cf10eef35e82c407e02133b8863b0",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/gemma3-1b__fully_connected__depth2__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__star__depth2__distractors3/rep2",
+      "cell": "gemma3-1b__star__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "e3403c67fe04161704cd7247cf46c251e61291173c90b51f602b62956418054d",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "3ce83e90be88c34c8ccfac07a52b985c712ab1970576137c83a50594440beddd",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/gemma3-1b__fully_connected__depth2__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "gemma3-1b__star__depth2__distractors3/rep3",
+      "cell": "gemma3-1b__star__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "gemma3-1b",
+        "family": "gemma3",
+        "parameters": 999885952,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/gemma3-1b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "01e9c6e7dd31e86513e9f5ee61cd86276b2d91ce74fa5dc05e3a283528ebca6b",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "12b3155e85bad6926dba049944359261af2151bb615f0557a308f2567485884d",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/gemma3-1b__fully_connected__depth2__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__depth1__distractors3/rep0",
+      "cell": "qwen3-4b__fully_connected__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "ef804e10efd3a0f5eb75eef95deb12aeabde38fdc301f990834dd932a4bb9be4",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "71bd44e7af26d27c89c521a318c4cb7d285f2cf3286e1dce8adf369375983f67",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__depth1__distractors3/rep1",
+      "cell": "qwen3-4b__fully_connected__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "a161197b8859c9992d79e6975427f27f6e8788b12ee9a6be874685f7f81d2597",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "769f4c8eff9fbe539ad1b4d809cc17bf55d60509eeb3fa5ca2bee6587caa922f",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__depth1__distractors3/rep2",
+      "cell": "qwen3-4b__fully_connected__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "311cf38bce54943d3f65987f9d0e35d8958562863d286ac8becd4fe4558cdbe4",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "5c3cb9bbba346b8ab2d55815c79e87ec201f70c4d54f75b5fb15dc15ba4ebd9d",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__depth1__distractors3/rep3",
+      "cell": "qwen3-4b__fully_connected__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__fully_connected__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "8cdb223847e5291c7f7d386c0ac314d20aac4631c5e32a7c8789123a79809b2b",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "6c844f67a117d88b229aed5cf5d15bdb5c3a820a50df1b242424faa09d3152d7",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__depth2__distractors3/rep0",
+      "cell": "qwen3-4b__fully_connected__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "2750b7a911e98235abd872e12d07481f591e50d55492030ad3ca43db573f6060",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "fa83817c54c629536d9fb1ab3b0fd3a5da443e19e57981d4ad74fa1489bae3e3",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__depth2__distractors3/rep1",
+      "cell": "qwen3-4b__fully_connected__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "735e2dcd3024f3a307a16d45a252323844ab377b42d54bb72a24799a421407f8",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "f74723a1ea72b04f27734b8cb082f75c5bb3f81786900d8f7858a440a1195c93",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__depth2__distractors3/rep2",
+      "cell": "qwen3-4b__fully_connected__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "32b69ca1ad60601d3ad2894b1d6d9b2e4d10ce7e278583ef423ccfb05c07a584",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "b6e6d4de041446c0f0588790348023c81a3ad68830945450a849017ec7c93dbb",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__fully_connected__depth2__distractors3/rep3",
+      "cell": "qwen3-4b__fully_connected__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "fully_connected",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__fully_connected__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "eacfbfa037ce70951e7934a307a5804c0a0c341124adf5b7e25eaed596836819",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "6316c3b935e45cbd7c58c2b966f122e3096b8ebd57e2b3188d8b546731ba3154",
+          "same_as": null
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__star__depth1__distractors3/rep0",
+      "cell": "qwen3-4b__star__depth1__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "7a78b23b7ff1a574caed71eb00062a8497068392c0b986f2a2f5977e5a3462de",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "ee7690a0b827def470631d795b48097f04346fc7ec3beabcd7c2cbfae93a8e8e",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/qwen3-4b__fully_connected__depth1__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__star__depth1__distractors3/rep1",
+      "cell": "qwen3-4b__star__depth1__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "bef4a89d8203c1cf42deba18d75874a5c68e7bb56f9b25f1d49d5a6586094e5a",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "a423ac069707e1d93dee7d4aebba20917917e56f12238af0cf85955e3bc3e0d9",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/qwen3-4b__fully_connected__depth1__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__star__depth1__distractors3/rep2",
+      "cell": "qwen3-4b__star__depth1__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "a933070c8dabec0b3737d6103bdf34cb94610ce47ecf9d6b594f5e1d466bf918",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "93d0ab988a435c2ace83663a2bdfe1e7635a2642735bcfd84a30915a40869c31",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/qwen3-4b__fully_connected__depth1__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__star__depth1__distractors3/rep3",
+      "cell": "qwen3-4b__star__depth1__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "star",
+        "depth": 1,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__star__depth1__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "51f480aa817956ea18012ce0de05d6005a1bf4b19bc55e432a8f03e868eece6d",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "2265707dc20bee15fe0452388e18f6e9b91c1b945fe26f41d292834a7a29b2d5",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/qwen3-4b__fully_connected__depth1__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__star__depth2__distractors3/rep0",
+      "cell": "qwen3-4b__star__depth2__distractors3",
+      "replicate": 0,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep0",
+          "config_sha256": "e661c5b096c326cf3396dfac13d86c2244f108ea400dcf6d0d2378a5975f5802",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep0",
+          "config_sha256": "7bf1613f8b611c815e32347b61b015322b4f25f78d733331e4d2386ab50b9900",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/qwen3-4b__fully_connected__depth2__distractors3/one_agent/seed0_rep0"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__star__depth2__distractors3/rep1",
+      "cell": "qwen3-4b__star__depth2__distractors3",
+      "replicate": 1,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep1",
+          "config_sha256": "25f0c27f3271d5403110491faeacca301c9644b19484e9624ade810fa4d55406",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep1",
+          "config_sha256": "02d9b26dcdcd96593c7b165bd3d5034c8466d60c71307161e305914940382348",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/qwen3-4b__fully_connected__depth2__distractors3/one_agent/seed0_rep1"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__star__depth2__distractors3/rep2",
+      "cell": "qwen3-4b__star__depth2__distractors3",
+      "replicate": 2,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep2",
+          "config_sha256": "a9752865f2583d310a6c878037434b0029c3d35c8dba5af48d32fbab6e08b39d",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep2",
+          "config_sha256": "d195ba22c242d4e97946a8d81bba83f365e16bea1d47a537b8a2b567d9062f6f",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/qwen3-4b__fully_connected__depth2__distractors3/one_agent/seed0_rep2"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-4b__star__depth2__distractors3/rep3",
+      "cell": "qwen3-4b__star__depth2__distractors3",
+      "replicate": 3,
+      "attrs": {
+        "model": "qwen3-4b",
+        "family": "qwen3",
+        "parameters": 4022468096,
+        "protocol": "star",
+        "depth": 2,
+        "distractors": 3
+      },
+      "folder": "runs/prompt_v2_check/qwen3-4b__star__depth2__distractors3",
+      "runs": [
+        {
+          "version": "base",
+          "dir": "seed0_rep3",
+          "config_sha256": "91b08e335f6c1b6cd06afbf7855fca89ba14f69f6ccb8aa6c2dfbf596afb7aaf",
+          "same_as": null
+        },
+        {
+          "version": "one_agent",
+          "dir": "seed0_rep3",
+          "config_sha256": "7d95a066fc1087f6ce253882714f0fdf91b6c70bece97c425bee9a531968e1e6",
+          "same_as": "/scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/prompt_v2_check/qwen3-4b__fully_connected__depth2__distractors3/one_agent/seed0_rep3"
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-11-01T09:00:29",
+  "environment": {
+    "git": {
+      "commit": "69f7d2a7c017e3b47c7ea26e2afaeecd3a0240ca",
+      "dirty": true
+    },
+    "python": "3.11.18",
+    "platform": "Linux-6.12.113+deb13-amd64-x86_64-with-glibc2.41",
+    "libraries": {
+      "torch": "2.11.0+cu128",
+      "transformers": "5.22.0",
+      "accelerate": "1.15.0",
+      "sentence-transformers": "6.2.0",
+      "numpy": "2.4.6",
+      "pydantic": "2.14.2"
+    },
+    "hardware": {
+      "torch_loaded": false,
+      "cuda": null,
+      "gpus": []
+    }
+  }
+}

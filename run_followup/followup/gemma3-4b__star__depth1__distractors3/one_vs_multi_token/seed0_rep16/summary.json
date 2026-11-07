@@ -1,0 +1,59 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 12,
+  "task": {
+    "initial": [
+      "castle",
+      "flower",
+      "pasta",
+      "water",
+      "wind"
+    ],
+    "max_steps": 120,
+    "target": "pollen",
+    "intermediate": [],
+    "distractors": [
+      "castle",
+      "pasta",
+      "water"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.1111
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 11,
+      "new_items": [
+        "fruit",
+        "perfume"
+      ],
+      "coverage": 0.1111,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5695,
+    "completion_tokens": 359,
+    "calls": 11,
+    "wall_clock_s": 15.362,
+    "lines": {
+      "agents": {
+        "total_tokens": 5695,
+        "completion_tokens": 359,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

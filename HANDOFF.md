@@ -1,9 +1,10 @@
 # Handoff: state of the project and plan (2026-11-07)
 
 For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (44 numbered findings with their
-evidence and status). Everything below is as of commit `25bb35b` plus the uncommitted code and grids of the four next
-experiments (section 7), which the user is about to commit and queue on giano. Every earlier experiment has finished
-and been analysed.
+evidence and status). Everything below is as of commit `bd60792` (local = `origin/main` = giano, all clean). Every
+experiment up to hints2_8b_share has finished and been analysed (F1–F44). **Seven grids were queued on giano on
+2026-11-07 and are running or waiting** (section 7): the next session's job is to check them, download them and
+analyse them.
 
 ## 1. The project
 
@@ -61,7 +62,10 @@ The user runs every command on the cluster and pastes the output or a screenshot
   float16 only, usually idle). Gemma 3 must stay on L40 (overflows in float16); Qwen3 and Llama 3.2 give the same
   results in float16 (F23). 3-day job limit; **at most 3 running jobs per user** (QOS). `sacct` does not work.
 - Code reaches giano by git: push from the local repo, then on giano `git pull` (giano's checkout is clean; if a pull
-  ever conflicts, `git fetch origin && git reset --hard origin/main` is safe, nothing is edited there).
+  ever conflicts, `git fetch origin && git reset --hard origin/main` is safe, nothing is edited there). Pull only when
+  `squeue -u $USER` is empty: every run calls `git status` (provenance), and a killed one can leave
+  `.git/index.lock` behind (2026-11-07: a lock from 6 Nov 10:01 blocked the pull). If a pull reports the lock and no
+  job and no git process runs (`ps -u $USER -o pid,lstart,cmd | grep -w git`), `rm .git/index.lock` and pull again.
 - Jobs run offline from the cache (`HF_HUB_OFFLINE=1`): download new models on giano first with
   `python scripts/download_models.py <grid>` and check there is no `FAILED` line (gated Llama/Gemma need the licence,
   granted for this account).
@@ -89,7 +93,7 @@ The user runs every command on the cluster and pastes the output or a screenshot
   is `[]`, every `.out` ends with `0 failed runs`, and `meta.json`'s `environment.git` (commit, dirty).
 - Job IDs so far: main 74066/74067; followup 74110, 74114, 74115; random_baseline 74155; hints 74158, 74161–74163;
   hints2 74189, 74192–74194; hints2_share 74195, 74196; hints2_use 74232, 74234–74236; hints2_8b 74237, 74238;
-  hints2_8b_share 74239, 74240.
+  hints2_8b_share 74239, 74240. Queued 2026-11-07: see section 7.
 - `sweep.py` takes the grid's file, not its name: `python scripts/sweep.py evaluate configs/experiments/<grid>.yaml`.
   Run the download's rsync lines from the repo root (on 2026-11-06 they ran one folder up and had to be moved).
 
@@ -149,7 +153,20 @@ The user runs every command on the cluster and pastes the output or a screenshot
 
 ## 6. Code state and open technical issues
 
-- `main` = `origin/main` = `d01c77a`; uncommitted: `FINDINGS.md` (F42–F44, F38 and F41 closed) and this file.
+- `main` = `origin/main` = `bd60792` on the local machine and on giano; nothing uncommitted except the user's
+  `framework/stuff.md` (see below) and the git-ignored pages.
+- New on 2026-11-07 (`6d0202f`–`bd60792`, four commits):
+  - **mixed teams**: `engine.agent_models` (list of `{model, revision}`; agents take them in turn by sorted id) and
+    `framework/agents/backends/team.py` (`TeamBackend`: one backend per distinct model; the engine keeps
+    `agent_backends` and calls each agent's own backend, token counts with its tokenizer). A grid names a team of
+    `configs/models/models.yaml` `teams:` as a model (`experiment.load_teams`, `members`); `runs.csv` gets family
+    `mixed`. `meta.json` gets `agent_models` (agent → model id) and `engine.backend: team` with `members`. Not
+    allowed with `persona_host`. Checked locally with a mock team (one run in the scratchpad): routing and metadata
+    right. Its first real test is the `mixed` gate (74397).
+  - **`task.mark_made`**: an "Items you made (already in your inventory): ..." line under the inventory
+    (`WordCraftTask.build_prompt` passes the inventory minus the starting items).
+  - **gemma3-12b** in the registry (revision `96b6f1ec…` from the HF API, 12,187,325,040 parameters; downloaded on
+    giano).
 - Local-only (git-ignored): `run_*/`, `shard*.jsonl` in the repo root, `docsHPC/` (cluster docs and a colleague's
   Slurm guide), `data/`.
 - Fixed: F2 (the revision is read from the cache snapshot), the `setup_giano.sh` venv branch, the missing mock backend.
@@ -167,12 +184,13 @@ The user runs every command on the cluster and pastes the output or a screenshot
   republish with the artifacts server's `publish_files` (files `[{as: index.html, path: <absolute path of the file>}]`,
   that slug, `base_version` = the last version). Its chart data are written into the page's script at the bottom
   (from `docs/analysis/pagedata.py` and FINDINGS.md); it covers every experiment through hints2 and F1–F41. Read the
-  server's `pages` and `design` guides before changing it. The file covers F42–F44 (section 3.8, 2026-11-07) but
-  that version is not published yet: the artifact tools failed in that session, so republish it from the file.
+  server's `pages` and `design` guides before changing it. **Not yet republished**: the file covers F42–F44 (section
+  3.8 and summary keys 05 and 07, added 2026-11-07), but the artifact tools failed in that session. Republish it
+  from the file (call `get_artifact` first for the live version).
 - **Two-week report**: `docs/changes_2026-11-06.html` (git-ignored), private artifact
   https://claude.ai/artifact/T5GV5UVfWCorzNySfMMhuX (slug `d3261f65-e21a-48c9-82a0-e7d336856ae6`, version
-  `1793978928-cde5`): code changes 24 Oct – 5 Nov and a summary per experiment through hints2_share (F1–F41). The
-  file also covers F42–F44 and the queued grids (2026-11-07), not yet republished.
+  `1793978928-cde5`): code changes 24 Oct – 5 Nov and a summary per experiment through hints2_share (F1–F41). **Not
+  yet republished**: the file also covers F42–F44 and the queued grids (2026-11-07); republish it the same way.
 - Personas used: `prompts/v1/personas/hub.txt`, `spoke.txt` (no v2 personas).
 
 ## 7. Plan
@@ -180,20 +198,52 @@ The user runs every command on the cluster and pastes the output or a screenshot
 Done since 2026-11-05: the receiving side (hints2_use, F42), Qwen3-8B (hints2_8b, hints2_8b_share, F43), the
 intermediate loop (F44), F41 closed.
 
-**Queued 2026-11-07** (all on hints2's or main's targets and notes, checked: 0 differences, so every run pairs):
+### Queued on giano, 2026-11-07
 
-| grid | question | runs | where |
-|---|---|---|---|
-| `hints2_12b`, `hints2_12b_share` | is F43 size or Qwen? gemma3-12b on hints2's cells, and with share (use false / true) | 600 + 160 | L40 |
-| `hints2_8b`, `hints2_8b_share` | qwen3-8b on 40 more targets (replicates 40–79; 0–39 are skipped as finished) | +600, +160 | L40 |
-| `hints2_made` | does `mark_made` stop the intermediate loop (F44)? 4 models × FC/star × split, all × 3 versions | 1,600 | qwen3-4b, llama rtx2080; gemma3-4b, qwen3-8b L40 (`SWEEP_SHARDS=4`, one model per block) |
-| `mixed`, `mixed_hints` | do mixed-family teams (mix-qgl) do better than single-model ones (F6)? base, all_independent; main's settings (20 targets) and hints2's split / all (40) | 160 + 320 | L40 |
+All on hints2's or main's targets and notes (checked locally: 0 differences in 3,200 compared runs, so every run
+pairs with its counterpart). The plans on giano matched the local expansion. Each full job waits for its gate
+(`afterok`, killed if the gate fails); at most 3 jobs run at once, the rest wait.
 
-Analyses to write when they are back: 12b and 8b like `k3.py`/`k4.py`; made vs hints2/hints2_8b pair by pair, with
-k4-style counts of remakes; mixed vs main/followup (FC 6 and star 3, both settings) and vs hints2, per family of the
-note holders (from `meta.json` `agent_models` and `notes`).
+| grid | question | distinct runs | gate | full jobs | where |
+|---|---|---|---|---|---|
+| `hints2_12b` | is F43 about size or about Qwen? gemma3-12b on hints2's 6 cells × 3 versions | 600 | 74395 (unit 0 of 240) | 74398 [0-1] | L40 |
+| `hints2_12b_share` | gemma3-12b split FC teams told to share, use_notes false / true | 160 | 74395 | 74399 [0] | L40 |
+| `hints2_8b` | qwen3-8b on targets 40–79 (0–39 skipped as finished) | +600 (1,200 total) | 74395 | 74400 [0] | L40 |
+| `hints2_8b_share` | the same for the share / use teams | +160 (320 total) | 74395 | 74401 [0] | L40 |
+| `hints2_made` | does `mark_made` stop the intermediate loop (F44)? qwen3-4b, llama3.2-3b, gemma3-4b, qwen3-8b × FC / star × split (decoys), all × 3 versions | 1,600 | 74396 (unit 0 of 640, rtx2080) | 74402 [0-1] rtx2080 (qwen3-4b, llama), 74403 [2-3] L40 (gemma3-4b, qwen3-8b); `SWEEP_SHARDS=4` | both |
+| `mixed` | do mixed-family teams (mix-qgl: qwen, gemma, llama in turn) beat single-model teams (F6)? FC 6 / star 3 × main's 2 settings × 20 targets × base, all_independent | 160 | 74397 (unit 0 of 80) | 74404 [0] | L40 |
+| `mixed_hints` | the same on hints2's split (decoys) and all cells, 40 targets | 320 | 74397 | 74405 [0-1] | L40 |
 
-Then: the write-up for the supervisor.
+State at hand-off: the `hints2_made` gate 74396 was running on rtx2080; the L40 gates 74395 and 74397 were pending
+(`Priority`, L40s busy); all full jobs pending (`Dependency`). Estimates: about 55 GPU-hours on L40 and 20 on
+rtx2080 (gemma3-12b assumed half qwen3-8b's speed, a guess); the longest job is qwen3-4b's `hints2_made` block on
+rtx2080, about 13 h.
+
+### Next session
+
+1. Ask the user for `squeue -u $USER`. If a gate failed, its dependants are gone: ask for the gate's
+   `slurm-sweep-<job>_<task>.out/.err` and the grid's `runs/<grid>/sweep/*.jsonl`, fix, push, resubmit (a
+   re-submission skips finished runs). The new code paths are `TeamBackend` (gate 74397: three models on one L40)
+   and `mark_made` (gate 74396).
+2. When all are done: on giano `python scripts/sweep.py evaluate configs/experiments/<grid>.yaml` for the 7 grids
+   (each `0 unfinished`), the Slurm lists, then the download (section 3) for each grid **from the repo root**, and
+   the download checks. `run_hints2_8b/` and `run_hints2_8b_share/` already exist locally: rsync adds the new
+   replicates.
+3. Analyses (scripts in `docs/analysis/`, log every result in `FINDINGS.md` from F45):
+   - **gemma3-12b** vs gemma3-4b (hints2, hints2_share, hints2_use) and vs qwen3-8b, as `k3.py` / `k4.py` do for 8b:
+     does talk help its split teams, do its holders tell, do its receivers act? If yes, F43 is size; if not, Qwen.
+   - **qwen3-8b on 80 targets**: redo F43's and F44's contrasts with 80 pairs (`k3.py`, `k4.py` read
+     `range(40)`: extend them).
+   - **made** vs hints2 / hints2_8b, run by run (same targets, notes and seeds; only the made line differs): success
+     per cell, and the share of actions that remake an intermediate already made (the counting in F44). Does it close
+     F40's gap (talk hurts when everyone holds both) and the 30% failures of one agent holding both?
+   - **mixed** vs main (and followup) for FC 6 and star 3, both settings, silenced and talking: mixed − each
+     single-model team, paired by target (main ran all on L40 in bfloat16, like mixed). F6's claim: does a silenced
+     mixed team beat silenced single-model ones (more varied attempts)? Does talk across families herd less (F17)?
+     `mixed_hints` vs hints2: and does pooling depend on which family holds a path recipe (`meta.json`
+     `agent_models` + `notes`)? Note: in a star the hub is always qwen3-4b.
+4. Republish the two pages (section 6), adding the new results.
+5. Then the write-up for the supervisor (the results page is the base).
 
 ## 8. Working with the user
 

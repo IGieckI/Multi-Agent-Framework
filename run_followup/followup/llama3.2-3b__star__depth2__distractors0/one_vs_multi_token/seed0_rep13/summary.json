@@ -1,0 +1,54 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 14,
+  "task": {
+    "initial": [
+      "big",
+      "hill",
+      "rope"
+    ],
+    "max_steps": 120,
+    "target": "cable car",
+    "intermediate": [
+      "mountain"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.1
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 13,
+      "new_items": [
+        "mountain"
+      ],
+      "coverage": 0.1,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 7362,
+    "completion_tokens": 1020,
+    "calls": 13,
+    "wall_clock_s": 51.21,
+    "lines": {
+      "agents": {
+        "total_tokens": 7362,
+        "completion_tokens": 1020,
+        "calls": 13
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

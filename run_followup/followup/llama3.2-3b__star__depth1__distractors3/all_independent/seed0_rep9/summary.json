@@ -1,0 +1,86 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "fish",
+      "house",
+      "human",
+      "water",
+      "wood"
+    ],
+    "max_steps": 4,
+    "target": "log cabin",
+    "intermediate": [],
+    "distractors": [
+      "fish",
+      "human",
+      "water"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 6,
+    "union_coverage": 0.0513
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": true,
+      "steps": 2,
+      "new_items": [
+        "log cabin",
+        "mermaid"
+      ],
+      "coverage": 0.0171,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "boat",
+        "fishing rod",
+        "paper"
+      ],
+      "coverage": 0.0256,
+      "invalid": 0,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "boat",
+        "book",
+        "fishing rod",
+        "paper"
+      ],
+      "coverage": 0.0342,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 6846,
+    "completion_tokens": 1077,
+    "calls": 11,
+    "wall_clock_s": 55.217,
+    "lines": {
+      "agents": {
+        "total_tokens": 6846,
+        "completion_tokens": 1077,
+        "calls": 11
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

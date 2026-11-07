@@ -1,0 +1,59 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 23,
+  "task": {
+    "initial": [
+      "bow",
+      "butterfly",
+      "grass",
+      "human",
+      "wheat"
+    ],
+    "max_steps": 240,
+    "target": "warrior",
+    "intermediate": [],
+    "distractors": [
+      "butterfly",
+      "grass",
+      "wheat"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.1176
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 23,
+      "new_items": [
+        "hay",
+        "scarecrow"
+      ],
+      "coverage": 0.1176,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 12755,
+    "completion_tokens": 977,
+    "calls": 23,
+    "wall_clock_s": 39.009,
+    "lines": {
+      "agents": {
+        "total_tokens": 12755,
+        "completion_tokens": 977,
+        "calls": 23
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

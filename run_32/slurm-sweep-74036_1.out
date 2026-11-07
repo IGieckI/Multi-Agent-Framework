@@ -1,0 +1,4 @@
+node=slurmng-n2 job=74036 shard=1/2
+name, memory.total [MiB]
+NVIDIA L40, 46068 MiB
+shard 1/2: 360 units, 216 failed runs (see /scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/pilot/sweep/shard1of2.jsonl)

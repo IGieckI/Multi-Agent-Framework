@@ -1,0 +1,55 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 25,
+  "task": {
+    "initial": [
+      "desert",
+      "life",
+      "science"
+    ],
+    "max_steps": 240,
+    "target": "domestication",
+    "intermediate": [
+      "animal"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.3333
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 25,
+      "new_items": [
+        "animal",
+        "organic matter"
+      ],
+      "coverage": 0.3333,
+      "invalid": 5,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 14922,
+    "completion_tokens": 2026,
+    "calls": 26,
+    "wall_clock_s": 86.056,
+    "lines": {
+      "agents": {
+        "total_tokens": 14922,
+        "completion_tokens": 2026,
+        "calls": 26
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

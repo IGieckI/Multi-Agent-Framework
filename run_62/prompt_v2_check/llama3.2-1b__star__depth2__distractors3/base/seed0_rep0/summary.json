@@ -1,0 +1,83 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "car",
+      "idea",
+      "livestock",
+      "metal",
+      "mineral",
+      "park"
+    ],
+    "max_steps": 4,
+    "target": "tank",
+    "intermediate": [
+      "steel"
+    ],
+    "distractors": [
+      "idea",
+      "livestock",
+      "park"
+    ]
+  },
+  "team": {
+    "any_solved": true,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.5
+  },
+  "agents": {
+    "agent_00": {
+      "role": "hub",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "roller coaster"
+      ],
+      "coverage": 0.25,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "spoke",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "roller coaster"
+      ],
+      "coverage": 0.25,
+      "invalid": 3,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "spoke",
+      "solved": true,
+      "steps": 4,
+      "new_items": [
+        "tank"
+      ],
+      "coverage": 0.25,
+      "invalid": 3,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 14321,
+    "completion_tokens": 2680,
+    "calls": 20,
+    "wall_clock_s": 30.116,
+    "lines": {
+      "agents": {
+        "total_tokens": 14321,
+        "completion_tokens": 2680,
+        "calls": 20
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

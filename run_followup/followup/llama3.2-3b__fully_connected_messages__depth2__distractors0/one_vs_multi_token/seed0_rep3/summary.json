@@ -1,0 +1,51 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 39,
+  "task": {
+    "initial": [
+      "ant",
+      "sea"
+    ],
+    "max_steps": 240,
+    "target": "roe",
+    "intermediate": [
+      "egg"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 0,
+    "union_coverage": 0.0
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 39,
+      "new_items": [],
+      "coverage": 0.0,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 22132,
+    "completion_tokens": 3167,
+    "calls": 41,
+    "wall_clock_s": 128.26,
+    "lines": {
+      "agents": {
+        "total_tokens": 22132,
+        "completion_tokens": 3167,
+        "calls": 41
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

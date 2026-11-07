@@ -1,0 +1,58 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 27,
+  "task": {
+    "initial": [
+      "human",
+      "wire",
+      "wood"
+    ],
+    "max_steps": 240,
+    "target": "warrior",
+    "intermediate": [
+      "bow"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 5,
+    "union_coverage": 0.1163
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 27,
+      "new_items": [
+        "axe",
+        "bow",
+        "electrician",
+        "lumberjack",
+        "tool"
+      ],
+      "coverage": 0.1163,
+      "invalid": 1,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 16108,
+    "completion_tokens": 2283,
+    "calls": 28,
+    "wall_clock_s": 94.903,
+    "lines": {
+      "agents": {
+        "total_tokens": 16108,
+        "completion_tokens": 2283,
+        "calls": 28
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "car",
+      "idea",
+      "livestock",
+      "metal",
+      "mineral",
+      "park"
+    ],
+    "max_steps": 4,
+    "target": "tank",
+    "intermediate": [
+      "steel"
+    ],
+    "distractors": [
+      "idea",
+      "livestock",
+      "park"
+    ]
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.25
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "roller coaster"
+      ],
+      "coverage": 0.25,
+      "invalid": 0,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 3742,
+    "completion_tokens": 397,
+    "calls": 7,
+    "wall_clock_s": 11.527,
+    "lines": {
+      "agents": {
+        "total_tokens": 3742,
+        "completion_tokens": 397,
+        "calls": 7
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

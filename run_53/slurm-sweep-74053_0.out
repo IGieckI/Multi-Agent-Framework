@@ -1,0 +1,4 @@
+node=slurmng-n1 job=74054 shard=0/2
+name, memory.total [MiB]
+NVIDIA L40, 46068 MiB
+shard 0/2: 5 units, 2 failed runs (see /scratch.hpc/giacomo.antonelli4/Multi-Agent-Framework/runs/smoke_models/sweep/shard0of2.jsonl)

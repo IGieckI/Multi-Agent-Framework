@@ -1,0 +1,55 @@
+{
+  "ended_by": "budget:total_tokens",
+  "steps": 33,
+  "task": {
+    "initial": [
+      "house",
+      "human",
+      "stethoscope"
+    ],
+    "max_steps": 240,
+    "target": "hospital",
+    "intermediate": [
+      "doctor"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 2,
+    "union_coverage": 0.1667
+  },
+  "agents": {
+    "agent_00": {
+      "role": "agent",
+      "solved": false,
+      "steps": 33,
+      "new_items": [
+        "doctor",
+        "family"
+      ],
+      "coverage": 0.1667,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 18995,
+    "completion_tokens": 2601,
+    "calls": 33,
+    "wall_clock_s": 99.115,
+    "lines": {
+      "agents": {
+        "total_tokens": 18995,
+        "completion_tokens": 2601,
+        "calls": 33
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

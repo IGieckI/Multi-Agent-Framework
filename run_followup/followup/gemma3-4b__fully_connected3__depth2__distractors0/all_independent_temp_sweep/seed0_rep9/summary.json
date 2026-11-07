@@ -1,0 +1,76 @@
+{
+  "ended_by": "max_steps",
+  "steps": 4,
+  "task": {
+    "initial": [
+      "chainsaw",
+      "forest",
+      "house"
+    ],
+    "max_steps": 4,
+    "target": "log cabin",
+    "intermediate": [
+      "wood"
+    ],
+    "distractors": []
+  },
+  "team": {
+    "any_solved": false,
+    "all_solved": false,
+    "union_new_items": 1,
+    "union_coverage": 0.1429
+  },
+  "agents": {
+    "agent_00": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "wood"
+      ],
+      "coverage": 0.1429,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_01": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "wood"
+      ],
+      "coverage": 0.1429,
+      "invalid": 2,
+      "no_valid_answers": 0
+    },
+    "agent_02": {
+      "role": "explorer",
+      "solved": false,
+      "steps": 4,
+      "new_items": [
+        "wood"
+      ],
+      "coverage": 0.1429,
+      "invalid": 2,
+      "no_valid_answers": 0
+    }
+  },
+  "usage": {
+    "total_tokens": 5969,
+    "completion_tokens": 425,
+    "calls": 12,
+    "wall_clock_s": 15.524,
+    "lines": {
+      "agents": {
+        "total_tokens": 5969,
+        "completion_tokens": 425,
+        "calls": 12
+      },
+      "channels": {
+        "total_tokens": 0,
+        "completion_tokens": 0,
+        "calls": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "run_id": "seed0_rep11",
+  "config": {
+    "run": {
+      "name": "llama3.2-3b__star__depth2__distractors0",
+      "seed": 0,
+      "replicate": 11,
+      "versions": [
+        "base",
+        "all_independent",
+        "all_independent_temp_sweep",
+        "one_agent",
+        "one_vs_multi_token"
+      ],
+      "baseline": "all_independent"
+    },
+    "task": {
+      "name": "wordcraft",
+      "type": "targeted",
+      "max_steps": 4,
+      "depth": 2,
+      "distractors": 0,
+      "repeat_consumes_step": true,
+      "data": "data/alchemy2.json",
+      "prompts": "v2"
+    },
+    "engine": {
+      "backend": "hf_local",
+      "model": "meta-llama/Llama-3.2-3B-Instruct",
+      "revision": "0cb88a4f764b7a12671c53f0838cd831a0843b95",
+      "max_concurrency": 1,
+      "persona_host": false
+    },
+    "summarizer": null,
+    "sampling": {
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "top_k": 0,
+      "max_tokens": 256,
+      "reasoning": false,
+      "agent_temperatures": null,
+      "sweep_temperatures": [
+        0.7,
+        1.0,
+        1.3
+      ]
+    },
+    "protocol": {
+      "roles": {
+        "hub": {
+          "count": null,
+          "where": "hub",
+          "visible_fields": null
+        },
+        "spoke": {
+          "count": null,
+          "where": {
+            "hub": false
+          },
+          "visible_fields": null
+        }
+      },
+      "structure": {
+        "generator": "star",
+        "n": 3
+      },
+      "rules": [],
+      "schedule": [
+        "spoke",
+        "hub"
+      ],
+      "constraints": [],
+      "channels": {}
+    },
+    "context": {
+      "max_prompt_tokens": 6000,
+      "truncation": "oldest_first"
+    },
+    "retries": {
+      "max_parse_attempts": 3,
+      "max_attempts": 3
+    },
+    "budget": {
+      "total_tokens": null,
+      "completion_tokens": null,
+      "calls": null,
+      "steps": null,
+      "wall_clock_s": 3600.0,
+      "step_reserve": {},
+      "match": null,
+      "show_matched_budget": true
+    },
+    "personas": {
+      "hub": "prompts/v1/personas/hub.txt",
+      "spoke": "prompts/v1/personas/spoke.txt"
+    }
+  },
+  "protocol": {
+    "roles": {
+      "hub": {
+        "count": null,
+        "where": "hub",
+        "visible_fields": null
+      },
+      "spoke": {
+        "count": null,
+        "where": {
+          "hub": false
+        },
+        "visible_fields": null
+      }
+    },
+    "structure": {
+      "generator": "star",
+      "n": 3
+    },
+    "rules": [],
+    "schedule": [
+      "spoke",
+      "hub"
+    ],
+    "constraints": [],
+    "channels": {}
+  },
+  "agents": {
+    "agent_00": "hub",
+    "agent_01": "spoke",
+    "agent_02": "spoke"
+  },
+  "message_types": {
+    "message": [
+      "text"
+    ],
+    "reasoning": [
+      "text"
+    ],
+    "result.failure": [
+      "combo"
+    ],
+    "result.success": [
+      "combo",
+      "result"
+    ],
+    "task": [
+      "text"
+    ],
+    "verdict": [
+      "text"
+    ]
+  },
+  "phases": [
+    [
+      "agent_01",
+      "agent_02"
+    ],
+    [
+      "agent_00"
+    ]
+  ],
+  "visible_fields": {
+    "agent_00": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_01": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ],
+    "agent_02": [
+      "inventory",
+      "own_invalid",
+      "own_valid",
+      "steps_left",
+      "target"
+    ]
+  },
+  "social_blocks": {
+    "agent_00": [],
+    "agent_01": [],
+    "agent_02": []
+  },
+  "message_slot": {
+    "agent_00": false,
+    "agent_01": false,
+    "agent_02": false
+  },
+  "personas": {
+    "hub": {
+      "file": "prompts/v1/personas/hub.txt",
+      "sha256": "dcc3f003b8b7ad31c8ae5524a479315e682a4067b459ccfaea9db23b26dc74eb"
+    },
+    "spoke": {
+      "file": "prompts/v1/personas/spoke.txt",
+      "sha256": "6c40494a76d4d4e7d2465e300c3231c8a16c467463ac8af81e5de9807437c0e7"
+    }
+  },
+  "task": {
+    "initial": [
+      "day",
+      "light",
+      "planet"
+    ],
+    "max_steps": 4,
+    "target": "solar system",
+    "intermediate": [
+      "sun"
+    ],
+    "distractors": []
+  },
+  "prompts": "v2",
+  "prompts_hash": "7f713b281b57e2f11765e5388f111586c58bbe3621e717f6a7c09da16aff244b",
+  "data_sha256": "757422df36f8805b1a56c418e613c6418c905b0956e6f2fb3dff78569933d25d",
+  "sampling": {
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": 0,
+    "max_tokens": 256,
+    "reasoning": false,
+    "seed": null
+  },
+  "agent_temperatures": {},
+  "engine": {
+    "backend": "hf_local",
+    "engine": "transformers",
+    "engine_version": "5.22.0",
+    "model_id": "meta-llama/Llama-3.2-3B-Instruct",
+    "revision": null,
+    "requested_revision": "0cb88a4f764b7a12671c53f0838cd831a0843b95",
+    "parameters": 3212749824,
+    "torch_version": "2.11.0+cu128",
+    "dtype": "torch.float16",
+    "quantization": "none",
+    "context_window": 131072,
+    "device": "cuda:0",
+    "prefix_caching": false,
+    "sampling_settings": "from Sampling"
+  },
+  "summarizer": null,
+  "prompt_token_count": "backend",
+  "budget": {
+    "caps": {
+      "total_tokens": null,
+      "completion_tokens": null,
+      "calls": null,
+      "steps": null,
+      "wall_clock_s": 3600.0
+    },
+    "step_reserve": {},
+    "match": null
+  },
+  "shared_context": false,
+  "persona_host": null,
+  "started_at": "2026-11-03T00:09:03",
+  "environment": {
+    "git": {
+      "commit": "78e7719af1d886d847ba38e2aaa08549772aaafc",
+      "dirty": false
+    },
+    "python": "3.11.18",
+    "platform": "Linux-6.12.111+deb13-amd64-x86_64-with-glibc2.41",
+    "libraries": {
+      "torch": "2.11.0+cu128",
+      "transformers": "5.22.0",
+      "accelerate": "1.15.0",
+      "sentence-transformers": "6.2.0",
+      "numpy": "2.4.6",
+      "pydantic": "2.14.2"
+    },
+    "hardware": {
+      "torch_loaded": true,
+      "cuda": "12.8",
+      "gpus": [
+        {
+          "name": "NVIDIA GeForce RTX 2080 Ti",
+          "memory_mb": 10821
+        }
+      ]
+    }
+  }
+}
