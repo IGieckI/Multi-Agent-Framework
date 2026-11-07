@@ -1,0 +1,25 @@
+# Do agents stop remaking an intermediate they hold (F44) when the prompt lists the items they made? hints2's and
+# hints2_8b's cells with notes split (decoys) and all, same seed and settings (so the same targets and notes), with
+# task.mark_made. Pairs run by run with hints2 and hints2_8b.
+# Models in this order so that SWEEP_SHARDS=4 gives one model per block: 0-1 (qwen3-4b, llama) on rtx2080, 2-3
+# (gemma3-4b, qwen3-8b) on L40
+name: hints2_made
+replicates: 40
+seed: 0
+versions: [base, all_independent, one_agent]
+models: [qwen3-4b, llama3.2-3b, gemma3-4b, qwen3-8b]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+  - {name: star, file: configs/protocols/star2.yaml,
+     personas: {hub: prompts/v1/personas/hub.txt, spoke: prompts/v1/personas/spoke.txt}}
+task:
+  - {hints: split, decoys: true}
+  - {hints: all, decoys: true}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2,
+         depth: 2, distractors: 6, notes: 2, allow_shortcuts: false, mark_made: true}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}

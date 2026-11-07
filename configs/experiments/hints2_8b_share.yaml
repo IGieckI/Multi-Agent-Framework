@@ -2,7 +2,7 @@
 # without and with the receivers told to use them. Base only (the other versions have no messages). Pairs with
 # hints2_8b's runs
 name: hints2_8b_share
-replicates: 40
+replicates: 80   # 40 until 2026-11-07; 40-79 add new targets (F43: intervals of +-15-20 points)
 seed: 0
 versions: [base]
 models: [qwen3-8b]

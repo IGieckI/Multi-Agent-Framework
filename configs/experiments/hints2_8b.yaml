@@ -1,7 +1,7 @@
 # Does a stronger model pool split notes (F37-F38)? hints2's cells again with qwen3-8b, same seed and settings, so the
 # same targets and notes. qwen3-8b needs the L40 (16 GB in bfloat16). Its share and use runs are in hints2_8b_share.yaml
 name: hints2_8b
-replicates: 40
+replicates: 80   # 40 until 2026-11-07; 40-79 add new targets (F43: intervals of +-15-20 points)
 seed: 0
 versions: [base, all_independent, one_agent]
 models: [qwen3-8b]

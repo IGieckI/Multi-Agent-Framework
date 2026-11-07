@@ -1,0 +1,23 @@
+# Mixed teams (mixed.yaml) on hints2's cells with notes split (decoys) and all, same seed and settings, so the same
+# targets and notes: each run pairs with hints2's single-model teams. Which family holds a path recipe changes with the
+# target (notes are dealt by agent). L40 only
+name: mixed_hints
+replicates: 40
+seed: 0
+versions: [base, all_independent]
+models: [mix-qgl]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+  - {name: star, file: configs/protocols/star2.yaml,
+     personas: {hub: prompts/v1/personas/hub.txt, spoke: prompts/v1/personas/spoke.txt}}
+task:
+  - {hints: split, decoys: true}
+  - {hints: all, decoys: true}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2,
+         depth: 2, distractors: 6, notes: 2, allow_shortcuts: false}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}

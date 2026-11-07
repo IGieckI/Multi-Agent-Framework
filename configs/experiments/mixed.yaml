@@ -1,0 +1,23 @@
+# Does variety between model families help a team (F6, untested)? Teams of qwen3-4b, gemma3-4b and llama3.2-3b
+# (team mix-qgl of configs/models/models.yaml: 6 agents, two of each; the 3-agent star has one of each, qwen as hub),
+# silenced and with talk, on the main experiment's settings, seed and base (the same 40 targets), so each run pairs with
+# the single-model teams of main and followup. L40 only (all three models loaded at once, gemma needs bfloat16)
+name: mixed
+replicates: 20
+seed: 0
+versions: [base, all_independent]
+models: [mix-qgl]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+  - {name: star, file: configs/protocols/star2.yaml,
+     personas: {hub: prompts/v1/personas/hub.txt, spoke: prompts/v1/personas/spoke.txt}}
+task:
+  - {depth: 1, distractors: 3}
+  - {depth: 2, distractors: 0}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}
