@@ -79,9 +79,10 @@ def social_segments(label: str, messages: list[Message], as_list: bool) -> list[
 
 
 def build_prompt(view: View, targeted: bool, error: str | None = None, version: str = "v1",
-                 share_notes: bool = False, use_notes: bool = False) -> Prompt:
+                 share_notes: bool = False, use_notes: bool = False, made: list[str] | None = None) -> Prompt:
     """The rules, the role's persona if any, the message slot if any, the state block and, on a retry, the error found
-    in the previous answer. The state block shows only the observation fields in the view"""
+    in the previous answer. The state block shows only the observation fields in the view. `made`: the items the
+    agent made itself, listed under the inventory when there are any (task.mark_made)"""
     observation = view.observation
     rules = rules_file(targeted, version)
     message_slot = templates(version) / "message_slot.txt"
@@ -94,6 +95,9 @@ def build_prompt(view: View, targeted: bool, error: str | None = None, version: 
     segments.append(Segment("<Current task>\n", "template"))
     if "inventory" in observation:
         segments.append(Segment(f"Inventory: {quote(observation['inventory'])}\n", "observation", "inventory"))
+        if made:
+            segments.append(Segment(f"Items you made (already in your inventory): {quote(made)}\n", "observation",
+                                    "made"))
     if observation.get("target") is not None:
         segments.append(Segment(f"Target: '{observation['target']}'\n", "observation", "target"))
     if "notes" in observation:
