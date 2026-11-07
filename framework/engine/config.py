@@ -42,6 +42,12 @@ class RunSection(Strict):
         return versions
 
 
+class AgentModel(Strict):
+    """One model of a mixed team (engine.agent_models)"""
+    model: str
+    revision: str | None = None
+
+
 class EngineConfig(Strict):
     """The LLM backend that serves the agents"""
     # "mock" is the test backend, "hf_local" runs a HuggingFace model on this machine
@@ -54,6 +60,16 @@ class EngineConfig(Strict):
     max_concurrency: int = Field(default=4, ge=1)
     # baseline B5: one model hosts every agent of the run in one shared conversation (framework/agents/persona_host.py)
     persona_host: bool = False
+    # a mixed team: the model of each agent (sorted agent ids, cycling through the list), all on `backend`; `model` is
+    # then only the team's name. None = every agent runs `model`
+    agent_models: tuple[AgentModel, ...] | None = None
+
+    @model_validator(mode="after")
+    def team_is_valid(self) -> "EngineConfig":
+        """Reject an empty team, and a team hosted in one shared conversation"""
+        if self.agent_models is not None and (not self.agent_models or self.persona_host):
+            raise ValueError("engine.agent_models needs at least one model, and cannot be used with persona_host")
+        return self
 
 
 class SummarizerConfig(Strict):

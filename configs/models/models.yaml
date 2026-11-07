@@ -41,9 +41,19 @@ models:
   gemma3-4b: {family: gemma3, model: google/gemma-3-4b-it, revision: 093f9f388b31de276ce2de164bdc2081324b9767, parameters: 4300079472,
     link: https://huggingface.co/google/gemma-3-4b-it, gated: true, native_reasoning: false,
     sampling: {}}
+  # 24 GB in bfloat16: L40 only (Gemma overflows in float16, F23)
+  gemma3-12b: {family: gemma3, model: google/gemma-3-12b-it, revision: 96b6f1eccf38110c56df3a15bffe176da04bfd80, parameters: 12187325040,
+    link: https://huggingface.co/google/gemma-3-12b-it, gated: true, native_reasoning: false,
+    sampling: {}}
   smollm2-360m: {family: smollm2, model: HuggingFaceTB/SmolLM2-360M-Instruct, revision: a10cc1512eabd3dde888204e902eca88bddb4951, parameters: 361821120,
     link: https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct, gated: false, native_reasoning: false,
     sampling: {}}
   smollm2-1.7b: {family: smollm2, model: HuggingFaceTB/SmolLM2-1.7B-Instruct, revision: 31b70e2e869a7173562077fd711b654946d38674, parameters: 1711376384,
     link: https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct, gated: false, native_reasoning: false,
     sampling: {}}
+
+# Mixed teams: a grid may name one as a model. Agents take the listed models in turn (sorted agent ids, cycling through
+# the list), so 6 agents of mix-qgl are qwen, gemma, llama, qwen, gemma, llama and a 3-agent star's hub is qwen.
+# All members are loaded at once (about 23 GB in bfloat16 here: L40 only)
+teams:
+  mix-qgl: [qwen3-4b, gemma3-4b, llama3.2-3b]

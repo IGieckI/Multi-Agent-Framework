@@ -151,6 +151,28 @@ def load_models(path: Path = MODELS_FILE) -> dict[str, ModelEntry]:
             for name, entry in raw["models"].items()}
 
 
+def load_teams(path: Path = MODELS_FILE, models: dict[str, ModelEntry] | None = None) -> dict[str, tuple[str, ...]]:
+    """Mixed teams of the registry ('teams' section): name -> the model of each agent, cycling through the list in
+    sorted agent order. Their members must be models of the registry with the same sampling policy"""
+    raw = yaml.safe_load(path.read_text(encoding="utf-8")).get("teams") or {}
+    models = load_models(path) if models is None else models
+    teams = {}
+    for name, members in raw.items():
+        if name in models or name in MOCKS or not members:
+            raise ValueError(f"team {name!r}: needs members, and a name that is not a model's")
+        if unknown := [m for m in members if m not in models]:
+            raise ValueError(f"team {name!r}: members not in the registry: {unknown}")
+        if len({json.dumps(models[m].sampling, sort_keys=True) for m in members}) > 1:
+            raise ValueError(f"team {name!r}: its members have different sampling policies")
+        teams[name] = tuple(members)
+    return teams
+
+
+def members(names, teams: dict[str, tuple[str, ...]]) -> list[str]:
+    """The registry models behind a grid's model names: a team's members in place of the team, without repeats"""
+    return list(dict.fromkeys(m for name in names for m in teams.get(name, (name,))))
+
+
 def load_grid(path: str | Path) -> Grid:
     return Grid.model_validate(yaml.safe_load(Path(path).read_text(encoding="utf-8")))
 
@@ -175,17 +197,20 @@ def task_settings(grid: Grid) -> list[dict[str, Any]]:
     return [dict(zip(grid.task, values)) for values in itertools.product(*grid.task.values())]
 
 
-def expand(grid: Grid, models: dict[str, ModelEntry], runs_root: Path = ROOT / "runs") -> list[Unit]:
+def expand(grid: Grid, models: dict[str, ModelEntry], runs_root: Path = ROOT / "runs",
+           teams: dict[str, tuple[str, ...]] | None = None) -> list[Unit]:
     """Every unit of the grid, in the order models, protocols, task settings, replicates. Each config is validated
     here, so a wrong grid fails before anything runs. A run that an earlier unit already has (run_key) is marked in
-    `same_as`: it is run once"""
-    if unknown := [m for m in grid.models if m not in MOCKS and m not in models]:
-        raise ValueError(f"models not in the registry: {unknown}; known: {sorted(models)}")
+    `same_as`: it is run once. A model name may be a mixed team of the registry (load_teams)"""
+    teams = load_teams(models=models) if teams is None else teams
+    if unknown := [m for m in grid.models if m not in MOCKS and m not in models and m not in teams]:
+        raise ValueError(f"models not in the registry: {unknown}; known: {sorted(models)}, teams {sorted(teams)}")
     units = []
     first: dict[str, Path] = {}
     for model, protocol, task in itertools.product(grid.models, grid.protocols, task_settings(grid)):
         cell = cell_name(model, protocol.name, task)
-        entry = models.get(model)
+        team = [models[m] for m in teams.get(model, ())]
+        entry = models.get(model) or (team[0] if team else None)
         for replicate in range(grid.replicates):
             data = copy.deepcopy(grid.base)
             data["run"] = {**data.get("run", {}), "name": cell, "seed": grid.seed, "replicate": replicate,
@@ -193,12 +218,18 @@ def expand(grid: Grid, models: dict[str, ModelEntry], runs_root: Path = ROOT / "
             data["task"] = {**data["task"], **task}
             if entry is not None:
                 data["sampling"] = {**data.get("sampling", {}), **entry.sampling}
-            data["engine"] = ({**data.get("engine", {}), "backend": "mock", "model": model} if entry is None else
-                              {**data.get("engine", {}), "backend": "hf_local", "model": entry.model,
-                               "revision": entry.revision})
+            if entry is None:
+                data["engine"] = {**data.get("engine", {}), "backend": "mock", "model": model}
+            elif team:
+                data["engine"] = {**data.get("engine", {}), "backend": "hf_local", "model": model,
+                                  "agent_models": [{"model": m.model, "revision": m.revision} for m in team]}
+            else:
+                data["engine"] = {**data.get("engine", {}), "backend": "hf_local", "model": entry.model,
+                                  "revision": entry.revision}
             data["protocol"], data["personas"] = protocol.file, protocol.personas
-            attrs = {"model": model, "family": entry.family if entry else "mock",
-                     "parameters": entry.parameters if entry else 0, "protocol": protocol.name, **task}
+            family = "mixed" if team else entry.family if entry else "mock"
+            parameters = round(sum(m.parameters for m in team) / len(team)) if team else entry.parameters if entry else 0
+            attrs = {"model": model, "family": family, "parameters": parameters, "protocol": protocol.name, **task}
             unit = Unit(cell, replicate, attrs, RunConfig.model_validate(data), runs_root / grid.name / cell)
             if unknown := set(protocol.personas) - set(unit.cfg.resolved_protocol().roles):
                 raise ValueError(f"protocol {protocol.name!r} has personas for roles it does not have: {sorted(unknown)}")
@@ -223,7 +254,8 @@ def manifest(grid: Grid, grid_text: str, units: list[Unit], models: dict[str, Mo
         "experiment": grid.name,
         "grid": grid.model_dump(mode="json"),
         "grid_sha256": hashlib.sha256(grid_text.encode("utf-8")).hexdigest(),
-        "models": {m: models[m].model_dump() for m in grid.models if m in models},
+        "models": {m: models[m].model_dump() for m in members(grid.models, load_teams(models=models)) if m in models},
+        "teams": {t: list(ms) for t, ms in load_teams(models=models).items() if t in grid.models},
         "units": [{"id": u.id, "cell": u.cell, "replicate": u.replicate, "attrs": u.attrs,
                    "folder": u.folder.relative_to(ROOT).as_posix() if u.folder.is_relative_to(ROOT) else str(u.folder),
                    "runs": [{"version": v, "dir": out.name,
@@ -248,7 +280,8 @@ def free_gpu() -> None:
 def engine_key(cfg: RunConfig) -> tuple:
     """Two configs with the same key can share one loaded model"""
     e, s = cfg.engine, cfg.summarizer
-    return e.backend, e.model, e.revision, None if s is None else (s.backend, s.model, s.revision)
+    team = None if e.agent_models is None else tuple((m.model, m.revision) for m in e.agent_models)
+    return e.backend, e.model, e.revision, team, None if s is None else (s.backend, s.model, s.revision)
 
 
 def run_units(units: list[Unit], log: EventLog) -> int:

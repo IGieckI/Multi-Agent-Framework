@@ -92,6 +92,15 @@ def task_seed(cfg: RunConfig) -> int:
 
 def make_backend(cfg: EngineConfig, task: Task):
     # loads the model; the mock answers at random in the task's format, "mock_norepeat" without repeating a tried action
+    if cfg.agent_models is not None:
+        # a mixed team: each model loaded once
+        from framework.agents.backends.team import TeamBackend
+        loaded = {}
+        for m in cfg.agent_models:
+            if (m.model, m.revision) not in loaded:
+                member = cfg.model_copy(update={"model": m.model, "revision": m.revision, "agent_models": None})
+                loaded[(m.model, m.revision)] = make_backend(member, task)
+        return TeamBackend([loaded[(m.model, m.revision)] for m in cfg.agent_models])
     if cfg.backend == "mock":
         from framework.agents.backends.mock import MockBackend
         repeats = cfg.model != "mock_norepeat"
@@ -152,6 +161,9 @@ class Engine:
         # a summary call raised: the run ends after this step, as for an agent's call
         self.channel_failed = False
         self.agents = sorted(self.structure.agents)
+        # the backend of each agent: the run's backend, or in a mixed team the agent's own model
+        self.agent_backends = {a: backend.for_agent(i) if hasattr(backend, "for_agent") else backend
+                               for i, a in enumerate(self.agents)}
         # for each agent, which observation fields its role can see
         self.fields = {a: self.visible_fields(protocol, a) for a in self.agents}
         # one environment instance per agent, inside the task
@@ -202,8 +214,11 @@ class Engine:
             "sampling": asdict(self.sampling),
             "agent_temperatures": self.temperatures,
             "engine": backend.engine_info(),
+            "agent_models": ({a: b.engine_info().get("model_id") for a, b in self.agent_backends.items()}
+                             if hasattr(backend, "for_agent") else None),
             "summarizer": self.summarizer_info(),
-            "prompt_token_count": "backend" if hasattr(backend, "count_tokens") else "approx_chars_div_4",
+            "prompt_token_count": ("backend" if all(hasattr(b, "count_tokens") for b in self.agent_backends.values())
+                                   else "approx_chars_div_4"),
             "budget": budget_info,
             "shared_context": self.host is not None,
             "persona_host": None if self.host is None else {"context_limit": self.host.limit,
@@ -269,8 +284,9 @@ class Engine:
                          "sha256": self.summary_template.sha256},
         }
 
-    def count_tokens(self, prompt: Prompt) -> int:
-        return prompt_tokens(self.backend, prompt, self.sampling.reasoning)
+    def count_tokens(self, prompt: Prompt, agent: AgentId | None = None) -> int:
+        backend = self.backend if agent is None else self.agent_backends[agent]
+        return prompt_tokens(backend, prompt, self.sampling.reasoning)
 
     def host_limit(self, backend) -> int:
         """The shared conversation may hold as much as all agents' prompts together, within the model's window"""
@@ -296,7 +312,7 @@ class Engine:
         limit = self.cfg.context.max_prompt_tokens
         while True:
             prompt = self.task.build_prompt(view, error)
-            tokens = self.count_tokens(prompt)
+            tokens = self.count_tokens(prompt, agent)
             if tokens <= limit:
                 break
             ref = drop_oldest(view, self.task)
@@ -338,10 +354,10 @@ class Engine:
                 async with slots:
                     if self.stream:
                         self.stream(agent, t, attempt, "")
-                        completion = await self.backend.generate(
+                        completion = await self.agent_backends[agent].generate(
                             prompt, sampling, on_text=lambda text: self.stream(agent, t, attempt, text))
                     else:
-                        completion = await self.backend.generate(prompt, sampling)
+                        completion = await self.agent_backends[agent].generate(prompt, sampling)
             except Exception as e:
                 self.budget.release(tokens, sampling.max_tokens)
                 turn.status = "failed"
