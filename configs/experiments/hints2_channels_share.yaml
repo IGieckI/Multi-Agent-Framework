@@ -1,0 +1,19 @@
+# hints2_channels' messages-only teams with the share instruction: how much of the share gain (F43, F46) needs the
+# shared results? Pairs with hints2_8b_share and hints2_12b_share (use_notes false, decoys, targets 0-39). L40
+name: hints2_channels_share
+replicates: 40
+seed: 0
+versions: [base]
+models: [qwen3-8b, gemma3-12b]
+protocols:
+  - {name: fully_connected_messages, file: configs/protocols/fully_connected_messages.yaml}
+task:
+  - {hints: split, decoys: true}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2,
+         depth: 2, distractors: 6, notes: 2, allow_shortcuts: false, share_notes: true}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}

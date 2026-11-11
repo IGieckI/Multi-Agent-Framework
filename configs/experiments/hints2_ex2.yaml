@@ -1,0 +1,22 @@
+# Is the remake loop (F44) caused by the prompt's example (F53)? hints2's cell where every agent holds both recipes,
+# with prompts v3: v2 plus the example game one round later, where the intermediate is in the inventory and the answer
+# plays the second step. mark_made stays off. Same seed and settings, so the same targets and notes: pairs with
+# hints2, hints2_8b (targets 0-39) and hints2_12b.
+# SWEEP_SHARDS=4 gives one model per block: 0 (llama) on rtx2080, 1-3 (gemma3-4b, qwen3-8b, gemma3-12b) on L40
+name: hints2_ex2
+replicates: 40
+seed: 0
+versions: [base, all_independent, one_agent]
+models: [llama3.2-3b, gemma3-4b, qwen3-8b, gemma3-12b]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+task:
+  - {hints: all, decoys: true}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v3,
+         depth: 2, distractors: 6, notes: 2, allow_shortcuts: false}
+  engine: {max_concurrency: 1}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}

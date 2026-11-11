@@ -1,0 +1,24 @@
+# Pooling when no recipe can be known (F52): hints2's targets and notes with every item under a made-up name
+# (task.rename, prompts v2r), so a silenced split team should fall to the random agents' level and any solve of a
+# talking one is pooling. Notes split (decoys) and all; renamed_share.yaml adds the share instruction.
+# engine.publish_on_no_op is on (F50), as in renamed_share: it only matters for the talking teams.
+# The draws are hints2's (same seed): meta.json's task_original is hints2's task.
+# SWEEP_SHARDS=4 gives one model per block: 0 (qwen3-4b) on rtx2080, 1-3 (gemma3-4b, qwen3-8b, gemma3-12b) on L40
+name: renamed
+replicates: 40
+seed: 0
+versions: [base, all_independent, one_agent]
+models: [qwen3-4b, gemma3-4b, qwen3-8b, gemma3-12b]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+task:
+  - {hints: split, decoys: true}
+  - {hints: all, decoys: true}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2r,
+         depth: 2, distractors: 6, notes: 2, allow_shortcuts: false, rename: true}
+  engine: {max_concurrency: 1, publish_on_no_op: true}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}
