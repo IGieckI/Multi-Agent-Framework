@@ -1,0 +1,3 @@
+After the reasoning, add one last line with a message to the other players:
+Message: what you want to tell the other players
+

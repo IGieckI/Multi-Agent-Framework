@@ -38,7 +38,11 @@ class WordCraftConfig(TaskConfig):
     # step, F32). The grids up to `hints` ran with them; new grids set false
     allow_shortcuts: bool = True
     # prompt version: the templates in prompts/<version>/wordcraft
-    prompts: Literal["v1", "v2"] = "v1"
+    # v3 = v2 with a second example that plays the plan's second step (F53); v2r = v2 for renamed items
+    prompts: Literal["v1", "v2", "v3", "v2r"] = "v1"
+    # show every item under a made-up name, drawn per task, so that no recipe can be known or guessed (F52). The task
+    # and its notes are drawn as without it: the same seed gives the same target under other names
+    rename: bool = False
 
     def step_limit(self) -> int:
         """Crafting steps per agent: `max_steps`, or SPEC §3.2's 6 (targeted) and 200 (open-ended)"""

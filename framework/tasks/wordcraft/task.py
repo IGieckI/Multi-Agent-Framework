@@ -17,7 +17,8 @@ from framework.tasks.wordcraft.env import StepResult, WordCraftEnv
 from framework.tasks.wordcraft.parse import ANSWER_LABELS, parse_combination
 from framework.tasks.wordcraft.prompt import FIELDS, SOCIAL_BLOCKS, build_prompt, templates_hash
 from framework.tasks.wordcraft.recipes import Combo, RecipeBook
-from framework.tasks.wordcraft.tasks import TaskSpec, deal_notes, open_ended, sample_targeted
+from framework.tasks.wordcraft.tasks import (TaskSpec, deal_notes, open_ended, pseudo_names, rename_spec,
+                                             sample_targeted)
 
 
 class WordCraftTask:
@@ -36,6 +37,10 @@ class WordCraftTask:
         self.book = book
         self.data_sha256 = data_sha256
         self.spec: TaskSpec | None = None
+        # task.rename: the book the agents play (the items under made-up names), the task as drawn and the names' seed
+        self.play_book = book
+        self.original: TaskSpec | None = None
+        self.names_seed: int | None = None
         self.envs: dict[AgentId, WordCraftEnv] = {}
 
     @classmethod
@@ -56,7 +61,14 @@ class WordCraftTask:
                                         self.cfg.allow_shortcuts)
         # dealt after the task is drawn, so a task does not depend on its hints
         notes = deal_notes(self.book, self.spec, len(agents), self.cfg.hints, self.cfg.notes, rng, self.cfg.decoys)
-        self.envs = {a: WordCraftEnv(self.book, self.spec, notes=tuple(own)) for a, own in zip(agents, notes)}
+        self.play_book, self.original, self.names_seed = self.book, None, None
+        if self.cfg.rename:
+            # after the draws, so the task and its notes are those of the same seed without it
+            names = pseudo_names(self.book.items, seed)
+            self.play_book, self.original, self.names_seed = self.book.renamed(names), self.spec, seed
+            self.spec = rename_spec(self.spec, names)
+            notes = [[(names[a], names[b], names[r]) for a, b, r in own] for own in notes]
+        self.envs = {a: WordCraftEnv(self.play_book, self.spec, notes=tuple(own)) for a, own in zip(agents, notes)}
 
     def observe(self, agent: AgentId) -> Observation:
         return self.envs[agent].observation()
@@ -115,7 +127,7 @@ class WordCraftTask:
     def summary(self) -> dict:
         """Each agent's result and the team's"""
         initial = set(self.spec.initial)
-        reachable = self.book.reachable(initial) - initial
+        reachable = self.play_book.reachable(initial) - initial
         targeted = self.spec.target is not None
         agents, union = {}, set()
         for a, env in self.envs.items():
@@ -141,7 +153,10 @@ class WordCraftTask:
         }
 
     def evaluate(self, meta: dict, events: list[dict]) -> dict[str, float | None]:
-        return metrics.evaluate(self.book, meta, events)
+        book = self.book
+        if meta.get("names_seed") is not None:
+            book = book.renamed(pseudo_names(book.items, meta["names_seed"]))
+        return metrics.evaluate(book, meta, events)
 
     def series(self, meta: dict, events: list[dict]) -> list[dict]:
         return metrics.series(meta, events)
@@ -152,9 +167,13 @@ class WordCraftTask:
                 "done": env.done}
 
     def metadata(self) -> dict:
-        return {"task": asdict(self.spec), "notes": {a: env.notes for a, env in self.envs.items()},
+        meta = {"task": asdict(self.spec), "notes": {a: env.notes for a, env in self.envs.items()},
                 "prompts": self.cfg.prompts, "prompts_hash": templates_hash(self.cfg.prompts),
                 "data_sha256": self.data_sha256}
+        if self.original is not None:
+            # the task under the book's own names, and what rebuilds the made-up ones (tasks.pseudo_names)
+            meta |= {"task_original": asdict(self.original), "names_seed": self.names_seed}
+        return meta
 
     def mock_answer(self, prompt: Prompt, sampling: Sampling, repeats: bool = True) -> str:
         return random_answer(prompt, sampling, repeats)

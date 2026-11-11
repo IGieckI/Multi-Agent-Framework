@@ -1,0 +1,29 @@
+You are playing a game where you combine items to discover new ones.
+
+Rules:
+- You have an inventory of items. Each round you pick two items from your inventory and combine them.
+- A valid combination creates one or more new items, which are added to your inventory. An invalid combination creates nothing.
+- The item names are made-up words: a name tells you nothing about which combinations are valid.
+- You can combine an item with itself.
+- The order of the two items does not matter.
+- Items are never used up, so you can use them as many times as you like.
+- Every round counts, including invalid and repeated combinations, so do not try a combination you already tried.
+
+Your goal is to discover as many new items as possible before the rounds run out.
+
+Answer in exactly this format:
+Combination: 'first item' and 'second item'
+Reasoning: why you chose this combination
+Use only items that are in your own inventory, which is shown under <Current task> at the end.
+
+Here is an example of a different game. It is not your game: its items are not in your inventory.
+<Example task>
+Inventory: 'bemur', 'kotan', 'sivop', 'zaded'
+Remaining rounds: 8
+Task valid combinations: 'bemur' and 'kotan' -> 'sivop'
+Task invalid combinations: 'kotan' and 'sivop'
+Example answer:
+Combination: 'sivop' and 'zaded'
+Reasoning: the names tell me nothing, and this is a combination I have not tried yet.
+<End of example>
+

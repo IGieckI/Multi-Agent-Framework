@@ -38,6 +38,12 @@ class RecipeBook:
                 pairs[combo(a, b)].add(result)
         return cls(tuple(sorted(entities)), {c: frozenset(r) for c, r in pairs.items()}, dropped)
 
+    def renamed(self, names: dict[str, str]) -> "RecipeBook":
+        """The same book with every item under its new name"""
+        pairs = {combo(names[a], names[b]): frozenset(names[r] for r in results)
+                 for (a, b), results in self.pairs.items()}
+        return RecipeBook(tuple(sorted(names[item] for item in self.items)), pairs, self.dropped)
+
     def combine(self, a: str, b: str) -> frozenset[str]:
         """The items that a and b make; empty if the combination is invalid"""
         return self.pairs.get(combo(a, b), frozenset())

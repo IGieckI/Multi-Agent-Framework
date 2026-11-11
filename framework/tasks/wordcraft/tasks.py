@@ -3,7 +3,7 @@ The two WordCraft task types (SPEC §3.2): targeted and open-ended
 """
 
 import random
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from framework.tasks.wordcraft.recipes import RecipeBook, combo
 
@@ -118,3 +118,33 @@ def deal_notes(book: RecipeBook, spec: TaskSpec, agents: int, mode: str, notes: 
             own.append(next(note for note in deck if note not in own))
         rng.shuffle(own)
     return dealt
+
+
+CONSONANTS, VOWELS = "bdfgkmnprstvz", "aeiou"
+# the items of the example in prompts/v2r, never given to a real item
+EXAMPLE_NAMES = ("bemur", "kotan", "sivop", "zaded", "gunif")
+
+
+def pseudo_names(items: tuple[str, ...], seed: int) -> dict[str, str]:
+    """A made-up name for every item (task.rename): consonant-vowel syllables closed by a consonant ('dovimek'),
+    each used once and none an item of the book"""
+    rng = random.Random(f"names/{seed}")
+    taken, names = {*items, *EXAMPLE_NAMES}, {}
+    for item in items:
+        while True:
+            name = "".join(rng.choice(CONSONANTS) + rng.choice(VOWELS) for _ in range(rng.choice((2, 3))))
+            name += rng.choice(CONSONANTS)
+            if name not in taken:
+                break
+        taken.add(name)
+        names[item] = name
+    return names
+
+
+def rename_spec(spec: TaskSpec, names: dict[str, str]) -> TaskSpec:
+    """The task under the new names (the starting items sorted again)"""
+    return replace(spec, initial=tuple(sorted(names[i] for i in spec.initial)),
+                   target=names[spec.target] if spec.target is not None else None,
+                   intermediate=tuple(names[i] for i in spec.intermediate),
+                   distractors=tuple(sorted(names[i] for i in spec.distractors)),
+                   path=tuple((names[a], names[b], names[r]) for a, b, r in spec.path))
