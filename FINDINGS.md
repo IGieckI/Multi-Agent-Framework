@@ -65,8 +65,8 @@ Sources: `run_56/shard0of2.jsonl`, `run_56/shard1of2.jsonl` (sweep logs), `run_5
 - Part of the Llama/SmolLM2 variety is noise from failed answers (F8).
 - Consequence: temperature-driven variety (`all_independent_temp_sweep`) is the baseline to beat; but the sweep as
   built lowers the variety instead (F21), and a sweep centred on 1.0 changes nothing (F27): **superseded**, variety
-  from temperature does not help. Whether variety *between families* helps is **untested**: no mixed-model team has
-  been run; this entry only shows that models whose agents differ more gain more from a team. Random agents add more
+  from temperature does not help. Variety *between families* does not help either (F49: a silenced mixed team solves
+  what its members' agents predict, no more than Llama alone); this entry only shows that models whose agents differ more gain more from a team. Random agents add more
   variety than any LLM team (F30, F31).
 
 ### F7. Model ranking (single agent, one_agent, 24 distinct runs each, `solved_any`)
@@ -595,7 +595,8 @@ models pooled, 40 for qwen3-8b (about ±15–20 points). Sources: `run_hints2_us
   agents per run make the target.
 - Decoys: without − with, qwen3-8b, between −10.0 and +7.5, no interval excludes 0 (the 4B models lose ~10, F39).
 - Caveats: one model and 40 targets; qwen3-8b ran in bfloat16 on L40 and qwen3-4b in float16 on rtx2080 (outcomes do
-  not change with the precision, F23). Whether it is size or this model: **open**, needs a second larger model.
+  not change with the precision, F23). Size or this model: **closed** by F46 (telling unprompted is Qwen's; a bigger
+  Gemma pools once told to share) and confirmed on 80 targets by F47.
 
 ### F44. Agents remake an intermediate they already hold, and fully connected talk locks the team into it
 - qwen3-8b, every agent holding both recipes: fully_connected talk − silenced −25.0 [−40.0, −10.0] (87.5% → 62.5%);
@@ -610,6 +611,202 @@ models pooled, 40 for qwen3-8b (about ±15–20 points). Sources: `run_hints2_us
 - So the agents lose track of their own progress and re-execute the first step of the plan in their notes; talk that
   restates the plan ("first make X") makes it worse, while the star's hub moves its spokes on. This explains much of F40
   (talk hurts when everyone holds the notes) and of F34 (one agent holding both fails 30%).
-- **Open**: whether a prompt that marks the items an agent made ("you made 'explosion' last round", or new items
-  listed apart from the starting inventory) removes the loop; it is a change to the task's observation, so a choice of
-  the study.
+- **Acted on**: `task.mark_made` lists the items an agent made apart from its inventory. It removes most of the loop
+  for Qwen (qwen3-8b fully connected talk 62.5% → 92.5%), not for Gemma or Llama: **closed** by F48.
+
+---
+
+## Per-model breakdown of the pooled results (2026-11-08, no new runs)
+
+Recomputed per model from the existing `runs.csv` files (main, followup, pilot, hints, hints2*) and `k4.py`'s log
+counts, to replace pooled numbers in the report to the supervisor. 40 paired targets per model in main and followup,
+95% bootstraps by target. Script: the session's scratchpad `permodel.py` (not kept; it only filters `runs.csv` by model
+and uses `lib.boot`).
+
+### F45. Several pooled results hide opposite or one-model effects
+- **Team size is a Llama effect** (refines F25): silenced 6 − 3 agents, fully_connected: llama3.2-3b +15.0 [+5.0,
+  +27.5], gemma3-4b +2.5, qwen3-4b 0.0 (same outcome on all 40 targets); star6 − star: +10.0, +2.5, 0.0. With talk
+  llama keeps it in fully_connected (+17.5 [+7.5, +30.0]) and loses most in star (+5.0); qwen3-4b −7.5, gemma3-4b
+  −2.5. So "talk erases the gain from a bigger team" holds for Qwen and Gemma, which have almost no gain to erase,
+  and only in star for Llama.
+- **Star talk is not neutral per model** (refines F18): main, talk − silenced: qwen3-4b +10.0 [+2.5, +20.0],
+  gemma3-4b +5.0, qwen3-8b 0.0, llama3.2-3b −10.0 [−22.5, 0.0]; the pooled +1.2 averages opposite effects.
+- **Herding is a Qwen trait** (refines F17): main, fully_connected with talk, blind adoption qwen3-4b 0.42, qwen3-8b
+  0.45, gemma3-4b 0.15, llama3.2-3b 0.12; distinct paths silenced → talk gemma 0.72 → 0.55, qwen3-4b 0.53 → 0.40,
+  qwen3-8b 0.53 → 0.45, llama 0.80 → 0.78. Yet the success loss is similar (−12.5, −12.5, −7.5, −5.0).
+- **Channels hurt different models** (refines F26): results only −12.5 llama, 0 qwen and gemma; messages only −10
+  gemma, −5 qwen and llama.
+- **The cold temperature sweep hurts only Llama** (refines F21): −12.5 [−22.5, −2.5]; others −2.5 to +2.5.
+- **Against random agents** (refines F31), main, 6 silenced agents, depth 2: gemma3-4b 60%, llama3.2-3b 50%, qwen3-8b
+  30%, qwen3-4b 25% (random 67%); depth 1: llama 100%, qwen3-4b 80%, gemma and qwen3-8b 75% (random 85%). One agent's
+  repeat rate at depth 2: qwen 0.48–0.49, llama 0.46, gemma 0.21 (F30's 41% is their mean).
+- **Telling and receiving differ by model** (refines F38, F42): share instruction, decoys, holder names the
+  intermediate's recipe in its first message qwen3-4b 97%, gemma3-4b 62%, llama3.2-3b 30% (no decoys 97 / 100 / 47%);
+  a receiver just told the intermediate's recipe plays it next 12% / 4% / 8% (no decoys 21 / 4 / 27%). Gemma tells
+  but almost never uses what it hears. Decoys cost gemma +18 and llama +12 points silenced, qwen +2.
+- Status: **closed** (descriptive). Report per-model numbers alongside pooled ones from now on; the pooled 4B
+  averages are not a good summary of any single model.
+
+## The 2026-11-07 grids: a second bigger model, 80 Qwen3-8B targets, the made line, mixed teams (2026-11-11)
+
+Grids `hints2_12b` (600 distinct runs), `hints2_12b_share` (160), `hints2_8b` and `hints2_8b_share` extended to
+targets 40–79 (+600, +160), `hints2_made` (1,600), `mixed` (160), `mixed_hints` (320), queued 2026-11-07 (gates
+74395–74397, full jobs 74398–74405). All ended on their own: `unfinished.json` empty, every Slurm `.out` with
+`0 failed runs`, `events.jsonl` = distinct `run_dir`, code `bd60792` clean (the first 40 Qwen3-8B targets: `d01c77a`,
+one run with `dirty` unrecorded). Pairing checked: `hints2_made` has the same task and notes as hints2 / hints2_8b
+in 1,600 of 1,600 runs, `mixed_hints` as hints2 in 320 of 320, `mixed` the same targets as main (its `meta.json`
+only adds the `path` key). Gemma3-12B, Qwen3-8B and the mixed teams ran on L40 in bfloat16; `hints2_made` ran Qwen3-4B
+and Llama on rtx2080 in float16 (F23). 95% bootstraps by target. Scripts: `docs/analysis/k5.py` (rates, contrasts),
+`k6.py` (who tells, who uses, from the logs), `k7.py` (made line), `k8.py`, `k9.py` (mixed teams).
+
+### F46. Gemma3-12B does not tell its notes unprompted, but told to share it pools them fully: F43 is partly size, partly Qwen
+- gemma3-12b, notes split, talk − silenced: fully_connected +2.5 [−12.5, +20.0] with decoys (50.0% → 52.5%), +5.0
+  [−5.0, +17.5] without (75.0% → 80.0%); star +5.0 and 0.0. Like the 4B models (F37), unlike qwen3-8b (F47).
+- From the logs: without instruction its holders name a path recipe in their first message 0% (decoys) and 0–3% (no
+  decoys) [qwen3-8b 29–64%]; 21–23 messages per run all the same.
+- With the share instruction: holders name the intermediate's recipe first 97–100%, the target's 82–88%; a receiver
+  just told the target's recipe plays it at its next action 92% / 73% (decoys / none; n = 83 / 113) [same targets
+  and instruction: gemma3-4b 40% / 45% (n = 15 / 42), qwen3-4b 57% / 21%, llama3.2-3b 7% / 9%, qwen3-8b 69% / 30%],
+  the intermediate's only 17% / 23% [gemma3-4b 4%, qwen3-8b 32–39%]. Success with decoys 52.5% →
+  92.5%: share − talk **+40.0 [+25.0, +55.0]**, share − one agent holding both 0.0 [−12.5, +12.5] (87.5%); without
+  decoys 80.0% → 82.5% (+2.5). The use instruction adds nothing (−5.0, +7.5).
+- Better without talk too: same 40 targets, silenced split fully_connected with decoys gemma3-12b − gemma3-4b +20.0
+  [+2.5, +37.5], − qwen3-8b +30.0 [+17.5, +45.0]; one agent holding both 87.5% vs 77.5% and 67.5%. With the share
+  instruction − qwen3-8b +20.0 [+7.5, +35.0].
+- Every agent holding both: talk − silenced fully_connected −10.0 [−20.0, −2.5] (100% → 90%), star −22.5 [−37.5,
+  −10.0] (97.5% → 75.0%). It remakes the intermediate more than any model: 63% / 66% of actions (fully_connected
+  silenced / talk), star 44% / 52%, one agent 61%. In the 9 star targets talk lost, the hub (which holds both) writes
+  "Let's focus on getting 'explosion' next!" every round and the spokes remake it four times (rep 2).
+- So F43's gain has two parts: *telling* unprompted is Qwen's (Gemma 4B and 12B do not); *using* what one is told
+  is better in the bigger Gemma for the target's recipe (73–92% vs 40–45%), not for the intermediate's (17–23%),
+  and its team still reaches one agent holding both. A bigger model pools once
+  someone tells it to share. Caveat: one model per size and family, 40 targets.
+- Status: **closes** F43's open question (size or Qwen: both, for different halves).
+
+### F47. On 80 targets Qwen3-8B's gain from talk holds and is larger; so is its loss when everyone holds both
+- Targets 40–79 alone, talk − silenced: split fully_connected +37.5 [+22.5, +52.5] (decoys), +35.0 [+17.5, +52.5]
+  (none); star +15.0 [+2.5, +27.5], +15.0 [0.0, +30.0]; every agent holding both fully_connected **−52.5 [−67.5,
+  −37.5]** (87.5% → 35.0%), star +17.5 [+5.0, +30.0] (80.0% → 97.5%).
+- All 80: split fully_connected +32.5 [+22.5, +43.8] (22.5% → 55.0%) and +25.0 [+13.8, +36.2]; star +20.0 [+10.0,
+  +31.2] and +21.2 [+10.0, +32.5]. With the share instruction 75.0% / 73.8% (share − talk +20.0 [+11.2, +28.7], +25.0
+  [+15.0, +35.0]), one agent holding both 66.2%: share and use − one agent +6.2 [−6.2, +18.8], +2.5. Everyone holding
+  both: fully_connected −38.8 [−50.0, −27.5] (87.5% → 48.8%), star +13.8 [+5.0, +22.5] (82.5% → 96.2%).
+- Logs, 80 targets, without instruction: holders name the target's recipe first 54% / 64%, the intermediate's 29% /
+  35%; told to share 94–100%.
+- Status: **confirms** F43 and F44 with intervals about 30% narrower; the report's 40-target numbers stand.
+
+### F48. Marking the items an agent made breaks the remake loop for Qwen, not for Gemma or Llama
+- `task.mark_made` (an "Items you made (already in your inventory): ..." line), every agent holding both, made − not
+  made, same targets: qwen3-8b fully_connected talk **+30.0 [+17.5, +45.0]** (62.5% → 92.5%; remake share 80% →
+  41%), silenced +12.5 [+2.5, +25.0] (87.5% → 100%), star silenced +12.5, star talk +2.5 (95.0% → 97.5%), one agent
+  +15.0 [+5.0, +27.5] (67.5% → 82.5%; remakes 57% → 33%). qwen3-4b fully_connected talk +10.0 [+2.5, +20.0] (remakes
+  43% → 12%), other cells +0 to +2.5.
+- gemma3-4b: remakes 48% → 37% (fully_connected talk), 29% → 37% (star talk); success unchanged (0 to +2.5).
+  llama3.2-3b: remakes 51–55% → 44–49%; success −7.5 to +7.5, no interval excludes 0. The three 4B pooled: +0.8 to
+  +3.3, none excludes 0.
+- Talk − silenced with the line (everyone holds both): qwen3-8b fully_connected −7.5 [−15.0, 0.0] (was −25.0),
+  qwen3-4b 0.0 (was −7.5), gemma3-4b −10.0 (was −10.0), llama3.2-3b −15.0 [−30.0, −2.5] (was −7.5).
+- Notes split: no change (−7.5 to +5.0 for teams; one agent holding both +12.5 for qwen3-8b, +0 to +5 for the rest):
+  there the problem is pooling, not the loop.
+- So for Qwen the loop is an observation problem: told what they made, they move on, and most of F40's gap closes for
+  qwen3-8b. Gemma and Llama keep remaking with the line in the prompt: for them it is not losing track of the
+  inventory (Llama repeats any pair often, F45).
+- Status: **closes** F44's open question. The line changes the task's observation; keep it off in comparisons with
+  the earlier grids, and decide whether later grids use it.
+
+### F49. Mixing model families adds no variety beyond the best family, but a mixed team herds less when it talks
+- Silenced mixed teams (mix-qgl: two agents of each family in fully_connected, one each in star) solve what drawing
+  independent agents from the single-model runs predicts: fully_connected depth 1 90.0% vs 97.0% expected, depth 2
+  60.0% vs 58.4%; star 90.0% vs 93.3%, 50.0% vs 60.0%; notes split 27.5% vs 23.6%. And no more than the best single
+  family: silenced fully_connected, both main settings, mixed − qwen3-4b +22.5 [+7.5, +37.5], − gemma3-4b +7.5
+  [−5.0, +20.0], − llama3.2-3b 0.0 [−12.5, +15.0]; star +12.5, +2.5, 0.0. Variety *between* families does not beat
+  Llama's variety within the family (F6's hypothesis: **not supported**).
+- With talk, fully_connected (main settings pooled): mixed talk − silenced −2.5 [−12.5, +7.5] vs −12.5 (qwen3-4b,
+  gemma3-4b) and −5.0 (llama); difference in differences +10 [−2, +22], +10 [−5, +28], +2: suggestive, no interval
+  excludes 0. Herding measures with talk: blind adoption 0.20 (qwen3-4b 0.42, gemma 0.15, llama 0.12), distinct paths
+  0.78 (0.40, 0.55, 0.78; mixed silenced 0.88), repeat rate 0.28 (0.44, 0.27, 0.32). A talking mixed team beats talking
+  Qwen +32.5 [+17.5, +47.5] and Gemma +17.5 [+2.5, +32.5], ties Llama +2.5.
+- Notes (mixed_hints vs hints2, decoys): every agent holding both, fully_connected talk − silenced 0.0 [−7.5, +7.5]
+  (97.5% both; single models −7.5 to −10) although it remakes as often (35% → 43%); star −7.5. Notes split: fully
+  connected +5.0 [−10.0, +20.0]; **star +17.5 [+7.5, +30.0]** (22.5% → 40.0%; single 4B models +10, 0, 0), with
+  qwen3-4b always the hub. By which family holds the path recipes the cells have 8–20 runs: in fully_connected with
+  talk 60% when Qwen holds the target's recipe vs 14% when Gemma does (n = 10, 14), in line with F46 (Gemma does not
+  tell); too few to separate the star's gain by holder.
+- Caveats: 20 targets per main setting, 40 for notes; one mix (no 8B or 12B member); the star's hub is always Qwen.
+- Status: **open** for the talk effects (a larger run, or mixes with the hub rotated); **closed** for silenced teams.
+
+---
+
+## Review of 2026-11-11 (no new runs): corrections and new readings of the hints2 logs
+
+From the critical review in `docs/REVIEW_2026-11-11.md`. Recomputed from `runs.csv` and `events.jsonl` of main,
+followup, hints2, hints2_share, hints2_8b(_share) and hints2_12b(_share); every earlier headline number reproduced.
+Fully connected, notes split, unless stated; "with / without decoys". Scripts were in the session's scratchpad (not
+kept): they reuse `lib.boot` and `k4.py`'s `mentions` / holder logic, add an exact sign test on discordant pairs, and
+read `llm_call` (every attempt), `msg_delivered` and `env_step`.
+
+### F50. (review) The engine drops an agent's message when its action is refused, mostly the target-recipe holder's
+- `engine.run_agent` sets `turn.message` only when an attempt parsed; `apply` returns on a no-op before publishing.
+  The holder of the target's recipe often plays it before the intermediate exists ("not in your inventory"), fails
+  its attempts, and the message written in those answers is never sent.
+- Turns of that holder with no valid action whose discarded message named its recipe, against its published
+  messages naming it. Share instruction: qwen3-4b 37 vs 89 / 24 vs 116 (29% / 17% dropped), gemma3-4b 31 vs 27 / 18
+  vs 49 (53% / 27%), llama3.2-3b 4 vs 44 / 3 vs 45, qwen3-8b 35 vs 220 / 22 vs 237 (14% / 8%), gemma3-12b 1 vs 124 /
+  3 vs 127. Without the instruction: qwen3-4b 16 vs 35 / 8 vs 47, qwen3-8b 13 vs 116 / 10 vs 118.
+- Changes: F38's and F45's tell rates count published messages only, so they overstate what reached teammates for
+  the 4B models; the loss is larger for smaller models, so it inflates the size contrast of F43 and F46.
+- Status: **open**. Publish the message on a no-op behind a flag and rerun the share cells (review, C1).
+
+### F51. (review) The intermediate's recipe reaches teammates mostly through auto-shared results, and even those go unused by Gemma3-4B
+- In fully connected teams every success is broadcast ("Other players' valid combinations"). Holder of the target's
+  recipe when it first plays the intermediate's recipe, by what it had received (talk, no instruction, with decoys):
+  qwen3-8b result only 14, result and message 17, message only 1, nothing 10; gemma3-12b result only 12, nothing 3
+  (no message ever named it); qwen3-4b 7 / 5 / 0 / 1.
+- Of target holders that received the intermediate's recipe by either channel, those that ever played it (both decoy
+  settings): gemma3-4b 4 of 61 (7%), llama3.2-3b 22 of 59 (37%), qwen3-4b 22 of 48 (46%), gemma3-12b 24 of 51 (47%),
+  qwen3-8b 61 of 94 (65%). Silenced, they guess it in 5–20% of runs (gemma3-12b without decoys 35%). Not corrected for recipes received in the last
+  round.
+- Changes: F43's "holders tell" explains the target's recipe, not the intermediate's; `k2.py`, `k4.py` and `k6.py`
+  ignore the result channel. The use failure of F38/F42 holds for ground-truth results too, so it is not about
+  trusting teammates. With the share instruction the solver is mostly the intermediate's holder (qwen3-4b 15 of 21,
+  gemma3-12b 26 of 37 with decoys): the told target recipe is the one that gets used (as in F46).
+- Status: **open**. Results-only and messages-only protocols for qwen3-8b and gemma3-12b (review, C2).
+
+### F52. (review) The split manipulation leaks: silenced teams solve through the intermediate's holder guessing the target's recipe
+- Solver in silenced split teams (target's holder / intermediate's holder / non-holder), with decoys and without:
+  gemma3-12b 3 / 14 / 3 of 20 and 7 / 20 / 3 of 30 (50% and 75% solved, silenced); gemma3-4b 1 / 9 / 2 and 2 / 14 /
+  3; qwen3-4b 1 / 7 / 1 and 1 / 7 / 2; qwen3-8b 10 / 6 / 2 and 11 / 6 / 2 (of 80); llama3.2-3b 4 / 1 / 0 and 4 / 3 / 3.
+- The intermediate's holder makes it from its note and finds the target's recipe without being told: the second
+  note is partly in the models' knowledge of the game, more in the bigger Gemma. Random agents solve 0–2.5% (F37).
+- Changes: gemma3-12b without decoys has no head-room (75% → 80% → 82.5%); in F43 and F46 size, family and recall of
+  Little Alchemy 2 are confounded. Earlier numbers stand.
+- Status: **open**. A task with renamed items, where no recipe can be known (review, C3).
+
+### F53. (review) The remake loop echoes the prompt's example
+- The prompt is rebuilt each turn without the agent's previous answer; the v2 example's answer is "I make 'robot'
+  now and combine it with 'human' in the next round" (step 1 of a two-step plan). One qwen3-8b agent holding both
+  recipes (hints2_8b, 80 targets): 92 of its 143 turns after it holds the intermediate remake it; 48 of those answers
+  say "next round", 63 "first" / "need to create" (e.g. rep 35: the same combination and reasoning in rounds 2–4).
+- Also seen in the prompts: the notes line says "only you were told them" when every agent holds both (false there);
+  messages are listed without round numbers and results without deduplication (rep 2, round 3: the same valid
+  combination ten times, round-1 messages still listed).
+- Changes: F44, F47's −38.8 and F48 may be properties of this prompt. Not tested: no run varies the example.
+- Status: **open** (hypothesis). A second example that plays step 2, and stamped / deduplicated lists (review, C4, C5).
+
+### F54. (review) Statistical notes on F16–F49
+- Followup is not an independent replication of main: same 40 targets, 566 of 600 shared fully connected cells with
+  the same outcome. F16 pooled is 1 vs 16 discordant pairs (exact p = 0.0003) on 16 distinct targets; per model 1/6,
+  0/2, 0/5, 0/3 (p = 0.13, 0.50, 0.06, 0.25).
+- Percentile bootstrap intervals that exclude 0 with few discordant pairs fail an exact sign test: qwen3-4b star
+  +10.0 [+2.5, +20.0] is 4/0 (p = 0.13, F18/F45); llama share +10.0 [+2.5, +20.0] 4/0 (F38); gemma3-12b everyone
+  holds both, fully connected −10.0 [−20.0, −2.5] 0/4 (F46). F40 per model: 2/5, 2/6, 0/3. The large effects hold:
+  qwen3-8b +32.5 is 27/1, −38.8 is 1/32, star +13.8 is 13/2 (p = 0.007); gemma3-12b share +40.0 is 16/0, star −22.5
+  is 0/9 (p = 0.004); qwen3-4b share +22.5 is 9/0.
+- Silenced fully_connected3 is the first three agents of silenced fully_connected (same seeds and prompts: 0 targets
+  where 3 solve and 6 do not, 7 the other way), so F25's "6 − 3" is ≥ 0 by construction.
+- Star: only the hub has a message slot (1 writer per run), spokes cannot tell their notes; the hub holds a path
+  recipe in 32 of 40 targets (53 of 80 for qwen3-8b). Star and fully connected also differ in personas and schedule.
+- Share − everyone holding both, silenced (the team's ceiling): qwen3-8b −12.5 [−23.8, −1.2] / −13.8 [−26.2, −1.2];
+  gemma3-12b −7.5 / −17.5 [−30.0, −7.5].
+- Status: **closed** (descriptive). Report exact tests beside the bootstrap for per-model contrasts; treat F45, F49's
+  talk effects and the per-model rows of F39/F40 as exploratory.

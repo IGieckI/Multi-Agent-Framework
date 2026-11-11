@@ -1,10 +1,10 @@
-# Handoff: state of the project and plan (2026-11-07)
+# Handoff: state of the project and plan (2026-11-11)
 
 For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (44 numbered findings with their
-evidence and status). Everything below is as of commit `bd60792` (local = `origin/main` = giano, all clean). Every
-experiment up to hints2_8b_share has finished and been analysed (F1–F44). **Seven grids were queued on giano on
-2026-11-07 and are running or waiting** (section 7): the next session's job is to check them, download them and
-analyse them.
+evidence and status). Code as of commit `bd60792` (local = `origin/main` = giano). **Every experiment has finished,
+been downloaded and been analysed (F1–F49)**, including the seven grids queued on 2026-11-07 (F46–F49, analysed
+2026-11-11). Nothing is queued on giano. A review on 2026-11-11
+(`docs/REVIEW_2026-11-11.md`) added F50–F54 and prepared six new grids, not yet committed or submitted (section 7). Section 7 lists what is left: the write-ups and possible next grids.
 
 ## 1. The project
 
@@ -93,7 +93,7 @@ The user runs every command on the cluster and pastes the output or a screenshot
   is `[]`, every `.out` ends with `0 failed runs`, and `meta.json`'s `environment.git` (commit, dirty).
 - Job IDs so far: main 74066/74067; followup 74110, 74114, 74115; random_baseline 74155; hints 74158, 74161–74163;
   hints2 74189, 74192–74194; hints2_share 74195, 74196; hints2_use 74232, 74234–74236; hints2_8b 74237, 74238;
-  hints2_8b_share 74239, 74240. Queued 2026-11-07: see section 7.
+  hints2_8b_share 74239, 74240; the 2026-11-07 grids: gates 74395–74397, full jobs 74398–74405.
 - `sweep.py` takes the grid's file, not its name: `python scripts/sweep.py evaluate configs/experiments/<grid>.yaml`.
   Run the download's rsync lines from the repo root (on 2026-11-06 they ran one folder up and had to be moved).
 
@@ -111,13 +111,29 @@ The user runs every command on the cluster and pastes the output or a screenshot
 | hints2_share | 11-05 | hints2's split fully connected teams with the instruction to tell their notes (`share_notes`), base only; 240 runs, same tasks and notes | `run_hints2_share/hints2_share/` |
 | hints2_use | 11-06 | hints2_share's teams with receivers also told to use teammates' notes (`use_notes`); qwen3-4b, gemma3-4b, llama3.2-3b; 240 runs | `run_hints2_use/hints2_use/` |
 | hints2_8b | 11-06 | hints2's cells with qwen3-8b (L40); 600 distinct runs | `run_hints2_8b/hints2_8b/` |
-| hints2_8b_share | 11-06 | qwen3-8b, split fully connected teams with share_notes, use_notes false / true; 160 runs | `run_hints2_8b_share/hints2_8b_share/` |
+| hints2_8b_share | 11-06, 11-07 → 11-10 | qwen3-8b, split fully connected teams with share_notes, use_notes false / true; 320 runs (80 targets) | `run_hints2_8b_share/hints2_8b_share/` |
+| hints2_8b (ext.) | 11-07 → 11-10 | the same cells on targets 40–79: 1,200 distinct runs in all | `run_hints2_8b/hints2_8b/` |
+| hints2_12b | 11-07 → 11-10 | hints2's cells with gemma3-12b (L40); 600 distinct runs | `run_hints2_12b/hints2_12b/` |
+| hints2_12b_share | 11-07 → 11-10 | gemma3-12b split fully connected teams with share_notes, use_notes false / true; 160 runs | `run_hints2_12b_share/hints2_12b_share/` |
+| hints2_made | 11-07 → 11-10 | `mark_made` on: qwen3-4b, gemma3-4b, llama3.2-3b, qwen3-8b × FC / star × split (decoys), all × 3 versions; 1,600 distinct runs, same tasks and notes as hints2 | `run_hints2_made/hints2_made/` |
+| mixed | 11-07 → 11-10 | mix-qgl (qwen3-4b, gemma3-4b, llama3.2-3b in turn) × FC 6 / star 3 × main's settings × 20 reps × base, all_independent; 160 runs | `run_mixed/mixed/` |
+| mixed_hints | 11-07 → 11-10 | mix-qgl on hints2's split (decoys) and all cells, 40 targets; 320 runs | `run_mixed_hints/mixed_hints/` |
 
 ## 5. What we know (details and numbers in FINDINGS.md)
 
+- **Pooling split notes: telling is Qwen's, using grows with size** (F46): Gemma3-12B never names its notes unprompted
+  (0% of first messages; talk +2.5), but with the share instruction its team jumps +40 points (52.5% → 92.5%), as
+  much as one agent holding both. Its receivers play a told target recipe next 73–92% (gemma3-4b 40–45%).
+- **Qwen3-8B on 80 targets** (F47, confirms F43): talk lifts split teams +25 to +32.5 (fully connected), +20 (star);
+  with everyone holding both, fully connected talk costs −38.8, the star gains +13.8 (96%).
+- **The "Items you made" line breaks the remake loop for Qwen only** (F48): qwen3-8b fully connected talk 62.5% →
+  92.5% (remakes 80% → 41%), one agent +15; qwen3-4b +10; Gemma and Llama keep remaking, no change.
+- **Mixing families adds no variety beyond the best family** (F49): silenced mixed teams solve what their members'
+  agents predict and no more than Llama alone; talking mixed teams herd less (fully connected talk −2.5 vs −5 to
+  −12.5; blind adoption 0.20 vs Qwen 0.42), and a mixed star pools split notes (+17.5), but intervals are wide.
 - **A bigger model pools split notes through talk** (F43): with Qwen3-8B, talk lifts split teams by +15 to +28 points
   (the 4B models: 0 to +3), and with the share instruction the team matches one agent holding both recipes (65–73% vs
-  68%). Alone or silenced Qwen3-8B is no better than Qwen3-4B; its gain is all in communication. One model, 40 targets.
+  68%). Alone or silenced Qwen3-8B is no better than Qwen3-4B; its gain is all in communication.
 - **Telling receivers to use teammates' notes changes nothing** (F42): the 4B models still play a teammate's recipe
   about one time in ten (−5 points vs the share instruction alone; qwen3-8b −5 too).
 - **Agents remake an intermediate they already hold** (F44), and fully connected talk that restates the plan ("first
@@ -144,8 +160,8 @@ The user runs every command on the cluster and pastes the output or a screenshot
 - Talk erases the gain from a bigger team (F25).
 - One agent with the team's token budget matches six independent agents and beats six talking ones; three-agent
   teams beat it (F19, F28).
-- Temperature variety does not help (F21, F27). Variety between model families is **untested** (no mixed teams yet;
-  F6 only shows that models with more varied agents gain more).
+- Temperature variety does not help (F21, F27), nor does variety between model families (F49); F6 only shows that
+  models with more varied agents gain more.
 - Sharing only failures does not help LLM agents: they retry pairs teammates reported failing (F35), while it is the
   one sharing that helps random teams (+16.5 at depth 2, F31).
 - Prompt v1's example was copied by weak models; v2 fixed most of it (F8, F12–F14). SmolLM2 stays unreliable.
@@ -167,8 +183,9 @@ The user runs every command on the cluster and pastes the output or a screenshot
     (`WordCraftTask.build_prompt` passes the inventory minus the starting items).
   - **gemma3-12b** in the registry (revision `96b6f1ec…` from the HF API, 12,187,325,040 parameters; downloaded on
     giano).
-- Local-only (git-ignored): `run_*/`, `shard*.jsonl` in the repo root, `docsHPC/` (cluster docs and a colleague's
-  Slurm guide), `data/`.
+- Since 2026-11-07 (`9b33f0b`–`9d0a8ee`, "Add current results") the user commits the downloaded `run_*/` folders and
+  `docs/analysis/`: `.gitignore` no longer excludes them. A re-download rewrites the old runs' `metrics.json` with a
+  new `evaluated_at` and evaluator commit only (checked 2026-11-11: 760 files, no value changed).
 - Fixed: F2 (the revision is read from the cache snapshot), the `setup_giano.sh` venv branch, the missing mock backend.
 - Fixed behind a flag: shortcut targets (F32). New grids set `task.allow_shortcuts: false`; the default (true) keeps
   the earlier grids' targets.
@@ -195,55 +212,60 @@ The user runs every command on the cluster and pastes the output or a screenshot
 
 ## 7. Plan
 
-Done since 2026-11-05: the receiving side (hints2_use, F42), Qwen3-8B (hints2_8b, hints2_8b_share, F43), the
-intermediate loop (F44), F41 closed.
+Done since 2026-11-05: the receiving side (hints2_use, F42), Qwen3-8B (hints2_8b, hints2_8b_share, F43, and on 80
+targets F47), the intermediate loop (F44) and the made line (F48), Gemma3-12B (F46), mixed teams (F49), F41 closed.
+The seven grids queued on 2026-11-07 (jobs 74395–74405) all finished and were downloaded and checked on 2026-11-11
+(0 unfinished, 0 failed runs, `bd60792` clean, pairing with hints2 / main checked run by run).
 
-### Queued on giano, 2026-11-07
+Analysis scripts added (`docs/analysis/`): `k5.py` (gemma3-12b, qwen3-8b on 80 targets), `k6.py` (who
+tells / who uses for both), `k7.py` (made line), `k8.py`, `k9.py` (mixed teams). `k4.py` now reads only the first 40
+targets (hints2_8b has 80): F43–F45 and the report's `make_data.py`, which runs it, stay as they were.
 
-All on hints2's or main's targets and notes (checked locally: 0 differences in 3,200 compared runs, so every run
-pairs with its counterpart). The plans on giano matched the local expansion. Each full job waits for its gate
-(`afterok`, killed if the gate fails); at most 3 jobs run at once, the rest wait.
+### Prepared on 2026-11-11, not yet committed or submitted: the review's grids
 
-| grid | question | distinct runs | gate | full jobs | where |
-|---|---|---|---|---|---|
-| `hints2_12b` | is F43 about size or about Qwen? gemma3-12b on hints2's 6 cells × 3 versions | 600 | 74395 (unit 0 of 240) | 74398 [0-1] | L40 |
-| `hints2_12b_share` | gemma3-12b split FC teams told to share, use_notes false / true | 160 | 74395 | 74399 [0] | L40 |
-| `hints2_8b` | qwen3-8b on targets 40–79 (0–39 skipped as finished) | +600 (1,200 total) | 74395 | 74400 [0] | L40 |
-| `hints2_8b_share` | the same for the share / use teams | +160 (320 total) | 74395 | 74401 [0] | L40 |
-| `hints2_made` | does `mark_made` stop the intermediate loop (F44)? qwen3-4b, llama3.2-3b, gemma3-4b, qwen3-8b × FC / star × split (decoys), all × 3 versions | 1,600 | 74396 (unit 0 of 640, rtx2080) | 74402 [0-1] rtx2080 (qwen3-4b, llama), 74403 [2-3] L40 (gemma3-4b, qwen3-8b); `SWEEP_SHARDS=4` | both |
-| `mixed` | do mixed-family teams (mix-qgl: qwen, gemma, llama in turn) beat single-model teams (F6)? FC 6 / star 3 × main's 2 settings × 20 targets × base, all_independent | 160 | 74397 (unit 0 of 80) | 74404 [0] | L40 |
-| `mixed_hints` | the same on hints2's split (decoys) and all cells, 40 targets | 320 | 74397 | 74405 [0-1] | L40 |
+`docs/REVIEW_2026-11-11.md` is a critical review of F1–F49 (new entries F50–F54 in FINDINGS.md). Its first four
+experiments are ready; code checked locally only by expanding the grids, rebuilding the tasks (560 of 560 have
+hints2's task and notes) and one stub-backend run per feature in the scratchpad. Their first real test is the gates.
 
-State at hand-off: the `hints2_made` gate 74396 was running on rtx2080; the L40 gates 74395 and 74397 were pending
-(`Priority`, L40s busy); all full jobs pending (`Dependency`). Estimates: about 55 GPU-hours on L40 and 20 on
-rtx2080 (gemma3-12b assumed half qwen3-8b's speed, a guess); the longest job is qwen3-4b's `hints2_made` block on
-rtx2080, about 13 h.
+- **`engine.publish_on_no_op`** (F50): the message of a turn whose answers were all refused is still sent
+  (`Engine.run_agent` keeps the last message written, `apply` publishes it after the no-op). Off by default.
+  `written_messages` in `runs.csv` still counts acting turns only: count `msg_published` of type `message` in the logs.
+- **`task.rename`** (F52): every item shown under a made-up name (`tasks.pseudo_names`, seeded by the task seed); the
+  task and notes are drawn as without it, `RecipeBook.renamed` is what the agents play. `meta.json` gets
+  `task_original` (the task under the book's names, equal to hints2's) and `names_seed`; `task` and `notes` hold the
+  made-up names. Use with `prompts: v2r` (no "real-world intuition", a made-up example without a plan).
+- **`prompts/v3`** (F53): v2 plus the example game one round later, playing the second step.
+- Grids (all on hints2's targets 0–39, fully connected):
 
-### Next session
+| grid | what | runs | pairs with |
+|---|---|---|---|
+| `hints2_share_pub` | share instruction + `publish_on_no_op`; qwen3-4b, gemma3-4b, qwen3-8b; split with / without decoys | 240 | hints2_share, hints2_8b_share |
+| `hints2_channels` | qwen3-8b, gemma3-12b; results only and messages only; split, decoys | 160 | hints2_8b, hints2_12b |
+| `hints2_channels_share` | the same two, messages only + share instruction | 80 | hints2_8b_share, hints2_12b_share |
+| `hints2_ex2` | prompts v3; llama3.2-3b, gemma3-4b, qwen3-8b, gemma3-12b; everyone holds both; 3 versions | 480 | hints2, hints2_8b, hints2_12b |
+| `renamed` | `rename` + v2r + `publish_on_no_op`; qwen3-4b, gemma3-4b, qwen3-8b, gemma3-12b; split (decoys) and all; 3 versions | 960 | itself, hints2 (by target) |
+| `renamed_share` | renamed's split teams + share instruction | 160 | renamed |
 
-1. Ask the user for `squeue -u $USER`. If a gate failed, its dependants are gone: ask for the gate's
-   `slurm-sweep-<job>_<task>.out/.err` and the grid's `runs/<grid>/sweep/*.jsonl`, fix, push, resubmit (a
-   re-submission skips finished runs). The new code paths are `TeamBackend` (gate 74397: three models on one L40)
-   and `mark_made` (gate 74396).
-2. When all are done: on giano `python scripts/sweep.py evaluate configs/experiments/<grid>.yaml` for the 7 grids
-   (each `0 unfinished`), the Slurm lists, then the download (section 3) for each grid **from the repo root**, and
-   the download checks. `run_hints2_8b/` and `run_hints2_8b_share/` already exist locally: rsync adds the new
-   replicates.
-3. Analyses (scripts in `docs/analysis/`, log every result in `FINDINGS.md` from F45):
-   - **gemma3-12b** vs gemma3-4b (hints2, hints2_share, hints2_use) and vs qwen3-8b, as `k3.py` / `k4.py` do for 8b:
-     does talk help its split teams, do its holders tell, do its receivers act? If yes, F43 is size; if not, Qwen.
-   - **qwen3-8b on 80 targets**: redo F43's and F44's contrasts with 80 pairs (`k3.py`, `k4.py` read
-     `range(40)`: extend them).
-   - **made** vs hints2 / hints2_8b, run by run (same targets, notes and seeds; only the made line differs): success
-     per cell, and the share of actions that remake an intermediate already made (the counting in F44). Does it close
-     F40's gap (talk hurts when everyone holds both) and the 30% failures of one agent holding both?
-   - **mixed** vs main (and followup) for FC 6 and star 3, both settings, silenced and talking: mixed − each
-     single-model team, paired by target (main ran all on L40 in bfloat16, like mixed). F6's claim: does a silenced
-     mixed team beat silenced single-model ones (more varied attempts)? Does talk across families herd less (F17)?
-     `mixed_hints` vs hints2: and does pooling depend on which family holds a path recipe (`meta.json`
-     `agent_models` + `notes`)? Note: in a star the hub is always qwen3-4b.
-4. Republish the two pages (section 6), adding the new results.
-5. Then the write-up for the supervisor (the results page is the base).
+  Each grid's header says which `SWEEP_SHARDS` block is which model (qwen3-4b and llama on rtx2080, the rest on L40).
+- Analysis plan: share_pub − share per model (does the gain grow, F50); results only / messages only − silenced and −
+  both for the two big models (F51); remake share and talk − silenced with v3 against v2 (F53; `k7.py`'s measure);
+  renamed: silenced split should be near 0, then share − talk and share − everyone holding both by model (F52). Report
+  exact sign tests beside the bootstrap (F54).
+
+### Next
+
+1. **Write-ups.** `docs/report/report.typ` (the Italian PDF for the supervisor, user-edited) still has the 2026-11-07
+   grids under "In corso": replace that section with F46–F49 (a short section each, or one "Nuovi risultati"), and
+   update the Qwen3-8B paragraph with the 80-target numbers (F47). Its `make_data.py` filters Qwen3-8B to 40 targets
+   in `remake`; check every other read of `run_hints2_8b` before rebuilding the data, or keep the report at 40 targets
+   and quote F47 in the text. `framework/mail.txt` (the user's mail) likewise.
+2. Republish the two pages (section 6), adding F42–F49.
+3. Possible next grids (the user decides):
+   - `mark_made` with gemma3-12b (it remakes most of all, 61–66%, F46) and as the default for new grids (F48);
+   - Gemma3-12B with everyone holding both in a star (−22.5, F46): is it the hub restating the plan?
+   - mixed teams on more targets (F49's talk effects are suggestive only) and with the star's hub rotated through
+     the families (the hub is always qwen3-4b); a mix with qwen3-8b / gemma3-12b members;
+   - a second family at 8B (e.g. Llama 3.1-8B) to separate size from family once more.
 
 ## 8. Working with the user
 
