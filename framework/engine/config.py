@@ -63,6 +63,8 @@ class EngineConfig(Strict):
     # a mixed team: the model of each agent (sorted agent ids, cycling through the list), all on `backend`; `model` is
     # then only the team's name. None = every agent runs `model`
     agent_models: tuple[AgentModel, ...] | None = None
+    # send the message of a turn whose answers were all refused (by default it is dropped with the action, F50)
+    publish_on_no_op: bool = False
 
     @model_validator(mode="after")
     def team_is_valid(self) -> "EngineConfig":

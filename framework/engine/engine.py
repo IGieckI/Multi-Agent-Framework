@@ -402,6 +402,9 @@ class Engine:
                 break
             if parse_failures >= self.cfg.retries.max_parse_attempts:
                 break
+        if turn.status == "no_valid_answer" and self.cfg.engine.publish_on_no_op:
+            # no answer had a usable action: keep the last message written, apply() still sends it
+            turn.message = next((a.message for a in reversed(turn.attempts) if a.message), None)
         return turn
 
     def apply(self, turn: Turn) -> None:
@@ -414,6 +417,10 @@ class Engine:
         if turn.action is None:
             self.task.no_op(agent)
             self.log.write("task", "no_op", t=turn.t, tick=turn.tick, agent=agent)
+            # set only with engine.publish_on_no_op
+            if turn.message:
+                self.publish(turn, [MessageDraft(agent, t, {"text": turn.message}) for t in AUTHORED
+                                    if self.shares(agent, t)])
             return
 
         # step the agent's environment + logs
@@ -427,6 +434,9 @@ class Engine:
             drafts += [MessageDraft(agent, t, {"text": turn.message}) for t in AUTHORED if self.shares(agent, t)]
         if turn.reasoning and self.shares(agent, "reasoning"):
             drafts.append(MessageDraft(agent, "reasoning", {"text": turn.reasoning}))
+        self.publish(turn, drafts)
+
+    def publish(self, turn: Turn, drafts: list[MessageDraft]) -> None:
         for draft in drafts:
             if (message := self.bus.publish(draft, turn.tick)) is not None:
                 turn.published.append(message.id)
