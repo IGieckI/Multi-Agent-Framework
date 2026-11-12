@@ -65,6 +65,9 @@ class EngineConfig(Strict):
     agent_models: tuple[AgentModel, ...] | None = None
     # send the message of a turn whose answers were all refused (by default it is dropped with the action, F50)
     publish_on_no_op: bool = False
+    # log each answer's confidence: token log-probabilities and entropies, perplexity, and those of the combination
+    # (hf_local only; completion.meta of every llm_call). It does not change what is sampled
+    log_confidence: bool = False
 
     @model_validator(mode="after")
     def team_is_valid(self) -> "EngineConfig":

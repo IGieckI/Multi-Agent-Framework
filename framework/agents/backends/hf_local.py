@@ -10,10 +10,11 @@ from pathlib import Path
 import torch
 import transformers
 from huggingface_hub import try_to_load_from_cache
-from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
+from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig, LogitsProcessor, LogitsProcessorList
 from transformers.generation.streamers import BaseStreamer
 
-from framework.agents.backends.base import Completion, Sampling, TextListener, split_reasoning, to_chat_messages
+from framework.agents.backends.base import (Completion, Sampling, TextListener, confidence_summary, split_reasoning,
+                                            to_chat_messages)
 from framework.agents.prompt import Prompt
 
 
@@ -87,14 +88,58 @@ class LiveText(BaseStreamer):
         pass
 
 
+def entropy(logprobs: torch.Tensor) -> float:
+    """Entropy (nats) of a distribution given as log-probabilities (-inf for excluded tokens)"""
+    return float(-torch.where(torch.isfinite(logprobs), logprobs.exp() * logprobs, 0.0).sum())
+
+
+class TokenStats(LogitsProcessor):
+    """Records, without changing the scores, each step's distribution: the log-probability of the token sampled from
+    it (known at the next step, or from the output for the last one) and its entropy. With every sampling setting at
+    its neutral value (temperature 1, top_p 1, top_k 0, as in every grid) it is the model's own distribution"""
+
+    def __init__(self) -> None:
+        self.previous: torch.Tensor | None = None
+        self.logprobs: list[float] = []
+        self.entropies: list[float] = []
+
+    def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor) -> torch.FloatTensor:
+        if self.previous is not None:
+            self.logprobs.append(float(self.previous[input_ids[0, -1]]))
+        self.previous = torch.log_softmax(scores[0].float(), dim=-1)
+        self.entropies.append(entropy(self.previous))
+        return scores
+
+    def finish(self, generated: list[int]) -> None:
+        if self.previous is not None and len(self.logprobs) < len(generated):
+            self.logprobs.append(float(self.previous[generated[-1]]))
+        self.previous = None
+
+
+def token_ends(tokenizer, generated: list[int]) -> list[int]:
+    """Where each generated token ends in the decoded text (special tokens decode to nothing)"""
+    return [len(tokenizer.decode(generated[:i + 1], skip_special_tokens=True)) for i in range(len(generated))]
+
+
+def confidence_meta(tokenizer, generated: list[int], raw: str, logprobs: list[float], entropies: list[float]) -> dict:
+    """What a completion's meta holds with engine.log_confidence: the summary and the per-token lists (4 decimals)"""
+    ends = token_ends(tokenizer, generated)
+    return {"confidence": confidence_summary(raw, logprobs, entropies, ends),
+            "token_logprobs": [round(x, 4) for x in logprobs], "token_entropies": [round(x, 4) for x in entropies],
+            "token_ends": ends}
+
+
 class HFLocalBackend:
     def __init__(
         self,
         model_id: str,
         use_model_sampling: bool = False,
         revision: str | None = None,
+        confidence: bool = False,
     ) -> None:
         self.model_id = model_id
+        # engine.log_confidence: record each answer's token log-probabilities and entropies (completion.meta)
+        self.confidence = confidence
         self.requested_revision = revision
         self.use_model_sampling = use_model_sampling
         self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
@@ -129,6 +174,7 @@ class HFLocalBackend:
             "device": self.device,
             "prefix_caching": False,
             "sampling_settings": self.model_sampling_settings if self.use_model_sampling else "from Sampling",
+            "log_confidence": self.confidence,
         }
 
     async def generate(self, prompt: Prompt, sampling: Sampling, on_text: TextListener | None = None) -> Completion:
@@ -151,6 +197,7 @@ class HFLocalBackend:
         inputs = self.tokenizer(text, add_special_tokens=False, return_tensors="pt").to(self.device)
         prompt_tokens = inputs["input_ids"].shape[1]
 
+        stats = TokenStats() if self.confidence else None
         with self.lock:
             started = time.perf_counter()
             if sampling.seed is not None:
@@ -159,12 +206,17 @@ class HFLocalBackend:
                 output = self.model.generate(
                     **inputs, generation_config=generation_config(sampling, self.use_model_sampling),
                     streamer=LiveText(self.tokenizer, on_text) if on_text else None,
+                    logits_processor=LogitsProcessorList([stats]) if stats else None,
                 )
             elapsed = time.perf_counter() - started
 
         generated = output[0, prompt_tokens:].tolist()
         raw = self.tokenizer.decode(generated, skip_special_tokens=True)
         reasoning, answer = split_reasoning(raw)
+        meta = {}
+        if stats is not None:
+            stats.finish(generated)
+            meta = confidence_meta(self.tokenizer, generated, raw, stats.logprobs, stats.entropies)
         return Completion(
             text=answer,
             reasoning=reasoning,
@@ -173,4 +225,5 @@ class HFLocalBackend:
             elapsed_s=elapsed,
             finish_reason="stop" if generated and generated[-1] in self.eos_ids else "length",
             full_raw_answer=raw,
+            meta=meta,
         )

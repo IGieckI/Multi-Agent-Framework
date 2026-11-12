@@ -281,7 +281,8 @@ def engine_key(cfg: RunConfig) -> tuple:
     """Two configs with the same key can share one loaded model"""
     e, s = cfg.engine, cfg.summarizer
     team = None if e.agent_models is None else tuple((m.model, m.revision) for m in e.agent_models)
-    return e.backend, e.model, e.revision, team, None if s is None else (s.backend, s.model, s.revision)
+    return (e.backend, e.model, e.revision, team, None if s is None else (s.backend, s.model, s.revision),
+            e.log_confidence)
 
 
 def run_units(units: list[Unit], log: EventLog) -> int:

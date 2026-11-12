@@ -108,7 +108,7 @@ def make_backend(cfg: EngineConfig, task: Task):
     if not cfg.model:
         raise ValueError(f"engine.backend {cfg.backend!r} needs engine.model")
     from framework.agents.backends.hf_local import HFLocalBackend
-    return HFLocalBackend(cfg.model, revision=cfg.revision)
+    return HFLocalBackend(cfg.model, revision=cfg.revision, confidence=cfg.log_confidence)
 
 
 def make_summarizer(cfg: RunConfig, agents_backend):

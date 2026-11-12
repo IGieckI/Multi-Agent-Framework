@@ -18,3 +18,5 @@ __pycache__/
 /docsHPC
 # private notes, never committed
 /framework/stuff.md
+# answers of finished runs scored again (scripts/rescore.py): outside the run folders, untracked on giano (F41)
+/runs_confidence

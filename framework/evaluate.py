@@ -5,6 +5,7 @@ usage, and bootstrap confidence intervals over replicates
 
 import csv
 import json
+import math
 import time
 from pathlib import Path
 
@@ -50,7 +51,24 @@ def engine_metrics(events: list[dict]) -> dict[str, float | None]:
         "parse_failure_rate": parse_failures / len(calls) if calls else None,
         "no_op_turns": sum(e["kind"] == "no_op" for e in events),
         "truncation_events": sum(e["kind"] == "truncation_event" for e in events),
+        **confidence_metrics(events),
     }
+
+
+def confidence_metrics(events: list[dict]) -> dict[str, float | None]:
+    """Means over the agents' calls of the confidence engine.log_confidence logs (None without it): perplexity,
+    token entropy, and the probability and entropy of the combination; the last two also over first-round answers"""
+    rows = [(e["t"], (e["data"]["completion"].get("meta") or {}).get("confidence")) for e in events
+            if e["kind"] == "llm_call"]
+    rows = [(t, x) for t, x in rows if x]
+    def avg(key, first=False):
+        xs = [x[key] for t, x in rows if x.get(key) is not None and (not first or t == 0)]
+        return sum(xs) / len(xs) if xs else None
+    prob = lambda key, first=False: [math.exp(x[key]) for t, x in rows if x.get(key) is not None and (not first or t == 0)]
+    p, p1 = prob("combo_logprob"), prob("combo_logprob", True)
+    return {"perplexity_mean": avg("perplexity"), "token_entropy_mean": avg("mean_entropy"),
+            "combo_prob_mean": sum(p) / len(p) if p else None, "combo_prob_first": sum(p1) / len(p1) if p1 else None,
+            "combo_entropy_mean": avg("combo_entropy"), "combo_entropy_first": avg("combo_entropy", True)}
 
 
 class Evaluator:
