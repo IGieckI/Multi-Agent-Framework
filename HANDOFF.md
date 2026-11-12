@@ -252,6 +252,27 @@ hints2's task and notes) and one stub-backend run per feature in the scratchpad.
   renamed: silenced split should be near 0, then share − talk and share − everyone holding both by model (F52). Report
   exact sign tests beside the bootstrap (F54).
 
+### Prepared on 2026-11-12: confidence, sequential turns, 12 agents (the tutor's suggestions)
+
+- **`engine.log_confidence`** (hf_local; off by default): a `TokenStats` logits processor records, without changing
+  the scores, each generated token's log-probability and its distribution's entropy. `completion.meta` of every
+  `llm_call` gets `confidence` (`base.confidence_summary`: perplexity, mean entropy, `combo_logprob` = log-probability
+  of the text after "Combination:", `combo_entropy`, `combo_first_entropy`) and the per-token lists. `runs.csv` gains
+  `perplexity_mean`, `token_entropy_mean`, `combo_prob_mean`, `combo_prob_first` (round 1), `combo_entropy_mean`,
+  `combo_entropy_first` (empty for runs without it). Part of `engine_key`, so a shard never reuses a backend across
+  the flag. `confidence_check` is its gate: the two gemma3-4b units must be byte-identical to main's.
+- **`scripts/rescore.py`** + `scripts/slurm/rescore.sbatch`: the same measures for finished runs, by teacher
+  forcing the logged answers (retokenized; the end-of-turn token is not scored). Writes `runs_confidence/<grid>/...`
+  on giano (git-ignored); download it to `run_confidence/`.
+- **Protocols**: `sequential` (fully_connected, `schedule: {by: position}`: agent k sees agents 0..k−1 of the same
+  round), `chain6` (directed relay, results and message to the next agent only; the last one has no message slot),
+  `fully_connected12`. Stub runs checked who hears whom in round 1.
+- **Grids**: `chain` (sequential, chain6 × main's settings × 4 models, base; 320 runs; pairs with followup / main),
+  `chain_hints` (sequential × hints2 split and all × 4 models, base; 320; pairs with hints2 / hints2_8b),
+  `size12` (12 silenced agents × main's settings × 3 models; 120), `confidence_check` (4). All log confidence.
+- Analysis: `k10.py` (F55, token confidence, 12 vs 6 vs 3), `k11.py` (sequential / chain − parallel and − silenced,
+  herding, "agents 1–5 playing agent_00's first pair", solve rate by turn position); `lib.sign_test`.
+
 ### Next
 
 1. **Write-ups.** `docs/report/report.typ` (the Italian PDF for the supervisor, user-edited) still has the 2026-11-07

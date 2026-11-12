@@ -810,3 +810,33 @@ read `llm_call` (every attempt), `msg_delivered` and `env_step`.
   gemma3-12b −7.5 / −17.5 [−30.0, −7.5].
 - Status: **closed** (descriptive). Report exact tests beside the bootstrap for per-model contrasts; treat F45, F49's
   talk effects and the per-model rows of F39/F40 as exploratory.
+
+---
+
+## Confidence and team size (2026-11-12, no new runs; the tutor's hypothesis)
+
+The tutor's idea: a model that gives the right answer one time in three gains from a bigger team, because one of
+six agents finds it; a model that is right or wrong "with confidence" gains little, whether it has 3, 6 or 12
+agents. The six agents of a silenced team all get the same first-round prompt, so their six first answers sample
+the model's answer distribution, with no confidence logging needed. Source: fully_connected all_independent of
+followup (qwen3-4b, gemma3-4b, llama3.2-3b) and main (qwen3-8b), 20 targets per setting. Script:
+`docs/analysis/k10.py` (part 1).
+
+### F55. Agents of Qwen and Gemma answer alike (right or wrong together); Llama's agents disagree, which is why only Llama gains from a bigger team
+- Depth 1, 3 distractors, first answers of the six agents: share of agents playing the most common pair qwen3-4b
+  0.86, gemma3-4b 0.90, qwen3-8b 0.91, llama3.2-3b **0.56**; distinct pairs among six 1.4, 1.4, 1.2, **3.0**. Targets
+  where all six are right / all six wrong / mixed: qwen3-4b 7 / 7 / 6, gemma3-4b 2 / 14 / 4, qwen3-8b 10 / 7 / 3,
+  llama3.2-3b 1 / 2 / **16** (of 19; one target has fewer than six first actions).
+- So the per-agent solve rate varies within a target only for Llama. All four models solve about the same share
+  per agent (0.67–0.70), but the team: llama3.2-3b **1.00**, qwen3-4b 0.80, gemma3-4b 0.75, qwen3-8b 0.75. The
+  per-target rates predict for 1 / 3 / 6 / 12 independent agents: llama 0.67 / 0.90 / 0.97 / 0.99, qwen3-4b 0.69 /
+  0.75 / 0.78 / 0.79, gemma3-4b 0.68 / 0.73 / 0.75 / 0.75, qwen3-8b 0.70 / 0.74 / 0.75 / 0.75.
+- Depth 2, 0 distractors: modal share qwen3-4b 0.98, qwen3-8b 0.95, gemma3-4b 0.83, llama3.2-3b 0.80; team − agent
+  rate +1, +5, +12, **+28** points.
+- This explains F45's "team size is a Llama effect" (6 − 3 silenced agents: llama +15.0, gemma +2.5, qwen 0.0) and
+  F6/F30 (Qwen agents are near-copies). It is agreement between samples, a behavioural measure of confidence; a
+  model's token probabilities are the direct one (`engine.log_confidence`, `scripts/rescore.py`, 2026-11-12). The
+  per-target rate comes from the same six agents, so the "predicted" column only restates the heterogeneity; the
+  12-agent grid (`size12`) tests it out of sample.
+- Status: **open**: size12 (does 6 → 12 add nothing for Qwen and Gemma?) and the rescored token confidence (is
+  P(first combination) low where Llama's agents disagree, and does it separate right from wrong answers?).

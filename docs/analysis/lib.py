@@ -32,3 +32,11 @@ def boot(diffs, n=4000, seed=0, cluster=None):
 
 def fmt(m, lo, hi, scale=100, d=1):
     return f"{m*scale:+.{d}f} [{lo*scale:+.{d}f}, {hi*scale:+.{d}f}]"
+
+def sign_test(a, b):
+    """Exact two-sided sign test of paired 0/1 outcomes: (pairs a won, pairs b won, p)"""
+    import math
+    p = sum(x > y for x, y in zip(a, b)); n = sum(x < y for x, y in zip(a, b)); N = p + n
+    if N == 0:
+        return p, n, 1.0
+    return p, n, min(1.0, 2 * sum(math.comb(N, i) for i in range(min(p, n) + 1)) / 2 ** N)
