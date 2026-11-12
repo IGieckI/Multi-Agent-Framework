@@ -1,0 +1,8 @@
+# fully_connected with the agents taking turns in order: agent_00 plays first, each next agent sees what the
+# earlier ones did and said this round (and everything from earlier rounds). Only the schedule differs
+roles:
+  explorer: {count: 6}
+structure: {generator: complete}
+rules:
+  - {from: explorer, to: explorer, share: [result, message]}
+schedule: {by: position}

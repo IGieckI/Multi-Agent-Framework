@@ -1,0 +1,8 @@
+# a relay: agents take turns in order and each one hears only the one before it (its results and its message);
+# what an earlier agent found reaches a later one only if the agents between pass it on. The last one writes nothing
+roles:
+  explorer: {count: 6}
+structure: {generator: path, directed: true}
+rules:
+  - {along: next, share: [result, message]}
+schedule: {by: position}

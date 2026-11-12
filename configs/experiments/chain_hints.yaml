@@ -1,0 +1,22 @@
+# Sequential turns with split notes: a holder's message reaches the later agents in the same round. hints2's split
+# (decoys) and all cells with the sequential protocol, base only; pairs with hints2 / hints2_8b fully_connected
+# (base = parallel, all_independent = silenced), targets 0-39. Confidence logged.
+# SWEEP_SHARDS=4 gives one model per block: 0-1 (qwen3-4b, llama) on rtx2080, 2-3 (gemma3-4b, qwen3-8b) on L40
+name: chain_hints
+replicates: 40
+seed: 0
+versions: [base]
+models: [qwen3-4b, llama3.2-3b, gemma3-4b, qwen3-8b]
+protocols:
+  - {name: sequential, file: configs/protocols/sequential.yaml}
+task:
+  - {hints: split, decoys: true}
+  - {hints: all, decoys: true}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2,
+         depth: 2, distractors: 6, notes: 2, allow_shortcuts: false}
+  engine: {max_concurrency: 1, log_confidence: true}
+  sampling: {temperature: 1.0}
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}

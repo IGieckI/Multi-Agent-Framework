@@ -1,0 +1,19 @@
+# Does engine.log_confidence change what is sampled? main's first two gemma3-4b fully connected units with it on:
+# the runs must be byte-identical to main's (Gemma in bfloat16 on L40 reproduces exactly, F23). Gate of the grids
+# that log confidence. L40
+name: confidence_check
+replicates: 2
+seed: 0
+versions: [base, all_independent]
+models: [gemma3-4b]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+task:
+  - {depth: 1, distractors: 3}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2}
+  engine: {max_concurrency: 1, log_confidence: true}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}

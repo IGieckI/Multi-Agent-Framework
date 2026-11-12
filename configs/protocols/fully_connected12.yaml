@@ -1,0 +1,6 @@
+# fully_connected with 12 agents (grids use only its all_independent: 12 silenced agents)
+roles:
+  explorer: {count: 12}
+structure: {generator: complete}
+rules:
+  - {from: explorer, to: explorer, share: [result, message]}

@@ -1,0 +1,22 @@
+# Does a team gain from more agents only when its model is unsure (the tutor's hypothesis, F55)? 12 silenced agents
+# on main's targets, with every answer's confidence logged; 1, 3 and 6 agents are one_agent, fully_connected3 and
+# fully_connected all_independent in followup. Prediction: Qwen and Gemma, whose agents mostly play the same pair,
+# gain about nothing from 6 to 12; Llama, whose agents disagree, is near its ceiling at 6.
+# SWEEP_SHARDS=3 gives one model per block: 0-1 (qwen3-4b, llama) on rtx2080, 2 (gemma3-4b) on L40
+name: size12
+replicates: 20
+seed: 0
+versions: [all_independent]
+models: [qwen3-4b, llama3.2-3b, gemma3-4b]
+protocols:
+  - {name: fully_connected12, file: configs/protocols/fully_connected12.yaml}
+task:
+  - {depth: 1, distractors: 3}
+  - {depth: 2, distractors: 0}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2}
+  engine: {max_concurrency: 1, log_confidence: true}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600}
