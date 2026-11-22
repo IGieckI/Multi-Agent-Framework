@@ -108,6 +108,11 @@ The user runs every command on the cluster and pastes the output or a screenshot
   Rescore 74714 (gemma3-4b) ran a second time on 2026-11-20 16:34 (slurmng-n1) and scored 0 runs (all done); its
   logs, downloaded again on 2026-11-22, replaced the first run's (1,440 runs in 1,345 s on slurmng-n2). The 1,440
   result files are the first run's (18–19 Nov), unchanged.
+- **Analysis jobs while grids run** (2026-11-22): a second checkout, `/scratch.hpc/giacomo.antonelli4/MAF-tools`
+  (a clone of the same GitHub repo), is where scoring jobs are pulled and submitted. Pulling or writing untracked
+  output in the main checkout while a grid runs changes its runs' provenance (F41). The venv's editable install
+  imports `framework` from the main checkout, so only `scripts/` comes from the clone; `counterfactual.py` writes to
+  the clone's own `runs_counterfactual/`.
 - `sweep.py` takes the grid's file, not its name: `python scripts/sweep.py evaluate configs/experiments/<grid>.yaml`.
   Run the download's rsync lines from the repo root (on 2026-11-06 they ran one folder up and had to be moved).
 
@@ -140,8 +145,8 @@ The user runs every command on the cluster and pastes the output or a screenshot
 | chain, chain_hints | 11-12 → | sequential / chain6 × main's settings, sequential × hints2 split, all; 4 models; 320 + 320 (F63) | `run_chain*/` |
 | size12 | 11-12 → | 12 silenced agents, main's settings, 3 models, confidence logged; 120 (F57) | `run_size12/` |
 | rescore | 11-12 → | token confidence of followup, main, hints2, hints2_8b (5,880 runs, 4 models) (F56, F57) | `run_confidence/` |
-| renamed_made | prepared 11-22 | renamed + `mark_made` (+ `show_matched_budget`); 4 models; split, all; base, all_independent, one_agent, one_vs_multi_token; 1,280 runs | (not run yet) |
-| renamed_made_share | prepared 11-22 | its split teams + share instruction; base, one_vs_multi_token; 320 runs | (not run yet) |
+| renamed_made | 11-22 → | renamed + `mark_made` (+ `show_matched_budget`); 4 models; split, all; base, all_independent, one_agent, one_vs_multi_token; 1,280 runs | (not run yet) |
+| renamed_made_share | 11-22 → | its split teams + share instruction; base, one_vs_multi_token; 320 runs | (not run yet) |
 
 ## 5. What we know (details and numbers in FINDINGS.md)
 
@@ -348,6 +353,24 @@ hints2's task and notes) and one stub-backend run per feature in the scratchpad.
 - Questions: renamed + made − renamed for one agent, everyone-holds-both and talk (does the loop explain F62?);
   share − one agent holding both, and share − token-matched agent (is the 92.5% vs 37.5% of F61 more than compute?).
 - Estimated GPU time from renamed's latencies: about 7–11 h per model for renamed_made, 2–4 h for the share grid.
+- Submitted 2026-11-22 on `e8693bc` (pushed with F64, the literature notes and the report): gates 76396 (renamed_made
+  unit 0) and 76397 (renamed_made_share unit 0), rtx2080; full jobs renamed_made 76398 (L40, blocks 1–3) and 76400
+  (rtx2080, block 0), renamed_made_share 76402 (L40) and 76403 (rtx2080), all `afterok` on their gate. 76399 was
+  submitted without the grid argument and cancelled.
+
+### Prepared on 2026-11-22: counterfactual scoring of logged turns (`scripts/counterfactual.py`)
+
+- For every turn after round 0 (first attempt) of finished runs: log P("Combination: 'a' and 'b'", both orders) for
+  the pair answered, the path's recipes (from the recipe book for main, which did not log the path), pairs named in
+  received messages, and teammates' previous-round pairs; under the logged prompt and edited ones: `no_msgs`,
+  `swap_msgs` (messages the same agent got in the same round of another replicate), `no_results`, `drop:<ref>` (one
+  message). Prompts are cut by the logged `segments` (each message and result has its ref and length): checked on
+  1,147 turns that removing everything gives exactly the round-0 layout and that rejoining gives the logged prompt.
+  `--dry` builds everything without a model (checked locally on main and renamed). GPU path untested until the gate.
+- `scripts/slurm/counterfactual.sbatch <model> <grid folders> [options]`; output `runs_counterfactual/` (git-ignored).
+- Questions: does a told recipe raise the receiver's probability of playing it (Gemma3-4B vs the rest, F45, F61)?
+  In fully connected main, do the messages' content or only their presence pull agents (swap vs orig vs no_msgs)?
+  Validation: `orig` of the played pair against the rescored `combo_logprob` (F56) on main.
 
 ### Next
 

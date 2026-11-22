@@ -20,3 +20,5 @@ __pycache__/
 /framework/stuff.md
 # answers of finished runs scored again (scripts/rescore.py): outside the run folders, untracked on giano (F41)
 /runs_confidence
+# turns of finished runs scored under edited prompts (scripts/counterfactual.py)
+/runs_counterfactual
