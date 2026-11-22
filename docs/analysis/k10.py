@@ -124,3 +124,74 @@ if Path('run_size12/size12/runs.csv').exists():
                   f"(12: {100 * mean(a):.1f}%, {lab}: {100 * mean(b):.1f}%; sign test {sign_test(a, b)})")
 else:
     print('  run_size12/ not downloaded yet')
+
+print('\n# 4. rescore check: confidence_check logged its own confidence while sampling; followup has the same runs rescored')
+xs, ys = [], []
+for f in sorted(glob.glob('run_confidence_check/confidence_check/*/*/seed0_rep*/events.jsonl')):
+    cell, version, rep = f.split('/')[2:5]
+    rs = Path(f'run_confidence/followup/{cell}/{version}/{rep}.jsonl')
+    if not rs.exists():
+        continue
+    logged = [json.loads(l)['data']['completion']['meta']['confidence'] for l in open(f) if '"llm_call"' in l]
+    for a, b in zip(logged, [json.loads(l) for l in open(rs)]):
+        if a['combo_logprob'] is not None and b['combo_logprob'] is not None:
+            xs.append(math.exp(a['combo_logprob'])); ys.append(math.exp(b['combo_logprob']))
+if xs:
+    mx, my = mean(xs), mean(ys)
+    r = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / math.sqrt(sum((x - mx) ** 2 for x in xs) * sum((y - my) ** 2 for y in ys))
+    print(f'  {len(xs)} answers: P(combination) sampled vs rescored r = {r:.3f}, mean |diff| {mean([abs(x - y) for x, y in zip(xs, ys)]):.3f}')
+
+
+def auc(pos, neg):
+    """P(a right answer has a higher probability than a wrong one), ties half"""
+    return sum((p > q) + 0.5 * (p == q) for p in pos for q in neg) / (len(pos) * len(neg)) if pos and neg else None
+
+
+def spearman(a, b):
+    def rank(x):
+        o = sorted(range(len(x)), key=lambda i: x[i]); r = [0] * len(x)
+        for k, i in enumerate(o):
+            r[i] = k
+        return r
+    ra, rb = rank(a), rank(b); ma, mb = mean(ra), mean(rb)
+    return sum((x - ma) * (y - mb) for x, y in zip(ra, rb)) / math.sqrt(sum((x - ma) ** 2 for x in ra) * sum((y - mb) ** 2 for y in rb))
+
+
+print('\n# 5. size12 (12 silenced agents, confidence logged): does P(first combination) say right from wrong, does it track')
+print('#    agreement, and do targets where the model is unsure gain more from agents 7-12? (agents 1-6 are followup\'s six)')
+if Path('run_size12/size12/runs.csv').exists():
+    f = load('run_followup/followup/runs.csv')
+    one = {(r['model'], r['depth'], r['distractors'], r['replicate']): float(r['solved_any']) for r in f
+           if r['protocol'] == 'fully_connected' and r['version'] == 'one_agent'}
+    six = {(r['model'], r['depth'], r['distractors'], r['replicate']): float(r['solved_any']) for r in f
+           if r['protocol'] == 'fully_connected' and r['version'] == 'all_independent'}
+    for m in ['qwen3-4b', 'gemma3-4b', 'llama3.2-3b']:
+        right, wrong, tg = [], [], []
+        for run in sorted(glob.glob(f'run_size12/size12/{m}__fully_connected12__*/all_independent/seed0_rep*')):
+            setting = run.split('/')[2].split('__', 2)[2]
+            d, x = setting[5], setting.rsplit('distractors', 1)[1]
+            rep = run.rsplit('rep', 1)[1]
+            first, solved = first_moves(run)
+            lines = confidence_lines('run_size12/size12', 'size12', run.split('/')[2], 'all_independent', rep)
+            ps = {}
+            for c in lines or []:
+                if c['t'] == 0 and c['error'] is None and c.get('combo_logprob') is not None and c['agent'] in first:
+                    ps.setdefault(c['agent'], math.exp(c['combo_logprob']))
+            for a, p in ps.items():
+                (right if first[a][1] else wrong).append(p)
+            if len(first) < 12 or not ps:
+                continue
+            cnt = Counter(v[0] for v in first.values())
+            k = (m, d, x, rep)
+            tg.append(dict(p=mean(list(ps.values())), modal=cnt.most_common(1)[0][1] / 12, team12=float(bool(solved)),
+                           six=six.get(k), one=one.get(k), right=mean([float(v[1]) for v in first.values()])))
+        print(f"  {m:12s} P(first combination) right {mean(right):.2f} (n={len(right)}) wrong {mean(wrong):.2f} "
+              f"(n={len(wrong)}), AUROC {auc(right, wrong):.2f}; per target (n={len(tg)}): Spearman P vs modal share "
+              f"{spearman([t['p'] for t in tg], [t['modal'] for t in tg]):+.2f}, P vs share right "
+              f"{spearman([t['p'] for t in tg], [t['right'] for t in tg]):+.2f}")
+        med = sorted(t['p'] for t in tg)[len(tg) // 2]
+        for lab, sel in [('unsure (P < median)', [t for t in tg if t['p'] < med]), ('sure (P >= median)', [t for t in tg if t['p'] >= med])]:
+            g1 = [t['team12'] - t['one'] for t in sel if t['one'] is not None]
+            g6 = [t['team12'] - t['six'] for t in sel if t['six'] is not None]
+            print(f"    {lab:20s} n={len(sel)}: modal share {mean([t['modal'] for t in sel]):.2f}, 12 - 1 agent "
+                  f"{100 * mean(g1):+.1f}, 12 - 6 {100 * mean(g6):+.1f} points")

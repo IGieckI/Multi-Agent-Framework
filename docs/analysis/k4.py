@@ -22,7 +22,7 @@ for m in LLM4 + ['qwen3-8b']:
 stats = defaultdict(lambda: defaultdict(list))
 for m, name, pat in conds:
     for d in ['True', 'False']:
-        runs = glob.glob(pat(d) + '/seed0_rep*')
+        runs = [x for x in glob.glob(pat(d) + '/seed0_rep*') if int(x.rsplit('rep', 1)[1]) < 40]  # the first 40 targets (F43-F45)
         assert len(runs) == 40, (pat(d), len(runs))
         grp = '4B' if m != 'qwen3-8b' else '8B'
         for run in runs:

@@ -16,8 +16,10 @@ Run from the repo root with the system python (needs numpy; no networkx, no venv
 | `k5.py`, `k6.py` | hints2_12b(_share), hints2_8b(_share) on 80 targets: rates and contrasts; who tells and who uses (`k4.py` keeps the first 40 targets) | F46, F47 |
 | `k7.py` | hints2_made vs hints2 / hints2_8b: success and remake share with the made line | F48 |
 | `k8.py`, `k9.py` | mixed / mixed_hints vs main / hints2: mixed − each model, expected success of a silenced mix, herding, holders' family | F49 |
-| `k10.py` | confidence and team size: agreement of silenced agents' first answers, token confidence (rescored or logged), 12 vs 6 vs 3 agents | F55 |
-| `k11.py` | sequential and chain turns (chain, chain_hints) vs parallel fully connected and silenced; cascade measure | chain |
+| `k10.py` | confidence and team size: agreement of silenced agents' first answers, token confidence (rescored or logged), 12 vs 6 vs 3 agents; rescore check against confidence_check; size12's token confidence vs agreement, correctness and gain | F55–F57 |
+| `k11.py` | sequential and chain turns (chain, chain_hints) vs parallel fully connected and silenced; cascade measure | F63 |
+| `k12.py` | the review's grids: share + publish_on_no_op, results / messages only, prompts v3, renamed items; contrasts with exact sign tests, who tells / is told / plays, who solves, remake share | F58–F62 |
+| `k13.py` | adoption and copy measures against a silenced baseline (would-be inbox: teammates' previous-round actions; copies against every teammate), talk − silenced for main, followup, mixed; chain6 vs parallel copies | F64 |
 | `pagedata.py` | chart data for the results page (writes `pagedata.json`) | page |
 
 `short200.json` keys are `"depth,distractors,replicate"` → whether the target has a shortcut (F32); use it to report

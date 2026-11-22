@@ -1,10 +1,11 @@
-# Handoff: state of the project and plan (2026-11-11)
+# Handoff: state of the project and plan (2026-11-22)
 
-For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (44 numbered findings with their
-evidence and status). Code as of commit `bd60792` (local = `origin/main` = giano). **Every experiment has finished,
-been downloaded and been analysed (F1–F49)**, including the seven grids queued on 2026-11-07 (F46–F49, analysed
-2026-11-11). Nothing is queued on giano. A review on 2026-11-11
-(`docs/REVIEW_2026-11-11.md`) added F50–F54 and prepared six new grids, not yet committed or submitted (section 7). Section 7 lists what is left: the write-ups and possible next grids.
+For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (64 numbered findings with their
+evidence and status), then `docs/LITERATURE_2026-11-22.md` (the related work checked so far). Code as of commit `076fb11` (local = `origin/main` = giano). **Every experiment has finished,
+been downloaded and been analysed (F1–F63)**: the 2026-11-07 grids (F46–F49), the review's grids and the tutor's
+grids submitted on 2026-11-12 (F56–F63, analysed 2026-11-20). Nothing is queued on giano. The report's v2
+(`docs/report/report_v2.pdf`) covers everything through F64 (2026-11-22: the adoption/copy correction and a
+related-work section). Section 7 lists what is left.
 
 ## 1. The project
 
@@ -29,11 +30,15 @@ team's token budget). The research question: does communication between agents h
 | `scripts/slurm/` | `env.sh` (scratch paths), `setup_giano.sh` (one-time setup), `sweep.sbatch` (job array) |
 | `configs/models/models.yaml` | model registry: HF id, pinned revision, sampling policy; `teams:` mixed teams a grid can name as a model (`mix-qgl`: qwen3-4b, gemma3-4b, llama3.2-3b in turn) |
 | `configs/protocols/*.yaml` | protocols; used so far: isolated, fully_connected, fully_connected3, fully_connected_results, fully_connected_messages, fully_connected_failures, star2 (= "star", 3 agents), star6 |
-| `configs/experiments/*.yaml` | grids: pilot, prompt_v2_check, main, followup, random_baseline, hints, hints2, hints2_share, hints2_use, hints2_8b, hints2_8b_share (both extended to 80 replicates), hints2_12b, hints2_12b_share, hints2_made, mixed, mixed_hints (queued 2026-11-07), smoke_mock, smoke_hf, smoke_models |
-| `prompts/v1`, `prompts/v2` | templates; v2 differs only in the WordCraft rules (the example framed as another game); select with `task.prompts` |
-| `FINDINGS.md` | every finding from results, F1–F41 |
+| `configs/experiments/*.yaml` | grids: pilot, prompt_v2_check, main, followup, random_baseline, hints, hints2, hints2_share, hints2_use, hints2_8b, hints2_8b_share (both extended to 80 replicates), hints2_12b, hints2_12b_share, hints2_made, mixed, mixed_hints, hints2_share_pub, hints2_channels, hints2_channels_share, hints2_ex2, renamed, renamed_share, chain, chain_hints, size12, confidence_check, smoke_mock, smoke_hf, smoke_models |
+| `prompts/v1`, `v2`, `v2r`, `v3` | templates; v2 differs from v1 only in the WordCraft rules (the example framed as another game); v2r: made-up example, no "real-world intuition" (for `task.rename`); v3: v2 plus the example one round later (F60); select with `task.prompts` |
+| `FINDINGS.md` | every finding from results, F1–F63 |
 | `docs/results.html` | the results web page (git-ignored, see section 6) |
-| `docs/analysis/` | the analysis scripts behind F30–F40 and the page (git-ignored; `README.md` lists them) |
+| `docs/analysis/` | the analysis scripts behind F30–F63 and the page (`README.md` lists them) |
+| `docs/report/` | the Italian report for the supervisor: v1 `report.typ` (user-edited, through F45) and v2 `report_v2.typ` (through F63); see section 6 |
+| `docs/REVIEW_2026-11-11.md` | critical review of F1–F49 and the experiments it proposed (C1–C10, D1–D3) |
+| `docs/Communication in LLM-Based Multi-Agent Systems_ ...md` | a deep-research review of the field written without knowledge of this project (metrics M1–M12, ideas A1–C6); its §9 updated with what was checked |
+| `docs/LITERATURE_2026-11-22.md`, `docs/downloaded_papers/` | notes on the 17 papers that review left unverified (PDFs alongside): what each says, what it changes here |
 
 Grid features worth knowing: `task` is either axes to cross (`depth: [1, 2]`) or a list of settings
 (`- {depth: 1, distractors: 3}`); `sampling.sweep_temperatures` sets the temperature sweep of one grid only;
@@ -94,6 +99,15 @@ The user runs every command on the cluster and pastes the output or a screenshot
 - Job IDs so far: main 74066/74067; followup 74110, 74114, 74115; random_baseline 74155; hints 74158, 74161–74163;
   hints2 74189, 74192–74194; hints2_share 74195, 74196; hints2_use 74232, 74234–74236; hints2_8b 74237, 74238;
   hints2_8b_share 74239, 74240; the 2026-11-07 grids: gates 74395–74397, full jobs 74398–74405.
+- 2026-11-12: the review grids' L40 blocks (74629–74637) were still pending when `076fb11` was pulled, so they run
+  on it while their rtx2080 blocks ran on the commit before (the new code only adds `engine.log_confidence`, off
+  there: same outputs). New jobs: gates 74697–74700 (all passed), confidence_check 74701, chain 74702 / 74704,
+  chain_hints 74706 / 74707 (74705 was submitted without the grid argument and exited at once), size12 74708 /
+  74711, rescore 74712–74715 (test 74700). All finished and were downloaded on 2026-11-20 (`run_<grid>/`,
+  rescore output in `run_confidence/`); checked: 0 unfinished, 0 failed runs, clean `076fb11` / `e7ff8e3`.
+  Rescore 74714 (gemma3-4b) ran a second time on 2026-11-20 16:34 (slurmng-n1) and scored 0 runs (all done); its
+  logs, downloaded again on 2026-11-22, replaced the first run's (1,440 runs in 1,345 s on slurmng-n2). The 1,440
+  result files are the first run's (18–19 Nov), unchanged.
 - `sweep.py` takes the grid's file, not its name: `python scripts/sweep.py evaluate configs/experiments/<grid>.yaml`.
   Run the download's rsync lines from the repo root (on 2026-11-06 they ran one folder up and had to be moved).
 
@@ -118,8 +132,48 @@ The user runs every command on the cluster and pastes the output or a screenshot
 | hints2_made | 11-07 → 11-10 | `mark_made` on: qwen3-4b, gemma3-4b, llama3.2-3b, qwen3-8b × FC / star × split (decoys), all × 3 versions; 1,600 distinct runs, same tasks and notes as hints2 | `run_hints2_made/hints2_made/` |
 | mixed | 11-07 → 11-10 | mix-qgl (qwen3-4b, gemma3-4b, llama3.2-3b in turn) × FC 6 / star 3 × main's settings × 20 reps × base, all_independent; 160 runs | `run_mixed/mixed/` |
 | mixed_hints | 11-07 → 11-10 | mix-qgl on hints2's split (decoys) and all cells, 40 targets; 320 runs | `run_mixed_hints/mixed_hints/` |
+| hints2_share_pub | 11-12 → | share + `publish_on_no_op`; qwen3-4b, gemma3-4b, qwen3-8b; split ± decoys; 240 runs (F58) | `run_hints2_share_pub/` |
+| hints2_channels(_share) | 11-12 → | qwen3-8b, gemma3-12b; results only / messages only (+ share); split, decoys; 160 + 80 (F59) | `run_hints2_channels*/` |
+| hints2_ex2 | 11-12 → | prompts v3; 4 models; everyone holds both; 3 versions; 480 (F60) | `run_hints2_ex2/` |
+| renamed(_share) | 11-12 → | made-up names, v2r, publish_on_no_op; 4 models; split, all; + share; 960 + 160 (F61, F62) | `run_renamed*/` |
+| confidence_check | 11-12 | log_confidence on main's first gemma3-4b units: byte-identical (F56) | `run_confidence_check/` |
+| chain, chain_hints | 11-12 → | sequential / chain6 × main's settings, sequential × hints2 split, all; 4 models; 320 + 320 (F63) | `run_chain*/` |
+| size12 | 11-12 → | 12 silenced agents, main's settings, 3 models, confidence logged; 120 (F57) | `run_size12/` |
+| rescore | 11-12 → | token confidence of followup, main, hints2, hints2_8b (5,880 runs, 4 models) (F56, F57) | `run_confidence/` |
+| renamed_made | prepared 11-22 | renamed + `mark_made` (+ `show_matched_budget`); 4 models; split, all; base, all_independent, one_agent, one_vs_multi_token; 1,280 runs | (not run yet) |
+| renamed_made_share | prepared 11-22 | its split teams + share instruction; base, one_vs_multi_token; 320 runs | (not run yet) |
 
 ## 5. What we know (details and numbers in FINDINGS.md)
+
+New on 2026-11-22 (F64, literature check, no runs):
+- **Adoption and copy measures had no silenced baseline** (F64): given the inbox fully connected would have
+  delivered, silenced agents already "blindly adopt" as often (pooled 26% vs 27% with talk; Qwen agents agree
+  without talk, F55). Talk adds result adoption (+16 points) and copies (+0.5 per run). F45's "Qwen follows
+  blindly", F49's "mixed teams follow blindly less" and F63's "the chain herds less" fall; F16 and distinct paths stand.
+- The literature closest to the project (`docs/LITERATURE_2026-11-22.md`): ICR (2610.01042, Qwen3-4B/8B, correction
+  vs preservation with a no-message control), "Who Convinced Whom?" (2610.35930, counterfactual message scoring and
+  track record), "The Cost of Consensus" (2605.00914, 7–8B homogeneous debate, noise control), "Not All Flips"
+  (2606.00820), "At Equal Inference Cost…" (2609.04217, iso-call, agentic), the information-bottleneck view
+  (2607.16133).
+
+New on 2026-11-20 (F56–F63):
+- **With made-up item names the split-notes leak is gone and talk pools** (F61): silenced split teams 0% for every
+  model; talk +35 (qwen3-4b), +45 (qwen3-8b), +17.5 (gemma3-12b), +7.5 (gemma3-4b); with the share instruction
+  qwen3-8b 92.5% (above one agent holding both, 37.5%), gemma3-12b 87.5%, gemma3-4b 7.5%. With real names Qwen's
+  talk gain was hidden by silenced teams guessing; Gemma3-12B's talk solves were guesses. Size matters for using told
+  recipes (share: 8B − 4B +35, 12B − 4B +80), much less for unprompted talk (+10).
+- **Qwen3-8B's unprompted gain is the results channel** (F59): results only +22.5 vs silenced, messages only +2.5;
+  messages carry it only with the share instruction (+37.5).
+- **The remake loop is state tracking, not the example** (F60, F62): prompts v3 barely moves remakes (80% → 75%;
+  qwen3-8b talk +17.5); `mark_made` halves them (F48); made-up names make Qwen's loop much worse (one agent 56% → 85%).
+- **Publishing refused turns' messages adds little** (F58): reach rises (gemma3-4b 2.1 → 3.2 of 5), success 0 to +7.5.
+- **Team size and confidence** (F57): 12 − 6 silenced agents 0 / +2.5 / +5 (qwen3-4b / gemma3-4b / llama); token
+  probability tracks agreement between agents (ρ 0.49–0.85), not correctness (AUROC 0.44–0.64); unsure targets gain
+  more from more agents. Rescore = sampled confidence (r 0.996, F56).
+- **Relay chain beats parallel fully connected (+11.2, 20/2) only by talking less**: it ties silenced; sequential
+  turns tie parallel and lose to silenced (−7.5, 4/16); with everyone holding both they amplify the remake lock (F63).
+
+Earlier:
 
 - **Pooling split notes: telling is Qwen's, using grows with size** (F46): Gemma3-12B never names its notes unprompted
   (0% of first messages; talk +2.5), but with the share instruction its team jumps +40 points (52.5% → 92.5%), as
@@ -169,8 +223,20 @@ The user runs every command on the cluster and pastes the output or a screenshot
 
 ## 6. Code state and open technical issues
 
-- `main` = `origin/main` = `bd60792` on the local machine and on giano; nothing uncommitted except the user's
-  `framework/stuff.md` (see below) and the git-ignored pages.
+- `main` = `origin/main` = `076fb11` on the local machine and on giano. Uncommitted (2026-11-20): this file,
+  FINDINGS.md, `docs/analysis/` (k5–k12, README; `k10.py` parts 4–5 added), `docs/report/` (the whole folder is
+  untracked: v1 and v2), `docs/analysis/k13.py` and `docs/LITERATURE_2026-11-22.md` and `docs/downloaded_papers/`
+  (2026-11-22), the deep-research review's §9, the downloaded `run_*/` folders of the 2026-11-07 and 2026-11-12 grids, `run_confidence/`,
+  re-downloaded `metrics.json` files of hints2_8b (new `evaluated_at` only), the user's `framework/mail.txt` and
+  `framework/stuff.md` (see below), and the git-ignored pages.
+- **Report v2** (`docs/report/report_v2.typ` → `report_v2.pdf`, 18 pages, Italian): v1's sections with forward
+  pointers, then F46–F64 (sections 10–22: bigger models, the loop, mixed teams, the review, lost messages, channels,
+  renamed items, confidence and size, sequential/chain, the adoption baseline (F64, `sec-baseline`), related work
+  (`sec-lett`), conclusions, next steps). The main table's last column is now "Ripete un fallimento (muti → com.)". Its numbers come from
+  `make_data_v2.py` → `data/data_v2.json` (pairs by target, bootstrap + exact sign test; reuses `k10.py`, `k11.py`, `k13.py`,
+  `k12.py`), figures from `make_figures_v2.py` → `figures/v2_*.svg`; v1's `data.json` and figures are untouched.
+  Build: `python docs/report/build.py --v2` (`--pdf` for the PDF only). typst and matplotlib are not in the local
+  system python: use a scratchpad venv (`uv venv`, `uv pip install typst matplotlib numpy`) and call build.py with it.
 - New on 2026-11-07 (`6d0202f`–`bd60792`, four commits):
   - **mixed teams**: `engine.agent_models` (list of `{model, revision}`; agents take them in turn by sorted id) and
     `framework/agents/backends/team.py` (`TeamBackend`: one backend per distinct model; the engine keeps
@@ -221,7 +287,7 @@ Analysis scripts added (`docs/analysis/`): `k5.py` (gemma3-12b, qwen3-8b on 80 t
 tells / who uses for both), `k7.py` (made line), `k8.py`, `k9.py` (mixed teams). `k4.py` now reads only the first 40
 targets (hints2_8b has 80): F43–F45 and the report's `make_data.py`, which runs it, stay as they were.
 
-### Prepared on 2026-11-11, not yet committed or submitted: the review's grids
+### Done: the review's grids (prepared 2026-11-11, run 2026-11-12, analysed 2026-11-20: F56–F63)
 
 `docs/REVIEW_2026-11-11.md` is a critical review of F1–F49 (new entries F50–F54 in FINDINGS.md). Its first four
 experiments are ready; code checked locally only by expanding the grids, rebuilding the tasks (560 of 560 have
@@ -273,20 +339,36 @@ hints2's task and notes) and one stub-backend run per feature in the scratchpad.
 - Analysis: `k10.py` (F55, token confidence, 12 vs 6 vs 3), `k11.py` (sequential / chain − parallel and − silenced,
   herding, "agents 1–5 playing agent_00's first pair", solve rate by turn position); `lib.sign_test`.
 
+### Prepared on 2026-11-22: renamed with the made line and a token-matched single agent
+
+- `renamed_made` and `renamed_made_share` (YAML only). Checked locally by expanding (320 + 160 units, 1,280 + 320
+  distinct runs) and rebuilding every task: the team runs have renamed's / renamed_share's task, notes and made-up
+  names, run by run; the token-matched agent's task differs only in its step cap (4 → 240) and it holds both path
+  notes, as one_agent does. SWEEP_SHARDS=4: block 0 (qwen3-4b) on rtx2080, 1–3 on L40.
+- Questions: renamed + made − renamed for one agent, everyone-holds-both and talk (does the loop explain F62?);
+  share − one agent holding both, and share − token-matched agent (is the 92.5% vs 37.5% of F61 more than compute?).
+- Estimated GPU time from renamed's latencies: about 7–11 h per model for renamed_made, 2–4 h for the share grid.
+
 ### Next
 
-1. **Write-ups.** `docs/report/report.typ` (the Italian PDF for the supervisor, user-edited) still has the 2026-11-07
-   grids under "In corso": replace that section with F46–F49 (a short section each, or one "Nuovi risultati"), and
-   update the Qwen3-8B paragraph with the 80-target numbers (F47). Its `make_data.py` filters Qwen3-8B to 40 targets
-   in `remake`; check every other read of `run_hints2_8b` before rebuilding the data, or keep the report at 40 targets
-   and quote F47 in the text. `framework/mail.txt` (the user's mail) likewise.
-2. Republish the two pages (section 6), adding F42–F49.
-3. Possible next grids (the user decides):
-   - `mark_made` with gemma3-12b (it remakes most of all, 61–66%, F46) and as the default for new grids (F48);
-   - Gemma3-12B with everyone holding both in a star (−22.5, F46): is it the hub restating the plan?
-   - mixed teams on more targets (F49's talk effects are suggestive only) and with the star's hub rotated through
-     the families (the hub is always qwen3-4b); a mix with qwen3-8b / gemma3-12b members;
-   - a second family at 8B (e.g. Llama 3.1-8B) to separate size from family once more.
+1. **Write-ups.** The report's v2 is written (section 6); the user may edit it as they did v1. `framework/mail.txt`
+   (the user's mail) is not updated. The report covers F64 and related work (2026-11-22).
+2. Republish the two pages (section 6), adding F42–F63.
+3. Commit the new analysis, report and results (the user decides; never `git add -A` or `framework/`).
+4. Possible next grids (the user decides):
+   - **renamed with `mark_made`** (F61, F62): separates pooling from the remake loop, which with made-up names costs
+     Qwen most (one agent 67.5% → 37.5%, everyone-holds-both talk 15%);
+   - `mark_made` as the default for new grids (F48, F60), and made-up names as the default task for pooling questions
+     (F61: no leak);
+   - gemma3-4b under renamed + share tells in 30% of runs only: why (prompt, refusals)?
+   - a second family at 8B (e.g. Llama 3.1-8B) to separate size from family once more, now on renamed;
+   - mixed teams on more targets (F49) and with the star's hub rotated through the families;
+   - the review's C5 (stamped / deduplicated message and result lists) is still untested;
+   - from the literature (no GPU unless stated): counterfactual scoring of logged receiver turns (prompt with / without
+     / with a swapped message, scored like `rescore.py`; method of 2610.35930); a placebo-message arm on main's fully
+     connected cells (GPU; noise control of 2605.00914); a track-record line for receivers instead of "notes are
+     true" (GPU; 2601.21742); a summary relay for the small models (GPU; 2607.16133);
+   - `metrics.py`: log the would-be-inbox baseline for silenced runs (F64) so it is standard.
 
 ## 8. Working with the user
 
