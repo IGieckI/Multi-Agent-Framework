@@ -1,0 +1,24 @@
+# renamed.yaml with the "Items you made" line (task.mark_made) and a single agent given the team's token budget
+# (one_vs_multi_token, shown its remaining budget). Separates pooling from the remake loop, which with made-up names
+# costs Qwen most (F62), and puts the renamed teams against one agent holding both notes at equal tokens.
+# Same seed and settings as renamed: the same targets, notes and made-up names, so it pairs run by run with it.
+# renamed_made_share.yaml adds the share instruction.
+# SWEEP_SHARDS=4 gives one model per block: 0 (qwen3-4b) on rtx2080, 1-3 (gemma3-4b, qwen3-8b, gemma3-12b) on L40
+name: renamed_made
+replicates: 40
+seed: 0
+versions: [base, all_independent, one_agent, one_vs_multi_token]
+models: [qwen3-4b, gemma3-4b, qwen3-8b, gemma3-12b]
+protocols:
+  - {name: fully_connected, file: configs/protocols/fully_connected.yaml}
+task:
+  - {hints: split, decoys: true}
+  - {hints: all, decoys: true}
+base:
+  task: {name: wordcraft, type: targeted, max_steps: 4, repeat_consumes_step: true, prompts: v2r,
+         depth: 2, distractors: 6, notes: 2, allow_shortcuts: false, rename: true, mark_made: true}
+  engine: {max_concurrency: 1, publish_on_no_op: true}
+  sampling: {temperature: 1.0}   # max_tokens, reasoning, top_p and top_k come from configs/models/models.yaml
+  context: {max_prompt_tokens: 6000, truncation: oldest_first}
+  retries: {max_parse_attempts: 3, max_attempts: 3}
+  budget: {wall_clock_s: 3600, show_matched_budget: true}
