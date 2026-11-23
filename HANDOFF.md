@@ -368,6 +368,18 @@ hints2's task and notes) and one stub-backend run per feature in the scratchpad.
   1,147 turns that removing everything gives exactly the round-0 layout and that rejoining gives the logged prompt.
   `--dry` builds everything without a model (checked locally on main and renamed). GPU path untested until the gate.
 - `scripts/slurm/counterfactual.sbatch <model> <grid folders> [options]`; output `runs_counterfactual/` (git-ignored).
+- Submitted 2026-11-22 from `MAF-tools` (a sparse, shallow clone: `scripts`, `configs` and the top-level files):
+  test 76408 (qwen3-4b, main, `--limit 2`, rtx2080), then `afterok`: 76410 qwen3-4b (renamed, renamed_share, main;
+  rtx2080, `--batch 4`), 76411 llama3.2-3b (main; rtx2080), 76412 gemma3-4b, 76413 qwen3-8b (renamed, renamed_share,
+  main), 76414 gemma3-12b (renamed, renamed_share), on L40. All with `--cells fully_connected`.
+- 2026-11-23: 76408 and 76411 (llama, 40 main runs) finished, 76410 (qwen3-4b) ran out of memory on the rtx2080 at
+  batch 4. Llama's scores were wrong: P(the pair it played) ≈ 0.001 against ≈ 0.25 rescored (Qwen3-4B's test runs
+  were right, 0.75). Cause: the right-padded batch (Llama has no pad token; padded with token 0); never used by
+  rescore.py. Fixed: each prompt runs once and each answer continues a copy of its cache (one sequence, no padding,
+  no `--batch`); every run checks one answer against a plain full forward (`check` in each output line, largest
+  difference printed at the end). 76412–76414 cancelled (old code) and everything resubmitted; the outputs scored
+  before the fix were deleted on giano. A llama job on followup's fully connected depth-1 runs validates against
+  the rescore (`run_confidence/followup`).
 - Questions: does a told recipe raise the receiver's probability of playing it (Gemma3-4B vs the rest, F45, F61)?
   In fully connected main, do the messages' content or only their presence pull agents (swap vs orig vs no_msgs)?
   Validation: `orig` of the played pair against the rescored `combo_logprob` (F56) on main.

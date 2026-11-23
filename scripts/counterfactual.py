@@ -19,6 +19,7 @@ line per scored turn. A run already scored is skipped. --dry builds and checks t
 """
 
 import argparse
+import copy
 import json
 import math
 import re
@@ -36,7 +37,6 @@ parser.add_argument("grids", nargs="+", type=Path, help="grid folders, e.g. runs
 parser.add_argument("--versions", default="base", help="comma-separated versions to score (default: base)")
 parser.add_argument("--cells", help="score only cells whose name contains this text")
 parser.add_argument("--limit", type=int, help="stop after this many runs (a quick test)")
-parser.add_argument("--batch", type=int, default=8, help="sequences per forward pass")
 # next to this script's checkout, not ROOT: the venv's editable install points ROOT at the main checkout, and output
 # there while a grid runs would make its runs "dirty" (F41); run it from a second clone (HANDOFF, section 3)
 parser.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "runs_counterfactual",
@@ -57,30 +57,51 @@ if not args.dry:
     print(f"{args.model}: {entry.model} on {backend.device} in {backend.dtype}", flush=True)
 
 
-def score(prompt: str, answers: list[str], reasoning: bool) -> list[float]:
-    """log P(answer | prompt) for each answer, teacher-forced, in batches (right padding)"""
-    if args.dry:
-        return [0.0] * len(answers)
+def chat_ids(prompt: str, reasoning: bool) -> list[int]:
     chat = tok.apply_chat_template([{"role": "user", "content": prompt}], tokenize=False, add_generation_prompt=True,
                                    enable_thinking=reasoning)
-    p = tok(chat, add_special_tokens=False)["input_ids"]
-    out = []
-    for i in range(0, len(answers), args.batch):
-        chunk = [tok(a, add_special_tokens=False)["input_ids"] for a in answers[i:i + args.batch]]
-        width = max(map(len, chunk))
-        pad = tok.pad_token_id if tok.pad_token_id is not None else 0
-        ids = torch.tensor([p + c + [pad] * (width - len(c)) for c in chunk], device=backend.device)
-        mask = torch.tensor([[1] * (len(p) + len(c)) + [0] * (width - len(c)) for c in chunk], device=backend.device)
-        with torch.inference_mode():
-            try:
-                logits = model(input_ids=ids, attention_mask=mask, logits_to_keep=width + 1).logits[:, :-1]
-            except TypeError:  # a model without logits_to_keep
-                logits = model(input_ids=ids, attention_mask=mask).logits[:, len(p) - 1:-1]
-            logp = torch.log_softmax(logits.float(), dim=-1)
-        for row, c in enumerate(chunk):
-            target = torch.tensor(c, device=backend.device)
-            out.append(float(logp[row, :len(c)].gather(1, target[:, None]).sum()))
+    return tok(chat, add_special_tokens=False)["input_ids"]
+
+
+def forward(keep: int, **kw):
+    """the model's output with logits for the last `keep` positions only (all of them for a model without it)"""
+    try:
+        return model(**kw, logits_to_keep=keep)
+    except TypeError:
+        out = model(**kw)
+        out.logits = out.logits[:, -keep:]
+        return out
+
+
+def score(prompt: str, answers: list[str], reasoning: bool) -> list[float]:
+    """log P(answer | prompt) for each answer, teacher-forced: the prompt runs once, each answer continues a copy of
+    its cache (one sequence at a time, no padding: a right-padded batch gave Llama 3.2 wrong values, 2026-11-23)"""
+    if args.dry:
+        return [0.0] * len(answers)
+    p = chat_ids(prompt, reasoning)
+    with torch.inference_mode():
+        first = forward(input_ids=torch.tensor([p], device=backend.device), use_cache=True, keep=1)
+        cache, last = first.past_key_values, torch.log_softmax(first.logits[0, -1].float(), dim=-1)
+        out = []
+        for a in answers:
+            c = tok(a, add_special_tokens=False)["input_ids"]
+            total = float(last[c[0]])
+            if len(c) > 1:
+                more = model(input_ids=torch.tensor([c[:-1]], device=backend.device),
+                             past_key_values=copy.deepcopy(cache), use_cache=True)
+                logp = torch.log_softmax(more.logits[0].float(), dim=-1)
+                total += float(logp.gather(1, torch.tensor(c[1:], device=backend.device)[:, None]).sum())
+            out.append(total)
     return out
+
+
+def full_forward(prompt: str, answer: str, reasoning: bool) -> float:
+    """the same log-probability with prompt and answer in one sequence (rescore.py's way): the per-run check"""
+    p, c = chat_ids(prompt, reasoning), tok(answer, add_special_tokens=False)["input_ids"]
+    with torch.inference_mode():
+        logits = forward(input_ids=torch.tensor([p + c], device=backend.device), keep=len(c) + 1).logits[0, :-1]
+        logp = torch.log_softmax(logits.float(), dim=-1)
+        return float(logp.gather(1, torch.tensor(c, device=backend.device)[:, None]).sum())
 
 
 def spans(d: dict) -> list[dict]:
@@ -223,14 +244,22 @@ def turn(run: dict, agent: str, t: int, swap_from: list[dict]) -> dict | None:
             vals = [next(it) for _ in answers(p)]
             m = max(vals)
             scores[name].append(round(m + math.log(sum(math.exp(v - m) for v in vals)), 4))
+    check = None
+    if run.get("check") is None and not args.dry and pairs:  # once per run: the cached path against a full forward
+        a = answers(pairs[0])[0]
+        check = round(score(d["prompt"], [a], d["sampling"]["reasoning"])[0] - full_forward(d["prompt"], a,
+                                                                                          d["sampling"]["reasoning"]), 4)
+        run["check"] = check
+        checks.append(abs(check))
     senders = {r: run["msgs"][r].get("sender") for r in refs}
     return {"t": t, "agent": agent, "action": d["action"], "error": d["error"],
             "pairs": [list(p) for p in pairs], "tags": [sorted(cands[p]) for p in pairs],
             "messages": [{"ref": r, "sender": senders[r], "kind": kinds[r]} for r in refs],
-            "swap_source": swap_source, "prompt_chars": {k: len(v) for k, v in prompts.items()}, "logp": scores}
+            "swap_source": swap_source, "prompt_chars": {k: len(v) for k, v in prompts.items()}, "check": check,
+            "logp": scores}
 
 
-done, started = 0, time.time()
+done, started, checks = 0, time.time(), []
 for grid in args.grids:
     cells = defaultdict(list)
     for events in sorted(grid.glob("*/*/seed*_rep*/events.jsonl")):
@@ -266,4 +295,5 @@ for grid in args.grids:
                 del loaded[old]
             if done % 20 == 0:
                 print(f"{done} runs, {time.time() - started:.0f} s", flush=True)
-print(f"{args.model}: {done} runs scored in {time.time() - started:.0f} s")
+print(f"{args.model}: {done} runs scored in {time.time() - started:.0f} s; cached vs full forward, largest |difference| "
+      f"{max(checks, default=0):.4f} nats over {len(checks)} runs")

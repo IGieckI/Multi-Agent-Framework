@@ -23,6 +23,7 @@ source scripts/slurm/env.sh
 source "${MAS_VENV}/bin/activate"
 export HF_HUB_OFFLINE=1
 export TOKENIZERS_PARALLELISM=false
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 echo "node=$(hostname) job=${SLURM_JOB_ID} model=${MODEL} grids=$*"
 nvidia-smi --query-gpu=name,memory.total --format=csv
