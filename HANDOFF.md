@@ -1,11 +1,15 @@
-# Handoff: state of the project and plan (2026-11-22)
+# Handoff: state of the project and plan (2026-11-23)
 
 For a new Claude session picking up this work. Read this file, then `FINDINGS.md` (64 numbered findings with their
-evidence and status), then `docs/LITERATURE_2026-11-22.md` (the related work checked so far). Code as of commit `076fb11` (local = `origin/main` = giano). **Every experiment has finished,
-been downloaded and been analysed (F1–F63)**: the 2026-11-07 grids (F46–F49), the review's grids and the tutor's
-grids submitted on 2026-11-12 (F56–F63, analysed 2026-11-20). Nothing is queued on giano. The report's v2
-(`docs/report/report_v2.pdf`) covers everything through F64 (2026-11-22: the adoption/copy correction and a
-related-work section). Section 7 lists what is left.
+evidence and status), then `docs/LITERATURE_2026-11-22.md` (the related work checked so far).
+
+**State on 2026-11-23.** Every grid through 2026-11-12 is finished, downloaded and analysed (F1–F63); F64 came from the
+literature check (no runs). The report's v2 (`docs/report/report_v2.pdf`, 18 pages) covers F1–F64, related work and the
+experiments in progress. **Running on giano** (section 7): the grids `renamed_made` and `renamed_made_share` in the
+main checkout (code `e8693bc`; do not pull there until they end), and the counterfactual scoring jobs in the second
+checkout `MAF-tools` (resubmitted on 2026-11-23 after a fix). Pushed to GitHub: `e8693bc` (F64, literature, report,
+the two grids) and the counterfactual commits after it; the downloaded `run_*/` folders since 2026-11-07 are not
+committed yet.
 
 ## 1. The project
 
@@ -35,7 +39,7 @@ team's token budget). The research question: does communication between agents h
 | `FINDINGS.md` | every finding from results, F1–F63 |
 | `docs/results.html` | the results web page (git-ignored, see section 6) |
 | `docs/analysis/` | the analysis scripts behind F30–F63 and the page (`README.md` lists them) |
-| `docs/report/` | the Italian report for the supervisor: v1 `report.typ` (user-edited, through F45) and v2 `report_v2.typ` (through F63); see section 6 |
+| `docs/report/` | the Italian report for the supervisor: v1 `report.typ` (user-edited, through F45) and v2 `report_v2.typ` (through F64 and the experiments in progress); see section 6 |
 | `docs/REVIEW_2026-11-11.md` | critical review of F1–F49 and the experiments it proposed (C1–C10, D1–D3) |
 | `docs/Communication in LLM-Based Multi-Agent Systems_ ...md` | a deep-research review of the field written without knowledge of this project (metrics M1–M12, ideas A1–C6); its §9 updated with what was checked |
 | `docs/LITERATURE_2026-11-22.md`, `docs/downloaded_papers/` | notes on the 17 papers that review left unverified (PDFs alongside): what each says, what it changes here |
@@ -228,16 +232,19 @@ Earlier:
 
 ## 6. Code state and open technical issues
 
-- `main` = `origin/main` = `076fb11` on the local machine and on giano. Uncommitted (2026-11-20): this file,
-  FINDINGS.md, `docs/analysis/` (k5–k12, README; `k10.py` parts 4–5 added), `docs/report/` (the whole folder is
-  untracked: v1 and v2), `docs/analysis/k13.py` and `docs/LITERATURE_2026-11-22.md` and `docs/downloaded_papers/`
-  (2026-11-22), the deep-research review's §9, the downloaded `run_*/` folders of the 2026-11-07 and 2026-11-12 grids, `run_confidence/`,
-  re-downloaded `metrics.json` files of hints2_8b (new `evaluated_at` only), the user's `framework/mail.txt` and
-  `framework/stuff.md` (see below), and the git-ignored pages.
+- 2026-11-23: `origin/main` holds `e8693bc` (pushed 2026-11-22: F64, the literature notes, the analysis scripts
+  k5–k13, the report folder, the renamed_made grids) and, after it, the counterfactual commits (the script, then
+  the fix to cached scoring). giano's main checkout is at `e8693bc` (grids running); `MAF-tools` follows `origin`.
+  Not committed: the downloaded `run_*/` folders of the 2026-11-07 and 2026-11-12 grids, `run_confidence/`,
+  `run_counterfactual/` (wrong Llama scores from before the fix, to be overwritten), re-downloaded `metrics.json`
+  files of hints2_8b (new `evaluated_at` only), `docs/downloaded_papers/` (third-party PDFs: keep out), the user's
+  `framework/mail.txt` and `framework/stuff.md` (see below), and the git-ignored pages. Later edits to this file,
+  FINDINGS.md and the report since the last push are also uncommitted.
 - **Report v2** (`docs/report/report_v2.typ` → `report_v2.pdf`, 18 pages, Italian): v1's sections with forward
   pointers, then F46–F64 (sections 10–22: bigger models, the loop, mixed teams, the review, lost messages, channels,
   renamed items, confidence and size, sequential/chain, the adoption baseline (F64, `sec-baseline`), related work
-  (`sec-lett`), conclusions, next steps). The main table's last column is now "Ripete un fallimento (muti → com.)". Its numbers come from
+  (`sec-lett`), experiments in progress (`sec-corso`: renamed_made and the counterfactual scoring, with their
+  predictions), conclusions, next steps; sections 10–23). The main table's last column is now "Ripete un fallimento (muti → com.)". Its numbers come from
   `make_data_v2.py` → `data/data_v2.json` (pairs by target, bootstrap + exact sign test; reuses `k10.py`, `k11.py`, `k13.py`,
   `k12.py`), figures from `make_figures_v2.py` → `figures/v2_*.svg`; v1's `data.json` and figures are untouched.
   Build: `python docs/report/build.py --v2` (`--pdf` for the PDF only). typst and matplotlib are not in the local
@@ -386,24 +393,26 @@ hints2's task and notes) and one stub-backend run per feature in the scratchpad.
 
 ### Next
 
-1. **Write-ups.** The report's v2 is written (section 6); the user may edit it as they did v1. `framework/mail.txt`
-   (the user's mail) is not updated. The report covers F64 and related work (2026-11-22).
-2. Republish the two pages (section 6), adding F42–F63.
-3. Commit the new analysis, report and results (the user decides; never `git add -A` or `framework/`).
-4. Possible next grids (the user decides):
-   - **renamed with `mark_made`** (F61, F62): separates pooling from the remake loop, which with made-up names costs
-     Qwen most (one agent 67.5% → 37.5%, everyone-holds-both talk 15%);
-   - `mark_made` as the default for new grids (F48, F60), and made-up names as the default task for pooling questions
-     (F61: no leak);
-   - gemma3-4b under renamed + share tells in 30% of runs only: why (prompt, refusals)?
-   - a second family at 8B (e.g. Llama 3.1-8B) to separate size from family once more, now on renamed;
-   - mixed teams on more targets (F49) and with the star's hub rotated through the families;
-   - the review's C5 (stamped / deduplicated message and result lists) is still untested;
-   - from the literature (no GPU unless stated): counterfactual scoring of logged receiver turns (prompt with / without
-     / with a swapped message, scored like `rescore.py`; method of 2610.35930); a placebo-message arm on main's fully
-     connected cells (GPU; noise control of 2605.00914); a track-record line for receivers instead of "notes are
-     true" (GPU; 2601.21742); a summary relay for the small models (GPU; 2607.16133);
-   - `metrics.py`: log the would-be-inbox baseline for silenced runs (F64) so it is standard.
+1. **When the running jobs end** (section 7 above): `sweep.py evaluate` both grids on giano (`0 unfinished`), download
+   them (section 3) and the counterfactual output (`rsync` of `MAF-tools/runs_counterfactual/` and its
+   `slurm-counterfactual-*` logs into `run_counterfactual/`). Check first: the scoring logs' last line (cached vs full
+   forward difference below about 0.05 nats), and Llama's `orig` P(played) on followup depth 1 against
+   `run_confidence/followup`'s `combo_logprob` for the same calls.
+2. **Analyse**: renamed_made against renamed (made − not made by model and cell; the remake share, `k7.py`'s
+   measure) and share / one agent / token-matched agent (F61's 92.5% vs 37.5% at equal tokens); the counterfactual
+   scores (a new `k14.py`): P(told recipe) orig − drop of that message by model (the use failure, F45, F61), orig vs
+   swap_msgs vs no_msgs on main (content or presence, F17, F64), no_results vs orig (the results channel, F59). Log
+   the findings (F65 →), then the report (section "Esperimenti in corso" becomes results).
+3. **Then, in order** (the report's "Prossimi passi"): receiver-side arms on renamed + share (track-record line,
+   who-knows-what directory, a generic "tell what they do not know" instruction, 2–3 paraphrases of the share
+   sentence), chosen by what the scoring shows; placebo messages in fully connected main (only if presence matters);
+   the would-be-inbox baseline in `metrics.py` (F64); graded asymmetry (path notes dealt to 1, 2, 3, 6 agents; needs
+   `deal_notes` to take k); a second 8B family (Llama 3.1-8B) on renamed; decide on renamed + `mark_made` as defaults.
+4. Pages: `docs/results.html` and `docs/changes_2026-11-06.html` stop at F44 and were never republished (section 6);
+   rebuild or retire them.
+5. Older ideas still open: mixed teams on more targets with the hub rotated (F49); the review's C5 (stamped,
+   deduplicated message and result lists); gemma3-4b's low telling under renamed + share (30%); a summary relay for
+   the small models (2607.16133).
 
 ## 8. Working with the user
 

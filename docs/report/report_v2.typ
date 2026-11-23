@@ -49,7 +49,7 @@
 ]
 #v(0.6em)
 
-*Novità della v2:* dalla @sec-big in poi riportano gli esperimenti lanciati dopo la prima versione (7–12 novembre): modelli più grandi, il ciclo dell'intermedio, squadre miste, una revisione critica dei risultati e gli esperimenti che ne sono seguiti (canali, nomi inventati), la confidenza dei modelli e i turni in sequenza. Le ultime due sezioni prima delle conclusioni correggono le misure di adozione e di copia (@sec-baseline) e confrontano i risultati con la letteratura recente (@sec-lett). Le sezioni precedenti sono quelle della v1, con rimandi dove i nuovi risultati le correggono.
+*Novità della v2:* dalla @sec-big in poi riportano gli esperimenti lanciati dopo la prima versione (7–12 novembre): modelli più grandi, il ciclo dell'intermedio, squadre miste, una revisione critica dei risultati e gli esperimenti che ne sono seguiti (canali, nomi inventati), la confidenza dei modelli e i turni in sequenza. Le ultime sezioni prima delle conclusioni correggono le misure di adozione e di copia (@sec-baseline), confrontano i risultati con la letteratura recente (@sec-lett) e descrivono gli esperimenti in corso (@sec-corso). Le sezioni precedenti sono quelle della v1, con rimandi dove i nuovi risultati le correggono.
 
 = Recap
 
@@ -465,6 +465,19 @@ Una ricerca bibliografica fatta senza conoscere questo progetto, verificata sugl
 
 Cosa aggiunge questo lavoro: un compito agentico in cui l'ambiente verifica ogni azione (il canale dei risultati è informazione verificata, i messaggi no), note private che non si possono indovinare, una baseline di agenti casuali e i risultati per singolo modello.
 
+= Esperimenti in corso (23 novembre) <sec-corso>
+
+Lanciati il 22 novembre sul cluster, ancora senza risultati.
+
+*1. Nomi inventati con la riga degli oggetti creati e un agente singolo a parità di token.* Gli stessi 40 obiettivi, note e nomi inventati della @sec-nomi, con la riga "Items you made" (@sec-loop) e, in più, un agente singolo con entrambe le ricette che può giocare finché non ha speso i token della squadra (vede il budget rimasto). Qwen3-4B, Gemma 3-4B, Qwen3-8B, Gemma 3-12B; note divise e tutti con entrambe (muti, comunicazione, agente singolo, agente a parità di token: 1.280 run) e le note divise con l'istruzione a condividere (squadra e agente a parità di token: 320 run). Domande e previsioni:
+- *Il ciclo spiega il crollo di Qwen con i nomi inventati?* Se sì, con la riga l'agente singolo con entrambe le ricette torna verso il 65–80% (era 37,5–42,5%) e la squadra Qwen3-8B in cui tutti le hanno e comunicano risale dal 15%; per Gemma cambia poco, come con i nomi veri.
+- *Il risultato principale regge a parità di calcolo?* Qwen3-8B con l'istruzione risolve il 92,5% contro il 37,5% di un agente con entrambe le ricette, ma la squadra gioca 24 azioni e l'agente 4. Un agente con entrambe le ricette e i token della squadra può provare quasi tutte le 45 coppie: se raggiunge la squadra, il vantaggio era calcolo; se resta sotto, mettere insieme le note vale più dei tentativi in più.
+
+*2. L'effetto dei singoli messaggi, senza nuove run.* Ogni turno registrato (dopo il primo) viene ripunteggiato dal suo modello con il prompt originale e con prompt modificati: senza un messaggio (uno alla volta), senza tutti i messaggi, con i messaggi presi dallo stesso turno di un altro obiettivo, senza i risultati condivisi. Per ogni versione si misura la probabilità di giocare la coppia scelta, le ricette del percorso, le coppie nominate nei messaggi e quelle giocate dai compagni nel turno prima (il metodo di 2610.35930, @sec-lett). Sui nomi inventati (con e senza istruzione) e sull'esperimento principale, per cinque modelli. Domande:
+- Una ricetta ricevuta alza la probabilità di giocarla? Per Gemma 3-4B, che quasi non usa le ricette ricevute, si vedrà se il messaggio non sposta la scelta o se la sposta senza bastare.
+- Nel completamente connesso conta il contenuto dei messaggi o solo la loro presenza? Se i messaggi di un altro obiettivo spostano le scelte quanto quelli veri, l'effetto gregge è in parte rumore nel prompt.
+- Verifica: le probabilità della coppia giocata devono coincidere con il ricalcolo della @sec-conf. Un primo tentativo ha dato valori sbagliati per Llama (un errore nel raggruppare le risposte, non nei dati); il metodo è stato corretto e ogni run ora controlla sé stessa.
+
 = Conclusioni
 
 + *La squadra vale per i tentativi diversi, e la diversità si può misurare:* il guadagno di agenti in più dipende da quanto i campioni del modello sono in disaccordo (Llama molto, Qwen quasi nulla), e la confidenza del modello sulle proprie risposte misura proprio questo disaccordo, non la correttezza. Gli agenti casuali restano una baseline forte.
@@ -476,10 +489,12 @@ Cosa aggiunge questo lavoro: un compito agentico in cui l'ambiente verifica ogni
 
 = Prossimi passi
 
-- *Nomi inventati con la riga degli oggetti creati e l'agente singolo con il budget della squadra:* separa la capacità di mettere insieme le note dal ciclo dell'intermedio, e verifica a parità di token il risultato principale (Qwen3-8B con l'istruzione 92,5% contro 37,5% di un agente con entrambe le ricette).
-- *Misurare l'effetto dei singoli messaggi senza nuove run:* ripunteggiare i turni registrati con il messaggio, senza, o sostituito da quello di un altro obiettivo, misurando quanto cambia la probabilità della mossa giusta (il metodo di 2610.35930). Dice se Gemma 3-4B ignora le ricette ricevute e se nel completamente connesso pesa il contenuto dei messaggi o solo la loro presenza.
-- *Il lato del ricevente:* con i nomi inventati e l'istruzione a condividere, provare una riga con l'affidabilità dei compagni (quante ricette riportate erano valide), un elenco di chi sa cosa, un'istruzione generica ("di' agli altri solo quello che sanno e tu no") al posto di quella specifica, e due o tre riformulazioni dell'istruzione.
-- *Messaggi placebo nel completamente connesso* (messaggi presi da un altro obiettivo), se il punto precedente indica che conta la presenza dei messaggi.
+In corso (@sec-corso): i nomi inventati con la riga degli oggetti creati e l'agente a parità di token, e il ripunteggio dei messaggi. Dopo, in ordine:
+
+- *Il lato del ricevente:* con i nomi inventati e l'istruzione a condividere, provare una riga con l'affidabilità dei compagni (quante ricette riportate erano valide), un elenco di chi sa cosa, un'istruzione generica ("di' agli altri solo quello che sanno e tu no") al posto di quella specifica, e due o tre riformulazioni dell'istruzione. La scelta dipende da cosa mostra il ripunteggio: se i messaggi non spostano le scelte di Gemma 3-4B, il problema è leggere; se le spostano senza bastare, è agire.
+- *Messaggi placebo nel completamente connesso* (messaggi presi da un altro obiettivo, in run vere), se il ripunteggio indica che conta la presenza dei messaggi più del loro contenuto.
+- *Misure di adozione standard:* calcolare nel framework il confronto con la squadra muta della @sec-baseline, così che ogni nuovo esperimento lo riporti.
+- *Asimmetria graduale:* dare le ricette del percorso a 1, 2, 3 o 6 agenti, per vedere dove la comunicazione passa da guadagno (+45 con le note divise) a perdita (−45 quando tutti hanno tutto).
 - Un secondo modello da 8B di un'altra famiglia (per esempio Llama 3.1-8B) sui nomi inventati, e decidere se usare d'ora in avanti i nomi inventati e la riga degli oggetti creati come impostazioni predefinite.
 
 #v(1em)

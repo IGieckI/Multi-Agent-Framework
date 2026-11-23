@@ -968,7 +968,10 @@ exact sign test's discordant pairs (F54).
   solve, and it works: unprompted through results and Qwen's messages, fully once agents are told to share, given a
   big enough model. F33's "talk does not pool" was the 4B models with real names, where guessing hid it; F43's
   size effect holds for using told recipes (share), much less for unprompted talk (Qwen 4B pools too).
-- Status: **open**: renamed with `mark_made` (F62), and gemma3-4b's failure to tell under the instruction.
+- Status: **open**: renamed with `mark_made` (F62), and gemma3-4b's failure to tell under the instruction. Being
+  tested (2026-11-22): `renamed_made` / `renamed_made_share` add the made line and one agent holding both notes with
+  the team's token budget (is qwen3-8b's 92.5% vs 37.5% more than compute?); `scripts/counterfactual.py` scores
+  whether a told recipe moves the receiver (gemma3-4b's use failure).
 
 ### F62. Without real names Qwen's remake loop gets much worse: it does not recognise the item it made
 - One agent holding both recipes, split notes, renamed − real names: qwen3-4b −32.5 (5/18), qwen3-8b −30.0 (4/16),
@@ -984,7 +987,7 @@ exact sign test's discordant pairs (F54).
 - Changes: with "small" in the inventory a Qwen agent can see that "alchemist + small" is now playable; "zonut"
   carries no such cue. The loop is a failure to match the made item to the next note (F44, F60), which names partly hide. The
   renamed grids' everyone-holds-both and one-agent cells are a lower bound on what the notes allow.
-- Status: **open**. `mark_made` on the renamed grid would test it directly.
+- Status: **open**. `mark_made` on the renamed grid would test it directly: `renamed_made`, running since 2026-11-22.
 
 ### F63. A relay chain beats the parallel fully connected team only by talking less; sequential turns do not help
 - `chain` (main's 40 targets, base) against followup / main's fully connected parallel team and its silenced twin.
@@ -1050,6 +1053,7 @@ agents change and agree without peers too. Applied to our herding measures, that
   section "Esperimento principale" and its bullet, line 128; "Squadre miste", line 316; "Turni in sequenza e catena",
   line 420).
 - Status: **open**. Report talk − silenced with the would-be inbox from now on; a fix in `metrics.py` (log the
-  baseline for silenced runs) would make it standard. The report v2 is corrected (2026-11-22: its main table's
+  baseline for silenced runs) would make it standard. Whether the herding comes from the messages' content or their
+  presence is being scored on main's logs (`scripts/counterfactual.py`: swapped vs removed messages, 2026-11-22). The report v2 is corrected (2026-11-22: its main table's
   last column, the passages above, a new section with the table by model and channel, `make_data_v2.py` key
   `adopt`).
