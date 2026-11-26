@@ -387,6 +387,14 @@ hints2's task and notes) and one stub-backend run per feature in the scratchpad.
   difference printed at the end). 76412–76414 cancelled (old code) and everything resubmitted; the outputs scored
   before the fix were deleted on giano. A llama job on followup's fully connected depth-1 runs validates against
   the rescore (`run_confidence/followup`).
+- 2026-11-26: all jobs (76545–76551) finished and were downloaded to `run_counterfactual/` (the pre-fix outputs are in
+  `run_counterfactual_prefix/`). Two checks: (1) cached vs full forward differs by 0.1–1.9 nats on the bf16 models
+  (gemma3-4b, gemma3-12b, qwen3-8b on L40) and ≤ 0.17 on the fp16 ones: zero-mean rounding, so trust averages and
+  large effects, not per-turn differences under ~0.5 nats there. (2) Llama's `orig` P(played) sat 6.4 nats (median)
+  below rescore's `combo_logprob` on followup, unchanged by the padding fix: the answer was cut at the closing quote,
+  and Llama 3.2 / Qwen3 tokenize `'\n` as one token (Gemma 3 does not), so the line ended on a token they never
+  sample there. Fixed: `answers()` scores the line with its newline. Llama, qwen3-4b and qwen3-8b need rescoring;
+  Gemma's scores stand (they only lack a near-certain '\n').
 - Questions: does a told recipe raise the receiver's probability of playing it (Gemma3-4B vs the rest, F45, F61)?
   In fully connected main, do the messages' content or only their presence pull agents (swap vs orig vs no_msgs)?
   Validation: `orig` of the played pair against the rescored `combo_logprob` (F56) on main.

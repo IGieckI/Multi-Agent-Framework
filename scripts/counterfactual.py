@@ -1,6 +1,6 @@
 """What a message does to the agent that reads it: logged turns of finished runs scored again under their model with
 the prompt edited. For every turn after round 0 with something in its inbox (first attempt), the log-probability of
-answering "Combination: 'a' and 'b'" (both orders summed) for a set of candidate pairs, under these prompts:
+answering "Combination: 'a' and 'b'\n" (the whole line with its newline; both orders summed) for a set of candidate pairs, under these prompts:
 
     orig        the prompt as logged
     no_msgs     every teammate's message removed (the round-0 layout: the header with an empty list)
@@ -168,8 +168,11 @@ def pair(a: str, b: str) -> tuple:
 
 
 def answers(p: tuple) -> list[str]:
+    """the answer line with its newline: Llama 3.2 and Qwen3 write the closing quote and the newline as one token
+    ("'\\n"), so a line cut at the quote ends on a token they almost never sample there (-6.4 nats for Llama against
+    rescore.py, 2026-11-26); Gemma 3 tokenizes them apart and only gains a near-certain '\\n'"""
     a, b = p
-    return [f"Combination: '{a}' and '{b}'"] + ([f"Combination: '{b}' and '{a}'"] if a != b else [])
+    return [f"Combination: '{a}' and '{b}'\n"] + ([f"Combination: '{b}' and '{a}'\n"] if a != b else [])
 
 
 def load_run(run: Path) -> dict:
